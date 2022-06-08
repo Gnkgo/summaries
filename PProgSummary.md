@@ -226,13 +226,28 @@ $S_P = f + P(1 -f)
 
  public static void main(String[] args) 
  int[] arr = new int[] {15, 7, 9, 8, 4, 22, 42, 13};
- ExecutorService ex = Executors.newFixedThreadPool(8); //Attention, has to be minimum number of thread which are needed --> otherwise you have an endless loop
- MaxTask top = new MaxTask(ex, 0, arr.length, arr);
- Future<Integer> max = ex.submit(top);
- try {
-     System.out.println(max.get());
- } catch(Exception e){
-     //somethinbg
- }
- ex.shutdown();
+ MaxForkJoin top = new MaxTask(0, arr.length, arr);
+ ForkJoinPool jfp = new ForkJoinPool();
+ int res = fjp.invoke(tp);
+ System.out.println(res);
  ```
+
+ Note the following similarities:
+ We use the library as follows:
+- Instead of extending Thread, we extend RecursiveTask<T> (with return value) or RecursiveAction
+(without return value)
+- Instead of overriding run, we override compute
+- Instead of calling start, we call fork
+- Instead of a topmost call to run, we create a ForkJoinPool and call invoke
+Also, note that in the case of RecursiveTask```<T>```, join now returns a result.
+
+
+## Throughput
+
+$Throughput \approx \frac{1}{max(computationtime(stages))}$
+
+## Latency
+Time to perform a single computation, including wait time resulting from resource dependencies.
+
+______________
+A pipeline is **balanced** if the latency remains constant over time.
