@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PProgSummary.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pprog-important-things-to-know">PProg: Important things to know</h1>
+<h2 id="creating-a-thread">Creating a Thread</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Useless</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>{
+    <span class="hljs-keyword">int</span> i;
+    Useless (<span class="hljs-keyword">int</span> i) {
+        <span class="hljs-keyword">this</span>.i = i;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Thread says hi"</span> + i);
+        System.out.println(<span class="hljs-string">"Thread says bye"</span> + i);
+    }
+}
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">M</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) {
+            Thread t = <span class="hljs-keyword">new</span> Useless(i+ <span class="hljs-number">1</span>);
+            t.start(); <span class="hljs-comment">//Important: you cannot use t.run() --&gt; t.run doesn't create a new Thread</span>
+        }
+    }
+}
+
+</div></code></pre>
+<p>Important: you can only create a Thread, when you use start(). Thread, run method has no return value and no argument</p>
+<h2 id="joining-threads">Joining threads:</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Useless</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>{
+    <span class="hljs-keyword">int</span> i;
+    Useless (<span class="hljs-keyword">int</span> i) {
+        <span class="hljs-keyword">this</span>.i = i;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"Thread says hi"</span> + i);
+        System.out.println(<span class="hljs-string">"Thread says bye"</span> + i);
+    }
+}
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">M</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Thread[] threads = <span class="hljs-keyword">new</span> Thread[<span class="hljs-number">20</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) {
+            Thread t = <span class="hljs-keyword">new</span> Useless(i+ <span class="hljs-number">1</span>);
+            t.start(); 
+            threads[i] = t;
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) {
+            <span class="hljs-keyword">try</span> { <span class="hljs-comment">//need catchblock around join</span>
+                threads[i].join();
+            } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+               <span class="hljs-comment">//Some catch block </span>
+            }
+        }
+        System.out.println(<span class="hljs-string">"All done."</span>);
+    }
+}
+</div></code></pre>
+<p>With &quot;join&quot;, you wait until every thread is done</p>
+<h2 id="thread-states">Thread states</h2>
+<p>If we want to be able to talk about the effects of different thread operations, we need some notion of
+thread states. In short, a Java thread typically goes through the following states:</p>
+<ul>
+<li><strong>Non-Existing:</strong> Before the thread is created, this is where it is. We don’t know too much about this
+place, as it’s not actually on our plane of reality, but it’s somewhere out there.</li>
+<li><strong>New:</strong> Once the Thread object is created, the thread enters the new state.</li>
+<li><strong>Runnable:</strong> Once we call start() on the new thread object, it becomes eligible for execution and
+the system can start scheduling the thread as it wishes.</li>
+<li><strong>Blocked:</strong> When the thread attempts to acquire a lock, it goes into a blocked state until it has
+obtained the lock, upon which it returns to a runnable state. In addition, calling the join()
+method will also transfer a thread into a blocked state.</li>
+<li><strong>Waiting:</strong> The thread can call wait() to go into a waiting state. It’ll return to a runnable state
+once another thread calls notify() or notifyAll() and the thread is removed from the waiting
+queue.</li>
+<li><strong>Terminated:</strong> At any point during execution we can use interrupt() to signal the thread to stop its
+execution. It will then transfer to a terminated state. Note that when the thread is in a runnable
+state, it needs to check whether its interrupted flag is set itself, it won’t transfer to the terminated
+state automatically. Of course, exiting the run method is equivalent to entering a terminated state.
+Once the garbage collector realizes that the thread has been terminated and is no longer reachable,
+it will garbage collect the thread and return it to a non-existing state, completing the cycle</li>
+</ul>
+<h2 id="data-races">Data Races:</h2>
+<p>A data race is a specific kind of race condition that is better described as a <strong>simultaneous access error</strong>,
+although nobody uses that term. There are two kinds of data races:</p>
+<ul>
+<li>When one thread might read an object field at the same moment that another thread writes the
+same field.</li>
+<li>When one thread might write an object field at the same moment that another thread also writes
+the same field.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> y = <span class="hljs-number">0</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>{
+        x = <span class="hljs-number">1</span>; <span class="hljs-comment">//line A</span>
+        y = <span class="hljs-number">1</span>; <span class="hljs-comment">//line B</span>
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> a = y; <span class="hljs-comment">//line C</span>
+        <span class="hljs-keyword">int</span> b = x; <span class="hljs-comment">//line D</span>
+        <span class="hljs-keyword">assert</span> (b &gt;= a);
+    }
+}
+</div></code></pre>
+<p>Code has data races, but it doesn't occur --&gt; proof by contradiction</p>
+<h2 id="important-to-remember">Important to remember:</h2>
+<h3 id="speedup">Speedup:</h3>
+<p>$S_p := \frac{T_1}{T_P}$</p>
+<p>Where $T_1$ is the sequentail time (Time with one processor) and $T_P$ with the time with $P$ processors.</p>
+<p>Reasons why program is nevertheless slower: _
+<em>Additional overheads caused by inter-thread dependencies, creating threads,
+communicating between them and memory-hierarchy issues can greatly limit the speedup we gain from
+adding more processors.</em></p>
+<h2 id="amdahl">Amdahl:</h2>
+<ul>
+<li>Fixed workload and upper bound on the speedup achievable when increasing the number of processors at our disposal.</li>
+</ul>
+<p>Let $f$ denote the non-parallelizable, serial fraction of the total work done in a program
+and $P$ the number of processors at our disposal. Then, the following inequality holds:</p>
+<p>$S_P &lt;= \frac{1}{f + \frac{1 - f}{P}}$</p>
+<p>If $P$ is infinity then:</p>
+<p>$S_\infty &lt;= \frac{1}{f}$</p>
+<h2 id="gustafson">Gustafson</h2>
+<ul>
+<li>We increase the problem size as we improve the resources at our disposal. We consider the time interval to be fixed and look at the problem size.</li>
+</ul>
+<p>Let $f$ denote the non-parallelizable, serial fraction of the total work done in the
+program and $P$ the number of processors at our disposal. Then, we get:</p>
+<p>$S_P = f + P(1 -f)
+= P - f(P - 1)$</p>
+<h2 id="divide-and-conquer-with-executorservice">Divide and Conquer with ExecutorService</h2>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxTask</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span>  </span>{
+    <span class="hljs-comment">//Runnable would work as well, but then you don't have a return value, callable does have one</span>
+    <span class="hljs-keyword">int</span> l;
+    <span class="hljs-keyword">int</span> h;
+    <span class="hljs-keyword">int</span>[] arr;
+    ExecutorService ex;
+
+    <span class="hljs-function">üublioc <span class="hljs-title">MaxTask</span><span class="hljs-params">(ExecutorService ex, <span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span>[] arr)</span> </span>{
+       <span class="hljs-keyword">this</span>... 
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">//Check base case</span>
+        <span class="hljs-keyword">int</span> size = h - l;
+        <span class="hljs-keyword">if</span> (size == <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">return</span> arr[l];
+        } <span class="hljs-comment">//split work</span>
+        <span class="hljs-keyword">int</span> mid = size / <span class="hljs-number">2</span>;
+        MaxTask m1 = <span class="hljs-keyword">new</span> MaxTask(ex, l, l + mid, arr);
+        MaxTask m2 = <span class="hljs-keyword">new</span> MaxTask(ex, l + mid, h, arr);
+        <span class="hljs-comment">//Start subtasks</span>
+        Future&lt;Integer&gt; f1 = ex.submit(m1);
+        Future&lt;Integer&gt; f2 = ex.submit(m2);
+        <span class="hljs-comment">//Combine results</span>
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> Math.max(f1.get(), f2.get());
+        } <span class="hljs-keyword">catch</span>(Exception e) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> 
+<span class="hljs-keyword">int</span>[] arr </span>= <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] {<span class="hljs-number">15</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">22</span>, <span class="hljs-number">42</span>, <span class="hljs-number">13</span>};
+ExecutorService ex = Executors.newFixedThreadPool(<span class="hljs-number">8</span>); <span class="hljs-comment">//Attention, has to be minimum number of thread which are needed --&gt; otherwise you have an endless loop</span>
+MaxTask top = <span class="hljs-keyword">new</span> MaxTask(ex, <span class="hljs-number">0</span>, arr.length, arr);
+Future&lt;Integer&gt; max = ex.submit(top);
+<span class="hljs-keyword">try</span> {
+    System.out.println(max.get());
+} <span class="hljs-keyword">catch</span>(Exception e){
+    <span class="hljs-comment">//somethinbg</span>
+}
+ex.shutdown();
+</div></code></pre>
+<p>To avoid &quot;knowing&quot; how many threads you need, you can use Recursive Task:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MaxForkJoin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RecursiveTask</span>&lt;<span class="hljs-title">Integer</span>&gt;  </span>{
+    <span class="hljs-keyword">int</span> l;
+    <span class="hljs-keyword">int</span> h;
+    <span class="hljs-keyword">int</span>[] arr;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MaxForkJoin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> lo, <span class="hljs-keyword">int</span> hi, <span class="hljs-keyword">int</span>[] arr)</span> </span>{
+       <span class="hljs-keyword">this</span>... 
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">compute</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//Check base case</span>
+        <span class="hljs-keyword">int</span> size = h - l;
+        <span class="hljs-keyword">if</span> (size == <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">return</span> arr[l];
+        } <span class="hljs-comment">//split work</span>
+        <span class="hljs-keyword">int</span> mid = size / <span class="hljs-number">2</span>;
+        MaxForkJoin m1 = <span class="hljs-keyword">new</span> MaxForkJoin(l, l + mid, arr);
+        MaxForkJoin m2 = <span class="hljs-keyword">new</span> MaxForkJoin(l + mid, h, arr);
+        <span class="hljs-comment">//Run subtasks</span>
+        m1.fork();
+        <span class="hljs-keyword">int</span> max2 = m2.compute();
+        <span class="hljs-keyword">int</span> max1 = m1.join();
+        <span class="hljs-comment">//Combine results</span>
+        <span class="hljs-keyword">return</span> Math.max(f1.get(), f2.get());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> 
+<span class="hljs-keyword">int</span>[] arr </span>= <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] {<span class="hljs-number">15</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">22</span>, <span class="hljs-number">42</span>, <span class="hljs-number">13</span>};
+MaxForkJoin top = <span class="hljs-keyword">new</span> MaxTask(<span class="hljs-number">0</span>, arr.length, arr);
+ForkJoinPool jfp = <span class="hljs-keyword">new</span> ForkJoinPool();
+<span class="hljs-keyword">int</span> res = fjp.invoke(tp);
+System.out.println(res);
+</div></code></pre>
+<p>Note the following similarities:
+We use the library as follows:</p>
+<ul>
+<li>Instead of extending Thread, we extend RecursiveTask<T> (with return value) or RecursiveAction
+(without return value)</li>
+<li>Instead of overriding run, we override compute</li>
+<li>Instead of calling start, we call fork</li>
+<li>Instead of a topmost call to run, we create a ForkJoinPool and call invoke
+Also, note that in the case of RecursiveTask<code>&lt;T&gt;</code>, join now returns a result.</li>
+</ul>
+<h2 id="throughput">Throughput</h2>
+<p>$Throughput \approx \frac{1}{max(computationtime(stages))}$</p>
+<h2 id="latency">Latency</h2>
+<p>Time to perform a single computation, including wait time resulting from resource dependencies.</p>
+<hr>
+<p>A pipeline is <strong>balanced</strong> if the latency remains constant over time.</p>
+
+</body>
+</html>

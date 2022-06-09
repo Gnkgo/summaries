@@ -1,3 +1,6 @@
+
+
+
 # PProg: Important things to know
 
 ## Creating a Thread
@@ -249,5 +252,5 @@ $Throughput \approx \frac{1}{max(computationtime(stages))}$
 ## Latency
 Time to perform a single computation, including wait time resulting from resource dependencies.
 
-______________
+________________________________________________________
 A pipeline is **balanced** if the latency remains constant over time.
