@@ -151,6 +151,14 @@ program and $P$ the number of processors at our disposal. Then, we get:
 $S_P = f + P(1 -f)
  = P - f(P - 1)$
 
+ ## Workspan
+ $T_x <= T_\infty + \frac{T_1 - T_\infty} {x}$
+
+ ## In a graph:
+
+ Work: all jobs summed up
+ Span: Longest critical path
+
  ## Divide and Conquer with ExecutorService
 
  ```Java
@@ -254,3 +262,60 @@ Time to perform a single computation, including wait time resulting from resourc
 
 ________________________________________________________
 A pipeline is **balanced** if the latency remains constant over time.
+
+
+# MPI
+
+##  Synchronous, asynchronous, blocking, non-blocking
+
+- Synchronous + blocking: try to call somebody until he answers.
+- Synchronous + non-blocking: try to call, if the other person does
+not pick up I do something else.
+- Asynchronous + blocking: wait until your crush texts you back.
+- Asynchronous + non-blocking: send an E-Mail and continue working until you get a response.
+
+In the actor model, messages are sent in an **asynchronous, non-blocking fashion**. --> The sender places the message into the buffer of the receiver and continues execution. In contrast, when the sender sends **syncrhonous-messages**, it blocks until the message has been received.
+
+
+MPI collects processes into groups, where each group can have multiple **colors**.  A
+group paired with its color uniquely identifies a communicator. Initially,
+all processes are collected in the same group and communicator MPI_-
+COMM_WORLD. Within each communicator, a process is assigned a unique
+identifier, called the **rank**.
+
+````Java
+public void Send(
+    Object buf, //Ptr to data to be sent
+    int offset ,
+    int count, //number of items to be sent
+    Datatype datatype, //datatype of items
+    int dest, //destination process id
+    int tag, //data id tag
+    ) ;
+
+public void Recv(
+    Object buf,
+    int offset ,
+    int count, // Number of items to be received
+    Datatype datatype, // Datatype of items
+    int dest, // Source process id
+    int tag, //Data id tag
+    ) ;
+````
+
+## Transactional Memory
+
+Definition 3.7.1 (Transactional Memory) Transactional Memory is a
+programming model whereby loads and stores on a particular thread can be
+grouped into transactions. The read set and write set of a transaction are the
+set of addresses read from and written to respectively during the transaction. A
+data conflict occurs in a transaction if another processor reads or writes a value
+from the transaction’s write set, or writes to an address in the transaction’s
+read set. Data conflicts cause the transaction to abort, and all instructions
+executed since the start of the transaction (and all changes to the write set) to
+be discarded.
+
+Transactions run in isolation: while a transaction is running, effects from
+other transactions are not observed. A good analogy is the one of a
+snapshot: transactional memory works as if transaction takes a snapshot
+of the global state when it begins and then operates on that snapshot.
