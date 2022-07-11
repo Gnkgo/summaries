@@ -260,13 +260,12 @@ $Throughput \approx \frac{1}{max(computationtime(stages))}$
 ## Latency
 Time to perform a single computation, including wait time resulting from resource dependencies.
 
-________________________________________________________
 A pipeline is **balanced** if the latency remains constant over time.
 
 
-# MPI
+## MPI
 
-##  Synchronous, asynchronous, blocking, non-blocking
+###  Synchronous, asynchronous, blocking, non-blocking
 
 - Synchronous + blocking: try to call somebody until he answers.
 - Synchronous + non-blocking: try to call, if the other person does
@@ -315,7 +314,7 @@ read set. Data conflicts cause the transaction to abort, and all instructions
 executed since the start of the transaction (and all changes to the write set) to
 be discarded.
 
-Transactions run in isolation: while a transaction is running, effects from
+Transactions run in *isolation*: while a transaction is running, effects from
 other transactions are not observed. A good analogy is the one of a
 snapshot: transactional memory works as if transaction takes a snapshot
 of the global state when it begins and then operates on that snapshot.
