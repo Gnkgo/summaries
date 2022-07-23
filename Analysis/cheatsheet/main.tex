@@ -334,18 +334,7 @@ $$
 
 Konvergiert $\sum_{n = 1}^\infty a_n$ absolut, dann konvergiert auch jede Umordnung
 der Reihe $a_n' = a_{\phi(n)}$ (wobei $\phi$ bijektiv) und hat denselben Grenzwert.
-% Typische Folgen
 
-\subsection{Typische Reihen}
-
-\begin{enumerate}[(i)]
-  \item Geometrische Reihe: $\sum_{k = 0}^\infty a * q^k = \frac{a}{1 - q}$ für $|q| < 1$ konvergent, sonst divergent
-  \item Riemann Zeta Funktion: $\zeta(s) = \sum_{n = 1}^\infty \frac{1}{n^s}$ konvergiert für $s > 1$, sonst divergent
-  \item Teleskopsumme: $\sum_{i = 1}^n (a_i - a_{i + 1}) = (a_1 - a_2) + (a_2 - a_3) + \cdots +(a_n - a_{n+1}) = a_1 - a_{n+1}$ 
-  \item Alternierende Harmonische Reihe: $\sum_{n = 1}^\infty \frac{(-1)^n}{n} = ln(2)$
-  \item $\sum_{k = 1}^\infty \frac{1}{\sqrt{k}}$ ist divergent, vergleich mit $\sum_{k = 1}^\infty \frac{1}{k}$
-  \item $\sum_{k = 1}^\infty \frac{1}{k!}$ ist konvergent, vergleich mit $\sum_{k = 1}^\infty \frac{1}{2^{k-1}}$
-\end{enumerate}
 % Potenzreihe
 \subsection {Potenzreihe}
 Die Potenzreihe $\sum_{k = 0}^\infty c_k z^k$ konvergiert absolut für alle $z \in \mathbf{C}$
@@ -1114,13 +1103,11 @@ erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
 % Trigonometrische Funktionen
 
 \subsection{Trigonometrische Funktionen}
+Sind alle stetig
+\includegraphics[width=6cm]{taylor.png}
 
-\begin{align*}
-  sin(z) &:= z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}\\
-  cos(z) &:= 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}\\
-  tan(z) &:= \frac{sin(z)}{cos(z)}\;\;\; \forall z \not \in \{\frac{\pi}{2} + \pi k\}\\
-\end{align*}
-welche alle stetige Funktionen sind. Es gilt weiter:
+
+
 \begin{enumerate}[(i)]
   \item $cos(z) = cos(-z)$
   \item $sin(-z) = -sin(z)$
