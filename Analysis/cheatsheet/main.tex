@@ -4,7 +4,7 @@
 % ANOTHER IMPORTANT NOTE: The Boxlayout with Titles was copied from here: https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
 % The Credit goes to Drew Ulick
 
-\documentclass[10pt]{article}
+\documentclass[8pt]{article}
 % Article
 % \documentclass[9pt]{extarticle}
 \usepackage[landscape, left=0.75cm, top=1cm, right=0.75cm, bottom=1.5cm, footskip=15pt]{geometry}
@@ -861,11 +861,7 @@ Sei $a < b$, $f:[a,\,b] \rightarrow \mathbf{R}$ stetig. Eine Funktion $F:[a,\,b]
 
 Sei $f:[a,\,b] \rightarrow \mathbf{R}$ stetig. Dann gibt es eine Stammfunktion $F$ von $f$, die bis auf eine additive Konstante eindeutig bestimmt ist und es gilt:
 $$\int_a^b f(x) dx = F(b) - f(a)$$
-% Typische Stammfunktionen
 
-\subsection{Typische Stammfunktionen}
-
-Sieh Abschnitt Sonstiges für Typische Stammfunktionen
 % Partielle Integration
 
 \subsection{Partielle Integration}
@@ -984,6 +980,14 @@ Ohne reelle Nullstellen:
 
 Das Unbestimmte Integral ist die Menge aller Stammfunktionen und sozusagen fast alles von oben gilt. $+C$ ist \textbf{sehr} wichtig.
 \section{Sonstiges}
+\subsection{Rewrite Function}
+$h(x) = max{f(x), g(x)} = \frac{1}{2}(f(x) + g(x)) + \frac{1}{2}|f(x) -g(x)|$
+
+\subsection{Proof of "Null-Reihe"}
+Eine Reihe konvergiert, wenn die Folge ihrer Partialsumme $(s_n) n \in \mathbb{N} $ mit: $s_n = \sum_{i=1}^{n} a_i$ konvergiert, das heisst, es existiert ein Granzwert $s$, sodass
+	$\lim_{n \to \infty} s_n = s$  Durch Umstellung der Reihe und mit den Rechenregeln für Grenzwerte gild dann
+	$\lim_{n \to \infty} a_n = \lim_{n \to \infty} (s_n - s_{n - 1} = \lim_{n \to \infty} s_n - \lim_{n \to \infty} s_{n-1} =  s - s = 0$
+
 \hypertarget{sec:5}{}
 % Injektiv/ Surjektiv
 
@@ -1122,9 +1126,7 @@ welche alle stetige Funktionen sind. Es gilt weiter:
   \item $sin(-z) = -sin(z)$
   \item $cos^2(z) + sin^2(z) = 1 \;\;\; \forall z \in \mathbf{C}$
 \end{enumerate}
-\includegraphics[width=7cm]{sincostan.png}
-\includegraphics[width=7cm]{arcsinArccosArctan.png}
-\includegraphics[width=7cm]{sinhCoshTanh.png}
+\includegraphics[width=7cm]{functions.png}
 % Häufungspunkt
 
 \subsection{Häufungspunkt}
@@ -1176,7 +1178,7 @@ $
 
 \subsection{Sin/Cos Werte}
 \begin{center}
-\includegraphics[width=\linewidth/(3/2)]{degrees_circle.pdf}
+\includegraphics[scale=0.4]{values.png}
 \end{center}
 
 
