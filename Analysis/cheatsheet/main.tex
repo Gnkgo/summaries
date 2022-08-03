@@ -209,8 +209,8 @@ $f:\mathbf{D} \rightarrow \mathbf{R}$ falls für alle $x \in \mathbf{D}$, $f(x) 
   &\forall n \geq N \;\;\; |f_n(x) - f(x)| < \epsilon
 \end{align*}
 % Gleichmässige Konvergenz
- \subsection{Gleichmässige Konvergenz}
-Die Funktionenfolge $(f_n)_{n \geq 0}$ konvergiert gleichmässig in $\mathbf{D}$ gegen eine Funktion
+\subsection{Gleichmässige Konvergenz}
+ Die Funktionenfolge $(f_n)_{n \geq 0}$ konvergiert gleichmässig in $\mathbf{D}$ gegen eine Funktion
 $f:\mathbf{D} \rightarrow \mathbf{R}$ falls für alle $x \in \mathbf{D}$, $f(x) = \lim_{n \rightarrow \infty} f_n(x)$ gilt. Konkret:
 \begin{align*}
   &\forall \epsilon > 0 \;\;\; \exists N_{\epsilon} \geq 1 \text{ so dass }\\
@@ -227,10 +227,12 @@ ist $f$ in $\mathbf{D}$ \textbf{stetig}.\\
 \\
 \textbf{Beispiel:}
 $f_n : \mathbf{R} \rightarrow \mathbf{R}, f_n(x) = \sqrt{|x| + \frac{1}{n^3}}$
-Wie lautet der punktweise Limes der Funktionsfolge $f_n$? Konvergiert $f_n$ gleichmässig auf  $\mathbf{R}$?\\
+Wie lautet der punktweise Limes der Funktionsfolge $f_n$? Konvergiert $f_n$ gleichmässig auf  $\mathbf{R}$?\\ 
+\\
 \textbf{Punktweise Konvergenz:} Wir fixieren $x \in R$ und bilden den Limes für $n \rightarrow \infty$
-
-$\lim_{n \to \infty} f_n(x) = \lim_{n \rightarrow \infty} \sqrt{|x| + \frac{1}{n^3}} = \sqrt{|x|} = f(x)$\\
+$$
+\lim_{n \to \infty} f_n(x) = \lim_{n \rightarrow \infty} \sqrt{|x| + \frac{1}{n^3}} = \sqrt{|x|} = f(x)
+$$
 Die Funktionenfolge konvergiert somit punktweise gegen den punktweisen Grenzwert $f(x) = \sqrt{|x|}$\\
 \textbf{Gleichmässige Konvergenz:} Wir müssen zeigen, dass $\lim_{n \to \infty} sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = 0$ gilt. Wir berechnen also zuerst den Ausdruck $sup_{x \in \mathbf{R}} |f_n(x) - f(x)|$
 \begin{align*}
@@ -574,19 +576,16 @@ $$
 % Aussagen der Ableitung
 
 \subsection{Aussagen der Ableitung}
-
-Sei $f:]\,a, b\,[ \rightarrow \mathbf{R}$ und $x_0 \in ]\,a, b\,[$. Wir nehmen an, dass $f$
-in $x_0$ differenzierbar ist.
-\begin{enumerate}[(i)]
-  \item Falls $f'(x) > 0 \; \exists \delta > 0$ mit $f(x) > f(x_0) \; \forall x \in ]x_0, x_0 + \delta[$
-  und $f(x) < f(x_0) \; \forall x \in ]x_0 - \delta, x_0[$
-  \item Falls $f'(x) < 0 \; \exists \delta > 0$ mit $f(x) < f(x_0) \; \forall x \in ]x_0, x_0 + \delta[$
-  und $f(x) > f(x_0) \; \forall x \in ]x_0 - \delta, x_0[$
-  \item Ist $f'(x) \geq (>) \; 0 \;\;\; \forall x \in ]\,a, b\,[$ ist $f$ (strikt) monoton wachsend
-  \item Ist $f'(x) \leq (<) \; 0 \;\;\; \forall x \in ]\,a, b\,[$ ist $f$ (strikt) monoton fallend
+\begin{enumerate}
+  \item $f$ besitzt ein lokales Minimum in $x_0$, wenn $f'(x_0) = 0$ und $f''(x_0) > 0$ oder falls das Vorzeichen von $f'$ um $x_0$ von $-$ zu $+$ wechselt.
+  \item $f$ besitzt ein lokales Maximum in $x_0$, wenn $f'(x_0) = 0$ und $f''(x_0) < 0$ oder falls das Vorzeichen von $f'$ um $x_0$ von $+$ zu $-$ wechselt.
+  \item $f$ besitzt ein lokales Extremum in $x_0$, wenn $f'(x_0) = 0$ und $f''(x_0) \ne 0$.
+  \item $f$ besitzt einen Sattelpunkt in $x_0$, wenn $f'(x_0) = 0$ und $f''(x_0) = 0$.
+  \item $f$ besitzt einen Wendepunkt in $x_0$, wenn $f''(x_0) = 0$.
+  \item $f$ ist in $x_0$ konvex, wenn $f''(x_0) \ge 0$.
+  \item $f$ ist in $x_0$ konkav, wenn $f''(x_0) \le 0$.
 \end{enumerate}
 % Umkehrsatz
-
 \subsection{Umkehrsatz}
 
 Sei $f: \mathbf{D} \rightarrow \mathbf{E}$ eine bijektive Funktion,
@@ -627,29 +626,15 @@ wobei der Satz auch gilt wenn
 
 % Konvexität
 \subsection{Konvexität}
-
-Sei $\mathbf{I} \subset \mathbf{R}$ ein Intervall und $f:\mathbf{I} \rightarrow \mathbf{R}$ eine Funktion.
-\begin{enumerate}[(i)]
-  \item $f$ ist \textbf{(streng) konvex} auf $\mathbf{I}$ falls für alle $x \leq y$, $x, y \in \mathbf{I}$
-  und $\lambda \in [\, 0, 1 \,]$ ($\lambda \in ]\, 0, 1 \,[$)
-  $$f(\lambda * x + (1 - \lambda) * y) \leq \;(<)\; \lambda * f(x) + (1 - \lambda) * f(y)$$ gilt.
-  \item $f$ ist \textbf{(streng) konkav} auf $\mathbf{I}$ falls für alle $x \leq y$, $x, y \in \mathbf{I}$
-  und $\lambda \in [\, 0, 1 \,]$ ($\lambda \in ]\, 0, 1 \,[$)
-  $$f(\lambda * x + (1 - \lambda) * y) \geq \;(>)\; \lambda * f(x) + (1 - \lambda) * f(y)$$ gilt.
-\end{enumerate}
 \begin{center}
   \includegraphics[scale=0.4]{konvex.png}
 \end{center}
-Wobei wir folgende Bemerkungen machen können:
 \begin{enumerate}[(i)]
   \item Die Summe zweier konvexer Funktionen ist konvex
   \item $f$ ist genau dann konvex, falls für alle $x_0 < x < x_1$ in $\mathbf{I}$
   $$
     \frac{f(x) - f(x_0)}{x - x_0} \leq \frac{f(x_1) - f(x)}{x_1 - x_0}
   $$
-  gilt.
-  \item Sei $f: ]\,a, b\,[ \rightarrow \mathbf{R}$ in $]\,a, b\,[$ differenzierbar. Die Funktion
-  $f$ ist genau dann (streng) konvex, falls $f'$ (streng) monoton wachsend ist. (z.B.: $f''(x) \geq 0$ ($f''(x) > 0$))
 \end{enumerate}
 % Höhere Ableitungen
 
@@ -708,16 +693,7 @@ zweiten Grades.
   R &= \frac{f'''(\xi)}{3!} * (x - x_0)^3 \text{ für $\xi \in (9, 9.2)$}\\
   &\Rightarrow x_0 = 9, \xi = 9\\
 \end{align*}
-% Sattelpunkt/ Horiz. Wendepunkt
 
-\subsection{Sattelpunkt/ Horiz. Wendepunkt}
-
-Ein Graphenpunkt wo $f'(x_0) = 0$, $x_0$ aber kein Extrema ist.
-% Wendepunkt
-
-\subsection{Wendepunkt}
-
-Ein Wendepunkt ist ein Graphenpunkt wo der Drehsinn der Tangente sich ändert (In einem Wendepunkt gilt: $f''(x_0) = 0$)
 % Spezielle Punkte bestimmen
 
 \subsection{Spezielle Punkte bestimmen}
@@ -988,6 +964,9 @@ Das Unbestimmte Integral ist die Menge aller Stammfunktionen und sozusagen fast 
 \subsection{Rewrite Function}
 $h(x) = max{f(x), g(x)} = \frac{1}{2}(f(x) + g(x)) + \frac{1}{2}|f(x) -g(x)|$
 
+\subsection{Stirling Formula}
+$n! \sim \sqrt{2\pi n}(\frac{n}{e})^n, n \rightarrow \infty$
+
 \subsection{Proof of "Null-Reihe"}
 Eine Reihe konvergiert, wenn die Folge ihrer Partialsumme $(s_n) n \in \mathbb{N} $ mit: $s_n = \sum_{i=1}^{n} a_i$ konvergiert, das heisst, es existiert ein Granzwert $s$, sodass
 	$\lim_{n \to \infty} s_n = s$  Durch Umstellung der Reihe und mit den Rechenregeln für Grenzwerte gild dann
@@ -1254,6 +1233,10 @@ $
  \item $\sin^2(\alpha) + \cos^2(\alpha) = 1$
  \item $\cosh^2(\alpha) - \sinh^2(\alpha) = 1$
  \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2}$ und $\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$
+ \item $\tan(\alpha) = \frac{\sin(\alpha)}{\cos(\alpha)}$
+ \item $\arcsin(x) = \sin(x)\cos(x)$
+ \item $\cos(\arccos(x)) = x$
+ \item $\sin(\arccos(x)) = \frac{1}{\sqrt{1 - x^2}}$
 \end{itemize}
 
 
