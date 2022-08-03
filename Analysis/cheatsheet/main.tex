@@ -29,7 +29,7 @@
 \def\limxn{\lim_{x\to-\infty}}
 \def\sumk{\sum_{k=1}^\infty}
 \def\sumn{\sum_{n=0}^\infty}
-\def\R{\mathbb{R}}
+\def\R{\mathbf{R}}
 \def\dx{\text{ d}x}
 
 % color text
@@ -223,7 +223,33 @@ Weiter ist folgenes Kriterium äquivalent:
 \end{align*}
 Konvergiert eine Funktionenfolge $(f_n)_{n \geq 1}, f_n:\mathbf{D} \subset \mathbf{R} \rightarrow \mathbf{R}$
 bestehend aus in $\mathbf{D}$ stetigen Funktionen gleichmässig gegen die Funktion $f:\mathbf{D} \rightarrow \mathbf{R}$, so
-ist $f$ in $\mathbf{D}$ \textbf{stetig}.
+ist $f$ in $\mathbf{D}$ \textbf{stetig}.\\
+\\
+\textbf{Beispiel:}
+$f_n : \mathbf{R} \rightarrow \mathbf{R}, f_n(x) = \sqrt{|x| + \frac{1}{n^3}}$
+Wie lautet der punktweise Limes der Funktionsfolge $f_n$? Konvergiert $f_n$ gleichmässig auf  $\mathbf{R}$?\\
+\textbf{Punktweise Konvergenz:} Wir fixieren $x \in R$ und bilden den Limes für $n \rightarrow \infty$
+
+$\lim_{n \to \infty} f_n(x) = \lim_{n \rightarrow \infty} \sqrt{|x| + \frac{1}{n^3}} = \sqrt{|x|} = f(x)$\\
+Die Funktionenfolge konvergiert somit punktweise gegen den punktweisen Grenzwert $f(x) = \sqrt{|x|}$\\
+\textbf{Gleichmässige Konvergenz:} Wir müssen zeigen, dass $\lim_{n \to \infty} sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = 0$ gilt. Wir berechnen also zuerst den Ausdruck $sup_{x \in \mathbf{R}} |f_n(x) - f(x)|$
+\begin{align*}
+	&sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} |\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}|\\
+	& =  sup_{x \in \mathbf{R}} |(\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}) \frac{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|})}{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|)}}| \\
+	& = sup_{x \in \mathbf{R}} |\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|
+\end{align*}
+
+Da $|x|$ positiv ist, wird das Supremum von $|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|$ bei $x = 0$ angenommen. Es gilt somit
+
+\begin{align*}
+	& sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} |\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|\\
+ 	&= \frac{\frac{1}{n^3}}{\sqrt{\frac{1}{n^3}}} = \frac{1}{n^{\frac{3}{2}}}
+\end{align*}
+Somit konvergiert die Funktionenfolge $f_n$ auf $\mathbf{R}$ gleichmässig gegen $f$.
+
+
+
+
 % Grenzwerte von Funktionen
   \subsection {Grenzwerte von Funktionen}
 Sei $f:\mathbf{D} \rightarrow \mathbf{R}$, $x_0 \in \mathbf{R}$ ein Häufungspunkt von $\mathbf{D}$.
