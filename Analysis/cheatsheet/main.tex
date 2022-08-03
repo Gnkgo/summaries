@@ -234,11 +234,12 @@ $$
 \lim_{n \to \infty} f_n(x) = \lim_{n \rightarrow \infty} \sqrt{|x| + \frac{1}{n^3}} = \sqrt{|x|} = f(x)
 $$
 Die Funktionenfolge konvergiert somit punktweise gegen den punktweisen Grenzwert $f(x) = \sqrt{|x|}$\\
+\\
 \textbf{Gleichmässige Konvergenz:} Wir müssen zeigen, dass $\lim_{n \to \infty} sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = 0$ gilt. Wir berechnen also zuerst den Ausdruck $sup_{x \in \mathbf{R}} |f_n(x) - f(x)|$
 \begin{align*}
-	&sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} |\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}|\\
-	& =  sup_{x \in \mathbf{R}} |(\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}) \frac{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|})}{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|)}}| \\
-	& = sup_{x \in \mathbf{R}} |\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|
+	&sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} \left|\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}\right|\\
+	& =  sup_{x \in \mathbf{R}} \left|\left(\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}\right) \frac{\left(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}\right)}{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|)}}\right| \\
+	& = sup_{x \in \mathbf{R}} \left|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}\right|
 \end{align*}
 
 Da $|x|$ positiv ist, wird das Supremum von $|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|$ bei $x = 0$ angenommen. Es gilt somit
