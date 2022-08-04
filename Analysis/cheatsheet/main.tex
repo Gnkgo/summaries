@@ -159,7 +159,11 @@ Es gilt auch, dass $(a_n)_{n \geq 1}$ genau dann konvergiert, falls $(a_n)_{n \g
 beschränkt ist und $\liminf_{n \rightarrow \infty} a_n = \limsup_{n \rightarrow \infty} a_n$
 % Bolzano-Weierstrass
  \subsection{Bolzano-Weierstrass}
-Jede beschränkte Folge besitzt eine konvergente Teilfolge.
+Jede beschränkte Folge besitzt eine konvergente Teilfolge.\\
+Wenn $a_n$ monoton wachsend und nach oben beschränkt ist, dann konvergiert $a_n$ mit Grenzwert $\limn a_n = \sup \{a_n : \ n \ge 1\}$.
+Wenn $a_n$ monoton fallend und nach unten beschränkt ist, dann konvergiert $a_n$ mit Grenzwert $\limn a_n = \inf \{a_n : \ n \ge 1\}$.
+
+
 % Sandwichsatz für Folgen
   \subsection {Sandwichsatz für Folgen}
 Seien $(a_n)_{n \geq 1}$ und $(b_n)_{n \geq 1}$ konvergente Folgen mit demselben Limes
@@ -238,15 +242,15 @@ Die Funktionenfolge konvergiert somit punktweise gegen den punktweisen Grenzwert
 \textbf{Gleichmässige Konvergenz:} Wir müssen zeigen, dass $\lim_{n \to \infty} sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = 0$ gilt. Wir berechnen also zuerst den Ausdruck $sup_{x \in \mathbf{R}} |f_n(x) - f(x)|$
 \begin{align*}
 	&sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} \left|\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}\right|\\
-	& =  sup_{x \in \mathbf{R}} \left|\left(\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}\right) \frac{\left(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}\right)}{(\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|)}}\right| \\
+	& =  sup_{x \in \mathbf{R}} \left|\left(\sqrt{|x| + \frac{1}{n^3}} - \sqrt{|x|}\right) \left(\frac{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}\right)\right| \\
 	& = sup_{x \in \mathbf{R}} \left|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}\right|
 \end{align*}
 
-Da $|x|$ positiv ist, wird das Supremum von $|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|$ bei $x = 0$ angenommen. Es gilt somit
+Da $|x|$ positiv ist, wird das Supremum von $\left|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}\right|$ bei $x = 0$ angenommen. Es gilt somit
 
 \begin{align*}
-	& sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} |\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}|\\
- 	&= \frac{\frac{1}{n^3}}{\sqrt{\frac{1}{n^3}}} = \frac{1}{n^{\frac{3}{2}}}
+ & sup_{x \in \mathbf{R}} |f_n(x) - f(x)| = sup_{x \in \mathbf{R}} \left|\frac{\frac{1}{n^3}}{\sqrt{|x| + \frac{1}{n^3}} + \sqrt{|x|}}\right|\\
+  &= \frac{\frac{1}{n^3}}{\sqrt{\frac{1}{n^3}}} = \frac{1}{n^{\frac{3}{2}}}
 \end{align*}
 Somit konvergiert die Funktionenfolge $f_n$ auf $\mathbf{R}$ gleichmässig gegen $f$.
 
@@ -470,7 +474,20 @@ in jedem Punkt $x \in \mathbf{D}$ stetig ist.
 
 Eine Funktion $f:\mathbf{D} \rightarrow \mathbf{R}$ ist in $\mathbf{D}$ gleichmässig
 stetig falls $$ \forall \epsilon > 0 \; \exists \delta_{\epsilon} > 0 \;\forall x, y \in \mathbf{D}\;\;\; |x-y| < \delta \Rightarrow |f(x) - f(y)| < \epsilon $$
-wobei Funktionen $f:[a,\,b] \rightarrow \mathbf{R}$ welche in einem kompakten Invervall stetig sind im selben Intervall glm. stetig sind.
+wobei Funktionen $f:[a,\,b] \rightarrow \mathbf{R}$ welche in einem kompakten Invervall stetig sind im selben Intervall glm. stetig sind.\\
+\textbf{Beispiel}: Ist die Funktion gleichmässig stetig? 
+$$
+f: [0, \infty)  \rightarrow \mathbf{R}, x \rightarrow \sqrt{x}
+$$
+Wir fixieren ein $\epsilon > 0$. Wir suchen $\delta > 0$, sodass für alle $x, y \in \Omega$ mit $|x - y| < \delta$ Folgendes gilt:
+$$
+|f(x) - f(y)| < \epsilon
+$$
+Die Schwierigkeit bei den Aufgaben, wo nach der gleichmässigen Stetigkeit gefragt wird, ist es, ein $\delta$ zu finden, das unabhängig von $x, y$ ist. Wie kann man in solchen Situationen vorgehen? Man vernucht, den Term $f(x) - f(y)$ durch einen Ausdruck der Form $C|x - y|$ abzuschätzen. In diesem spezifischen Fall, benutzen wir folgende Abschätzung:
+$$
+|\sqrt{x} - \sqrt{y}| <= \sqrt{x - y} \overset{!}{<} \epsilon \rightarrow |x - y| < \epsilon^2 =: \delta
+$$
+
 % Rechnen mit Stetigkeit
 
 \subsection{Rechnen mit Stetigkeit}
@@ -515,8 +532,6 @@ Es gibt folgende typischen Anwendungsszenarien:
   $\exists c \in ]\,a, b\,[$ mit $f(c) = 0$ (also eine Nullstelle)
   \item Sei $P(x) = a_nx^n + \cdots + a_0$ ein Polynom mit $a_n \neq 0$ und $n$ ungerade.
   Dann besitzt $P$ mindestens eine Nullstelle in $\mathbf{R}$.
-  \item Jede $n \times n$ Matrix mit \textbf{$\boldsymbol{n}$ ungerade} mit Koeffizienten in $\mathbf{R}$ hat mindestens
-  einen Eigenwert $\lambda \in \mathbf{R}$
 \end{enumerate}
 % Min-Max Satz
 
@@ -1100,9 +1115,7 @@ erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
 
 \subsection{Trigonometrische Funktionen}
 Sind alle stetig
-\includegraphics[width=6cm]{taylor.png}
-
-
+\includegraphics[width=7cm]{taylor.png}
 
 \begin{enumerate}[(i)]
   \item $cos(z) = cos(-z)$
@@ -1161,7 +1174,7 @@ $
 
 \subsection{Sin/Cos Werte}
 \begin{center}
-\includegraphics[scale=0.4]{values.png}
+\includegraphics[scale=0.3]{values.png}
 \end{center}
 
 
@@ -1234,15 +1247,72 @@ $
  \item $\sin^2(\alpha) + \cos^2(\alpha) = 1$
  \item $\cosh^2(\alpha) - \sinh^2(\alpha) = 1$
  \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2}$ und $\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$
- \item $\tan(\alpha) = \frac{\sin(\alpha)}{\cos(\alpha)}$
+ \item $\tan(x) = \frac{\sin(x)}{\cos(x)} \;\;\; \forall z \not \in \{\frac{\pi}{2} + \pi k\}$
+ \item $\cot(x) = \frac{\cos(x)}{\sin(x)}$
  \item $\arcsin(x) = \sin(x)\cos(x)$
  \item $\cos(\arccos(x)) = x$
  \item $\sin(\arccos(x)) = \frac{1}{\sqrt{1 - x^2}}$
+ \item $\sin(\arctan(x)) = \frac{x}{\sqrt{x^2 + 1}}$
+ \item $\cos(\arctan(x)) = \frac{1}{\sqrt{x^2 + 1}}$
+ \item $\sin(x) = \frac{\tan(x)}{\sqrt{1 + \tan(x)^2}}$
+ \item $\cos(x) = \frac{1}{\sqrt{1 + \tan(x)^2}}$
+ \item $\sin(z) := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}$
+  \item $\cos(z) := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}$
 \end{itemize}
 
 
 \newpage
 
+\section{Exercises}
+\subsection{Multiple Choice}
+\begin{itemize}
+ \item The composition of continuous functions is continuous
+ \item Falls $g(x) = f(x)^2$ differenzierbar ist, dann ist $f$ nicht unbedingt differenzierbar
+ \item $cos(x)$ gerade, $sin(x)$ ungerade $\rightarrow$ hilfreich wenn Integral von $\int_{-y}^{y}$. Bei ungeraden kürzt sich es weg, bei geraden kann man $2\int_{0}^{y}$
+ \item Stetigkeitspunkte: Zuerst Schnittpunkte finden, dann zeigen, dass Punkt $x_0$ stetig ist
+ \item $f, g : [0, 1] \rightarrow [0, 1]$. 
+\begin{itemize}
+ \item Falls $f, g$ injektiv, dann $f \circ g$ injektiv
+ \item Falls f, g surjektiv, $f \circ g$ nicht unbedingt surjektiv
+ \item $f \circ g \neq g \circ f$
+\end{itemize}
+ \item $f, g$ Funktionen
+\begin{itemize}
+ \item $f \circ g$ stetig $f, g$ nicht unbedingt stetig
+ \item Nicht für jede Folge mit Grenzwert $x$ gilt $\lim_{n \to  \infty} f(x_n) = f(x)$
+\end{itemize}
+ \item $x^x = e ^{x\log(x)}$
+ \item falls $\sum_{n = 1}^{\infty} a_n$ konvergiert, $c_n ) (-1)^n a_n$ konvergiert gegen 0
+ \item $f: [0, 1] \rightarrow \mathbf{R}$ stetig, integrierbare Funktion, $a_n = \int_{0}^{1} f(x^2) dx$, Falls $f$ monoton wachsend ist, so ist $a_k$ nicht unbedingt monoton wachsend.
+ \item $f_k$ Folge von dfferenzierbaren Funktionen auf $[0, 1]$. Sei $f$ eine Funktion auf $[0, 1]$ definiert. $f_k$ konvergiert gleichmässig zu f für $k \rightarrow \infty$. $f$ ist beschränkt
+\begin{itemize}
+ \item $f_k$ sind alle differenzierbar und daher stetig
+ \item $f$ ist auch stetig, weil $f_k$ zu $f$ gleichmässig konvergiert
+ \item beschränkt, weil es stetig auf kompakten Intervall definierte Funktion ist
+ \item \color{red} Nicht stetige Funktionen, auch wenn sie nur auf $[0, 1]$ definiert sind, können unbeschränkt sein
+\end{itemize}
+ \item $f: \mathbf{R} \rightarrow \mathbf{R}$ beliebig oft stetig differenzierbare Funktion
+\begin{itemize}
+ \item $f$ hat Taylorreihe bei $x_0 = 0$
+ \item Der Konvergenzradius der Taylorreihe ist $\geq0$ aber nicht notwendigerweise $>0$
+ \item Wenn $f$ durch eine Potenzreihe gegeben ist, so ist dieser gleich der Taylorreihe
+ \item \color{red} dort, wo die Taylorreihe konvertiert, stellt sie nicht unbedingt die Funktion dar
+\end{itemize}
+ \item Sei $\sum_{k = 1}^{\infty} a_k$ eine Reihe
+\begin{itemize}
+ \item \color{red} Falls $\forall \epsilon > 0 \, \exists N \geq 1$ so dass $\sum_{k = n}^{n + 100} |a_k| < \epsilon \forall n \geq N $ dann ist die Reihe $\sum_{k = 1}^{\infty}$ nicht unbedingt konvergent (Gegenbeispiel: $\frac{1}{n})$ \color{black}
+ \item  Falls $\sum_{k = 1}^{\infty}$ konvergiert, so folgt $\forall \epsilon > 0 \, \exists N \geq1$ so dass  $\sum_{k = n}^{n + 100} |a_k| < \epsilon \, \forall n \geq N$
+\end{itemize}
+ \item Sei $f: \mathbf{R} \rightarrow [0, \infty[$ so dass $lim_{x \to 0} f(x) \neq 0$
+\begin{itemize}
+ \item es exisitiert eine Folge $(x_n)$ mit $lim_{n \to \infty} x_n = 0$ und ein $\epsilon$ so dass $|f(x_n)| > \epsilon, n \exists \mathbf{N}$
+ \item For alle $x \exists \mathbf{R}$ gilt $f(x) > 0$
+ \item \color{red} $forall \epsilon > 0, \exists  \delta > 0$ sodass 0 < |x| < \delta \rightarrow f(x) > \epsilon$ STIMMT NICHT
+ \item Für jede Folge $(x_n)$ mit $lim_ {n \to \infty} x_n = 0$ gilt $lim_{n \to \infty} f(x_n) \neq 0$ STIMMT NICHT
+\end{itemize}
+Seien $f : X  \rightarrow Y 
+\end{itemize}
+\newpage
 \section{Tabellen}
 \subsection{Grenzwerte}
 Wichtige Tabellen stehen hier
