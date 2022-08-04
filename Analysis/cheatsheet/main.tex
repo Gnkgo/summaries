@@ -1295,22 +1295,41 @@ $
 \begin{itemize}
  \item $f$ hat Taylorreihe bei $x_0 = 0$
  \item Der Konvergenzradius der Taylorreihe ist $\geq0$ aber nicht notwendigerweise $>0$
- \item Wenn $f$ durch eine Potenzreihe gegeben ist, so ist dieser gleich der Taylorreihe
- \item \color{red} dort, wo die Taylorreihe konvertiert, stellt sie nicht unbedingt die Funktion dar
+ \item Wenn $f$ durch eine Potenzreihe gegeben ist, so ist dieser gleich der Taylorreihe \color{red}
+ \item  dort, wo die Taylorreihe konvertiert, stellt sie nicht unbedingt die Funktion dar
 \end{itemize}
  \item Sei $\sum_{k = 1}^{\infty} a_k$ eine Reihe
 \begin{itemize}
- \item \color{red} Falls $\forall \epsilon > 0 \, \exists N \geq 1$ so dass $\sum_{k = n}^{n + 100} |a_k| < \epsilon \forall n \geq N $ dann ist die Reihe $\sum_{k = 1}^{\infty}$ nicht unbedingt konvergent (Gegenbeispiel: $\frac{1}{n})$ \color{black}
+\color{red}
+ \item Falls $\forall \epsilon > 0 \, \exists N \geq 1$ so dass $\sum_{k = n}^{n + 100} |a_k| < \epsilon \forall n \geq N $ dann ist die Reihe $\sum_{k = 1}^{\infty}$ nicht unbedingt konvergent (Gegenbeispiel: $\frac{1}{n})$ \color{black}
  \item  Falls $\sum_{k = 1}^{\infty}$ konvergiert, so folgt $\forall \epsilon > 0 \, \exists N \geq1$ so dass  $\sum_{k = n}^{n + 100} |a_k| < \epsilon \, \forall n \geq N$
 \end{itemize}
  \item Sei $f: \mathbf{R} \rightarrow [0, \infty[$ so dass $lim_{x \to 0} f(x) \neq 0$
 \begin{itemize}
  \item es exisitiert eine Folge $(x_n)$ mit $lim_{n \to \infty} x_n = 0$ und ein $\epsilon$ so dass $|f(x_n)| > \epsilon, n \exists \mathbf{N}$
- \item For alle $x \exists \mathbf{R}$ gilt $f(x) > 0$
- \item \color{red} $forall \epsilon > 0, \exists  \delta > 0$ sodass 0 < |x| < \delta \rightarrow f(x) > \epsilon$ STIMMT NICHT
+ \item For alle $x \exists \mathbf{R}$ gilt $f(x) > 0$ \color{red}
+ \item  $\forall \epsilon > 0, \exists  \delta > 0$ sodass $0 < |x| < \delta \rightarrow f(x) > \epsilon$ STIMMT NICHT
  \item Für jede Folge $(x_n)$ mit $lim_ {n \to \infty} x_n = 0$ gilt $lim_{n \to \infty} f(x_n) \neq 0$ STIMMT NICHT
 \end{itemize}
-Seien $f : X  \rightarrow Y 
+ \item Seien $f : X  \rightarrow Y, g: Y \rightarrow Z$ Funktionen, so dass $g \circ f: X \rightarrow Z$ eine Bijektion ist: f ist injektiv, g ist surjektiv
+ \item differenzierbar $\rightarrow$ stetig $\rightarrow$ integrierbar
+ \item Sei $a, b \in \mathbf{R}$ mit $a < b$ und $f: [a, b] \rightarrow \mathbf{R}$ eine Funktion. Sei $f_n: [a, b] \rightarrow \mathbf{R}, n \geq 1$ So dass die Funktionenfolge $(f_n)_{n \geq 1}$ auf $[a, b]$ gleichmässig gegen $f$ konvergiert
+\begin{itemize}
+ \item Sei $x_0 \in ]a, b[$ Falls $f_n$ für alle $n \geq 1 in x_0$ differenzierbar ist, so ist $f$ nicht unbedingt diferenzierbar. (Im Allgemeinen braucht die Grenzfunktion nicht einmal differenzierbar zu sein, und wenn sie es ist, muss ihre Ableitung keineswegs geich dem Grenzwert der Ableitung der Folge sein.
+\end{itemize}
+ \item $f: [0, 1] \rightarrow [0, 1]$ stetig und nicht konstant
+\begin{itemize}
+ \item Das Bild $f([0, 1]) \subset [0, 1]$ ist ein abgeschossenes Intervall. D.h. es gibt $a, b  \in [0, 1]$ mit $a < b$, so dass $f([0, 1]) = [a, b]$
+\end{itemize}
+ \item $f: \mathbf{R} \rightarrow \mathbf{R}$ stetig bei $x_0 = 0$, mit $f(x_0) > 0$
+\begin{itemize}
+ \item Es existiert $\epsilon , \delta > 0$ so dass $f(x) > \epsilon$ für alle $x \in (-\delta, \delta)$ gilt
+\end{itemize}
+ \item $a < b, g: \mathbf{R} \rightarrow \mathbf{R}$ beschränkt und $f: [a, b] \rightarrow \mathbf{R}$ beschränkt mit $f(a) < f(b)$
+\begin{itemize}
+  \item Falls $f$ stetig ist, gibt es $x_0 \in [a, b]$, so dass $\int_{a}^{b}xf(x)dx = \frac{f(x_0)}{2} (b^2 -a^2)$
+\end{itemize}
+ \item Sei $f$ eine ungerade Funktion dann ist $f^{(i)} (0) = 0$ für $i$ gerade
 \end{itemize}
 \newpage
 \section{Tabellen}
