@@ -1072,11 +1072,6 @@ Analog zum Suprenum die grösste untere Schranke.
 
 \subsection{Exponentialfunktion}
 
-Für ein $z \in \mathbf{C}$ berechnet man die Exponentialfunktion wie folgt:
-$$
-  exp(z) := 1 + z + \frac{z^2}{2!} + \cdots = \sum_{n = 0}^\infty \frac{z^n}{n!}
-$$
-und es gilt:
 \begin{align*}
   exp(z) &= \lim_{n \rightarrow \infty} (1 + \frac{z}{n})^n
 \end{align*}
@@ -1203,6 +1198,8 @@ $$f(x) \leq f(x_0) \;\;\; \forall x \in ]x_0 - \delta, x_0 + \delta[\; \cap \; \
 
 Eine \textbf{kritische Stelle} einer Funktion ist ein $x_0$ an der $f'(x_0)$ null
 oder undefiniert ist.
+Kurze Notiz am Rande, ein stationärer Punkt ist: \\
+ $x \in \R$ mit $f'(x) = 0$
 % Hyperbol Funktionen
 
 \subsection{Hyperbol Funktionen}
@@ -1310,6 +1307,7 @@ $
  \item $\cos(x) = \frac{1}{\sqrt{1 + \tan(x)^2}}$
  %\item $\sin(z) := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = %\sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}$
  % \item $\cos(z) := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}$
+
 \end{itemize}
 
 
@@ -1387,10 +1385,19 @@ $
  \item Wenn die Reihe absolut konvergiert und $\phi$ injektiv ist, dann ist die Reihe mit $b_n$ auch konvergent (Wenn nicht absolut konvergent, dann kann man jeden möglichen Wert bekommen, Surjektiv funktioniert nicht, Annahme $a_n = \frac{1}{n^2}$)
 \end{itemize}
 \end{itemize}
+\begin{center}
+\includegraphics[width=7.5cm]{proof2.png} \\
+\includegraphics[width=7.5cm]{proof3.png} \\
+\includegraphics[width=7.5cm]{proof4.png} \\
+\includegraphics[width=7.5cm]{proof5.png} \\
+
+\end{center}
 \newpage
 \section{Tabellen}
 \subsection{Grenzwerte}
-Wichtige Tabellen stehen hier
+\begin{center}
+\includegraphics[width=8cm]{typischeReihen.png}
+\end{center}
 \begin{center}
   \begin{tabularx}{\linewidth}{XX}
 
@@ -1419,23 +1426,29 @@ Wichtige Tabellen stehen hier
   \end{tabularx}
 \end{center}
 
+
+
 \subsection{Ableitungen}
-Kurze Notiz am Rande, ein stationärer Punkt ist: \\
-$x \in \R$ mit $f'(x) = 0$
+
 \begin{center}
   % the c>{\centering\arraybackslash}X is a workaround to have a column fill up all space and still be centered
   \begin{tabularx}{\linewidth}{c>{\centering\arraybackslash}Xc}
+
   
   $\mathbf{F(x)}$ & $\mathbf{f(x)}$ & $\mathbf{f'(x)}$ \\
   %\midrule
+  $(x-1)e^x $ & $xe^x$ & $(x+1)e^x$ \\ 
   $\frac{x^{-a+1}}{-a+1}$ & $\frac{1}{x^a}$ & $\frac{a}{x^{a+1}}$ \\
   $\frac{x^{a+1}}{a+1}$ & $x^a \ (a \ne -1)$ & $a \cdot x^{a-1}$ \\
   $\frac{1}{k \ln(a)}a^{kx}$ & $a^{kx}$ & $ka^{kx} \ln(a)$ \\
   $\ln |x|$ & $\frac{1}{x}$ & $-\frac{1}{x^2}$ \\
   $\frac{2}{3}x^{3/2}$ & $\sqrt{x}$ & $\frac{1}{2\sqrt{x}}$\\
   $-\cos(x)$ & $\sin(x)$ & $\cos(x)$ \\
+  $ $ & $\frac{\sin(x)^2}{2} $ & $\sin(x)\cos(x)$ \\ 
   $\sin(x)$ & $\cos(x)$ & $-\sin(x)$ \\
   $\frac{1}{2}(x-\frac{1}{2}\sin(2x))$ & $\sin^2(x)$ & $2 \sin(x)\cos(x)$ \\
+  $\tan(x) - x$ & $\tan(x)^2$ & $2\sec(x)^2 \tan(x)$\\
+  $-\cot(x) - x$ & $\cot(x)^2$ & $-2 \cot(x) \csc(x)^2$\\
   $\frac{1}{2}(x + \frac{1}{2}\sin(2x))$ & $\cos^2(x)$ & $-2\sin(x)\cos(x)$ \\
   \multirow{2}*{$-\ln|\cos(x)|$} & \multirow{2}*{$\tan(x)$} & $\frac{1}{\cos^2(x)}$  \\
   & & $1 + \tan^2(x)$ \\
@@ -1446,11 +1459,12 @@ $x \in \R$ mit $f'(x) = 0$
   $x(\ln |x| - 1)$ & $\ln |x|$ & $\frac{1}{x}$ \\
   $\frac{1}{2}(\ln(x))^2$ & $\frac{\ln(x)}{x}$ & $\frac{1 - \ln(x)}{x^2}$ \\
   $\frac{x}{\ln(a)} (\ln|x| -1)$ & $\log_a |x|$ & $\frac{1}{\ln(a)x}$ \\
+
   %\bottomrule
   \end{tabularx}
 \end{center}
 
-\subsection{Weitere Ableitungen}
+%\subsection{Weitere Ableitungen}
 \begin{center}
   \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
   
@@ -1458,15 +1472,26 @@ $x \in \R$ mit $f'(x) = 0$
   \midrule
   $\arcsin(x) / \arccos(x)$ & $\frac{1 / -1}{\sqrt{1 - x^2}}$ \\
   $\arctan(x)$ & $\frac{1}{1 + x^2}$ \\ 
-  $x^x \ (x > 0)$ & $x^x \cdot (1 + \ln x)$ \\
+
+  $x\arcsin(x) + \sqrt{1 - x^2}$ & $\arcsin(x)$\\
+  $x\arccos(x) - \sqrt{1 - x^2}$ & $\arccos(x)$\\
+  $x\arctan(x) - \frac{1}{2}\ln(1+x^2)$ & $\arctan(x)$\\
+  $\ln(\cosh(x))$ & $\tanh(x)$\\
+
+   
+  $x^x \ (x > 0)$ & $x^x \cdot (1 + \ln{x})$ \\
 $f(x)^{g(x)}$ & $e^{g(x) ln(f(x))}$\\
 $f(x) = cos(\alpha)$ & $f(x)^n = sin(x + n\frac{\pi}{2})$\\
 $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
+  $-\ln(\cos(x))$ & $\tan(x)$\\
+  $\ln(\sin(x))$ & $\cot(x)$\\
+  $\ln(\tan(\frac{x}{2}))$ & $\frac{1}{\sin(x))}$\\
+  $\ln{(\tan(\frac{x}{2} + \frac{\pi}{4})}$ & $\frac{1}{cos(x)}$\\
 
   \bottomrule
   \end{tabularx}
 \end{center}
-\subsection{Integrale}
+%\subsection{Integrale}
 \begin{center}
  \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
   
@@ -1486,8 +1511,6 @@ $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
   \bottomrule
  \end{tabularx}
 \end{center}
-
-
 
 \end{multicols*}
 \end{document}
