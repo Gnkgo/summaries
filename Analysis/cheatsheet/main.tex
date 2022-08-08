@@ -160,6 +160,8 @@ Monotoner Konvergenz folgern:
 \end{gather*}
 Es gilt auch, dass $(a_n)_{n \geq 1}$ genau dann konvergiert, falls $(a_n)_{n \geq 1}$
 beschränkt ist und $\liminf_{n \rightarrow \infty} a_n = \limsup_{n \rightarrow \infty} a_n$
+
+
 % Bolzano-Weierstrass
  \subsection{Bolzano-Weierstrass}
 Jede beschränkte Folge besitzt eine konvergente Teilfolge.\\
@@ -198,15 +200,36 @@ Mithilfe der Reihenentwicklung von $e^x$ und $sin(x)$:
 $$
 \lim_{n \rightarrow \infty} \frac{e^{1/n} - 1 - \frac{1}{n}}{1 - n * sin(\frac{1}{n})} = \frac{\frac{1}{2}n^{-2} + \mathcal{O}(n^{-3})}{1 - n(n^{-1} - \frac{1}{6}n^{-3} + \mathcal{O}(n^{-5}))} = 3
 $$
-
-% Rekurrenz Beispiel
-  \subsection {Rekurrenz Beispiel}
-Die folgenden Schritte solten bei der Auflösung einer Rekursiven Folge in betracht gezogen werden:
+\subsection{Strategie - Konvergenz von Folgen}
 \begin{enumerate}
-  \item Zeige Monotonie (Durch Induktion)
-  \item Zeige Obere oder Untere Schranke (Evt. Induktion)
-  \item Verwende $\lim_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} a_{n + 1}$ (Da für jede Teilfolge der gleiche Grenzwert gilt)
+ \item Bei Brüchen: Grösste Potenz von $n$ kürzen. Alle Brüche der Form $\frac{a}{n^a}$ streichen, da diese nach 0 gehen.
+ \item Bei Wurzeln in Summe im Nenner: Multiplizieren des Nenners und Zählers mit der Differenz der Summe im Nenner. (z.B. $(a+b)$ mit $(a-b)$ multiplizieren)
+ \item Bei rekursiven Folgen: Anwendung von Weierstrass zur monotonen Konvergenz
+ \item Einschliessungskriterium (Sandwich-Theorem) anwenden.
+ \item Mit bekannter Folge vergleichen.
+ \item Grenzwert durch einfaches Umformen ermitteln.
+ \item Limit per Definition der Konvergenz zeigen.
+ \item Anwendung des Cauchy-Kriteriums.
+ \item Suchen eines konvergenten Majorant.
+ \item Weinen und die Aufgabe überspringen.
 \end{enumerate}
+
+\subsection{Strategie - Divergenz von Folgen}
+\begin{enumerate}
+ \item Suchen einer divergenten Vergleichsfolge.
+ \item Alternierende Folgen: Zeige, dass Teilfolgen nicht gleich werden, also $\limn a_{p_1(n)} \ne \limn a_{p_2(n)}$ (mit z.B. gerade/ungerade als Teilfolgen).
+\end{enumerate}
+\subsection{Induktive Folgen (Induktionstrick)}
+\begin{enumerate}
+  \item Zeige monoton wachsend / fallend
+  \item Zeige beschränkt
+  \item Nutze Satz von Weierstrass, d.h. Folge muss gegen Grenzwert konvergieren
+  \item Verwende Induktionstrick:
+\end{enumerate}
+Wenn die Folge konvergiert, hat jede Teilfolge den gleichen Grenzwert. Betrachte die Teilfolge $l(n) = n + 1$ für $d_{n+1} = \sqrt{3d_n - 2}$:
+$$d = \lim_{n\to\infty} d_n = \lim_{n\to\infty} d_{n+1} = \sqrt{\lim_{n \to \infty} 3d_n -2} = \sqrt{3d -2}$$
+Forme um zu $ d^2 = 3d -2 \to d \in {1,2}$. Nun können wir $d = 2$ nehmen und die Beschränktheit mit $d=2$ per Induktion zeigen.
+
 % Punktweise Konvergenz
  \subsection{Punktweise Konvergenz}
 Die Funktionenfolge $(f_n)_{n \geq 0}$ konvergiert punktweise gegen eine Funktion
@@ -447,6 +470,15 @@ $\sum_{n = 0}^\infty f_n(k)$ gleichmässig in $\mathbf{D}$ und deren Grenzwert
   f(x) := \sum_{n = 0}^\infty f_n(k)
 \end{align*}
 ist eine in $\mathbf{D}$ stetige Funktion.
+\subsection{Strategie - Konvergenz von Reihen}
+\begin{enumerate}
+ \item Ist Reihe ein bekannter Typ? (Teleskopieren, Geometrische/Harmonische Reihe, Zetafunktion, ...)
+ \item Ist $\limn a_n = 0$? Wenn nein, divergent.
+ \item Quotientenkriterium \& Wurzelkriterium anwenden
+ \item Vergleichssatz anwenden, Vergleichsreihen suchen
+ \item Leibnizkriterium anwenden
+ \item Integral-Test anwenden (Reihe zu Integral)
+\end{enumerate}
 \newpage
 \section{Stetigkeit}
 \hypertarget{sec:2}{}
@@ -1121,9 +1153,17 @@ wobei $f_n: \mathbf{D} \rightarrow \mathbf{R}$ eine Funktion ist. Für jedes $x 
 erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
 % Trigonometrische Funktionen
 
+
 \subsection{Trigonometrische Funktionen}
+\begin{align*}
+\exp(x) &= \sumn \frac{x^n}{n!} & r &= \infty \\
+\sin(x) &= \sumn (-1)^n \frac{x^{2n + 1}}{(2n + 1)!} & r &= \infty \\
+\cos(x) &= \sumn (-1)^n \frac{x^{2n}}{(2n)!} & r &= \infty \\
+\ln(x + 1) &= \sumk (-1)^{k+1} \frac{x^k}{k} & r &= 1
+\end{align*}
+
 \includegraphics[width=7cm]{taylor.png}
-\includegraphics[width=7cm]{sincostan.png}
+\includegraphics[width=6cm]{sincostan.png}\\
 \includegraphics[width=6cm]{arcsinArccosArctan.png}\\
 \includegraphics[width=6cm]{sinhCoshTanh.png}
 
@@ -1268,8 +1308,8 @@ $
  \item $\cos(\arctan(x)) = \frac{1}{\sqrt{x^2 + 1}}$
  \item $\sin(x) = \frac{\tan(x)}{\sqrt{1 + \tan(x)^2}}$
  \item $\cos(x) = \frac{1}{\sqrt{1 + \tan(x)^2}}$
- \item $\sin(z) := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}$
-  \item $\cos(z) := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}$
+ %\item $\sin(z) := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = %\sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}$
+ % \item $\cos(z) := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}$
 \end{itemize}
 
 
