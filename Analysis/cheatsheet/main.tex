@@ -3,8 +3,10 @@
 
 % ANOTHER IMPORTANT NOTE: The Boxlayout with Titles was copied from here: https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
 % The Credit goes to Drew Ulick
+%\documentstyle[8pt]{extarticle}
+%\documentclass[9pt]{article}
+\documentclass[8pt]{extarticle}
 
-\documentclass[8pt]{article}
 % Article
 % \documentclass[9pt]{extarticle}
 \usepackage[landscape, left=0.75cm, top=1cm, right=0.75cm, bottom=1.5cm, footskip=15pt]{geometry}
@@ -76,10 +78,11 @@ opacity=1,
 contents={}
 }
 
-\usepackage{sectsty}
-\subsectionfont{\normalfont\small\bfseries\underline}
-\subsubsectionfont{\normalfont\small}
+%\usepackage{sectsty}
+%\subsectionfont{\normalfont\small\bfseries\underline}
+%\subsubsectionfont{\normalfont\small}
 \begin{document}
+
 
 \setlength{\columnseprule}{0.4pt}
 \pagenumbering{arabic}
@@ -309,6 +312,7 @@ Besitzt die Funktion $f(x)$ an der Stelle $x_0$ den Grenzwert $L$, so gilt:
 $$
   \lim_{x \rightarrow x_0+} f(x) = \lim_{x \rightarrow x_0-} f(x) = \lim_{x \rightarrow x_0} f(x) = L
 $$
+\newpage
 \section{Reihen}
 \hypertarget{sec:1}{}
 % Konvergenz
@@ -443,6 +447,7 @@ $\sum_{n = 0}^\infty f_n(k)$ gleichmässig in $\mathbf{D}$ und deren Grenzwert
   f(x) := \sum_{n = 0}^\infty f_n(k)
 \end{align*}
 ist eine in $\mathbf{D}$ stetige Funktion.
+\newpage
 \section{Stetigkeit}
 \hypertarget{sec:2}{}
 % Stetigkeit einer Funktion in einem Punk
@@ -562,6 +567,7 @@ $f^{-1}: \mathbf{J} \rightarrow \mathbf{I}$ ist stetig, streng monoton wachsend.
 Sind alle abschnitte einer gesplitteten Funktion stetig, müssen wir nur die Übergangstellen prüfen.
 Gilt an diesen Stellen $x_0$ $$\lim_{x \rightarrow x_0^+} f(x) = \lim_{x \rightarrow x_0^-} f(x) = f(x_0)$$
 so ist die Funktion stetig.
+\newpage
 \section{Ableiten}
 \hypertarget{sec:3}{}
 % Differenzierbarkeit
@@ -737,6 +743,7 @@ Hier ein Beispiel für die Ableitung eines Integrals:
   \Rightarrow f(x) = - H(x^2) + H(2)\\
   \Rightarrow f'(x) = - h(x^2) 2x = -e^{-x^4} 2x
 \end{align*}
+\newpage
 \section{Integrieren}
 \hypertarget{sec:4}{}
 % Partition
@@ -976,6 +983,7 @@ Ohne reelle Nullstellen:
 \subsection{Unbestimmte Integral}
 
 Das Unbestimmte Integral ist die Menge aller Stammfunktionen und sozusagen fast alles von oben gilt. $+C$ ist \textbf{sehr} wichtig.
+\newpage
 \section{Sonstiges}
 \subsection{Rewrite Function}
 $h(x) = max{f(x), g(x)} = \frac{1}{2}(f(x) + g(x)) + \frac{1}{2}|f(x) -g(x)|$
@@ -1114,15 +1122,18 @@ erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
 % Trigonometrische Funktionen
 
 \subsection{Trigonometrische Funktionen}
-Sind alle stetig
 \includegraphics[width=7cm]{taylor.png}
+\includegraphics[width=7cm]{sincostan.png}
+\includegraphics[width=6cm]{arcsinArccosArctan.png}\\
+\includegraphics[width=6cm]{sinhCoshTanh.png}
+
 
 \begin{enumerate}[(i)]
   \item $cos(z) = cos(-z)$
   \item $sin(-z) = -sin(z)$
   \item $cos^2(z) + sin^2(z) = 1 \;\;\; \forall z \in \mathbf{C}$
 \end{enumerate}
-\includegraphics[width=7cm]{functions.png}
+
 % Häufungspunkt
 
 \subsection{Häufungspunkt}
@@ -1171,11 +1182,12 @@ und es gilt $cosh^2(x) - sinh^2(x) = 1$
 $
 x \mapsto (g \circ f)(x) := g(f(x))
 $
+%
+%\subsection{Sin/Cos Werte}
+%\begin{center}
+%\includegraphics[scale=0.3]{values.png}
+%\end{center}
 
-\subsection{Sin/Cos Werte}
-\begin{center}
-\includegraphics[scale=0.3]{values.png}
-\end{center}
 
 
 \section{Trigonometrie}
