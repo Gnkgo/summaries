@@ -335,6 +335,7 @@ Besitzt die Funktion $f(x)$ an der Stelle $x_0$ den Grenzwert $L$, so gilt:
 $$
   \lim_{x \rightarrow x_0+} f(x) = \lim_{x \rightarrow x_0-} f(x) = \lim_{x \rightarrow x_0} f(x) = L
 $$
+
 \newpage
 \section{Reihen}
 \hypertarget{sec:1}{}
@@ -780,6 +781,15 @@ Hier ein Beispiel für die Ableitung eines Integrals:
 \hypertarget{sec:4}{}
 % Partition
 
+\begin{itemize}
+ \item Grundsätzlich gilt: Polynome ableiten ($g(x)$), wo das Integral periodisch ist ($\sin, \cos, e^x$,...) integrieren ($f'(x)$)
+ \item Teils ist es nötig, mit $1$ zu multiplizieren, um partielle Integration anwenden zu können (z.B. im Fall von $\int \log(x) \dx$)
+ \item Muss eventuell mehrmals angewendet werden
+ \item $g'(x)$ muss sich irgendwie herauskürzen, sonst nutzlos.
+ \item Grenzen substituieren nicht vergessen.
+ \item Alternativ kann auch das unbestimmte Integral berechnet werden und dann $u$ wieder durch $x$ substituiert werden.
+\end{itemize}
+
 \subsection{Partition}
 
 Eine Zerlegung eines Intervalls $I = [\,a, b\,]$. Ist eine endliche Teilmenge
@@ -859,7 +869,7 @@ Es gilt weiter für $f,g:[a,\,b] \rightarrow \mathbf{R}$ beschränkt, integrierb
   \item Sei $f:[1, \infty[ \rightarrow [0, \infty[$ monoton fallend. Dann konvergiert $\sum_{k = 1}^\infty f(k)$ genau dann, wenn $\int_1^\infty f(x) dx$ konvergent und in diesem
   Fall gilt: $0 \leq \sum_{k = 1}^\infty f(k) - \int_1^\infty f(x) dx \leq f(1)$
 \end{enumerate}
-% Rechenregeln für Integrale
+% Rechenregeln für ve
 
 \subsection{Rechenregeln für Integrale}
 
