@@ -142,6 +142,20 @@ If $P$ is infinity then:
 
 $S_\infty <= \frac{1}{f}$
 
+*How to derive it:*
+
+$T = T_s + T_p$
+Where as $T$ is the total time,  $T_s$ the sequential time and $T_p$ the parallel time. $T_p = \frac{T_s}{p}$ If you have more than one processor you can rewrite the function to:
+
+$T = T_s + \frac{T_p}{p}$
+
+$Sp = \frac{W_{seq} + W_{par}}{W_{seq} + \frac{W_{par}}{p}}$
+
+We know that $W_{seq} + W_{par} = 1$ So we can rewrite the function to:
+
+$\frac{1}{W_{seq} + \frac{W_{par}}{p}} = \frac{1}{f + {\frac{1-f}{p}}}$
+
+
 ## Gustafson
 - We increase the problem size as we improve the resources at our disposal. We consider the time interval to be fixed and look at the problem size.
 
