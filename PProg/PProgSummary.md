@@ -332,3 +332,229 @@ Transactions run in *isolation*: while a transaction is running, effects from
 other transactions are not observed. A good analogy is the one of a
 snapshot: transactional memory works as if transaction takes a snapshot
 of the global state when it begins and then operates on that snapshot.
+
+
+# Important Code
+
+## Barrier
+````Java
+public class Barrier {
+  private Semaphore mutex;
+  private Semaphore barrier1;
+  private Semaphore barrier2;
+
+  private volatile int count = 0;
+  private final int n;
+ 
+  Barrier(int n) {
+    mutex = new Semaphore(1);
+    barrier1 = new Semaphore(0);
+    barrier2 = new Semaphore(1);
+        
+    this.count = 0;
+    this.n = n;
+  }
+
+  void await() throws InterruptedException {
+    mutex.acquire();
+    ++count;
+    if (count == n) {
+      barrier2.acquire();
+      barrier1.release();
+    }
+    mutex.release();
+        
+    barrier1.acquire();
+    barrier1.release();
+        
+    mutex.acquire();
+    --count;
+    if (count == 0) {
+      barrier1.acquire();
+      barrier2.release();
+    }
+    mutex.release();
+        
+    barrier2.acquire();
+    barrier2.release();
+  }
+}
+````
+## Semaphore
+````Java
+public class Semaphore {
+  private volatile int count;
+  private Object monitor = new Object();
+
+  public Semaphore(int count) {
+    this.count = count;
+  }
+  
+  public void acquire() throws InterruptedException {
+    synchronized(monitor) {
+      while (count <= 0)
+        monitor.wait();
+      --count;
+    }
+  }
+
+  public void release() {
+    synchronized(monitor) {
+      ++count;
+      monitor.notify();
+    }
+  }
+}
+````
+
+## PetersonLock
+
+````Java
+class PetersonLock{
+    volatile boolean flag[] = new boolean[2];
+    // Note: the volatile keyword refers to the reference, not the array contents
+    // This example may still work in practice
+    // It is recommended to instead use Java’s AtomicInteger and AtomicIntegerArray
+    volatile int victim;
+
+    public void Acquire(int id) {
+        flag[id] = true;
+        victim = id;
+        while (flag[1-id] && victim == id);
+        }
+
+    public void Release(int id){
+        flag[id] = false;
+    }
+}
+````
+
+## Filterlock
+````Java
+int[] level(#threads), int[] victim(#threads)
+lock(me) {
+for (int i=1; i<n; ++i) {
+    level[me] = i;
+    victim[i] = me;
+    while (exists(k != me): level[k] >= i && victim[i] == m){};
+    }
+}
+unlock(me) {
+level[me] = 0;
+}
+````
+
+Filterlock is not fair
+
+## BakeryLock
+
+````Java
+class BakeryLock{
+    AtomicIntegerArray flag; // there is no AtomicBooleanArray
+    AtomicIntegerArray label;
+    final int n;
+    BakeryLock(int n) {
+        this.n = n;
+        flag = new AtomicIntegerArray(n);
+        label = new AtomicIntegerArray(n);
+    }
+    int MaxLabel() {
+        int max = label.get(0);
+        for (int i = 1; i<n; ++i)
+            max = Math.max(max, label.get(i));
+        return max;
+    }
+    boolean Conflict(int me) {
+        for (int i = 0; i < n; ++i)
+            if (i != me && flag.get(i) != 0) {
+                int diff = label.get(i) - label.get(me);
+                if (diff < 0 || diff == 0 && i < me)
+                    return true;
+            }
+        return false;
+    }
+    public void Acquire(int me) {
+        flag.set(me, 1);
+        label.set(me, MaxLabel() + 1);
+        while(Conflict(me));
+        }
+
+    public void Release(int me) {
+        flag.set(me, 0);
+    }
+}
+````
+
+## TAS
+````Java
+boolean TAS(memref s) {
+    if (mem[s] == 0) {
+        mem[s] = 1;
+        return true;
+    } else {
+        return false
+    }
+}
+
+Init(lock) {
+    lock = 0;
+    Acquire(lock) {
+        while (!TAS(lock)); //wait
+    }    
+    Release(lock) {
+        lock = 0;
+    }
+}
+````
+
+## CAS
+````Java
+    int CAS(memref a, int old, int newValue){
+        oldVal = mem[a];
+        if (old == oldVal){
+            mem[a] = newValue
+        }
+        return oldVal;
+    }
+
+    Init (lock) {
+        lock = 0;
+        Acquire (lock) {
+            while (CAS(lock, 0, 1) != 0); //wait
+        }
+        Release(lock) {
+            CAS(lock, 1, 0); //ignore result
+        }
+    }
+````
+
+## TASLock
+````Java
+public class TASLock implements Lock {
+    AtomicBoolean state = new AtomicBoolean(false);
+
+    public void lock() {
+        while (state.getAndSet(true)){}
+    }
+
+    public void unlock() {
+        state.set(false);
+    }
+}
+````
+
+## TATASLock
+````Java
+public class TATASLock implemnts Lock{
+    AtomicBoolean state = new AtomicBoolean(false);
+
+    public void lock() {
+        do {
+            while(state.get()) {}
+            
+        } while (!state.compareAndSet(false, true))
+    }
+}
+````
+
+
