@@ -1,6 +1,4 @@
 
-
-
 # PProg: Important things to know
 
 ## Creating a Thread
@@ -183,7 +181,7 @@ $S_P = f + P(1 -f)
      int[] arr;
      ExecutorService ex;
 
-     üublioc MaxTask(ExecutorService ex, int lo, int hi, int[] arr) {
+     public MaxTask(ExecutorService ex, int lo, int hi, int[] arr) {
         this... 
      }
      public Integer call() throws Exception {
