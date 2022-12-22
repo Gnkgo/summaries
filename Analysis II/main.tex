@@ -7,7 +7,7 @@
 \documentclass[8pt]{extarticle}
 % Article
 % \documentclass[9pt]{extarticle}
-\usepackage[landscape, left=0.75cm, top=1cm, right=0.75cm, bottom=1.5cm, footskip=15pt]{geometry}
+\usepackage[landscape, left=0.50cm, top=0.75cm, right=0.50cm, bottom=1.0cm, footskip=15pt]{geometry}
 \usepackage{background}
 \usepackage{etoolbox}
 \usepackage{graphicx}
@@ -140,16 +140,7 @@ contents={}
   \section{Differential Equations}
   \hypertarget{sec:0}{}
 
-  %------------ Ordinary differential equations (ODE's) ---------------
-  \subsection{Ordinary differential equations (ODE's)}
-  Given $F$, a function of $x, y$, and derivatives of y.
-  Then an equation of the form
-  \begin{align*}
-    F(x, y, y', \dots, y^{(n)}) = 0
-  \end{align*}
-  is an implicit ODE of order $n$. Order is determined
-  by the highest derivative. Implicit means the
-  equation equals $0$.\\ \\
+
   %------------ Linear ODE's ---------------
   \subsection{Linear ODE's}
   A differential equation is said to be linear if $F$
@@ -164,10 +155,7 @@ contents={}
     D(\alpha f + \beta g)  & = \alpha D(f) + \beta D(g)                                                \\
     Df_1 = b_1, Df_2 = b_2 & \Rightarrow D(f_1 + f_2) = b_1 + b_2
   \end{align*}
-  %------------ Homogenous ---------------
-  \subsection{Homogenous}
-  A linear ODE is homogenous when $b(x) = 0$.
-  Inhomogenous otherwise.\\ \\
+
   %------------ Solution Space ---------------
   \subsection{Solution Space}
   Let $I \subset \R$ be an open interval
@@ -195,7 +183,7 @@ contents={}
     \item For any initial condition there is a unique solution.
   \end{enumerate}
   \subsection{Solving linear ODE's of order $1$}
-  Let us consider $$y' + ay = b.$$ Here $a, b$ are constant functions.
+$y' + ay = b.$ Here $a, b$ are constant functions.
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
   \begin{enumerate}[label=(\arabic*)]
     \item Find solutions of the corresponding homogenous equation
@@ -215,7 +203,6 @@ contents={}
 \end{tcolorbox}
   %------------ Educated Guess ---------------
   \subsection{Educated Guess}
-  Note
   \begin{enumerate}[label=(\arabic*)]
     \item If $b(x)$ is a linear combination of basic functions listed
           here try the linear combination of educated guesses
@@ -264,7 +251,7 @@ contents={}
     \item Solve the following system
           \begin{align*}
             z_1'(x) f_1 + z_2'(x) f_2   & = 0 \\
-            z_1'(x) f_1' + z_2'(x) f_2' & = b \\
+            z_1'(x) f_1' + z_2'(x) f_2' & = b 
           \end{align*}
   \end{enumerate}
   %------------ Solving Linear ODE's with constant coefficients ---------------
@@ -314,7 +301,7 @@ contents={}
     y'                   & = b(x) g(y)    \\
     \frac{dy}{dx}        & = b(x) g(y)    \\
     \frac{dy}{g(y)}      & = b(x) dx      \\
-    \int \frac{dy}{g(y)} & = \int b(x) dx \\
+    \int \frac{dy}{g(y)} & = \int b(x) dx 
   \end{align*}
   \section{Differentials in $\R^n$}
   \hypertarget{sec:1}{}
@@ -328,7 +315,7 @@ contents={}
   % ---------- Polynomial -------------------
   \subsection{Polynomial}
   A polynomial in $n$ variables of degree $\leq d$ is
-  a finite sum of monomials of degree $e \leq d$\\ \\
+  a finite sum of monomials of degree $e \leq d$
   % ---------- Convergence -------------------
   \subsection{Convergence}
   Let $(x_k)_{k \in \mathbb{N}}, \; x_k \in \R^n$ and
@@ -394,27 +381,27 @@ contents={}
   \subsection{Polar Coordinates}
   It is sometimes helpful to use polar coordinates, especially
   with rational functions $f: \R \ra \R$.
-  $f(x, y) = f(r \cos(\theta), r \sin(\theta))$\\ \\
+  $f(x, y) = f(r \cos(\theta), r \sin(\theta))$
   % ---------- Bounded set -------------------
   \subsection{Bounded set}
   A set $\X \subset \R^n$ is bounded if the set
-  $\{ \norm*{x} \;|\; x \in \X\}$ is bounded in $\R$.\\ \\
+  $\{ \norm*{x} \;|\; x \in \X\}$ is bounded in $\R$.
   % ---------- Closed set -------------------
   \subsection{Closed set}
   A set $\X \subset \R^n$ is closed if for every
   sequence $(x_k)_{k \in \mathbb{N}} \subset \X$ that
   converges in $\R^n$, converges to a point $y \in \X$.\\
   Here it is often helpful to consider a ball. Counterexamples often include
-  $\frac{1}{k}$ and $<$.\\ \\
+  $\frac{1}{k}$ and $<$.
   % ---------- Compact set -------------------
   \subsection{Compact set}
-  A compact set is a closed and bounded set.\\ \\
+  A compact set is a closed and bounded set.
   % ---------- Continuous and closed -------------------
   \subsection{Continuous and closed}
   If $f: \R^n \ra \R^m$ is continuous, then for
   every $Y \subset \R^m$ that is closed the set
   $f^{-1}(Y) = \{x \in \R^n \;|\; f(x) \in Y\} \subset \R^n$
-  is closed. Careful: Does not imply bounded or compact!\\ \\
+  is closed. Careful: Does not imply bounded or compact!
   % ---------- Min-Max theorem -------------------
   \subsection{Min-Max theorem}
   Let $\X \subset \R^n$ be a compact set,
@@ -633,11 +620,11 @@ contents={}
     x_0 \in \X \text{ is a local extrema } \Ra \nabla f(x_0) = 0
   \end{align*}
   % ---------- Critical point -------------------
-  \subsection{Critical point}
-  A point $x_0 \in \X$ where $\nabla f(x_0) = 0$.\\ \\
+  %\subsection{Critical point}
+  %A point $x_0 \in \X$ where $\nabla f(x_0) = 0$.
   % ---------- Saddle point -------------------
-  \subsection{Saddle point}
-  A critical point which is not a local min or max.\\ \\
+  %\subsection{Saddle point}
+  %A critical point which is not a local min or max.
   % ---------- Global extrema -------------------
   \subsection{Global extrema}
   If $f: \X \ra \R$ is differentiable on the interior
@@ -713,6 +700,7 @@ contents={}
   \end{align*}
   % ---------- Calculating determinate -------------------
   \subsection{Test critical point}
+  A point is critical: $x_0 \in \X$ where $\nabla f(x_0) = 0$. \\
   Let $f:\X \subseteq \R^n \ra \R$ and $f \in C^2$. Let $x_0$ be a
   non-degenerate critical point of $f$. Then
   \begin{enumerate}[label=(\arabic*)]
@@ -857,7 +845,7 @@ contents={}
     \item Int $Q_i$ $\cap$ int $Q_j$ = $\emptyset \quad \forall i \neq j$
   \end{enumerate}
   and $Norm(P) = \delta_P := \max(\text{diam } Q_j)$ while
-  $vol(Q) = \prod_{i = 1}^n (b_i - a_i)$\\ \\
+  $vol(Q) = \prod_{i = 1}^n (b_i - a_i)$
   % ---------- Riemann Sum -------------------
   \subsection{Riemann Sum}
   Riemann sum of $f$, for partition $P$, interlude point $\{\xi_i\}$
@@ -1074,7 +1062,7 @@ contents={}
     \subsubsection {Injektiv/ Surjektiv}
   
   Injektiv: $\forall a, b \in X, \;f(a) = f(b) \Rightarrow a = b$\\
-  Surjektiv: $\forall y \in Y, \, \exists x \in X, f(x) = y$\\ \\
+  Surjektiv: $\forall y \in Y, \, \exists x \in X, f(x) = y$
   % Suprenum
 
     \subsubsection {Suprenum / Infimum}
@@ -1085,7 +1073,7 @@ contents={}
     \item $\forall a \in A \; \; \; a \leq c$
     \item Falls $\forall a \in A \; \; \; a \leq x$ ist $c \leq x$
   \end{enumerate}
-  Man bezeichnet $c := \sup A$ / $c := \inf A$ \\ \\
+  Man bezeichnet $c := \sup A$ / $c := \inf A$ 
 
   % Dreiecksungleichung
 
@@ -1121,7 +1109,7 @@ contents={}
           \item $x^a := exp(a * ln(x))$
           \item $exp(iz) = cos(z) + i*sin(z) \;\;\; \forall z \in \mathbf{C}$
         \end{enumerate}
-        Merke: $e^x$ entspricht $exp(x)$.\\ \\
+        Merke: $e^x$ entspricht $exp(x)$.
         % Natürliche Logaritmus
       
           \subsubsection {Natürliche Logaritmus}
@@ -1155,7 +1143,7 @@ contents={}
     \subsubsection {Kompaktes Intervall}
   
   EIn Intervall $\subset \mathbf{R}$ ist kompakt, wenn es von der Form $\mathbf{I} = [a, b]$,
-  $a \leq b$ ist.\\ \\
+  $a \leq b$ ist.
   % Funktionenfolge
 
     \subsubsection {Funktionenfolge}
@@ -1166,7 +1154,7 @@ contents={}
     n            & \rightarrow f_n
   \end{align*}
   wobei $f_n: \mathbf{D} \rightarrow \mathbf{R}$ eine Funktion ist. Für jedes $x \in \mathbf{D}$
-  erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.\\ \\
+  erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
   % Trigonometrische Funktionen
 
     \subsubsection {Trigonometrische Funktionen}
@@ -1197,9 +1185,11 @@ contents={}
       \hline
     \end{tabular}
   \end{center}
-  \includegraphics[width=7cm]{sincostan.png}
-  \includegraphics[width=7cm]{arcsinArccosArctan.png}
-  \includegraphics[width=7cm]{sinhCoshTanh.png}
+  \begin{center}  
+  \includegraphics[width=5.5cm]{sincostan.png} \\
+  \includegraphics[width=5.5cm]{arcsinArccosArctan.png}\\
+  \includegraphics[width=5.5cm]{sinhCoshTanh.png}
+  \end{center}
 
 \section{Tabellen}
 \subsection{Ableitungen}
@@ -1318,5 +1308,20 @@ $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
   falls $\forall \delta > 0 \;\;\; (]x_0 - \delta, x_0 + \delta[ \setminus \{x_0\}) \cap \mathbf{D} \neq \emptyset$\\ \\
   % Kritische Stelle
 
+  %------------ Ordinary differential equations (ODE's) ---------------
+  \subsection{Ordinary differential equations (ODE's)}
+  Given $F$, a function of $x, y$, and derivatives of y.
+  Then an equation of the form
+  \begin{align*}
+    F(x, y, y', \dots, y^{(n)}) = 0
+  \end{align*}
+  is an implicit ODE of order $n$. Order is determined
+  by the highest derivative. Implicit means the
+  equation equals $0$.
+
+  %------------ Homogenous ---------------
+\subsection{Homogenous}
+A linear ODE is homogenous when $b(x) = 0$.
+Inhomogenous otherwise.
 \end{multicols*}
 \end{document}
