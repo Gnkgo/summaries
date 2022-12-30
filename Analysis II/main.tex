@@ -549,8 +549,9 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     f \Big |_{B(x_0)}
     \quad \parbox[t]{0.2\textwidth}{
       is a bijection to the image with
-    a differentiable inverse $g$} \\
+    a differentiable inverse $g$} 
   \end{align*}
+
   % ---------- Inverse function theorem -------------------
   \subsection{Inverse function theorem}
   Let $\X \subseteq \R^n$ be open and
@@ -764,9 +765,39 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
             \int_{-\gamma} f \; ds = - \int_\gamma f \; ds
           \end{align*}
   \end{enumerate}
-  % ---------- Vector Field -------------------
-  \subsection{Vector Field}
-  A function $f: \R^n \ra \R^n$.\\ \\
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\subsubsection{Example}
+$v(x, y) = \begin{pmatrix}
+    x^2 - 2xy\\
+    y^2 - 2xy
+  \end{pmatrix}$
+from $(-1, 1)$ to $(1, 1)$ along the curve $y = x^2$ \\
+The given parametrization of the curve is 
+$\gamma(t) = \begin{pmatrix} 
+	t \\ 
+	t^2 
+	\end{pmatrix}$
+and the derivative of $\gamma(t)$ is 
+$\gamma'(t) = \begin{pmatrix}
+	 1 \\
+	 2t \end{pmatrix}$. 
+The vector field $v(\gamma(t))$ is given by 
+$v(\gamma(t)) = 
+	\begin{pmatrix} 
+	t^2 - 2t^3 \\
+	 t^4 - 2t^3 
+	\end{pmatrix}$,
+ and the dot product of $v(\gamma(t))$ and $\gamma'(t)$ is
+$$[v(\gamma(t)) \cdot \gamma'(t) = (t^2 - 2t^3)(1) + (t^4 - 2t^3)(2t) = t^2 - 2t^3 + 2t^5 - 4t^4.]$$
+The integral of $v$ along the curve $\gamma$ is
+\begin{align*}
+	\int_\gamma v , d\gamma &= \int_{-1}^1 t^2 - 2t^3 + 2t^5 - 4t^4  dt \\
+	&= \left[\frac{t^3}{3} - \frac{t^4}{2} + \frac{t^6}{3} - \frac{4t^5}{5}\right]_{t=-1}^1 \\
+	&= \frac{1}{3} - \frac{1}{2} + \frac{1}{3} - \frac{4}{5} - \left(-\frac{1}{3} + \frac{1}{2} + \frac{1}{3} + \frac{4}{5}\right) \\
+	&= \frac{2}{3} - \frac{8}{5} = -\frac{14}{15}.
+\end{align*}
+\end{tcolorbox}
+
   % ---------- Potential -------------------
   \subsection{Potential}
   A differentiable scalar field $g: \X \subset \R^n \ra \R$
@@ -778,12 +809,46 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
                         & = \int_a^b \frac{d}{dt} (g \circ \gamma) \; dt        \\
                         & = (g \circ \gamma)(b) - (g \circ \gamma)(a)
   \end{align*}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\subsubsection{Example}
+$f(x,y) = (2xy^2 - 5x^4y + 5, -7y^6 - x^5 + 2x^2y)$ is conservative and its potential is:
+$$g(x,y) = x^2y^2 - x^5y + 5x - y^7$$
+We want to compute $\int_\gamma f \cdot ds$ where $\gamma$ is the parametrised curve:
+$$ \gamma : \left[\frac{\pi}{4}, \frac{5\pi}{4}\right] \to \mathbb{R}^2$$
+$$ \phi : \left[\frac{1}{2} + \frac{1}{\sqrt{2}} \cos(t), \frac{1}{2} + \frac{1}{\sqrt{2}} \sin(t)\right]$$
+So we have:
+
+	 $$g\left(\psi\left(\frac{5\pi}{4}\right)\right) - g\left(\psi\left(\frac{\pi}{4}\right)\right) =  g(0, 0) - g(1, 1) = -4$$
+
+\end{tcolorbox}
   It should be noted that not every function has a potential! Example:
   \begin{align*}
     f(x, y)            & = (2xy^2, 2x)               \\
     \pdv{g}{x} = 2xy^2 & \Ra g(x, y) = x^2y^2 + h(y) \\
     \pdv{g}{y} = 2x    & \neq 2x^2y + h'(y)
   \end{align*}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\subsubsection{Example}
+$f(x,y) = 
+\begin{pmatrix} 
+3x^2 y \\
+x^3 
+\end{pmatrix}$
+\begin{align*}
+  \frac{\partial F_x}{\partial y} =\frac{\partial }{\partial y} (3x^2y) = 3x^2 &&  \frac{\partial F_y}{\partial x} =\frac{\partial }{\partial x} x^3 = 3x^2
+\end{align*}
+
+If starshaped, integrability is guaranteed. The potential function is
+\begin{align*}
+\frac{\partial f}{\partial x}  = (3x^2y) && \frac{\partial f}{\partial y} =  x^3
+\end{align*}
+We integrate $\frac{\partial f}{\partial x}$ and we see that the consant can depent on $y$.
+$$f(x, y) = \int\frac{\partial f}{\partial x} dx = \int 3x^2y dx = x^3y + K(y)$$
+With partiel differentiation with respect of y and under consideration of $\frac{\partial f}{\partial y} = x^3$ we get
+\begin{align*}
+	\frac{\partial f}{\partial y} =  x^3 + K'(y) = x^3 && K'(y) = 0 \rightarrow K(y) = const. = C
+\end{align*}
+\end{tcolorbox}
   % ---------- Conservative vector field -------------------
   \subsection{Conservative vector field}
   Let $f: \X \subset \R^n \ra \R^n$ be a continuous vector
@@ -961,8 +1026,9 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
   \begin{align*}
     \int_Y f(y) \; dy = \int_{\varphi^{-1}(Y)} f(\varphi(x)) \cdot |det J_\varphi(x) | \; dx
   \end{align*}
-  Here an example with polar coordinates on a quarter circle:
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+  Here an example with polar coordinates on a quarter circle:
+
   \begin{align*}
     \begin{pmatrix}
       x \\
@@ -983,13 +1049,17 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     \int_\X \frac{dx \, dy}{1 + x^2 + y^2} & = \int_0^{\frac{\pi}{2}} \int_0^1 \frac{1}{1 + r^2} \cdot r \; dr \, d\theta \\
                                            & = \frac{\log(1 + r^2)}{2} \; \Big |_0^1
   \end{align*}
-  We have the following shortcuts
-  \begin{enumerate}[label=(\arabic*)]
-    \item Polar coordinates: $dx\, dy = r \; dr \, d\theta$
-    \item Cylindrical coordinates: $dx \, dy \, dz = r \; dr \, d\theta \, dz$
-    \item Spherical coordinates: $dx \, dy \, dz = r^2 \sin(\varphi) \; dr \, d\theta \, d\varphi$
-  \end{enumerate}
+  %We have the following shortcuts
+ % \begin{enumerate}[label=(\arabic*)]
+   % \item Polar coordinates: $dx\, dy = r \; dr \, d\theta$
+   % \item Cylindrical coordinates: $dx \, dy \, dz = r \; dr \, d\theta \, dz$
+  %  \item Spherical coordinates: $dx \, dy \, dz = r^2 \sin(\varphi) \; dr \, d\theta \, d\varphi$
+ % \end{enumerate}
+
 \end{tcolorbox}
+\begin{center}
+  \includegraphics[width=7cm]{transformation.png} 
+\end{center}
   % ---------- Green's formula -------------------
   \subsection{Green's formula}
   Let $\X$ be a closed and bounded region in $\R^2$.
@@ -1291,25 +1361,24 @@ $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
     \subsubsection {Potenzen der Winkelfunktion}
   
   $sin^2(x) = \frac{1}{2} (1 - cos(2x))$\\
-  $cos^2(x) = \frac{1}{2} (1 + cos(2x))$\\
-  \\
+  $cos^2(x) = \frac{1}{2} (1 + cos(2x))$
   % Funktionen Verknüpfung
 
     \subsubsection {Funktionen Verknüpfung}
   
   $
     x \mapsto (g \circ f)(x) := g(f(x))
-  $\\ \\
+  $
   % Häufungspunkt
 
     \subsubsection {Häufungspunkt}
   
   $x_0 \in \mathbf{R}$ ist ein \textbf{Häufungspunkt} der Menge $\mathbf{D}$,
-  falls $\forall \delta > 0 \;\;\; (]x_0 - \delta, x_0 + \delta[ \setminus \{x_0\}) \cap \mathbf{D} \neq \emptyset$\\ \\
+  falls $\forall \delta > 0 \;\;\; (]x_0 - \delta, x_0 + \delta[ \setminus \{x_0\}) \cap \mathbf{D} \neq \emptyset$
   % Kritische Stelle
 
   %------------ Ordinary differential equations (ODE's) ---------------
-  \subsection{Ordinary differential equations (ODE's)}
+  \subsubsection{Ordinary differential equations (ODE's)}
   Given $F$, a function of $x, y$, and derivatives of y.
   Then an equation of the form
   \begin{align*}
@@ -1320,8 +1389,12 @@ $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
   equation equals $0$.
 
   %------------ Homogenous ---------------
-\subsection{Homogenous}
+\subsubsection{Homogenous}
 A linear ODE is homogenous when $b(x) = 0$.
 Inhomogenous otherwise.
+
+  % ---------- Vector Field -------------------
+  \subsubsection{Vector Field}
+  A function $f: \R^n \ra \R^n$.
 \end{multicols*}
 \end{document}
