@@ -17,6 +17,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{physics}
+\usepackage{enumerate}
 
 %\usepackage{sectsty}
 %\subsectionfont{\normalfont\large\itshape\underline}
@@ -214,6 +215,7 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     \begin{tabular}{|c|c|}
       \hline
       $b(x)$                              & Guess                                                                  \\ \hline
+      $ax^2 + bx$              & $cx^2 + dx + e$                                                 \\ \hline
       $a \cdot e^{\alpha x}$              & $b \cdot e^{\alpha x}$                                                 \\ \hline
       $a \sin(\beta x)$                   & $c \sin(\beta x) + d \cos(\beta x)$                                    \\ \hline
       $b \cos(\beta x)$                   & $c \sin(\beta x) + d \cos(\beta x)$                                    \\ \hline
@@ -1157,141 +1159,209 @@ With partiel differentiation with respect of y and under consideration of $\frac
     \text{or}                                                                                  \\
     \int \int_\X curl(f) \; dx \, dy = \int_{\partial \X} \vectorarrow{f} \; d \vectorarrow{s} \\
   \end{align*}
-  \section{Other}
-  \hypertarget{sec:3}{}
-  % Injektiv/ Surjektiv
+\section{Other}
 
-    \subsubsection {Injektiv/ Surjektiv}
-  
-  Injektiv: $\forall a, b \in X, \;f(a) = f(b) \Rightarrow a = b$\\
-  Surjektiv: $\forall y \in Y, \, \exists x \in X, f(x) = y$
-  % Suprenum
+% Dreiecksungleichung
 
-    \subsubsection {Suprenum / Infimum}
-  
-  Sei $A \subseteq \mathbf{R}$, $ A \neq \emptyset$ und $A$ nach oben / unten beschränkt. Dann gibt es
-  eine kleinste obere /grösste untere Schranke von $A$. Es gibt also ein $c \in \mathbf{R}$ so dass:
-  \begin{enumerate}
-    \item $\forall a \in A \; \; \; a \leq c$
-    \item Falls $\forall a \in A \; \; \; a \leq x$ ist $c \leq x$
-  \end{enumerate}
-  Man bezeichnet $c := \sup A$ / $c := \inf A$ 
+\subsection{Dreiecksungleichung}
 
-  % Dreiecksungleichung
+\begin{center}
+  $\forall x, y \in \mathbf{R} : ||x| - |y|| \leq |x \pm y| \leq |x| + |y|$
+\end{center}
+% Bernoulli Ungleichung
 
-    \subsubsection {Dreiecksungleichung}
-  
-  \begin{center}
-    $\forall x, y \in \mathbf{R} : ||x| - |y|| \leq |x \pm y| \leq |x| + |y|$
-  \end{center}
-  % Bernoulli Ungleichung
+\subsection{Bernoulli Ungleichung}
 
-    \subsubsection {Bernoulli Ungleichung}
-  
-  \begin{center}
-    $ \forall x \in \mathbf{R} \geq -1$ und $n \in \mathbf{N}: (1 + x)^{n} \geq 1 + nx$
-  \end{center}
-  % Exponentialfunktion
+\begin{center}
+  $ \forall x \in \mathbf{R} \geq -1$ und $n \in \mathbf{N}: (1 + x)^{n} \geq 1 + nx$
+\end{center}
+% Exponentialfunktion
 
-    \subsubsection {Exponentialfunktion}
-  
-  Für ein $z \in \mathbf{C}$ berechnet man die Exponentialfunktion wie folgt:
-  $$
-    exp(z) := 1 + z + \frac{z^2}{2!} + \cdots = \sum_{n = 0}^\infty \frac{z^n}{n!}
-  $$
-  und es gilt:
-  \begin{align*}
-    exp(z) & = \lim_{n \rightarrow \infty} (1 + \frac{z}{n})^n
-  \end{align*}
-  Die reelle Exponentialfunktion $exp: \mathbf{R} \rightarrow ]0, \infty[$ ist streng monoton wachsend,
-        stetig und surjektiv.\\
-        Es gelten weiter folgende Rechenregeln:
-        \begin{enumerate}[label=(\arabic*)]
-          \item $exp(x + y) = exp(x) * exp(y)$
-          \item $x^a := exp(a * ln(x))$
-          \item $exp(iz) = cos(z) + i*sin(z) \;\;\; \forall z \in \mathbf{C}$
-        \end{enumerate}
-        Merke: $e^x$ entspricht $exp(x)$.
-        % Natürliche Logaritmus
-      
-          \subsubsection {Natürliche Logaritmus}
-        
-        Der natürliche Logaritmus wir als $ln: ]0, \infty[ \rightarrow \mathbf{R}$ bezeichnet
-  und ist eine streng monoton wachsende stetige funktion. Es gilt auch, dass
-  \begin{enumerate}[label=(\arabic*)]
-    \item $ln(a * b) = ln(a) + ln(b)$
-    \item $ln(a / b) = ln(a) - ln(b)$
-    \item $ln(x^a) = a * ln(x)$
-    \item $(x^a)^b = x^{a * b}$
-    \item $ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n \;\;\; (-1 < x \leq 1)$
-  \end{enumerate}
-  % Rechenregeln der Ableitung
-  \subsection{Rechenregeln der Ableitung}
-  \begin{enumerate}[label=(\arabic*)]
-    \item $(f + g)'(x_0) = f'(x_0) + g'(x_0)$
-    \item $(f \cdot g)'(x_0) = f'(x_0) \cdot g(x_0) + f(x_0) \cdot g'(x_0)$
-    \item $(\frac{f}{g})'(x_0) = \frac{f'(x_0) \cdot g(x_0) - f(x_0) \cdot g'(x_0)}{(g(x_0))^2}$
-    \item $(g \circ f)'(x_0) = g'(f(x_0)) \cdot f'(x_0)$
-  \end{enumerate}
-  % Faktorisierungs Lemma
+\subsection{Exponentialfunktion}
 
-    \subsubsection {Faktorisierungs Lemma}
-  
-  $$
-    a^n - b^n = (a-b)(a^{n-1} + ba^{n-2} + \cdots + b^{n-2}a + b^{n-1})
-  $$
-  % Kompaktes Intervall
+\begin{align*}
+  exp(z) &= \lim_{n \rightarrow \infty} (1 + \frac{z}{n})^n
+\end{align*}
+Die reelle Exponentialfunktion $exp: \mathbf{R} \rightarrow ]0, \infty[$ ist streng monoton wachsend,
+stetig und surjektiv.\\
+Es gelten weiter folgende Rechenregeln:
+\begin{enumerate}
+  \item $exp(x + y) = exp(x) * exp(y)$
+  \item $x^a := exp(a * ln(x))$
+  \item $x^0 = 1 \;\;\; \forall x \in \mathbf{R}$
+  \item $exp(iz) = cos(z) + i*sin(z) \;\;\; \forall z \in \mathbf{C}$
+  \item $exp(i*\frac{\pi}{2}) = i$
+  \item $exp(i\pi) = -1$ und $exp(2\pi i) = 1$
+  \item Für $a > 0$ ist $]0, +\infty[ \rightarrow ]0, +\infty[$ als $x \rightarrow x^a$ eine
+  streng monoton wachsende stetige Bijektion
+\end{enumerate}
+Merke: $e^x$ entspricht $exp(x)$.
+% Natürliche Logaritmus
 
-    \subsubsection {Kompaktes Intervall}
-  
-  EIn Intervall $\subset \mathbf{R}$ ist kompakt, wenn es von der Form $\mathbf{I} = [a, b]$,
-  $a \leq b$ ist.
-  % Funktionenfolge
+\subsection{Natürliche Logaritmus}
 
-    \subsubsection {Funktionenfolge}
-  
-  Eine Funktionenfolge ist eine Abbildung:
-  \begin{align*}
-    f:\mathbf{N} & \rightarrow \mathbf{R}^\mathbf{D} = \{f:\mathbf{D} \rightarrow \mathbf{R}\} \\
-    n            & \rightarrow f_n
-  \end{align*}
-  wobei $f_n: \mathbf{D} \rightarrow \mathbf{R}$ eine Funktion ist. Für jedes $x \in \mathbf{D}$
-  erhält man eine Folge $(f_n(x))_{n \geq 1}$ reeller Zahlen.
-  % Trigonometrische Funktionen
+Der natürliche Logaritmus wir als $ln: ]0, \infty[ \rightarrow \mathbf{R}$ bezeichnet
+und ist eine streng monoton wachsende stetige funktion. Es gilt auch, dass
+\begin{enumerate}
+  \item $ln(1) = 0$
+  \item $ln(e) = 1$
+  \item $ln(a * b) = ln(a) + ln(b)$
+  \item $ln(a / b) = ln(a) - ln(b)$
+  \item $ln(x^a) = a * ln(x)$
+  \item $x^a * x^b = x^{a + b}$
+  \item $(x^a)^b = x^{a * b}$
+  \item $ln(1+x) = \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} x^n \;\;\; (-1 < x \leq 1)$
+\end{enumerate}
+% Faktorisierungs Lemma
 
-    \subsubsection {Trigonometrische Funktionen}
-  
-  \begin{align*}
-    sin(z) & := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!} \\
-    cos(z) & := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}       \\
-    tan(z) & := \frac{sin(z)}{cos(z)}\;\;\; \forall z \not \in \{\frac{\pi}{2} + \pi k\}                                              \\
-  \end{align*}
-  welche alle stetige Funktionen sind. Es gilt weiter:
-  \begin{enumerate}[label=(\arabic*)]
-    \item $cos(z) = cos(-z)$
-    \item $sin(-z) = -sin(z)$
-    \item $cos^2(z) + sin^2(z) = 1 \;\;\; \forall z \in \mathbf{C}$
-    \item $\sin(2x) = 2 \cdot \sin(x) \cos(x)$
-    \item $\cos(2x) = \cos^2(x) - \sin^2(x)$
-  \end{enumerate}
-  \begin{center}
-    \begin{tabular}{ |c c c c c c| }
-      \hline
-      $\alpha$       & $0^\circ$              & $30^\circ$             & $45^\circ$             & $60^\circ$             & $90^\circ$             \\
-      \hline
-      $\alpha$       & $0$                    & $\frac{\pi}{6}$        & $\frac{\pi}{4}$        & $\frac{\pi}{3}$        & $\frac{\pi}{2}$        \\
-      \hline
-      $\sin(\alpha)$ & $\frac{1}{2} \sqrt{0}$ & $\frac{1}{2} \sqrt{1}$ & $\frac{1}{2} \sqrt{2}$ & $\frac{1}{2} \sqrt{3}$ & $\frac{1}{2} \sqrt{4}$ \\
-      \hline
-      $\cos(\alpha)$ & $\frac{1}{2} \sqrt{4}$ & $\frac{1}{2} \sqrt{3}$ & $\frac{1}{2} \sqrt{2}$ & $\frac{1}{2} \sqrt{1}$ & $\frac{1}{2} \sqrt{0}$ \\
-      \hline
-    \end{tabular}
-  \end{center}
-  \begin{center}  
-  \includegraphics[width=5.5cm]{sincostan.png} \\
-  \includegraphics[width=5.5cm]{arcsinArccosArctan.png}\\
-  \includegraphics[width=5.5cm]{sinhCoshTanh.png}
-  \end{center}
+\subsection{Faktorisierungs Lemma}
+
+$$
+  a^n - b^n = (a-b)(a^{n-1} + ba^{n-2} + \cdots + b^{n-2}a + b^{n-1})
+$$
+% Sinus Abschätzung
+
+\subsection{Sinus Abschätzung}
+
+Es gilt $|\sin(x)| \leq |x|$ mit folgendem Beweis:
+\begin{align*}
+  f(x) &= x - \sin(x), x \geq 0 \\
+  f'(x) &= 1 - \cos(x) \geq 0
+\end{align*}
+Weil $f(0) = 0$, $f(x) \geq 0$ für $x > 0$. Dann $|\sin(x)| \leq |x|$ einfach. 
+
+% Trigonometrische Funktionen
+
+
+\subsection{Trigonometrische Funktionen}
+\begin{align*}
+\exp(x) &= \sumn \frac{x^n}{n!} & r &= \infty \\
+\sin(x) &= \sumn (-1)^n \frac{x^{2n + 1}}{(2n + 1)!} & r &= \infty \\
+\cos(x) &= \sumn (-1)^n \frac{x^{2n}}{(2n)!} & r &= \infty \\
+\ln(x + 1) &= \sumk (-1)^{k+1} \frac{x^k}{k} & r &= 1
+\end{align*}
+
+\includegraphics[width=7cm]{taylor.png}
+\includegraphics[width=6cm]{sincostan.png}\\
+\includegraphics[width=6cm]{arcsinArccosArctan.png}\\
+\includegraphics[width=6cm]{sinhCoshTanh.png}
+
+
+\begin{enumerate}
+  \item $cos(z) = cos(-z)$
+  \item $sin(-z) = -sin(z)$
+  \item $cos^2(z) + sin^2(z) = 1 \;\;\; \forall z \in \mathbf{C}$
+\end{enumerate}
+
+% Hyperbol Funktionen
+
+\subsection{Hyperbol Funktionen}
+
+\begin{enumerate}
+  \item $cosh(x) := \frac{e^x + e^{-x}}{2}: \mathbf{R} \rightarrow [1, \infty]$
+  \item $sinh(x) := \frac{e^x - e^{-x}}{2}: \mathbf{R} \rightarrow \mathbf{R}$
+  \item $tanh(x) := \frac{e^x - e^{-x}}{e^x + e^{-x}}: \mathbf{R} \rightarrow [-1, 1]$
+\end{enumerate}
+und es gilt $cosh^2(x) - sinh^2(x) = 1$
+
+
+
+% Funktionen Verknüpfung
+\subsection{Funktionen Verknüpfung}
+
+$
+x \mapsto (g \circ f)(x) := g(f(x))
+$
+%
+%\subsection{Sin/Cos Werte}
+%\begin{center}
+%\includegraphics[scale=0.3]{values.png}
+%\end{center}
+
+
+
+\section{Trigonometrie}
+
+\subsection{Regeln}
+\subsubsection{Periodizität}
+\begin{itemize}
+ \item $\sin(\alpha + 2 \pi) = \sin(\alpha) \quad \cos(\alpha + 2 \pi) = \cos(\alpha)$
+ \item $\tan(\alpha + \pi) = \tan(\alpha) \quad \cot(\alpha + \pi) = \cot(\alpha)$
+\end{itemize}
+
+\subsubsection{Parität}
+\begin{itemize}
+ \item $\sin(-\alpha) = - \sin(\alpha) \quad \cos(-\alpha) = \cos(\alpha)$
+ \item $\tan(-\alpha) = - \tan(\alpha) \quad \cot(-\alpha) = - \cot(\alpha)$
+\end{itemize}
+
+\subsubsection{Ergänzung}
+\begin{itemize}
+ \item $\sin(\pi - \alpha) = \sin(\alpha) \quad \cos(\pi - \alpha) = - \cos(\alpha)$
+ \item $\tan(\pi - \alpha) = -\tan(\alpha) \quad \cot(\pi - \alpha) = - \cot(\alpha)$
+\end{itemize}
+
+
+\subsubsection{Komplemente}
+\begin{itemize}
+ \item $\sin(\pi/2 - \alpha) = \cos(\alpha) \quad \cos(\pi/2 - \alpha) = \sin(\alpha)$
+ \item $\tan(\pi/2 - \alpha) = -\tan(\alpha) \quad \cot(\pi/2 - \alpha) = -\cot(\alpha)$
+\end{itemize}
+
+\subsubsection{Doppelwinkel}
+\begin{itemize}
+ \item $\sin(2\alpha) = 2 \sin(\alpha) \cos(\alpha)$
+ \item $\cos(2\alpha) = \cos^2(\alpha) - \sin^2(\alpha) = 1 - 2 \sin^2(\alpha)$
+ \item $\tan(2\alpha) = \frac{2\tan(\alpha)}{1 - \tan^2(\alpha)}$
+\end{itemize}
+
+\subsubsection{Addition}
+\begin{itemize}
+ \item $\sin(\alpha + \beta) = \sin(\alpha) \cos(\beta) + \cos(\alpha) \sin(\beta)$
+ \item $\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha) \sin(\beta)$
+ \item $\tan(\alpha + \beta) = \frac{\tan(\alpha) + \tan(\beta)}{1 - \tan(\alpha) \tan(\beta)}$
+\end{itemize}
+
+\subsubsection{Subtraktion}
+\begin{itemize}
+ \item $\sin(\alpha - \beta) = \sin(\alpha) \cos(\beta) - \cos(\alpha)\sin(\beta)$
+ \item $\cos(\alpha - \beta) = \cos(\alpha) \cos(\beta) + \sin(\alpha)\sin(\beta)$
+ \item $\tan(\alpha - \beta) = \frac{\tan(\alpha) - \tan(\beta)}{1+\tan(\alpha) \tan(\beta)}$
+\end{itemize}
+
+\subsubsection{Multiplikation}
+\begin{itemize}
+ \item $\sin(\alpha) \sin(\beta) = -\frac{\cos(\alpha + \beta) - \cos(\alpha - \beta)}{2}$
+ \item $\cos(\alpha) \cos(\beta) =  \frac{\cos(\alpha + \beta) + \cos(\alpha - \beta)}{2}$
+ \item $\sin(\alpha) \cos(\beta) =  \frac{\sin(\alpha + \beta) + \sin(\alpha - \beta)}{2}$
+\end{itemize}
+
+\subsubsection{Potenzen}
+\begin{itemize}
+ \item $\sin^2(\alpha) = \frac{1}{2}(1-\cos(2\alpha))$
+ \item $\cos^2(\alpha) = \frac{1}{2}(1+\cos(2\alpha))$
+ \item $\tan^2(\alpha) = \frac{1-\cos(2\alpha)}{1+\cos(2\alpha)}$
+\end{itemize}
+
+\subsubsection{Diverse}
+
+\begin{itemize}
+ \item $\sin^2(\alpha) + \cos^2(\alpha) = 1$
+ \item $\cosh^2(\alpha) - \sinh^2(\alpha) = 1$
+ \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2}$ und $\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$
+ \item $\tan(x) = \frac{\sin(x)}{\cos(x)} \;\;\; \forall z \not \in \{\frac{\pi}{2} + \pi k\}$
+ \item $\cot(x) = \frac{\cos(x)}{\sin(x)}$
+ \item $\arcsin(x) = \sin(x)\cos(x)$
+ \item $\cos(\arccos(x)) = x$
+ \item $\sin(\arccos(x)) = \frac{1}{\sqrt{1 - x^2}}$
+ \item $\sin(\arctan(x)) = \frac{x}{\sqrt{x^2 + 1}}$
+ \item $\cos(\arctan(x)) = \frac{1}{\sqrt{x^2 + 1}}$
+ \item $\sin(x) = \frac{\tan(x)}{\sqrt{1 + \tan(x)^2}}$
+ \item $\cos(x) = \frac{1}{\sqrt{1 + \tan(x)^2}}$
+ %\item $\sin(z) := z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \cdots = %\sum_{n = 0}^\infty \frac{(-1)^n z^{2n + 1}}{(2n+1)!}$
+ % \item $\cos(z) := 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + \cdots = \sum_{n = 0}^\infty \frac{(-1)^n z^{2n}}{(2n)!}$
+
+\end{itemize}
 
 \section{Tabellen}
 \subsection{Ableitungen}
@@ -1354,19 +1424,6 @@ $f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
   \end{tabularx}
 \end{center}
 
-    \subsubsection {Kritische Stelle}
-  Eine \textbf{kritische Stelle} einer Funktion ist ein $x_0$ an der $f'(x_0)$ null
-  oder undefiniert ist.
-  % Hyperbol Funktionen
-
-    \subsubsection {Hyperbol Funktionen}
-  
-  \begin{enumerate}[label=(\arabic*)]
-    \item $cosh(x) := \frac{e^x + e^{-x}}{2}: \mathbf{R} \rightarrow [1, \infty]$
-    \item $sinh(x) := \frac{e^x - e^{-x}}{2}: \mathbf{R} \rightarrow \mathbf{R}$
-    \item $tanh(x) := \frac{e^x - e^{-x}}{e^x + e^{-x}}: \mathbf{R} \rightarrow [-1, 1]$
-  \end{enumerate}
-  und es gilt $cosh^2(x) - sinh^2(x) = 1$
 
 %\subsection{Integrale}
 \begin{center}
@@ -1428,5 +1485,10 @@ Inhomogenous otherwise.
   % ---------- Vector Field -------------------
   \subsubsection{Vector Field}
   A function $f: \R^n \ra \R^n$.
+
+    \subsubsection {Kritische Stelle}
+  Eine \textbf{kritische Stelle} einer Funktion ist ein $x_0$ an der $f'(x_0)$ null
+  oder undefiniert ist.
+
 \end{multicols*}
 \end{document}
