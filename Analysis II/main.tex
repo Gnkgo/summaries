@@ -201,6 +201,18 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     \item Find a particular solution $f_p: I \ra \C$
           such that $f_p' + af_p = b$. Use educated guess or variation of constants.
   \end{enumerate}
+Assume we have $y' + \frac{y}{x} = 2\cos(x^2)$ 
+The homogenous equation $y' = -\frac{1}{x}y$ has a constant solution $y_h(x) = 0$. Otherwise we have:
+\begin{align*}
+	\log(y) &= \int\frac{y'}{y} dx = -\int\frac{1}{x}dx = -\log(x) + c \\
+	y &= \frac{e^c}{x} \\
+	y &= \frac{C}{x}
+\end{align*}
+Our educated guess is $y_p = \frac{C(x)}{x}$
+$$\frac{C'(x)x - C(x)}{x^2} + \frac{1}{x}\frac{C(x)}{x} = 2\cos(x^2)$$
+We solve for $C'(x)$
+$$C'(x) = \frac{g(x)}{y_1(x)} \rightarrow C(x) = \int\frac{g(x)}{y_1(x)}dx = \int\frac{2\cos(x^2)}{\frac{1}{x}}$$
+$$ = \int2x\cos(x^2) = \sin(x^2)$$
 \end{tcolorbox}
   %------------ Educated Guess ---------------
   \subsection{Educated Guess}
@@ -799,6 +811,9 @@ T_3f((0,0); (x,y)) &= f(0,0) + \frac{\partial f(0,0)}{\partial x}x + \frac{\part
             \int_{-\gamma} f \; ds = - \int_\gamma f \; ds
           \end{align*}
   \end{enumerate}
+\subsubsection{Length of curve (Bogenlänge)}
+The length of a curve (Bogenlänge) from a function $f$ on the interval $[a, b]$ is 
+$$ L = \int_a^b \sqrt{1 + (f'(x))^2}dx$$
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
 \subsubsection{Example}
 $v(x, y) = \begin{pmatrix}
