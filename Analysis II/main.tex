@@ -158,34 +158,34 @@ contents={}
   \end{align*}
 
   %------------ Solution Space ---------------
-  \subsection{Solution Space}
-  Let $I \subset \R$ be an open interval
-  and $k \geq 1$ an integer, and let
-  \begin{align*}
-    y^{(k)} + a_{k-1}y^{(k-1)} + \dots + a_1 y' + a_0 y = 0
-  \end{align*}
-  be a linear ODE over $I$ with continuous coefficients.
-  \begin{enumerate}[label=(\arabic*)]
-    \item The set $S$ of $k$-times differentiable solutions
-          $f:I \ra \C$ of the equation is a complex
-          vector space wich is a subspace of the space of complex valued
-          funcitons on $I$. (Analogous for real numbers, if all
-          $a_i$ are real valued)
-    \item The dimension of $S$ is $k$ and for any choice of $x_0 \in I$
-          and any $(y_0, \dots, y_{k-1}) \in \C^k$ there
-          exists a unique $f$ such that
-          \begin{align*}
-            f(x_0) = y_0, f'(x_0) = y_1, \dots, f^{(k-1)}(x_0) = y_{k-1}
-          \end{align*}
-          (Analogous for real numbers, if all $a_i$ are real)
-    \item For an arbitrary $b$ the solution set is
-          $S_b = \{f + f_p \;|\; f \in S_0\}$ where $f_p$ is a "particular"
-          solution.
-    \item For any initial condition there is a unique solution.
-  \end{enumerate}
+  %\subsection{Solution Space}
+  %Let $I \subset \R$ be an open interval
+ % and $k \geq 1$ an integer, and let
+  %\begin{align*}
+   % y^{(k)} + a_{k-1}y^{(k-1)} + \dots + a_1 y' + a_0 y = 0
+ % \end{align*}
+ % be a linear ODE over $I$ with continuous coefficients.
+  %\begin{enumerate}[label=(\arabic*)]
+   % \item The set $S$ of $k$-times differentiable solutions
+   %       $f:I \ra \C$ of the equation is a complex
+  %        vector space wich is a subspace of the space of complex valued
+  %        funcitons on $I$. (Analogous for real numbers, if all
+   %       $a_i$ are real valued)
+  %  \item The dimension of $S$ is $k$ and for any choice of $x_0 \in I$
+     %     and any $(y_0, \dots, y_{k-1}) \in \C^k$ there
+   %       exists a unique $f$ such that
+   %       \begin{align*}
+   %         f(x_0) = y_0, f'(x_0) = y_1, \dots, f^{(k-1)}(x_0) = y_{k-1}
+   %       \end{align*}
+   %       (Analogous for real numbers, if all $a_i$ are real)
+  %  \item For an arbitrary $b$ the solution set is
+    %      $S_b = \{f + f_p \;|\; f \in S_0\}$ where $f_p$ is a "particular"
+       %   solution.
+   % \item For any initial condition there is a unique solution.
+ % \end{enumerate}
   \subsection{Solving linear ODE's of order $1$}
 $y' + ay = b.$ Here $a, b$ are constant functions.
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+
   \begin{enumerate}[label=(\arabic*)]
     \item Find solutions of the corresponding homogenous equation
           $y' + ay = 0$. Note that if $f$ is a solution so is
@@ -201,6 +201,7 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     \item Find a particular solution $f_p: I \ra \C$
           such that $f_p' + af_p = b$. Use educated guess or variation of constants.
   \end{enumerate}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
 Assume we have $y' + \frac{y}{x} = 2\cos(x^2)$ 
 The homogenous equation $y' = -\frac{1}{x}y$ has a constant solution $y_h(x) = 0$. Otherwise we have:
 \begin{align*}
@@ -212,17 +213,17 @@ Our educated guess is $y_p = \frac{C(x)}{x}$
 $$\frac{C'(x)x - C(x)}{x^2} + \frac{1}{x}\frac{C(x)}{x} = 2\cos(x^2)$$
 We solve for $C'(x)$
 $$C'(x) = \frac{g(x)}{y_1(x)} \rightarrow C(x) = \int\frac{g(x)}{y_1(x)}dx = \int\frac{2\cos(x^2)}{\frac{1}{x}}$$
-$$ = \int2x\cos(x^2) = \sin(x^2)$$
+$$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
 \end{tcolorbox}
   %------------ Educated Guess ---------------
   \subsection{Educated Guess}
-  \begin{enumerate}[label=(\arabic*)]
-    \item If $b(x)$ is a linear combination of basic functions listed
-          here try the linear combination of educated guesses
-    \item If the educated guess is the same as the solution
-          of the homogenous problem, then try multiplying by $x^m$
-          where $m$ denotes the multiplicity of the root $\lambda$.
-  \end{enumerate}
+  %\begin{enumerate}[label=(\arabic*)]
+    %\item If $b(x)$ is a linear combination of basic functions listed
+       %   here try the linear combination of educated guesses
+    %\item If the educated guess is the same as the solution
+       %   of the homogenous problem, then try multiplying by $x^m$
+          %where $m$ denotes the multiplicity of the root $\lambda$.
+ % \end{enumerate}
   \begin{center}
     \begin{tabular}{|c|c|}
       \hline
@@ -258,16 +259,16 @@ $$ = \int2x\cos(x^2) = \sin(x^2)$$
             y_p     & = z(x) e^{-A(x)}
           \end{align*}
   \end{enumerate}
-  or for degree two
-  \begin{enumerate}[label=(\arabic*)]
-    \item Assume the homogenous solution is $f = z_1 f_1 + z_2 f_2$
-    \item We will try $f_p = z_1(x) f_1 + z_2(x) f_2$
-    \item Solve the following system
-          \begin{align*}
-            z_1'(x) f_1 + z_2'(x) f_2   & = 0 \\
-            z_1'(x) f_1' + z_2'(x) f_2' & = b 
-          \end{align*}
-  \end{enumerate}
+ % or for degree two
+  %\begin{enumerate}[label=(\arabic*)]
+    %\item Assume the homogenous solution is $f = z_1 f_1 + z_2 f_2$
+    %\item We will try $f_p = z_1(x) f_1 + z_2(x) f_2$
+    %\item Solve the following system
+       %   \begin{align*}
+          %  z_1'(x) f_1 + z_2'(x) f_2   & = 0 \\
+            %z_1'(x) f_1' + z_2'(x) f_2' & = b 
+          %\end{align*}
+  %\end{enumerate}
   %------------ Solving Linear ODE's with constant coefficients ---------------
 
     \subsubsection {Solving Linear ODE's with constant coefficients}
@@ -1142,12 +1143,28 @@ With partiel differentiation with respect of y and under consideration of $\frac
   If we wanted to calculate the area of a set, then handy
   functions with $curl(f) = 1 $ are
   \begin{align*}
-    f=(0, \, x) \text{ or } f = (-y, \, 0)
+    f=(0, \, x) \text{ or } f = (-y, \, 0) \text{ or } f = \left(\frac{-y}{2},\,  \frac{x}{2}\right)
   \end{align*}
   We also have
   \begin{align*}
     \int_\gamma f \; ds = \int_{\gamma_1} f \; ds +\int_{\gamma_2} f \; ds
   \end{align*}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\subsubsection{Example}
+Straight forward application of Green's formula: if $\gamma$ is a simple closed param. curve. Calculate
+$$ \int_\gamma f \; ds = \int_b^b \langle f\gamma(t)), \gamma'(t)\rangle dt \gamma \text{ simple closed parameter curve}$$
+Compute $\int_\partial{A} f(x, y) dxdy$ for $ f(x, y) = f: (x, \, y) \ra \begin{pmatrix}
+      \sqrt{1 + x^3} \\
+      2xy
+    \end{pmatrix}$.
+$\partial{A} = d_1 + d_2 + d_3$
+Direct Computation:
+$$\int_\partial{A} = \int_\partial{d_1} + \int_\partial{d_2} + \int_\partial{d_3}$$
+Green's Formula:
+$$A = {(x, y) | 0 \geq x \geq 1, 0 \geq y \geq 3x}$$
+$$\partial{x}f_2 - \partial{y}f_1 = 2y - 0 = 2y$$
+$$\int_\partial{A} f ds = \int_A 2y dx dy = \int_0^1 \int_0^1 2y dydx = \int_0^1 9x^2 dx = 3$$
+\end{tcolorbox}
   % ---------- Divergence -------------------
   \subsection{Divergence}
   For a vector field $f: \R^n \ra \R^n$ and $f \in C^1$,
