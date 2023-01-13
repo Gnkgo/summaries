@@ -74,7 +74,7 @@
 %\regtotcounter{section}
 
 % every section starts on a new page
-\pretocmd{\section}{\clearpage}{}{}
+%\pretocmd{\section}{\clearpage}{}{}
 
 % auxiliary lengths for the height of the frame and the width of each tab
 \newlength\mylen
@@ -158,31 +158,31 @@ contents={}
   \end{align*}
 
   %------------ Solution Space ---------------
-  %\subsection{Solution Space}
-  %Let $I \subset \R$ be an open interval
- % and $k \geq 1$ an integer, and let
-  %\begin{align*}
-   % y^{(k)} + a_{k-1}y^{(k-1)} + \dots + a_1 y' + a_0 y = 0
- % \end{align*}
- % be a linear ODE over $I$ with continuous coefficients.
-  %\begin{enumerate}[label=(\arabic*)]
-   % \item The set $S$ of $k$-times differentiable solutions
-   %       $f:I \ra \C$ of the equation is a complex
-  %        vector space wich is a subspace of the space of complex valued
-  %        funcitons on $I$. (Analogous for real numbers, if all
-   %       $a_i$ are real valued)
-  %  \item The dimension of $S$ is $k$ and for any choice of $x_0 \in I$
-     %     and any $(y_0, \dots, y_{k-1}) \in \C^k$ there
-   %       exists a unique $f$ such that
-   %       \begin{align*}
-   %         f(x_0) = y_0, f'(x_0) = y_1, \dots, f^{(k-1)}(x_0) = y_{k-1}
-   %       \end{align*}
-   %       (Analogous for real numbers, if all $a_i$ are real)
-  %  \item For an arbitrary $b$ the solution set is
-    %      $S_b = \{f + f_p \;|\; f \in S_0\}$ where $f_p$ is a "particular"
-       %   solution.
-   % \item For any initial condition there is a unique solution.
- % \end{enumerate}
+  \subsection{Solution Space}
+  Let $I \subset \R$ be an open interval
+  and $k \geq 1$ an integer, and let
+ \begin{align*}
+   y^{(k)} + a_{k-1}y^{(k-1)} + \dots + a_1 y' + a_0 y = 0
+  \end{align*}
+  be a linear ODE over $I$ with continuous coefficients.
+  \begin{enumerate}[label=(\arabic*)]
+    \item The set $S$ of $k$-times differentiable solutions
+          $f:I \ra \C$ of the equation is a complex
+          vector space wich is a subspace of the space of complex valued
+         funcitons on $I$. (Analogous for real numbers, if all
+         $a_i$ are real valued)
+   \item The dimension of $S$ is $k$ and for any choice of $x_0 \in I$
+          and any $(y_0, \dots, y_{k-1}) \in \C^k$ there
+          exists a unique $f$ such that
+          \begin{align*}
+            f(x_0) = y_0, f'(x_0) = y_1, \dots, f^{(k-1)}(x_0) = y_{k-1}
+          \end{align*}
+          (Analogous for real numbers, if all $a_i$ are real)
+    \item For an arbitrary $b$ the solution set is
+          $S_b = \{f + f_p \;|\; f \in S_0\}$ where $f_p$ is a "particular"
+          solution.
+    \item For any initial condition there is a unique solution.
+  \end{enumerate}
   \subsection{Solving linear ODE's of order $1$}
 $y' + ay = b.$ Here $a, b$ are constant functions.
 
@@ -318,6 +318,7 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
     \frac{dy}{g(y)}      & = b(x) dx      \\
     \int \frac{dy}{g(y)} & = \int b(x) dx 
   \end{align*}
+\newpage{}
   \section{Differentials in $\R^n$}
   \hypertarget{sec:1}{}
   % ---------- Monomial -------------------
@@ -488,7 +489,9 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
   $f: \X \subset \R^n \ra \R$.
   Is often denoted as $\nabla f$. The geometric
   interpretation is that it indicates the
-  direction and rate of fastest increase.\\ \\
+  direction and rate of fastest increase. \\
+Remember: $curl(\nabla f) = 0$ is a necessary condition for a vector field to be a gradient!
+$$Curl \neq 0 \rightarrow \text{not a potential}$$
   % ---------- Directional derivative -------------------
   \subsection{Directional derivative}
   Let direction $v = (a, b) \neq (0, 0)$. Instead of
@@ -499,6 +502,7 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
   \begin{align*}
     \frac{df(x_0 + t \vectorarrow{v})}{dt} = J_f(x_0) \cdot \vectorarrow{v}
   \end{align*}
+
   % ---------- Differentiabiliy -------------------
   \subsection{Differentiabiliy}
   Let $\X \subset \R^n \ra \mathbb{R^m}$ be function
@@ -551,6 +555,8 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
     d(g \circ f)(x_0) = dg(f(x_0)) \circ df(x_0) \\
     J_{g \circ f}(x_o) = J_g(f(x_0)) \cdot J_f(x_0)
   \end{align*}
+$$\frac{dz}{dt} = \frac{\partial{z}}{\partial{x}} \frac{dx}{dt} + \frac{\partial{z}}{\partial{y}} \frac{dy}{dt}$$
+$$\frac{d}{dt} f(\gamma(t)) = \nabla f (\gamma(t)) \gamma'(t)$$
   % ---------- Change of variables -------------------
   \subsection{Change of variables}
   We say $f$ is a change of variables around
@@ -598,6 +604,7 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
   \end{align*}
   % ---------- Taylor Polynomial -------------------
   \subsection{Taylor Polynomial}
+Good for approximation $\rightarrow$ affine function
   The Taylor polynomial of $f$ at $x_0$
   of order $1$ is
   \begin{align*}
@@ -759,6 +766,7 @@ T_3f((0,0); (x,y)) &= f(0,0) + \frac{\partial f(0,0)}{\partial x}x + \frac{\part
   \end{enumerate}
   We cannot use this theorem when $x_0$ is a degenerate critical
   point ($det(Hess_f(x_0)) = 0$) and must decide on a case by case basis!
+\newpage{}
   \section{Integrals in $\R^n$}
   \hypertarget{sec:2}{}
   % ---------- Simple integral -------------------
@@ -775,7 +783,7 @@ T_3f((0,0); (x,y)) &= f(0,0) + \frac{\partial f(0,0)}{\partial x}x + \frac{\part
   % ---------- Curve -------------------
   \subsection{Curve}
   The image of a function $\gamma: [a, b] \ra \R^n$
-  where the function $\gamma$ is continuous and piecewise $\in C^1$.\\ \\
+  where the function $\gamma$ is continuous and piecewise $\in C^1$.
   % ---------- Line integral -------------------
   \subsection{Line integral}
   Let $\gamma: [a, b] \ra \R^n$ be a parametrization
@@ -919,8 +927,22 @@ With partiel differentiation with respect of y and under consideration of $\frac
   \subsection{Path connected}
   Let $\X \subset \R^n$ be open. $\X$ is said to be path
   connected if for every pair of points $x, y \in \X$ a $C^1$
-  path $\gamma: (0, 1]: \ra \X$ exists with $\gamma(0) = x$, $\gamma(1) = y$.\\ \\
+  path $\gamma: (0, 1]: \ra \X$ exists with $\gamma(0) = x$, $\gamma(1) = y$.
   % ---------- Star shaped -------------------
+  % ---------- Changing the order of integration -------------------
+  \subsection{Changing the order of integration}
+  Changing the order of integration is sometimes necessary,
+  as in the following example.
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+
+  \begin{align*}
+    \int_0^1 \int_x^1 e^{y^2} \; dy \, dx
+     & = \int_0^1 \int_0^y e^{y^2} \; dx \, dy                             \\
+     & = \int_0^1 \Big( x \cdot e^{y^2} \Big |_{x = 0}^{x = y} \Big) \; dy \\
+     & = \int_0^1 y \cdot e^{y^2} \; dy                                    \\
+     & = \frac{e^{y^2}}{2} \; \Big |_0^1
+  \end{align*}
+\end{tcolorbox}
   \subsection{Star shaped}
   A subset $\X \subset \R^n$ is called star shaped if $\exists x_0 \in \X$
   such that $\forall x \in \X$ the line segment joining $x_0$ to $x$
@@ -969,7 +991,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
     R(f, P, \xi) = \sum_{j = 1}^k f(\xi_i) \cdot vol(Q_j)
   \end{align*}
   For the lower sum instead of $f(\xi_i)$ use $\inf_{x \in Q_j} f(x)$
-  and for upper sum $\sup_{x \in Q_j} f(x)$\\ \\
+  and for upper sum $\sup_{x \in Q_j} f(x)$
   % ---------- Integrable -------------------
   \subsection{Integrable}
   The lower Riemann sum equals the upper Riemann sum. We have
@@ -1016,20 +1038,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   \begin{align*}
     \int_D f(x, y) \; dx dy = \int_c^d \int_{G(y)}^{H(y)} f(x, y) \; dx \, dy
   \end{align*}
-  % ---------- Changing the order of integration -------------------
-  \subsection{Changing the order of integration}
-  Changing the order of integration is sometimes necessary,
-  as in the following example.
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
 
-  \begin{align*}
-    \int_0^1 \int_x^1 e^{y^2} \; dy \, dx
-     & = \int_0^1 \int_0^y e^{y^2} \; dx \, dy                             \\
-     & = \int_0^1 \Big( x \cdot e^{y^2} \Big |_{x = 0}^{x = y} \Big) \; dy \\
-     & = \int_0^1 y \cdot e^{y^2} \; dy                                    \\
-     & = \frac{e^{y^2}}{2} \; \Big |_0^1
-  \end{align*}
-\end{tcolorbox}
   % ---------- Negligible sets in $\R^n$ -------------------
   \subsection{Negligible sets in $\R^n$}
   If for $1 \leq m \leq n$ a parametrized $m$-set
@@ -1121,7 +1130,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   where $f: (x, \, y) \ra \begin{pmatrix}
       f_1(x, \, y) \\
       f_2(x, \, y)
-    \end{pmatrix}$.\\ \\
+    \end{pmatrix}$.
   There are implicit assumptions.
   \begin{enumerate}[label=(\arabic*)]
     \item We assume that the vector field $f= (f_1, f_2)$ has components
@@ -1152,18 +1161,42 @@ With partiel differentiation with respect of y and under consideration of $\frac
 \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
 \subsubsection{Example}
 Straight forward application of Green's formula: if $\gamma$ is a simple closed param. curve. Calculate
-$$ \int_\gamma f \; ds = \int_b^b \langle f\gamma(t)), \gamma'(t)\rangle dt \gamma \text{ simple closed parameter curve}$$
-Compute $\int_\partial{A} f(x, y) dxdy$ for $ f(x, y) = f: (x, \, y) \ra \begin{pmatrix}
+$$ \int_\gamma f \; ds = \int_b^b \langle f\gamma(t)), \gamma'(t)\rangle dt$$
+$\gamma$  simple closed parameter curve.
+Compute:
+$$\int_{\partial{A}} f(x, y) dxdy \text{ for } f(x, y) = f: (x, \, y) \ra \begin{pmatrix}
       \sqrt{1 + x^3} \\
       2xy
-    \end{pmatrix}$.
+    \end{pmatrix}$$
 $\partial{A} = d_1 + d_2 + d_3$
 Direct Computation:
 $$\int_\partial{A} = \int_\partial{d_1} + \int_\partial{d_2} + \int_\partial{d_3}$$
 Green's Formula:
 $$A = {(x, y) | 0 \geq x \geq 1, 0 \geq y \geq 3x}$$
 $$\partial{x}f_2 - \partial{y}f_1 = 2y - 0 = 2y$$
-$$\int_\partial{A} f ds = \int_A 2y dx dy = \int_0^1 \int_0^1 2y dydx = \int_0^1 9x^2 dx = 3$$
+$$\int_{\partial{A}} f ds = \int_A 2y dx dy = \int_0^1 \int_0^{3x} 2y dydx = \int_0^1 9x^2 dx = 3$$
+\end{tcolorbox}
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\subsubsection{Example}
+Calculate the area of $\Omega := {(x, y) \in \R^2 | (x-2)^2 - 1 \le y \le 0}$ with the Green's formula. \\
+First, calculate intersection points:
+  \begin{align*}
+	(x - 2)^2 - 1 &= 0 \\
+			&= x^2 - 4x + 3 \\
+			&= (x - 3) (x - 1)
+\end{align*}
+We parametrisize:
+$$\gamma_1 :[1, 3] \rightarrow \R^2 : t \rightarrow (t, (t - 2)^2 - 1)$$
+$$ \gamma_2 : [3, 1] \rightarrow \R^2 : t \rightarrow (t, 0)$$
+Note that is counter clockwise. We consider the vectorfield $v: \R^2 \rightarrow \R^2 : (x, y) \rightarrow (0, x)$. It is
+$$curl v(x, y) = \frac{\partial{v_y}}{\partial{x}} (x, y) - \frac{\partial{v_x}}{\partial{y}} (x, y) = 1$$
+\begin{align*}
+	\int \int_\Omega 1 dx dy &= \int \int_{\Omega} curl v dx dy = \int_{\gamma_1} v ds + \int_{\gamma_2} v ds \\
+				&\int_1^3 v(\gamma_1(t)) \gamma_1'(t) dt + \int_3^1 v(\gamma_2(t)) \gamma_2'(t) dt\\
+ 				&= \int_1^3 (0, t) (1, 2(t-2)) dt + \int_3^1 (0, t) (1, 0) (=0) dt \\
+				&= \int_1^3 2t^2 - 4t dt = \frac{2}{3} t^3 - 2t^2 |_1^3 \\
+				&= 18 - \frac{2}{3} - 18 + 2 = \frac{4}{3}
+\end{align*}
 \end{tcolorbox}
   % ---------- Divergence -------------------
   \subsection{Divergence}
@@ -1181,7 +1214,7 @@ $$\int_\partial{A} f ds = \int_A 2y dx dy = \int_0^1 \int_0^1 2y dydx = \int_0^1
     = \int_a^b (f_1(\gamma(t)), f_2(\gamma(t))) & \cdot n(t) \; dt
   \end{align*}
   Here $n(t)$ is called the exterior normal to
-  the curve and $\gamma'(t) \cdot n(t) = 0$.\\ \\
+  the curve and $\gamma'(t) \cdot n(t) = 0$.
   % ---------- Divergence-flux -------------------
   \subsection{Divergence-flux}
   The form or the normal form of Green's theorem.
@@ -1191,6 +1224,7 @@ $$\int_\partial{A} f ds = \int_A 2y dx dy = \int_0^1 \int_0^1 2y dydx = \int_0^1
     \text{or}                                                                                  \\
     \int \int_\X curl(f) \; dx \, dy = \int_{\partial \X} \vectorarrow{f} \; d \vectorarrow{s} \\
   \end{align*}
+\newpage{}
 \section{Other}
 
 % Dreiecksungleichung
@@ -1294,8 +1328,8 @@ Weil $f(0) = 0$, $f(x) \geq 0$ für $x > 0$. Dann $|\sin(x)| \leq |x|$ einfach.
   \item $\cosh(x) := \frac{e^x + e^{-x}}{2}: \mathbf{R} \rightarrow [1, \infty]$
   \item $\sinh(x) := \frac{e^x - e^{-x}}{2}: \mathbf{R} \rightarrow \mathbf{R}$
   \item $\tanh(x) := \frac{e^x - e^{-x}}{e^x + e^{-x}}: \mathbf{R} \rightarrow [-1, 1]$
-  \item $\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$
-  \item $\cos(x) = \frac{e^{ix} - e^{-ix}}{2i}$
+  %\item $\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$
+  %\item $\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$
 \end{enumerate}
 und es gilt $\cosh^2(x) - \sinh^2(x) = 1$
 
@@ -1383,7 +1417,7 @@ $
 \begin{itemize}
  \item $\sin^2(\alpha) + \cos^2(\alpha) = 1$
  \item $\cosh^2(\alpha) - \sinh^2(\alpha) = 1$
- \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2}$ und $\cos(z) = \frac{e^{iz} + e^{-iz}}{2}$
+ \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2}$ und $\cos(z) = \frac{e^{iz} + e^{-iz}}{2i}$
  \item $\tan(x) = \frac{\sin(x)}{\cos(x)} \;\;\; \forall z \not \in \{\frac{\pi}{2} + \pi k\}$
  \item $\cot(x) = \frac{\cos(x)}{\sin(x)}$
  \item $\arcsin(x) = \sin(x)\cos(x)$
@@ -1524,6 +1558,9 @@ Inhomogenous otherwise.
     \subsubsection {Kritische Stelle}
   Eine \textbf{kritische Stelle} einer Funktion ist ein $x_0$ an der $f'(x_0)$ null
   oder undefiniert ist.
+
+\subsection{Important}
+
 
 \end{multicols*}
 \end{document}
