@@ -214,7 +214,7 @@ $y' + ay = b.$ Here $a, b$ are constant functions.
     \item Find a particular solution $f_p: I \ra \C$
           such that $f_p' + af_p = b$. Use educated guess or variation of constants.
   \end{enumerate}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 Assume we have $y' + \frac{y}{x} = 2\cos(x^2)$ 
 The homogenous equation $y' = -\frac{1}{x}y$ has a constant solution $y_h(x) = 0$. Otherwise we have:
 \begin{align*}
@@ -227,7 +227,7 @@ $$\frac{C'(x)x - C(x)}{x^2} + \frac{1}{x}\frac{C(x)}{x} = 2\cos(x^2)$$
 We solve for $C'(x)$
 $$C'(x) = \frac{g(x)}{y_1(x)} \rightarrow C(x) = \int\frac{g(x)}{y_1(x)}dx = \int\frac{2\cos(x^2)}{\frac{1}{x}}$$
 $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
-\end{tcolorbox}
+\BoxEnd
   %------------ Educated Guess ---------------
   \subsection{Educated Guess}
   %\begin{enumerate}[label=(\arabic*)]
@@ -406,11 +406,6 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
     \lim_{x \ra a} f(x) = \lim_{x \ra a} h(x) = L
      & \Rightarrow \lim_{x \ra a} g(x) = L
   \end{align*}
-  % ---------- Polar Coordinates -------------------
-  \subsection{Polar Coordinates}
-  It is sometimes helpful to use polar coordinates, especially
-  with rational functions $f: \R \ra \R$.
-  $f(x, y) = f(r \cos(\theta), r \sin(\theta))$
 \subsection{Properties of sets}
 A set \(\X \subset \R^n \) is
 \begin{itemize}
@@ -446,31 +441,7 @@ A set \(\X \subset \R^n \) is
     f(x^+) & = \sup_{x \in \X} f(x)
     f(x^-) & = \inf_{x \in \X} f(x)
   \end{align*}
-  % ---------- Open set -------------------
-  \subsection{Open set}
-  A set $\X \subset \R^n$ is called open if its
-  complement $\R^n \setminus \X$ is closed.
-  This is equivalent to $\forall x \in \X \; \exists r > 0$
-  s.t. the set
-  $\{y \in \R^n \;|\; \norm*{y - x} < r\} = B_r(x) \subset \X$.\\
-  Here are some examples
-  \begin{enumerate}[label=(\arabic*)]
-    \item $(a, b) \subset \R$ is open.
-    \item $[a, b) \subset \R$ is neither open nor closed.
-    \item $\R^n$ and $\emptyset$ are both open.
-    \item $(a_1, b_1) \times (a_2, b_2) \subset \R^2$ is open.
-    \item Inverse image of open sets under continuous maps are open.
-  \end{enumerate}
-  % ---------- Derivative -------------------
-  \subsection{Derivative}
-  Given $f: \R \ra \R^n$ the derivative is
-  \begin{align*}
-    f'(x_0) & = \begin{pmatrix}
-      f_1'(x_0) \\
-      \vdots    \\
-      f_n'(x_0)
-    \end{pmatrix}
-  \end{align*}
+
   % ---------- Partial derivatives -------------------
   \subsection{Partial derivatives}
   A partial derivative of a function
@@ -496,6 +467,7 @@ A set \(\X \subset \R^n \) is
     \item $\pdv{f \cdot g}{x_j} = \pdv{f}{x_j} \cdot g + \pdv{g}{x_j} \cdot f$
     \item if $g \neq 0$: $\pdv{f / g}{x_j} = \frac{\pdv{f}{x_j} \cdot g - \pdv{g}{x_j} \cdot f}{g^2}$
   \end{enumerate}
+
   % ---------- Jacobi Matrix -------------------
   \subsection{Jacobi Matrix}
   A Matrix with $m$ rows and $n$ columns where
@@ -557,7 +529,7 @@ $$Curl \neq 0 \rightarrow \text{not a potential}$$
 	\begin{pmatrix} x - x_0 \\
 			     y - y_0
 	\end{pmatrix}$$
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
   \begin{align*}
     f(x, y)             & = \sqrt{x^2 + y^2}                                                   \\
     J_f                 & = \Big( \frac{x}{\sqrt{x^2 + y^2}}, \frac{y}{\sqrt{x^2 + y^2}} \Big) \\
@@ -567,7 +539,7 @@ $$Curl \neq 0 \rightarrow \text{not a potential}$$
       y-4
     \end{pmatrix}
   \end{align*}
-\end{tcolorbox}
+\BoxEnd
   % ---------- Chain rule -------------------
   \subsection{Chain rule}
   Let $\X \subset \R^n$ be open,
@@ -581,7 +553,7 @@ $$Curl \neq 0 \rightarrow \text{not a potential}$$
   \end{align*}
 $$\frac{dz}{dt} = \frac{\partial{z}}{\partial{x}} \frac{dx}{dt} + \frac{\partial{z}}{\partial{y}} \frac{dy}{dt}$$
 $$\frac{d}{dt} f(\gamma(t)) = \nabla f (\gamma(t)) \gamma'(t)$$
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 $$ \nabla f (-\frac{\sqrt{3}}{2}, \frac{3}{2}, 7) = (6, 2, 0).$$ Compute
 $$\frac{\partial{f}}{\partial{r}}(\sqrt{3}, \frac{2}{3}\pi, 7)$$
 where $x = r\cos(\theta), y = r\sin(\theta)$ and $z$ are the usual coordinates.
@@ -600,7 +572,7 @@ and therefore we obtain
 $$\frac{\partial f}{\partial r} = \cos(\frac {2}{3} \pi) \cdot 6 + \sin(\frac{2}{3} \pi) \cdot 2$$
 
 That "notice now" is needed because we want to take $\nabla f$ at $(-\frac{\sqrt{3}}{2}, \frac{3}{2}, 7)$, and since we have $f(g(r,\theta,z))$ we need to find $r,\theta,z$ such that $g(r,\theta,z) = (-\frac{\sqrt{3}}{2}, \frac{3}{2}, 7)$.
-\end{tcolorbox}
+\BoxEnd
   % ---------- Change of variables -------------------
   \subsection{Change of variables}
   We say $f$ is a change of variables around
@@ -677,7 +649,7 @@ Good for approximation $\rightarrow$ affine function
     f(x)             & = T_k(x - x_0; x_0) + E_k(f, x, x_0)           \\
     \lim_{x \ra x_0} & \frac{E_k(f, x, x_0)}{\norm*{x - x_0}^k} \ra 0
   \end{align*}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 Consider the following function:
 $$ f(x, y) := e^{x^2 + y^2} + log(1 + x^2) + \arctan(xy)$$
 $a)$ determine the Taylor plynomial of $f$ at $(0, 0)$ up to and including third order.
@@ -704,7 +676,7 @@ T_3f((0,0); (x,y)) &= f(0,0) + \frac{\partial f(0,0)}{\partial x}x + \frac{\part
 &+\frac{1}{2} \frac{\partial^3 f(0,0)}{\partial x \partial y^2}xy^2 + \frac{1}{6} \frac{\partial^3 f(0,0)}{\partial y^3}y^3 \\
 &= 1 + 2x^2 + xy + y^2
 \end{align*}
-\end{tcolorbox}
+\BoxEnd
   % ---------- Local max/min -------------------
   \subsection{Local max/min}
   Let $f: \X \subset \R^n \ra \R$ be differentiable. We say $x_0 \in \X$
@@ -866,7 +838,7 @@ T_3f((0,0); (x,y)) &= f(0,0) + \frac{\partial f(0,0)}{\partial x}x + \frac{\part
 \subsubsection{Length of curve (Bogenlänge)}
 The length of a curve (Bogenlänge) from a function $f$ on the interval $[a, b]$ is 
 $$ L = \int_a^b \sqrt{1 + (f'(x))^2}dx$$
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 $v(x, y) = \begin{pmatrix}
     x^2 - 2xy\\
     y^2 - 2xy
@@ -896,7 +868,7 @@ The integral of $v$ along the curve $\gamma$ is
 	&= \frac{1}{3} - \frac{1}{2} + \frac{1}{3} - \frac{4}{5} - \left(-\frac{1}{3} + \frac{1}{2} + \frac{1}{3} + \frac{4}{5}\right) \\
 	&= \frac{2}{3} - \frac{8}{5} = -\frac{14}{15}.
 \end{align*}
-\end{tcolorbox}
+\BoxEnd
 
   % ---------- Potential -------------------
   \subsection{Potential}
@@ -909,7 +881,7 @@ The integral of $v$ along the curve $\gamma$ is
                         & = \int_a^b \frac{d}{dt} (g \circ \gamma) \; dt        \\
                         & = (g \circ \gamma)(b) - (g \circ \gamma)(a)
   \end{align*}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 $f(x,y) = (2xy^2 - 5x^4y + 5, -7y^6 - x^5 + 2x^2y)$ is conservative and its potential is:
 $$g(x,y) = x^2y^2 - x^5y + 5x - y^7$$
 We want to compute $\int_\gamma f \cdot ds$ where $\gamma$ is the parametrised curve:
@@ -919,14 +891,14 @@ So we have:
 
 	 $$g\left(\psi\left(\frac{5\pi}{4}\right)\right) - g\left(\psi\left(\frac{\pi}{4}\right)\right) =  g(0, 0) - g(1, 1) = -4$$
 
-\end{tcolorbox}
+\BoxEnd
   It should be noted that not every function has a potential! Example:
   \begin{align*}
     f(x, y)            & = (2xy^2, 2x)               \\
     \pdv{g}{x} = 2xy^2 & \Ra g(x, y) = x^2y^2 + h(y) \\
     \pdv{g}{y} = 2x    & \neq 2x^2y + h'(y)
   \end{align*}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 $f(x,y) = 
 \begin{pmatrix} 
 3x^2 y \\
@@ -946,7 +918,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
 \begin{align*}
 	\frac{\partial f}{\partial y} =  x^3 + K'(y) = x^3 && K'(y) = 0 \rightarrow K(y) = const. = C
 \end{align*}
-\end{tcolorbox}
+\BoxEnd
   % ---------- Conservative vector field -------------------
   \subsection{Conservative vector field}
   Let $f: \X \subset \R^n \ra \R^n$ be a continuous vector
@@ -973,7 +945,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   \subsection{Changing the order of integration}
   Changing the order of integration is sometimes necessary,
   as in the following example.
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 
   \begin{align*}
     \int_0^1 \int_x^1 e^{y^2} \; dy \, dx
@@ -982,7 +954,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
      & = \int_0^1 y \cdot e^{y^2} \; dy                                    \\
      & = \frac{e^{y^2}}{2} \; \Big |_0^1
   \end{align*}
-\end{tcolorbox}
+\BoxEnd
   \subsection{Star shaped}
   A subset $\X \subset \R^n$ is called star shaped if $\exists x_0 \in \X$
   such that $\forall x \in \X$ the line segment joining $x_0$ to $x$
@@ -1125,7 +1097,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   \begin{align*}
     \int_Y f(y) \; dy = \int_{\varphi^{-1}(Y)} f(\varphi(x)) \cdot |det J_\varphi(x) | \; dx
   \end{align*}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
   Here an example with polar coordinates on a quarter circle:
 
   \begin{align*}
@@ -1155,7 +1127,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   %  \item Spherical coordinates: $dx \, dy \, dz = r^2 \sin(\varphi) \; dr \, d\theta \, d\varphi$
  % \end{enumerate}
 
-\end{tcolorbox}
+\BoxEnd
 \begin{center}
   \includegraphics[width=7cm]{transformation.png} 
 \end{center}
@@ -1198,7 +1170,7 @@ With partiel differentiation with respect of y and under consideration of $\frac
   \begin{align*}
     \int_\gamma f \; ds = \int_{\gamma_1} f \; ds +\int_{\gamma_2} f \; ds
   \end{align*}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxStart
 Straight forward application of Green's formula: if $\gamma$ is a simple closed param. curve. Calculate
 $$ \int_\gamma f \; ds = \int_b^b \langle f\gamma(t)), \gamma'(t)\rangle dt$$
 $\gamma$  simple closed parameter curve.
@@ -1214,8 +1186,8 @@ Green's Formula:
 $$A = {(x, y) | 0 \geq x \geq 1, 0 \geq y \geq 3x}$$
 $$\partial{x}f_2 - \partial{y}f_1 = 2y - 0 = 2y$$
 $$\int_{\partial{A}} f ds = \int_A 2y dx dy = \int_0^1 \int_0^{3x} 2y dydx = \int_0^1 9x^2 dx = 3$$
-\end{tcolorbox}
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+\BoxEnd
+\BoxStart
 Calculate the area of $\Omega := {(x, y) \in \R^2 | (x-2)^2 - 1 \le y \le 0}$ with the Green's formula. \\
 First, calculate intersection points:
   \begin{align*}
@@ -1235,7 +1207,7 @@ $$curl v(x, y) = \frac{\partial{v_y}}{\partial{x}} (x, y) - \frac{\partial{v_x}}
 				&= \int_1^3 2t^2 - 4t dt = \frac{2}{3} t^3 - 2t^2 |_1^3 \\
 				&= 18 - \frac{2}{3} - 18 + 2 = \frac{4}{3}
 \end{align*}
-\end{tcolorbox}
+\BoxEnd
 
 \newpage{}
 \section{Other}
@@ -1575,9 +1547,18 @@ Inhomogenous otherwise.
   oder undefiniert ist.
 
 \subsection{Important}
-\begin{enumerate}
-\item The function $f : \R^2 \rightarrow \R f(x, y) = |xy|$ is differentiable in $(0, 0)$
-\end{enumerate}
+
+\begin{center}
+  \includegraphics[width=7cm]{multiplechoice1.png} 
+  \includegraphics[width=7cm]{multiplechoice2.png} 
+  \includegraphics[width=6cm]{multiplechoice3.png} 
+  \includegraphics[width=6cm]{ex1.png} 
+  \includegraphics[width=6cm]{ex2.png} 
+  \includegraphics[width=6cm]{ex3_1.png} 
+  \includegraphics[width=6cm]{ex3_2.png} 
+\end{center}
+
+
 
 
 \end{multicols*}
