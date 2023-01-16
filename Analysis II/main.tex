@@ -1334,7 +1334,25 @@ $
 %\includegraphics[scale=0.3]{values.png}
 %\end{center}
 
+\section{Topics from Analysis I}
+\subsection{Partial Integration}
+ $$\int f'(x) g(x) \dx = f(x)g(x) - \int f(x) g'(x) \dx$$
+\subsection{Substitution}
+ To calculate $\int_a^b f(g(x)) \dx$: Replace $g(x)$ by $u$ and integrate $\int_{g(a)}^{g(b)} f(u) \frac{\mathop{du}}{g'(x)}$.
 
+\subsection{Partial fraction decomposition}
+ Let $p(x), q(x)$ be 2 Polynomials. $\int \frac{p(x)}{q(x)}$ can be computed as follows:
+ \begin{enumerate}
+  \item If $\deg(p) \ge \deg(q)$, we do a Polynomdivision. This leads to the Integral $\int a(x) + \frac{r(x)}{q(x)}$.
+  \item Find the roots of $q(x)$.
+  \item Per root: Create one partial fraction.
+  \begin{itemize}[left=0pt]
+   \item non-repeating, real: $x_1 \to \frac{A}{x - x_1}$
+   \item multiplicity $n$, real: $x_1 \to \frac{A_1}{x - x_1} + \ldots + \frac{A_r}{(x-x_1)^r}$ 
+   \item non-repeating, complex: $x^2 + px + q \to \frac{Ax + B} {x^2 + px + q}$
+   \item multiplicity $n$, complex: $x^2 + px + q \to \frac{A_1x+b_1}{x^2+px+q} + \ldots$
+  \end{itemize}
+ \end{enumerate}
 
 \section{Trigonometrie}
 
