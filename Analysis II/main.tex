@@ -43,7 +43,20 @@
 \def\sumn{\sum_{n=0}^\infty}
 \def\R{\mathbf{R}}
 \def\dx{\text{ d}x}
-
+\def\limn{\lim_{n\to \infty}}
+\def\limxo{\lim_{x\to 0}}
+\def\limxi{\lim_{x\to\infty}}
+\def\limxn{\lim_{x\to-\infty}}
+\def\sumk{\sum_{k=1}^\infty}
+\def\sumn{\sum_{n=0}^\infty}
+\def\C{\mathbb{C}}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\X{X}
+\def\dx{\text{ d}x}
+\def\P{\mathcal{P}}
+\def\BoxStart{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]}
+\def\BoxEnd{\end{tcolorbox}}
 
 % color text
 \usepackage{xcolor}
@@ -398,20 +411,26 @@ $$ = \int2x\cos(x^2) = \sin(x^2) y(x) = \frac{c + \sin(x^2)}{x}$$
   It is sometimes helpful to use polar coordinates, especially
   with rational functions $f: \R \ra \R$.
   $f(x, y) = f(r \cos(\theta), r \sin(\theta))$
-  % ---------- Bounded set -------------------
-  \subsection{Bounded set}
-  A set $\X \subset \R^n$ is bounded if the set
-  $\{ \norm*{x} \;|\; x \in \X\}$ is bounded in $\R$.
-  % ---------- Closed set -------------------
-  \subsection{Closed set}
-  A set $\X \subset \R^n$ is closed if for every
-  sequence $(x_k)_{k \in \mathbb{N}} \subset \X$ that
-  converges in $\R^n$, converges to a point $y \in \X$.\\
-  Here it is often helpful to consider a ball. Counterexamples often include
-  $\frac{1}{k}$ and $<$.
-  % ---------- Compact set -------------------
-  \subsection{Compact set}
-  A compact set is a closed and bounded set.
+\subsection{Properties of sets}
+A set \(\X \subset \R^n \) is
+\begin{itemize}
+  \item \textbf{bounded}, if the set \(\{ ||x|| \mid x \in \X \}\) is bounded in \(\R\)(i.e. \(\exists K \ge 0, \forall x \in \X: ||x|| \le K\)).
+  \item \textbf{closed}, if every sequence \((x_k)_{k\in \N} \subset \X\), that converges to some Vector \(y \in \R^n\), we have \(y \in \X\) (i.e. limits of sequences in $X$ are also in $X$).
+  \item \textbf{compact}, if its closed and bounded.
+  \item \textbf{open} if, for any $x =(x_1,x_2,...,x_n) \in \X$, there exists $\delta >0$ such that the set \[\{y = (y_1,...,y_n) \in \R^n \mid |x_i-y_i|< \delta, \forall 1 \leq i \leq n\}\] is contained in $\X$.
+  \item \textbf{convex}, if \(\forall x, y \in \X: \lambda x + (1 - \lambda)y \in \X, \forall 0 \leq \lambda \leq 1\) (the line segment between \(x, y\) is contained in \(\X\)).
+  \item \textbf{open}, if and only if the complement $Y = \R^n \setminus \X$ is \textbf{closed}. (Equivalent definition)
+\end{itemize}
+\textbf{Important examples:}
+\begin{itemize}
+  \item \((a,b) \subset \R\) is open.
+  \item \(\left[a,b\right) \subset \R\) is neither open nor closed.
+  \item \(\R^n\) and \(\emptyset\) are both open and closed. There exists no other set in $\R^n$ which is both open and closed.
+  \item If $X \subseteq \R^n, Y \subseteq \R^m$ are both bounded (rsp. closed/compact) then $X \times Y \subseteq \R^{n+m}$ is bounded (rsp. closed/compact)
+  \item In particular the cartesian product of compact intervals $I_i \in \R$: $I_1 \times I_2 \times ... \times I_n = \{(x_1,x_2,...,x_n) \in \R^n \mid x_i \in I_i\}$ is compact (i.e. closed and bounded).
+  \item Let $f: \R^n \mapsto \R^m$ be continous. Then for every closed(/open) set $Y \subseteq \R^m$, the set $f^{-1}(Y)$ is closed(/open). 
+\end{itemize}
+
   % ---------- Continuous and closed -------------------
   \subsection{Continuous and closed}
   If $f: \R^n \ra \R^m$ is continuous, then for
