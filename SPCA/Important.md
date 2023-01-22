@@ -15,6 +15,8 @@ arr[i][j] = arr + (i * M + j)
 ### Cache 
 Each page table entry PTE contains only the PPN and the metadata
 
+**With multilevel decoding, from virtual address to physical address** virtual address space - page offset = bits to be encoded. Bits to be encoded / levels
+
 **Minimum size of each PTE in bytes**
 Physical address space - Pagesize + Flags(Metadata)
 
@@ -22,6 +24,9 @@ Physical address space - Pagesize + Flags(Metadata)
 Virtual address space - pagesize + PTE size
 
 **False Sharing** Poor performance when on different processors -> flush whole cache eventough they didn't need the same location. Good performance when on same processor
+
+**Number of misses** Two arrays map to the same cache line, if address % cachesize is the same. Then you would have 100% cache misses
+
 ## Parallel Programming
 ### Solving ABA problem
 - Harard Pointers
@@ -43,7 +48,8 @@ Virtual address space - pagesize + PTE size
 
 It exists 1 virtual address space per process
 
-![image info](./flag_table/image.png)
+**Flags**
+![texxt](flag_table.png)
 
 **Synonym** 
 - Only in virtual part 
@@ -106,6 +112,8 @@ saved base pointer
 
 local variables
 ## Exceptions
+**Processor Exception** changes the control flow exceptionally and most of the time context swithces to the OS for further instructions how the given exception should be handled. Exeptions are associated with an exception code that at the same time are an index into an exception table defined by the OS. In contrast to for example java exceptions, processor exceptions are not always bad; a system call is often hadndled as an exception too.
+
 **Asynchronous exception** caused by events outside of processor --> ctr-c (interrupt)
 
 **Synchronous exception** caused by an instruction of the processor
@@ -171,6 +179,10 @@ fscanf(stdin, "%9s", buf);
 ````c
 NULL = (void *) 0
 ````
+````c
+strncpy(char *dest, const cahr *source, size)
+````
+
 
 DRAM as cache: Fully associative, sophisticated replacement policy, writeback
 
