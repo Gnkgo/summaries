@@ -48,6 +48,95 @@ Virtual address space - pagesize + PTE size
 
 It exists 1 virtual address space per process
 
+**Metadata bits in PTE**
+- D: Dirty
+- A: Accessed
+- P: page is present in physical memory (1) or not(0)
+- Avail: availabel for system programmers
+
+### Memory
+
+performance is *not unifrom*!
+- cache and virtual memory effects can greatly affect program performance.
+
+*typed*
+- different kinds of memory behave differentyl
+
+*not unbounded*
+- It must be allocated and managed
+
+**Non-Uniform Memory Access (NUMA)** Removes bottleneck
+- Multiple, independent memory banks
+- Processors have independent paths to memory
+- Canpt snoop on the bus anymore -> it's not a bus! Use a message-passing interconnect
+
+Solution1:
+Bus emulation
+
+- similar to snooping but without a shared bus
+- Each node sends a message to all other nodes (e.g. read exclusive)
+- Waits for a repyl from all nodes before proceeding (e.g. acknowledge)
+- *AMD coherent HyperTransport*
+
+Solution2: cache Directory
+- Augemnt each node's local memory with a cache directory
+
+**Directory-based Cache Coherence**
+- Home node maintains set of nodes that may have line
+Large multiprocessors
+
+More efficient when:
+- Lines are not widely shared
+- Lots of NUMA nodes
+    - Avoid broadcast/incast
+    Reduces interconnect traffic, load at each node
+    Requires lots of fast memory
+
+### Locks
+**MCS locks**
+- Problem: cache line containing lock is a *hot spot*
+    - continuously invalidated as every processor tries to acquire it
+    - dominates interconnect traffic
+- Solution: When acquiring, a processor enqueues itself on a list of waiting processors, and spins on its *own entry* in the list
+- when releasing, only the next processor is awakened
+````c
+struct qnode {
+    struct qnode *next;
+    int locked;
+};
+typedef struct qnode *lock_t;
+
+void acquire (lock_t *lock, struct qnode *local) {
+    local -> next = NULL;
+    struct qnode *prev = XCHG(lock, local);
+    if (prev) { //queue was non empty
+        local-> locked = 1;
+        prev -> next = local;
+        while (local -> locked); //spin
+    }
+}
+
+void release(lock_t *lock, struct qnode *local) {
+    if (local->next == NULL) {
+        if (CAS(lock, local, NULL)) {
+            return;
+        }
+        while(local->next ==NULL); //spin
+    }
+    local -> next -> locked = 0;
+}
+````
+
+lock -> last element of a queue is spinning process
+1. add ourselves to the end of this queue using XCHG
+2. if the queue was empty, we have the lockè
+3. if not, point the previous tail at us, and spin
+
+1. we have the lock. is someone after us waiting?
+2. if yes, tell them, and they will do the rest (see acquire())
+3. if no, set the lock to NULL unselss someone appears in the meantime
+4. if they do, wait for them to enqueue, and then go to (2).
+
 **Flags**
 ![texxt](flag_table.png)
 
@@ -186,3 +275,17 @@ strncpy(char *dest, const cahr *source, size)
 
 DRAM as cache: Fully associative, sophisticated replacement policy, writeback
 
+
+````c
+void print_integers(unsigned num_ints, char *msg, ...) {
+    va_list ap; // Variable which keeps track of which argument we're currently looking at, a bit like an iterator
+    va_start(ap, msg); // Initialize the iterator based on the last fixed argument;
+    for (int i = 0; i < num_ints; i++>) {
+        int j = va_arg(ap, int);//return the next argument, cast to an int
+        printf("int %d = %d\n", i, j);
+    }
+    va_end(ap) //free up the iterator
+}
+
+
+````
