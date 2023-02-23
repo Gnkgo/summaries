@@ -132,6 +132,7 @@ lock -> last element of a queue is spinning process
 2. if the queue was empty, we have the lockè
 3. if not, point the previous tail at us, and spin
 
+-
 1. we have the lock. is someone after us waiting?
 2. if yes, tell them, and they will do the rest (see acquire())
 3. if no, set the lock to NULL unselss someone appears in the meantime
