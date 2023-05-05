@@ -16,6 +16,7 @@
 ### Third Normal Form
 - Each non-key attribute in the table must depend on the key, the whole key, and nothing but the key.
 - If everything on the right side is a key then it is in 3NF
+- No transitive relations
 
 ### Boyce-Codd Normal Form
 - Each attributee in the table must depend on the key, the whole key, and nothing but the key.
