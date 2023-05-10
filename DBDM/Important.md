@@ -31,3 +31,29 @@ It must not be possible to describe the table as being the logical result of joi
 ## Candidate Key
 - You have a candidate key, if all its attributes appear only on the left side of the dependencies.
 - To get the candidate key, look at the closure. If you can reach all the important values, it is a super key for sure. If it is the only one than it is even a candidate key.
+
+## Database Systems
+### Disk Manager
+- allocates, deletes, fetches pages
+- no other layer has to interact with disk directly
+
+### Buffer Pool Manager
+- Maintains an in-memory buffer
+- upper layers have illusion that the entire data is in memory and not on disk
+- provides functionality to fetch and update pages
+
+### Access Methods
+- Sequential Scan
+- B-Tree Index
+- Hash Table
+- Sort
+It provides a higher-level abstraction to acess information in a table without interacting with the buffer or disk
+
+### Operator Execution
+Executes a relational algebra
+- Join 
+- Projection
+- Select
+
+### Query Optimization
+- Generates a good execution plan
