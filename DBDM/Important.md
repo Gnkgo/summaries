@@ -57,3 +57,42 @@ Executes a relational algebra
 
 ### Query Optimization
 - Generates a good execution plan
+
+## Important things to know
+
+**Heap File** = an unordered colletion of pages where tuples are stored in random order
+
+**Record ID** = (Page ID, Slot ID)
+
+**Pages**
+ = A page is a fixed-size block of data:
+    Contain tuples, meta-data, indexes, log records etc.
+
+## Different Joins
+### Sort Merge Join (equi-join)
+
+
+### Nested Loop Join
+- Efficient: Smaller relation fits into memory
+- Inefficient: Both relations do not fit into memory
+
+### Block Nested Loop Join (equi-join)
+
+### Index Nested Loop Join (equi-join)
+
+### Hash join (equi-join)
+
+
+
+## Quiz Questions and Answers
+**While adding tuples ot a page, both the slot array and the data of the tuples will grow from the beginning to the end:**
+- The slot array will grow from the beginning to the end, whereas the data of the tuples will grow from the end to the beginning. When they meet, the page becomes full. 
+- **Lecture 16, Slide 41**
+
+**Sequential scan or B-Tree**
+- When nearly *all* the tuples fullfill the requirement, *scan* is fast, B - Tree is slow
+- When only a *few* or only one fullfills the requirement, *B - Tree* is fast, scan is slow
+
+- $$T_{scan} = T_{acces} + \frac{(pageSize *  m)}{Bandwidth}$$
+
+- $$T_{index}(k) = (T_{access} \frac{page size} {/} ...)$$
