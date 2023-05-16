@@ -79,8 +79,12 @@ Executes a relational algebra
 ### Block Nested Loop Join (equi-join)
 
 ### Index Nested Loop Join (equi-join)
+- Effieicent: Low selectivity (few reads per disk)
+- Inefficient: High selectivity (loads of reads per disk)
 
 ### Hash join (equi-join)
+- Efficient: 
+- Inefficient: 
 
 
 
