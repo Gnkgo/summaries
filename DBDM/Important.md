@@ -100,3 +100,28 @@ Executes a relational algebra
 - $$T_{scan} = T_{acces} + \frac{(pageSize *  m)}{Bandwidth}$$
 
 - $$T_{index}(k) = (T_{access} \frac{page size} {/} ...)$$
+
+
+# Recoverability
+### RC
+- If $T_1$ reads from
+- You do not need to undo the commit
+### ACA
+- Aborting a transaction does not cause aborting others
+### ST
+- If we need to undo one transaction, we don't need to redo or undo the others
+
+### Serializable
+- Defined by the equivalence of result
+
+### Conflict Serializable
+- Defined by swap adjacent, non-conflicting, operations
+- Conflict Serializable is a **subset** of Serializable
+    
+## How to decide Conflict-Serializability?
+- Go from definition -- do the swap
+- Dependency Graph 
+    - You can ignore the aborts 
+    - No reads, then it is automatically recoverable and ACA -> just need to check strict
+
+
