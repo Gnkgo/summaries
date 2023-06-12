@@ -43,6 +43,18 @@ fields in a datagram and how to work on those fields.
 - **Type=MX:** Value is the canonical name of a mail server
 with alias Name.
 
+## Random
+- slow start threshold (ssthresh):
+    - function of congestion
+    - timout, we set sstresh = cwnd/2
+    - initially cwnd is infinity
+    - slow start until a timeout occurs
+    - slow sart until timeout or we reach ssthresh -> we switch to AIMD
+
+- A socket is a software abstraction by which an application process exchanges network messages with the (transport layer in the) operating system
+
+
+
 ## Quiz
 - **The Maximum Segment Size(MSS) of TCP is equal to:**
 MSS = MTU - header(IP) - headeer(TCP)
@@ -50,4 +62,16 @@ MSS = MTU - header(IP) - headeer(TCP)
 - UDP sockets type is SOCK_DGRAM while TCP sockets type is SOCK_STREAM
 - For a SOCK_STREAM, an operating system stores both local and remote port
 - Given a directed graph G(V, E) with |V| and |E| being the numbers of vertices and edges, how many variables do you need for the max-flow LP formulation discussed in class?
+- There is no connectio establishment in UDP
+- The objective of flow control is not to overwhelm the hosts
+- The objective of congestion control is to not ovewhelm the network
+- During congestion avoidance in TCP, the successful acknowledgement of a segment results in the sender congestion window growin by one segment per RTT.
+- TCP (SOCK_STREAM) is a connection-based protocol. The connection is established and the two parties have a conversation until the connection is terminated by one of the parties or by a network error.
+- UDP (SOCK_DGRAM) is a datagram-based protocol. You send one datagram and get one reply and then the connection terminates.
+- Given a directed graph G(V,E), with |V| and |E| being the numbers of vertices and edges, how many variables do you need for the max-flow LP formulation discussed in
+class?: O(|E|)
+- QUIC can handle switching from WiFi to a cellular network without having to reestablsih the connection:
+    - uses connection IDs independent of the IP address istead of a 4-tuple like TCP to identify connections.
+    - This way packets using the connection ID are still valid, even if the source IP address changes.
+
 
