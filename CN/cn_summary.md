@@ -9,10 +9,20 @@
 - TDM (time-division multiplexing): time is divided into frames of fixes size, and each frame is split into a fixed amount of slots. These slots are dedicated to one connection
 
 ## Delays
-- **nodal processing delay:** Time used to decode the header, determine which output needs to be used, bit level checking etc.
-- **queuing delay:** Time that the packet has to wait in the queue until the desired output will be free
-- **transmission delay:** Time after the packet gets out of queue until its on the output line; let L be the length of the packet, R the transmission rate from router A to B, then the transmission delay is L/R.
-- **propagation delay:** Time, the package takes to propagate through the physical medium (e.g. at light speed with radio waves), i.e. it takes on the way from router A to B
+- **nodal processing delay:** 
+    - Time used to decode the header, determine which output needs to be used, bit level checking etc.
+    - nedligible in comparison to other delays, little room for improvement here
+    
+- **queuing delay:** 
+    - Time that the packet has to wait in the queue until the desired output will be free
+    - better load balancing (i.e. via routing), reduce queue size
+
+- **transmission delay:** 
+    - Time after the packet gets out of queue until its on the output line; let L be the length of the packet, R the transmission rate from router A to B, then the transmission delay is L/R.
+    - increase the link capacity
+- **propagation delay:** 
+    - Time, the package takes to propagate through the physical medium (e.g. at light speed with radio waves), i.e. it takes on the way from router A to B
+    - if possible, use data replication to shorten the client-server distance. Improving routing or physical transmission media also helps
 
 ## Layers
 |Layers|
@@ -43,6 +53,38 @@ fields in a datagram and how to work on those fields.
 - **Type=MX:** Value is the canonical name of a mail server
 with alias Name.
 
+## Congestion signals
+Signals that warn about congestion:
+- **Packet loss**: 
+    - Advantage: can be detected easily (doesn't require in-network feature support) by using timers. 
+    - Disadvantage: only considers binary feedbaack (i.e., packet either arrives at sender or not)
+    - Disadvantage: loss can also be caused by other factors (i.e. cosmic radiation in a satellite link), careful parametrization is needed
+
+- **Packet latency**:
+    - Advantage: can be detected easily (doesn't require innetwork feature support). 
+    - Advantage: relatively quick feedback of a continuous signal
+    - Disadvantage: many factors in the network can affect latency, not only congestion, careful parametrization is needed.
+
+- **In-network marking (i.e. ECN- Explicit Congestionn Notifictation)**
+    - Indicate congestion through setting a bit in packet
+    - Advantage: early signal of congestion
+    - Disadvantage: requires support in the network by i.e. the routers/switches
+
+## Reliable transport protocol:
+### Undesirable effects when sending packets:
+- Packet loss
+- Reordering
+- Delay
+- Duplication
+- Corruption
+
+### Goals of reliable tranfer
+- Correctness: ensure data is delivered, in order, and untouched
+- Fairness: play well with concurrent communications
+- Timeliness: minimize time until data is transferred
+- Efficiency: optimal use of bandwidth
+
+
 ## Random
 - slow start threshold (ssthresh):
     - function of congestion
@@ -52,6 +94,8 @@ with alias Name.
     - slow sart until timeout or we reach ssthresh -> we switch to AIMD
 
 - A socket is a software abstraction by which an application process exchanges network messages with the (transport layer in the) operating system
+- The ideal congestion window size is the Bandwidth delay product. $$W = bandwidth * delay$$
+
 
 
 
@@ -73,5 +117,7 @@ class?: O(|E|)
 - QUIC can handle switching from WiFi to a cellular network without having to reestablsih the connection:
     - uses connection IDs independent of the IP address istead of a 4-tuple like TCP to identify connections.
     - This way packets using the connection ID are still valid, even if the source IP address changes.
+
+
 
 
