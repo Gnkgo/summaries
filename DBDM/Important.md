@@ -125,3 +125,19 @@ Executes a relational algebra
     - No reads, then it is automatically recoverable and ACA -> just need to check strict
 
 
+## Keys
+### Super key
+- like superset
+- uniquely identify the tuple
+- ID, Name; ID, Phone; Name, Phone etc.
+- May contain extraneous, attributes
+
+### Candidate key
+- Minimal super keys are called candidate keys
+
+### Primary key
+- Unique
+- should not have null values (email, phone number is not that good)
+
+### Alternate key
+   
