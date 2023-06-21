@@ -124,6 +124,16 @@ Executes a relational algebra
     - You can ignore the aborts 
     - No reads, then it is automatically recoverable and ACA -> just need to check strict
 
+## Difference On, Where
+
+The information is from [here](https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause).
+
+- Does not matter for inner joins
+- Matters for outer joins
+
+a. WHERE clause: After joining. Records will be filtered after join has taken place.
+
+b. ON clause - Before joining. Records (from right table) will be filtered before joining. This may end up as null in the result (since OUTER join).
 
 ## Keys
 ### Super key
