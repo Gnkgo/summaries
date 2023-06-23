@@ -18,5 +18,5 @@ Stetige Zufallsvariable
 - Die Verteilungsfunktion ist stetig
 - Dichtefunktion kann auch einmal (strikt) grösser als 1 sein
 
-Seien $X$ und ¨$Y$ zwei Zufallsvariablen mit gemeinsamer Dichte $f_{X, Y}.
-- 
+Seien $X$ und $Y$ zwei Zufallsvariablen mit gemeinsamer Dichte $f_{X, Y}$.
+- Check Quiz
