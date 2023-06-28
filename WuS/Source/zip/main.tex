@@ -1,5 +1,5 @@
 % a slightly adapted Copy of https://tex.stackexchange.com/questions/181081/clickable-chapters-on-the-right-side-of-each-page
-% The credit goes to Gonzalo Medina, I only made slight changes (Converted to landscape and made Tabs nameable)
+% The credit goes to Gonzalo Medina, I only made slight changes  (Converted to landscape and made Tabs nameable)
 
 % ANOTHER IMPORTANT NOTE: The Boxlayout with Titles was copied from here: https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
 % The Credit goes to Drew Ulick
@@ -22,14 +22,13 @@
 %\usepackage{sectsty}
 %\subsubsection*font{\normalfont\large\itshape\underline}
 
-
 % Tables
 \usepackage{tabularx, multirow}
 \usepackage{booktabs}
 \renewcommand*{\arraystretch}{2}
 
 \def\BoxStart{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]}
-\def\BoxEnd{\end{tcolorbox}}
+    \def\BoxEnd{\end{tcolorbox}}
 
 % color text
 \usepackage{xcolor}
@@ -39,7 +38,6 @@
 
 % For accessing arrays
 \usepackage{etoolbox}
-
 
 % for emumerating
 \usepackage{enumitem}
@@ -63,23 +61,23 @@
 %\pretocmd{\subsection*}{\clearpage}{}{}
 
 % auxiliary lengths for the height of the frame and the width of each tab
-\newlength\mylen
-\newlength\mylena
+\newlength\mylen{}
+\newlength\mylena{}
 
 % style for the subsection* tabs
 \tikzset{
-tab/.style={
-  text width=\mylena,
-  draw=gray,
-  thick,
-  rectangle,
-  rounded corners=12pt,
-  align=center,
-  text width=53pt,
-  inner sep=0pt,
-  fill=gray!20,
-  font=\sffamily\LARGE
-  }
+  tab/.style={
+      text width=\mylena,
+      draw=gray,
+      thick,
+      rectangle,
+      rounded corners=12pt,
+      align=center,
+      text width=53pt,
+      inner sep=0pt,
+      fill=gray!20,
+      font=\sffamily\LARGE
+    }
 }
 % style for the current subsection* tab
 \tikzset{selectedtab/.style={tab,color=white,fill=gray!90}}
@@ -87,13 +85,12 @@ tab/.style={
 % the page number is showed in the background material
 %\pagestyle{empty}
 
-
 % define the tab names
 \newcounter{mylistcounter}
 
 \def\saveitem#1{%
-\stepcounter{mylistcounter}%
-\expandafter\def\csname mylist\themylistcounter\endcsname{#1}}
+  \stepcounter{mylistcounter}%
+  \expandafter\def\csname mylist\themylistcounter\endcsname{#1}}
 
 \forcsvlist{\saveitem}{%
   Differential Equ.,
@@ -102,18 +99,18 @@ tab/.style={
   Other
 }%
 \renewcommand*{\arraystretch}{2}
-\allowdisplaybreaks
+\allowdisplaybreaks{}
 
 \def\getnthelement#1{\csname mylist#1\endcsname}
 
 % the main part; as background material we place the border, 
-% the subsection* (current and other) tabs and the page number
+% the subsection*  (current and other) tabs and the page number
 \backgroundsetup{
-scale=1,
-color=black,
-angle=0,
-opacity=1,
-contents={}
+  scale=1,
+  color=black,
+  angle=0,
+  opacity=1,
+  contents={}
 }
 
 \newcommand{\N}{\mathbb{N}}
@@ -134,8 +131,8 @@ contents={}
 \newcommand{\zufallsvariablen}{X_1, \dots, X_n}
 \newcommand{\bigunion}{\bigcup_{i = 1}^n}
 \newcommand{\bigsubsection}{\bigcap_{i = 1}^n}
-\newcommand{\Normalverteilt}{\mathcal{N}(\mu, \sigma^2)}
-\newcommand{\Standardnormalverteilt}{\mathcal{N}(0, 1)}
+\newcommand{\Normalverteilt}{\mathcal{N}  (\mu, \sigma^2)}
+\newcommand{\Standardnormalverteilt}{\mathcal{N}  (0, 1)}
 
 % define box
 \tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
@@ -144,36 +141,32 @@ contents={}
 \pagenumbering{arabic}
 \begin{multicols*}{3}
 
-
-
   \hypertarget{sec:0}{\section{Konzepte}}
   \subsection*{Ereignisraum}
-  Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse
-  des betrachteten Zufallsexperiments. Die Elemente $\omega \in \Omega$
-  heissen Elementarereignisse.
+  Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse des betrachteten
+  Zufallsexperiments. Die Elemente $\omega \in \Omega$ heissen
+  Elementarereignisse.
   \subsection*{Potenzmenge}
-  Die Potenzmenge von $\Omega$, bezeichnet mit $\mathcal{P}(\Omega)$ oder
-  $2^\Omega$ ist die Menge aller Teilmengen von $\Omega$. Ein
-  Prinzipielles Ereignis ist eine Teilmenge $A \subseteq \Omega$, also
-  eine Kollektion von Elementarereignissen. Die Klasse aller beobachtbaren
-  Ereignisse ist $\mathcal{F}$.
+  Die Potenzmenge von $\Omega$, bezeichnet mit $\mathcal{P} (\Omega)$ oder
+  $2^\Omega$ ist die Menge aller Teilmengen von $\Omega$. Ein Prinzipielles
+  Ereignis ist eine Teilmenge $A \subseteq \Omega$, also eine Kollektion von
+  Elementarereignissen. Die Klasse aller beobachtbaren Ereignisse ist
+  $\mathcal{F}$.
   \subsection*{$\sigma$-Algebra}
   Ein Mengensystem ist eine $\sigma$-Algebra falls
-  \begin{enumerate}[label=(\arabic*)]
+  \begin{enumerate}[label=  (\arabic*)]
     \item $\Omega \in \mathcal{F}$
     \item Für jedes $A \in \mathcal{F}$ ist auch $A^\complement \in \mathcal{F}$
-    \item Für jede Folge $(A_n)_{n \in \mathbb{N}}$ mit $A_n \in \mathcal{F}$
-          für alle $n \in \N$ auch die Vereinigung
-          $\bigcup_{n = 1}^\infty A_n \in \F$
+    \item Für jede Folge ${A_n}_{n \in \mathbb{N}}$ mit $A_n \in \mathcal{F}$ für alle $n
+            \in \N$ auch die Vereinigung $\bigcup_{n = 1}^\infty A_n \in \F$
   \end{enumerate}
   \subsection*{Wahrscheinlichkeitsmass}
-  Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden
-  Eigenschaften:
-  \begin{enumerate}[label=(\arabic*)]
+  Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden Eigenschaften:
+  \begin{enumerate}[label= (\arabic*)]
     \item $\mathcal{P}[A] \geq 0 \text{ für alle Ereignisse } A \in \F$
     \item $P[\Omega] = 1$
-    \item Für $A_i \in \F$ paarweise disjunkt gilt
-          $P[\bigcup_{i = 1}^\infty A_i] = \sum_{i = 1}^\infty \mathcal{P}[A_i]$
+    \item Für $A_i \in \F$ paarweise disjunkt gilt $P[\bigcup_{i = 1}^\infty A_i] =
+            \sum_{i = 1}^\infty \mathcal{P}[A_i]$
   \end{enumerate}
   Es gelten weiter folgende Rechenregeln:
   \begin{itemize}
@@ -189,17 +182,16 @@ contents={}
     \item $\F = 2^{\Omega}$
   \end{itemize}
   \subsection*{Laplace Raum}
-  Ist $\Omega = \{\omega_1, \dots, \omega_N\}$
-  endlich mit $\abs*{\Omega} = N$ und $\F = 2^\Omega$
-  sowie alle $\omega_i$ gleich wahrscheinlich mit $p_i = \frac{1}{n}$,
-  so heisst $\Omega$ ein Laplace Raum und $P$ die diskrete Gleichverteilung
-  auf $\Omega$. Dann ist für $A \subseteq \Omega$:
+  Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $\abs*{\Omega} = N$
+  und $\F = 2^\Omega$ sowie alle $\omega_i$ gleich wahrscheinlich mit $p_i =
+    \frac{1}{n}$, so heisst $\Omega$ ein Laplace Raum und $P$ die diskrete
+  Gleichverteilung auf $\Omega$. Dann ist für $A \subseteq \Omega$:
   \begin{align*}
     P[A] = \frac{\abs{A}}{\abs{\Omega}}
   \end{align*}
   \subsection*{Bedingte Wahrscheinlichkeit}
-  Seien $A, B$ Ereignisse mit $P[A] > 0$. Die bedingte Wahrscheinlichkeit
-  von $B$ unter der Bedingung, dass $A$ eintritt wird definiert durch:
+  Seien $A, B$ Ereignisse mit $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$
+  unter der Bedingung, dass $A$ eintritt wird definiert durch:
   \begin{align*}
     P[B \;|\; A] & := \frac{P[B \cap A]}{P[A]}            \\
                  & = \frac{P[A \;|\; B] \cdot P[B]}{P[A]}
@@ -210,34 +202,32 @@ contents={}
     P[A \cap B] = P[A \;|\; B] \cdot P[B] = P[B \;|\; A] \cdot P[A]
   \end{align*}
   \subsection*{Satz der totalen Wahrscheinlichkeit}
-  Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ in paarweise
-  disjunkte Ereignisse, d.h. $\bigcup_{i = 1}^n A_i = \Omega$
-  und $A_i \cap A_k = \emptyset \quad \forall i \neq k$. Dann
-  gilt:
+  Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte
+  Ereignisse, d.h. $\bigcup_{i = 1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset
+    \quad \forall i \neq k$. Dann gilt:
   \begin{align*}
     P[B] = \sum_{i = 1}^n P[B \; | \; A_i] \cdot P[A_i]
   \end{align*}
   \emph{Beweis.}
   Da $B \subseteq \Omega \implies B = B \cap \Omega
-    = B \cap (\bigcup_{i=1}^n A_i) = \bigcup_{i = 1}^n (B \cap A_i)$.
-  Weiter sind alle Mengen der Art $(B \cap A_i)$ paarweise disjunkt,
-  was bedeutet, dass $(B \cap A_i)$ eine disjunkte Zerlegung von $B$
+    = B \cap  (\bigcup_{i=1}^n A_i) = \bigcup_{i = 1}^n  (B \cap A_i)$.
+  Weiter sind alle Mengen der Art $ (B \cap A_i)$ paarweise disjunkt,
+  was bedeutet, dass $ (B \cap A_i)$ eine disjunkte Zerlegung von $B$
   bilden. Damit folgt:
   \begin{align*}
-    P[B] = P \left[ \bigcup_{i = 1}^n (B \cap A_i)\right] \\
+    P[B] = P \left[ \bigcup_{i = 1}^n  (B \cap A_i)\right] \\
     = \Sn P[B \cap A_i] = \sum_{i = 1}^n P[B \; | A_i] \cdot P[A_i]
   \end{align*}
   \subsection*{Satz von Bayes}
-  Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$
-  für $i \in \{1, \dots, n\}$. Sei $B$ ein Ereignis mit $P[B > 0]$.
-  Dann gilt für jedes $k$:
+  Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i \in
+    \{1, \dots, n\}$. Sei $B$ ein Ereignis mit $P[B > 0]$. Dann gilt für jedes $k$:
   \begin{align*}
     \cond{A_k}{B} = \frac{\cond{B}{A_k} \cdot P[A_k] }{\Sn \cond{B}{A_i} \cdot P[A_i]}
   \end{align*}
   \emph{Beweis.} Verwende Definition Bedingte Wahrscheinlichkeit,
   im Zähler Multiplikationsregel und im Nenner Satz der totalen Wahrscheinlichkeit.
-  \subsection*{Unabhängige Ereignisse (2)}
-  Zwei ereignisse heissen (stochastisch) Unabhängig, falls
+  \subsection*{Unabhängige Ereignisse  (2)}
+  Zwei ereignisse heissen  (stochastisch) Unabhängig, falls
   \begin{align*}
     P[A \cap B] = P[A] \cdot P[B]
   \end{align*}
@@ -246,51 +236,52 @@ contents={}
   \begin{align*}
     A, B \text{ unabhängig} \Longleftrightarrow \cond{A}{B} = P[A]
   \end{align*}
-  \subsection*{Unabhängige Ereignisse ($\infty$)}
-  Die Ereignisse $\ereignisse$ heissen (stochastisch) unabhängig,
-  wenn für jede endliche Teilfamilie der Produktformel gilt, d.h.
-  für $m \in \N$ und $\{k_1, \dots, k_m\} \subseteq \{1, \dots, n\}$:
+  \subsection*{Unabhängige Ereignisse  ($\infty$)}
+  Die Ereignisse $\ereignisse$ heissen  (stochastisch) unabhängig, wenn für jede
+  endliche Teilfamilie der Produktformel gilt, d.h. für $m \in \N$ und $\{k_1,
+    \dots, k_m\} \subseteq \{1, \dots, n\}$:
   \begin{align*}
     P \left[\bigsubsection* A_{k_i} \right] = \Pn P[A_{k_i}]
   \end{align*}
   \subsection*{Diskrete Zufallsvariable}
-  Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion
-  $X : \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch
-  $\W(X) = \{x_1, x_2, \dots\}$ endlich oder abzählbar.
+  Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
+    \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch $\W (X) = \{x_1, x_2,
+    \dots\}$ endlich oder abzählbar.
   \begin{itemize}
-    \item Die Verteilungsfunktion
-          von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$, definiert durch:
+    \item Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$,
+          definiert durch:
           \begin{align*}
-            t \mapsto F_X(t) := P[X \leq t] := P[\{\omega : X(\omega) \leq t\}]
+            t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
           \end{align*}
-    \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion
-          $p_X : \W(X) \mapsto [0, 1]$, definiert durch:
+    \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W (X)
+            \mapsto [0, 1]$, definiert durch:
           \begin{align*}
-            p_X(X_k) := P[X = x_k] = P[\{\omega : X(\omega) = x_k\}]
+            p_X (X_k) := P[X = x_k] = P[\{\omega : X (\omega) = x_k\}]
           \end{align*}
   \end{itemize}
   Wobei gilt:
   \begin{itemize}
-    \item $F_X(t) = P[X \leq t] = \sum_{k \text{ mit } x_k \leq t} p_X(x_k)$
-    \item Für jedes $x_k \in \W(X)$ gilt $0 \leq p_X(x_k) \leq 1$ und $\sum_{x_k \in \W(X)} p_X(x_k) = 1$
-    \item $\mu_X(B) := P[X \in B] = \sum_{x_k \in B} p_X(x_k)$
-    \item $\sum_{x_k \in \W(X)} p_X(x_k) = P[X \in \W(X)] = 1$
+    \item $F_X (t) = P[X \leq t] = \sum_{k \text{ mit } x_k \leq t} p_X (x_k)$
+    \item Für jedes $x_k \in \W (X)$ gilt $0 \leq p_X (x_k) \leq 1$ und $\sum_{x_k \in
+              \W (X)} p_X (x_k) = 1$
+    \item $\mu_X (B) := P[X \in B] = \sum_{x_k \in B} p_X (x_k)$
+    \item $\sum_{x_k \in \W (X)} p_X (x_k) = P[X \in \W (X)] = 1$
   \end{itemize}
   \subsection*{Indikatorfunktion}
-  Für jede Teilmenge $A \subseteq \Omega$ ist die Indikatorfunktion
-  $I_A$ von $A$ definiert durch:
+  Für jede Teilmenge $A \subseteq \Omega$ ist die Indikatorfunktion $I_A$ von $A$
+  definiert durch:
   \begin{align*}
-    I_A(\omega) :=
+    I_A (\omega) :=
     \begin{cases}
       1 \quad \text{falls } \omega \in A             \\
       0 \quad \text{falls } \omega \in A^\complement \\
     \end{cases}
   \end{align*}
   \subsection*{Erwartungswert}
-  Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X(x)$,
-  dann ist der Erwartungswert definiert durch:
+  Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$, dann ist
+  der Erwartungswert definiert durch:
   \begin{align*}
-    E[X] := \sum_{x_k \in \W(X)} x_k \cdot p_X(x_k)
+    E[X] := \sum_{x_k \in \W (X)} x_k \cdot p_X (x_k)
   \end{align*}
   und hat folgende Eigenschaften:
   \begin{itemize}
@@ -302,101 +293,97 @@ contents={}
           \end{align*}
   \end{itemize}
   \subsection*{Erwartungswert von Funktionen}
-  Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion
-  $p_X(x)$ und $Y = g(X)$ für eine Funktion $Y: \R \mapsto \R$.
-  Dann gilt:
+  Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y =
+    g (X)$ für eine Funktion $Y: \R \mapsto \R$. Dann gilt:
   \begin{align*}
-    E[Y] = E[g(X)] = \sum_{x_k \in \W(X)} g(x_k) \cdot p_X(x_k)
+    E[Y] = E[g (X)] = \sum_{x_k \in \W (X)} g (x_k) \cdot p_X (x_k)
   \end{align*}
   \subsection*{Varianz}
   Sei $X$ eine diskrete Zufallsvariable. Ist $E[X^2] < \infty$, so heisst:
   \begin{align*}
-    Var[X] & := E[(X - E[X])^2]                                   \\
-           & = \sum_{x_k \in \W(X)} (x_k - E[X])^2 \cdot p_X(x_k)
+    Var[X] & := E[ {X - E[X]}^2]                                   \\
+           & = \sum_{x_k \in \W (X)}  (x_k - E[X])^2 \cdot p_X (x_k)
   \end{align*}
   die Varianz von $X$. Es gilt weiter:
   \begin{itemize}
     \item $Var[X] = E[X^2] - E[X]^2$
     \item $Var[a \cdot X + b] = a^2 \cdot Var[X]$
-    \item $Var[X - Y] = Var[X] + (-1)^2 \cdot Var[Y]$
+    \item $Var[X - Y] = Var[X] +  (-1)^2 \cdot Var[Y]$
   \end{itemize}
   \subsection*{Standardabweichung}
   $$
-    \sigma(X) = \sqrt{Var[X]}
-  $$ 
+    \sigma (X) = \sqrt{Var[X]}
+  $$
   \subsection*{Gemeinsame Verteilung}
   Seien $\zufallsvariablen$ beliebige Zufallsvariablen. Die Gemeinsame
-  Verteilungsfunktion von $\zufallsvariablen$ ist die Abbildung
-  $F: \R^n \mapsto [0, 1]$, definiert durch:
+  Verteilungsfunktion von $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto
+    [0, 1]$, definiert durch:
   \begin{align*}
-    (x_1, \dots, x_n) \mapsto F(x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                       \\
-                                                 & = \sum_{y_1 \leq x_1, \dots, y_n \leq x_n} p(y_1, \dots, y_n)
+     (x_1, \dots, x_n) \mapsto F (x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                       \\
+                                                 & = \sum_{y_1 \leq x_1, \dots, y_n \leq x_n} p (y_1, \dots, y_n)
   \end{align*}
   Die Gemeinsame Gewichtsfunktion ist:
   \begin{align*}
-    p(x_1, \dots, x_n) := P[X_1 = x_1, \dots, X_n = x_n]
+    p (x_1, \dots, x_n) := P[X_1 = x_1, \dots, X_n = x_n]
   \end{align*}
   \subsection*{Randverteilung}
-  Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion
-  $F_X: \R \mapsto [0, 1]$,
+  Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
+    \R \mapsto [0, 1]$,
   \begin{align*}
-    x \mapsto F_X(x) := P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F(x, y)
+    x \mapsto F_X (x) := P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y)
   \end{align*}
-  Sind $X, Y$ diskrete Zufallsvariablen mit $\W(Y) = \{y_1, y_2, \dots\}$
-  und gemeinsamer Gewichtsfunktion $p(x, y)$, so ist die Gewichtsfunktion
+  Sind $X, Y$ diskrete Zufallsvariablen mit $\W (Y) = \{y_1, y_2, \dots\}$
+  und gemeinsamer Gewichtsfunktion $p (x, y)$, so ist die Gewichtsfunktion
   der Randverteilung von $X$ gegeben durch:
   \begin{align*}
-    x \mapsto p_X(x) := \sum_{y_i \in \W(X)} P[X = x, Y = y_i]
+    x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
   \end{align*}
   \subsection*{Unabhängige Zufallsvariablen}
-  Zufallsvariablen $\zufallsvariablen$ heissen Unabhängig, falls gilt
-  (äquivalent):
+  Zufallsvariablen $\zufallsvariablen$ heissen Unabhängig, falls gilt (äquivalent):
   \begin{align*}
-    F(x_1, \dots, x_n) & = F_{X_1}(x_1) \cdot \hdots \cdot F_{X_n}(x_n) \\
-    p(x_1, \dots, x_n) & = p_{X_1}(x_1) \cdot \hdots \cdot p_{X_n}(x_n)
+    F (x_1, \dots, x_n) & = F_{X_1} (x_1) \cdot \hdots \cdot F_{X_n} (x_n) \\
+    p (x_1, \dots, x_n) & = p_{X_1} (x_1) \cdot \hdots \cdot p_{X_n} (x_n)
   \end{align*}
   \subsection*{Unabhängige Ereignisse}
-  Ereignisse $\ereignisse$ heissen Unabhängig, falls für beliebige
-  Teilmengen $B_i \subseteq \W(X_i) \quad i = 1, \dots, n$ gilt
-  (äquivalent):
+  Ereignisse $\ereignisse$ heissen Unabhängig, falls für beliebige Teilmengen
+  $B_i \subseteq \W (X_i) \quad i = 1, \dots, n$ gilt  (äquivalent):
   \begin{align*}
     P[X_1 \in B_1, \dots, X_n \in B_n] = \Pn P[X_i \in B_i]
   \end{align*}
   \subsection*{Funktionen von Zufallsvariablen}
-  Seien $\zufallsvariablen$ diskrete Unabhängige Zufallsvariablen und
-  $f_i: \R \mapsto \R$ irgendwelche Funktionen. Sei
-  weiter $Y_i := f_i(X_i)$. Dann sind die Zufallsvariablen $Y_1, \dots, Y_n$
-  ebenfalls unabhängig.
+  Seien $\zufallsvariablen$ diskrete Unabhängige Zufallsvariablen und $f_i: \R
+    \mapsto \R$ irgendwelche Funktionen. Sei weiter $Y_i := f_i (X_i)$. Dann sind
+  die Zufallsvariablen $Y_1, \dots, Y_n$ ebenfalls unabhängig.
   \subsection*{Linearität des Erwartungswertes}
-  Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit
-  endlichen Erwartungswerten. $E[X_1], \dots, E[X_n]$. Sei
-  $Y = a + \Sn b_i \cdot X_i$ mit Konstanten $a, b_1, \dots, b_n$. Dann gilt:
+  Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
+  Erwartungswerten. $E[X_1], \dots, E[X_n]$. Sei $Y = a + \Sn b_i \cdot X_i$ mit
+  Konstanten $a, b_1, \dots, b_n$. Dann gilt:
   \begin{align*}
     E[Y] = a + \Sn b_i \cdot E[X_i]
   \end{align*}
   \subsection*{Kovarianz}
-  Seien $X, Y$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $(\Omega, \F, P)$
-  mit endlichen Erwartungswerten. Dann ist die Kovarianz definiert als:
+  Seien $X, Y$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $ (\Omega, \F,
+    P)$ mit endlichen Erwartungswerten. Dann ist die Kovarianz definiert als:
   \begin{align*}
-    Cov(X, Y) & := E[XY] - E[X]E[Y]        \\
-              & = E[(X - E[X]) (Y - E[Y])]
+    Cov (X, Y) & := E[XY] - E[X]E[Y]        \\
+              & = E[ (X - E[X])  (Y - E[Y])]
   \end{align*}
-  Wobei $Cov(X, X) = Var[X]$.
+  Wobei $Cov (X, X) = Var[X]$.
   \subsection*{Korrelation}
   Die Korrelation von $X, Y$ ist definiert durch
   \begin{align*}
-    \rho(X, Y) := \begin{cases}
-      \frac{Cov(X, Y)}{\sigma(X) \cdot \sigma(Y)} & \text{falls } \sigma(X) \cdot \sigma(Y) > 0 \\
-      0                                           & \text{sonst.}
-    \end{cases}
+    \rho (X, Y) := \begin{cases}
+                    \frac{Cov (X, Y)}{\sigma (X) \cdot \sigma (Y)} & \text{falls } \sigma (X) \cdot \sigma (Y) > 0 \\
+                    0                                           & \text{sonst.}
+                  \end{cases}
   \end{align*}
-  und es gilt $\abs{Cov(X, Y)} \leq \sigma(X) \cdot \sigma(Y)$
-  beziehungsweise $-1 \leq \rho(X, Y) \leq 1$.
+  und es gilt $\abs{Cov (X, Y)} \leq \sigma (X) \cdot \sigma (Y)$
+  beziehungsweise $-1 \leq \rho (X, Y) \leq 1$.
   \subsection*{Summenformel für Varianzen}
   \begin{align*}
-    Var \left[ \Sn X_i \right] = \Sn Var[X_i] + 2 \cdot \sum_{i < j} Cov(X_i, X_j)
+    Var \left[ \Sn X_i \right] = \Sn Var[X_i] + 2 \cdot \sum_{i < j} Cov (X_i, X_j)
   \end{align*}
-  ist aber $Cov(X, Y) = 0$ ($X, Y$ paarweise unkorreliert), so wird
+  ist aber $Cov (X, Y) = 0$  ($X, Y$ paarweise unkorreliert), so wird
   die Summe linear.
   \subsection*{Produkte von Zufallsvariablen}
   Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
@@ -410,57 +397,56 @@ contents={}
   \end{align*}
   da Unabhängig $\implies$ paarweise Unabhängig $\implies$ unkorreliert.
   \subsection*{Bedingte Verteilung}
-  Seien $X, Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion
-  $p(x, y)$. Die bedingte Gewichtsfunktion von $X$, gegeben dass $Y = y$,
-  ist definiert durch:
+  Seien $X, Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p (x,
+    y)$. Die bedingte Gewichtsfunktion von $X$, gegeben dass $Y = y$, ist definiert
+  durch:
   \begin{align*}
-    p_{X \, | \, Y}(x \; | \; y)     & := \cond{X = x}{Y = y}   \\
-    \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p(x, y)}{p_Y(y)}
+    p_{X \, | \, Y} (x \; | \; y)     & := \cond{X = x}{Y = y}   \\
+    \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p (x, y)}{p_Y (y)}
   \end{align*}
-  für $p_Y(y) > 0$ und $0$ sonst.
+  für $p_Y (y) > 0$ und $0$ sonst.
   \subsection*{Kriterium für Unabhängigkeit}
-  $X, Y$ sind genau dann unabhängig, wenn für alle $y$ mit $p_Y(y) > 0$
+  $X, Y$ sind genau dann unabhängig, wenn für alle $y$ mit $p_Y (y) > 0$
   gilt:
   \begin{align*}
-    p_{X\,|\,Y}(x \; | \; y) = p_X(x) &  & \forall x \in \W(X)
+    p_{X\,|\,Y} (x \; | \; y) = p_X (x) &  & \forall x \in \W (X)
   \end{align*}
   \subsection*{$n$ tief $k$}
-  $$
-    \binom{n}{k} = \frac{n!}{k! \cdot (n - k)!}
-  $$\\
+  \begin{align*}
+    \binom{n}{k} = \frac{n!}{k! \cdot  (n - k)!}
+  \end{align*}
   \subsection*{Ableitung, Integration}
   Es gilt:
   \begin{itemize}
-    \item \textbf{Summenregel} $(f(x) + g(x))' = f'(x) + g'(x)$
-    \item \textbf{Produktregel} $(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
-    \item \textbf{Quotientenregel} $\left( \frac{f(x)}{g(x)} \right)' = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{g^2(x)}$ wenn $g(x) \neq 0$
-    \item \textbf{Kettenregel} $(f(g(x)))' = f'(g(x)) \cdot g'(x)$
-    \item \textbf{Partielle Integration} $\int_a^b f'(x) \cdot g(x) \; dx = [f(x) \cdot g(x)]_a^b - \int_a^b f(x) \cdot g'(x) \; dx$
-    \item \textbf{Substitution} $\int_{\varphi(a)}^{\varphi(b)} f(x) \; dx = \int_a^b f(\varphi(t)) \cdot \varphi'(t) \; dt$
-    \item $a+c, b+c \in I: \quad \int_a^b f(t + c) \; dt = \int_{a+c}^{b+c} f(x) \; dx$
-    \item \textbf{Logarithmus} $\int \frac{f'(t)}{f(t)} \; dt = \log(\abs{f(x)})$
+    \item \textbf{Summenregel} $ (f (x) + g (x))' = f' (x) + g' (x)$
+    \item \textbf{Produktregel} $ (f (x) \cdot g (x))' = f' (x) \cdot g (x) + f (x) \cdot g' (x)$
+    \item \textbf{Quotientenregel} $\left( \frac{f (x)}{g (x)} \right)' = \frac{f' (x) \cdot g (x) - f (x) \cdot g' (x)}{g^2 (x)}$ wenn $g (x) \neq 0$
+    \item \textbf{Kettenregel} $ (f (g (x)))' = f' (g (x)) \cdot g' (x)$
+    \item \textbf{Partielle Integration} $\int_a^b f' (x) \cdot g (x) \; dx = [f (x) \cdot g (x)]_a^b - \int_a^b f (x) \cdot g' (x) \; dx$
+    \item \textbf{Substitution} $\int_{\varphi (a)}^{\varphi (b)} f (x) \; dx = \int_a^b f (\varphi (t)) \cdot \varphi' (t) \; dt$
+    \item $a+c, b+c \in I: \quad \int_a^b f (t + c) \; dt = \int_{a+c}^{b+c} f (x) \; dx$
+    \item \textbf{Logarithmus} $\int \frac{f' (t)}{f (t)} \; dt = \log (\abs{f (x)})$
   \end{itemize}
   \subsection*{Substitution Beispiel}
   \begin{align*}
-    \int \cos(x^2) 2x \; dx &  & u = x^2                              \\
-    \int \cos(u) du         &  & \frac{du}{dx} = \frac{dx^2}{dx} = 2x
+    \int \cos (x^2) 2x \; dx &  & u = x^2                              \\
+    \int \cos (u) du         &  & \frac{du}{dx} = \frac{dx^2}{dx} = 2x
   \end{align*}
   \hypertarget{sec:1}{\section{Diskrete Verteilungen}}
   \subsection*{Diskrete Gleichverteilung}
-  Die diskrete Gleichverteilung auf einer endlichen Menge $\W = \{
-    x_1, \dots, x_n \}$ gehärt zu einer Zufallsvariablen $X$ mit
-  Wertebereich $\W$ und Gewichtsfunktion:
+  Die diskrete Gleichverteilung auf einer endlichen Menge $\W = \{ x_1, \dots,
+    x_n \}$ gehärt zu einer Zufallsvariablen $X$ mit Wertebereich $\W$ und
+  Gewichtsfunktion:
   \begin{align*}
-    p_X(x_k) = P[X = x_k] = \frac{1}{N} &  & k \in \{1, \dots, N\}
+    p_X (x_k) = P[X = x_k] = \frac{1}{N} &  & k \in \{1, \dots, N\}
   \end{align*}
   \subsection*{Unabhängige 0-1-Experimente}
-  Es sei $A_i := \{\text{Erfolg beim $i$-ten Experiment}\}$
-  und:
+  Es sei $A_i := \{\text{Erfolg beim $i$-ten Experiment}\}$ und:
   \begin{itemize}
     \item Die $A_i$ sind unabhängig
     \item $P[A_i] = p$ für alle $i$
     \item $$
-            Y_i(\omega) =
+            Y_i (\omega) =
             \begin{cases}
               1 & \omega \in A_i      \\
               0 & \omega \not \in A_i
@@ -468,291 +454,283 @@ contents={}
           $$
   \end{itemize}
   \subsection*{Bernoulli-Verteilung}
-  Ein einziges 0-1-Experiment mit $\W(X) = \{0, 1\}$. Die
-  Gewichtsfunktion ist gegeben durch $p_X(1) = p$,
-  sowie $p_X(0) = 1-p$.
-  Man schreibt kurz $X \sim Be(p)$. Es gilt:
+  Ein einziges 0-1-Experiment mit $\W (X) = \{0, 1\}$. Die Gewichtsfunktion ist
+  gegeben durch $p_X (1) = p$, sowie $p_X (0) = 1-p$. Man schreibt kurz $X \sim
+    Be (p)$. Es gilt:
   \begin{align*}
     E[X]   & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
-    Var[X] & = E[X^2] - E[X]^2 = p \cdot (1-p)
+    Var[X] & = E[X^2] - E[X]^2 = p \cdot  (1-p)
   \end{align*}
   \subsection*{Binomialverteilung}
-  Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen
-  0-1-Experimenten mit Erfolgsparameter $p$. Also ist die
-  Zufallsvariable respektive Gewichtsfunktion:
+  Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$. Also ist die Zufallsvariable respektive Gewichtsfunktion:
   \begin{align*}
     X      & = \Sn I_{A_i} = \Sn Y_i                               \\
-    p_X(k) & = P[X = k] = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k}
+    p_X (k) & = P[X = k] = \binom{n}{k} \cdot p^k \cdot  (1-p)^{n-k}
   \end{align*}
-  und man schreibt kurz $X \sim Bin(n, p)$. Es gilt weiter:
+  und man schreibt kurz $X \sim Bin (n, p)$. Es gilt weiter:
   \begin{align*}
     E[X]   & = \Sn E[Y_i] = n \cdot p               \\
-    Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot (1-p)
+    Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot  (1-p)
   \end{align*}
   \subsection*{Geometrische Verteilung}
-  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten
-  mit Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
+  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
   \begin{align*}
     X      & = \inf \{ i \in \N : A_i \text{ tritt ein} \} \\
-    p_X(k) & = P[X = k] = p \cdot (1-p)^{k-1}
+    p_X (k) & = P[X = k] = p \cdot  (1-p)^{k-1}
   \end{align*}
-  wir schreiben $X \sim Geom(p)$ und es gilt:
+  wir schreiben $X \sim Geom (p)$ und es gilt:
   \begin{align*}
-    E[X]             & = \sum_{i = 0}^\infty (1-p)^l
-    = \frac{1}{1-(1-p)} = \frac{1}{p}                \\
-    E[X \cdot (X-1)] & = \frac{2(1-p)}{p^2}          \\
+    E[X]             & = \sum_{i = 0}^\infty  (1-p)^l
+    = \frac{1}{1- (1-p)} = \frac{1}{p}                \\
+    E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}          \\
     Var[X]           & = \frac{1-p}{p^2}
   \end{align*}
   \subsection*{Negativbinomiale Verteilung}
-  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten
-  mit Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg
-  ($r \in \N$):
+  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg  ($r \in \N$):
   \begin{align*}
     X      & = \inf \{ k \in \N : \sum_{i = 1}^k I_{A_i} = r \}        \\
-    p_X(k) & = P[X = k] = \binom{k-1}{r-1} \cdot p^r \cdot (1-p)^{k-r}
+    p_X (k) & = P[X = k] = \binom{k-1}{r-1} \cdot p^r \cdot  (1-p)^{k-r}
   \end{align*}
-  wir schreiben $X \sim NB(r, p)$ und es gilt:
+  wir schreiben $X \sim NB (r, p)$ und es gilt:
   \begin{align*}
     E[X]   & = \sum_{i = 1}^r E[X_i] = \frac{r}{p}                 \\
-    Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot (1-p)}{p^2}
+    Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot  (1-p)}{p^2}
   \end{align*}
+
   \subsection*{Hypergeometrische Verteilung}
-  In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ $1$ und $n-r$
-  vom Typ $2$. Man zieht ohne zurücklegen $m$ der Gegenstände.
-  Die Zufallsvariable $X$ beschreibt die Anzahl der Gegenstände vom
-  Typ $1$ in der Stichprobe. Der Wertebereich von $X$ ist
-  $\W(X) = \{0, 1, \dots, \min(m, r)\}$ und:
+  In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ $1$ und $n-r$ vom Typ
+  $2$. Man zieht ohne zurücklegen $m$ der Gegenstände. Die Zufallsvariable $X$
+  beschreibt die Anzahl der Gegenstände vom Typ $1$ in der Stichprobe. Der
+  Wertebereich von $X$ ist $\W (X) = \{0, 1, \dots, \min (m, r)\}$ und:
   \begin{align*}
-    p_X(k) & = \frac{\binom{r}{k} \cdot \binom{n-r}{m-k}}{\binom{n}{m}}
-           &                                                                                & \text{für } k \in \W(X)                            \\
-    E[X]   & = \Sn i \cdot p_X(i) = m \cdot \frac{r}{n}                                     &                         & \text{(Nicht im Skript)} \\
-    Var[X] & = m \cdot \frac{r}{n} \left (1 - \frac{r}{n} \right) \cdot \frac{n - m}{n - 1} &                         & \text{(Nicht im Skript)}
+    p_X (k) & = \frac{\binom{r}{k} \cdot \binom{n-r}{m-k}}{\binom{n}{m}}
+           &                                                                                & \text{für } k \in \W (X)                            \\
+    E[X]   & = \Sn i \cdot p_X (i) = m \cdot \frac{r}{n}                                     &                         & \text{ (Nicht im Skript)} \\
+    Var[X] & = m \cdot \frac{r}{n} \left  (1 - \frac{r}{n} \right) \cdot \frac{n - m}{n - 1} &                         & \text{ (Nicht im Skript)}
   \end{align*}
   \subsection*{Poisson Verteilung}
-  Die Poisson Verteilung mit Parameter $\lambda \in (0, \infty)$
-  ist eine Verteilung auf der Menge $\N_0 = \{0, 1, 2, \dots\}$
-  mit Gewichtsfunktion:
+  Die Poisson Verteilung mit Parameter $\lambda \in  (0, \infty)$ ist eine
+  Verteilung auf der Menge $\N_0 = \{0, 1, 2, \dots\}$ mit Gewichtsfunktion:
   \begin{align*}
-    p_X(k) & = e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+    p_X (k) & = e^{-\lambda} \cdot \frac{\lambda^k}{k!}
            &                                                                                            & \text{für } k = 0, 1, 2, \dots \\
     E[X]   & = \Sn i \cdot \frac{\lambda^i}{i!} e^{-\lambda} = \lambda e^{-\lambda} e^\lambda = \lambda                                  \\
     E[X^2] & = \lambda^2 + \lambda                                                                                                       \\
     Var[X] & = \lambda
   \end{align*}
   Ist eine Zufallsvariable $X$ Poisson verteilt mit Parameter $\lambda$
-  schreiben wir $X \sim P(\lambda)$.
+  schreiben wir $X \sim P (\lambda)$.
   \hypertarget{sec:2}{\section{Zufallsvariablen}}
   \subsection*{Zufallsvariable}
-  Sein $(\Omega, \F, P)$ ein Wahrscheinlichkeitsraum. Also
-  $\Omega$ ein Grundraum, $\F \subseteq 2^\Omega$ die beobachtbaren
-  Ereignisse und $P$ ein Wahrscheinlichkeitsmass auf $\F$. Eine
-  (reelwertige) Zufallsvariable auf $\Omega$ ist eine messbare Funktion
-  $X : \Omega \mapsto \R$. Das bedeutet, dass die Menge
-  $\{X \leq t\} = \{\omega : X(\omega) \leq t\}$ für jedes $t$ ein
+  Sein $ (\Omega, \F, P)$ ein Wahrscheinlichkeitsraum. Also $\Omega$ ein
+  Grundraum, $\F \subseteq 2^\Omega$ die beobachtbaren Ereignisse und $P$ ein
+  Wahrscheinlichkeitsmass auf $\F$. Eine  (reelwertige) Zufallsvariable auf
+  $\Omega$ ist eine messbare Funktion $X : \Omega \mapsto \R$. Das bedeutet, dass
+  die Menge $\{X \leq t\} = \{\omega : X (\omega) \leq t\}$ für jedes $t$ ein
   beobachtbares Ereigniss sein muss.
   \subsection*{Verteilungsfunktion}
   Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$:
   \begin{align*}
-    t \mapsto F_X(t) := P[X \leq t] := P[\{\omega : X(\omega) \leq t\}]
+    t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
   \end{align*}
   und hat die Eigenschaften:
   \begin{itemize}
     \item $F_X$ ist wachsend und rechtsstetig. Das bedeutet,
-          dass $F_X(s) \leq F_X(t)$ für $s \leq t$ gilt und $F_X(u) \ra F_X(t)$
+          dass $F_X (s) \leq F_X (t)$ für $s \leq t$ gilt und $F_X (u) \ra F_X (t)$
           für $u \ra t$ mit $u > t$
-    \item $\lim_{t \ra - \infty} F_X(t) = 0$ und $\lim_{t \ra + \infty} F_X(t) = 1$
+    \item $\lim_{t \ra - \infty} F_X (t) = 0$ und $\lim_{t \ra + \infty} F_X (t) = 1$
   \end{itemize}
   \subsection*{Dichtefunktion}
-  Das Analogon der Gewichtsfunktion im Diskreten Fall. Eine Zufallsvariable
-  $X$ mit Verteilungsfunktion $F_X(t) = P[X \leq t]$ heisst (absolut)
-  stetig mit Dichte(funktion) $f_X : \R \mapsto [0, \infty)$, falls gilt:
+  Das Analogon der Gewichtsfunktion im Diskreten Fall. Eine Zufallsvariable $X$
+  mit Verteilungsfunktion $F_X (t) = P[X \leq t]$ heisst  (absolut) stetig mit
+  Dichte (funktion) $f_X : \R \mapsto [0, \infty)$, falls gilt:
   \begin{align*}
-    F_X(t) = \int_{-\infty}^t f_X(s) \; dx &  & \text{für alle } t \in \R
+    F_X (t) = \int_{-\infty}^t f_X (s) \; dx &  & \text{für alle } t \in \R
   \end{align*}
   und hat die Eigenschaften:
   \begin{itemize}
-    \item $f_X \geq 0$ und $f_X = 0$ ausserhalb von $\W(X)$.
-    \item $\int_{-\infty}^\infty f_X(s) \; ds = 1$;
-          das folgt aus $\lim_{t \ra + \infty} F_X(t) = 1$
+    \item $f_X \geq 0$ und $f_X = 0$ ausserhalb von $\W (X)$.
+    \item $\int_{-\infty}^\infty f_X (s) \; ds = 1$;
+          das folgt aus $\lim_{t \ra + \infty} F_X (t) = 1$
   \end{itemize}
   \subsection*{Gleichverteilung}
-  Die Gleichverteilung auf dem Intervall $[a, b]$ ist ein Modell für
-  die Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige
-  Zufallsvariable $X$ hat den Wertebereich $\W(X) = [a, b]$, sowie
+  Die Gleichverteilung auf dem Intervall $[a, b]$ ist ein Modell für die
+  Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige Zufallsvariable $X$
+  hat den Wertebereich $\W (X) = [a, b]$, sowie
   \begin{align*}
-    f_X(t) & =
+    f_X (t) & =
     \begin{cases}
       \frac{1}{b-a} & \text{für } a \leq t \leq b \\
       0             & \text{sonst.}
     \end{cases} \\
-    F_X(t) & =
+    F_X (t) & =
     \begin{cases}
       0               & \text{für } t < a           \\
       \frac{t-a}{b-a} & \text{für } a \leq t \leq b \\
       1               & \text{für } t > b.
     \end{cases}
   \end{align*}
-  wir schreiben kurz $X \sim U(a, b)$.
+  wir schreiben kurz $X \sim U (a, b)$.
   \begin{align*}
-    E[X] = \frac{a + b}{2} &  & Var[X] = \frac{(b - a + 1)^2 - 1}{12}
+    E[X] = \frac{a + b}{2} &  & Var[X] = \frac{ (b - a + 1)^2 - 1}{12}
   \end{align*}
   \subsection*{Exponentialverteilung}
   Die Exponentialverteilung mit Parameter $\lambda > 0$ ist das stetige Analogon
-  der Geometrischen Verteilung. Die zugehörige Zufallsvariable $X$ hat
-  $\W(X) = [0, \infty)$, Dichte und Verteilungsfunktion:
+  der Geometrischen Verteilung. Die zugehörige Zufallsvariable $X$ hat $\W (X) =
+    [0, \infty)$, Dichte und Verteilungsfunktion:
   \begin{align*}
-    f_X(t) & =
+    f_X (t) & =
     \begin{cases}
       \lambda \cdot e^{-\lambda t} & \text{für } t \geq 0 \\
       0                            & \text{für }t < 0
     \end{cases} \\
-    F_X(t) & =
-    \int_{-\infty}^t f_X(s) \; ds =
+    F_X (t) & =
+    \int_{-\infty}^t f_X (s) \; ds =
     \begin{cases}
       1 - e^{-\lambda t} & \text{für } t \geq 0 \\
       0                  & \text{für }t < 0
     \end{cases}
   \end{align*}
-  wir schreiben kurz $X \sim Exp(\lambda)$. Weiter ist
+  wir schreiben kurz $X \sim Exp (\lambda)$. Weiter ist
   die Funktion Gedächtsnislos, dh. $\cond{X > t + s}{X > s} = P[X > t]$.
   \begin{align*}
     E[X] = \frac{1}{\lambda} &  & Var[X] = \frac{1}{\lambda^2}
   \end{align*}
   \subsection*{Normalverteilung}
   Die Normalverteilung hat zwei Parameter: $\mu \in \R$ und $\sigma^2 > 0$. Die
-  zugehörige Zufallsvariable $X$ hat den Wertebereich $\W(X) = \R$ und die
+  zugehörige Zufallsvariable $X$ hat den Wertebereich $\W (X) = \R$ und die
   Dichtefunktion:
   \begin{align*}
-    f_X(t) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{(t - \mu)^2}{2 \sigma^2}}
+    f_X (t) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{ (t - \mu)^2}{2 \sigma^2}}
      &  & \text{für } t \in \R
   \end{align*}
   welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
   \subsection*{Standard Normalverteilung}
-  Wichtige Normalverteilung mit $\Standardnormalverteilt$. Weder für
-  die zugehörige Dichte $\vp(t)$ noch Verteilungsfunktion $\Phi(t)$
-  gibt es geschlossene Ausdrücke, aber das Integral
+  Wichtige Normalverteilung mit $\Standardnormalverteilt$. Weder für die
+  zugehörige Dichte $\vp (t)$ noch Verteilungsfunktion $\Phi (t)$ gibt es
+  geschlossene Ausdrücke, aber das Integral
   \begin{align*}
-    \Phi(t) = \int_{-\infty}^t \vp(s) \; ds =
+    \Phi (t) = \int_{-\infty}^t \vp (s) \; ds =
     \frac{1}{\sqrt{2\pi}} \int_{-\infty}^t e^{-\frac{1}{2} s^2} \; ds
   \end{align*}
   ist tabelliert. Ist $X \sim \Normalverteilt$, so ist
   $\frac{X - \mu}{\sigma} \sim \Standardnormalverteilt$, also:
   \begin{align*}
-    F_X(t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left ( \frac{t - \mu}{\sigma} \right)
+    F_X (t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left  ( \frac{t - \mu}{\sigma} \right)
   \end{align*}
   deshalb genügt es $\Phi$ zu tabellieren.
   \begin{align*}
-    \Phi(-z) = 1 - \Phi(z)
+    \Phi (-z) = 1 - \Phi (z)
   \end{align*}
   \subsection*{Normalapproximation}
-  Wenn $S_n \sim Bin(n, p)$ dann
+  Wenn $S_n \sim Bin (n, p)$ dann
   \begin{align*}
-    S_n \sim_{approx} N(np, np(1-p))
+    S_n \sim_{approx} N (np, np (1-p))
   \end{align*}
   \subsection*{Erwartungswert}
-  Ist $X$ stetig mit Dichte $f_X(x)$, so ist der Erwartungswert:
+  Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
   \begin{align*}
-    E[X] = \int_{-\infty}^\infty x \cdot f_X(x) \; dx
+    E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
   \end{align*}
   sofern das Integral absolut konvergiert. Ist das Integral nicht
   absolut konvergent, so existiert der Erwartungswert nicht.
   \subsection*{Erwartungswert einer Funktion}
-  Sei $X$ eine Zufallsvariable und $Y = g(X)$ eine weitere
-  Zufallsvariable. Ist $X$ stetig mit Dichte $f_X$, so ist
+  Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
+  $X$ stetig mit Dichte $f_X$, so ist
   \begin{align*}
-    E[Y] = E[g(X)] = \int_{-\infty}^\infty g(x) \cdot f_X(x) \; dx
+    E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
   \end{align*}
   \subsection*{Momente \& Absolute Momente}
   Sei $X$ eine Zufallsvariable und $p \in \R^+$. Wir definieren:
   \begin{itemize}
     \item $p$-te absolute Moment von $X$: $M_p := E[\abs{X}^p]$
-    \item falls $M_n < \infty$ für ein $n$, dann ist das $n$-te
-          (rohe) Moment von $X$ durch $m_n := E[X^n]$ definiert.
-    \item Das $n$-te zentralisierte Moment von $X$ ist
-          durch $\mu_n := E[(X - E[X])^n]$ definiert.
+    \item falls $M_n < \infty$ für ein $n$, dann ist das $n$-te  (rohe) Moment von $X$
+          durch $m_n := E[X^n]$ definiert.
+    \item Das $n$-te zentralisierte Moment von $X$ ist durch $\mu_n := E[ (X - E[X])^n]$
+          definiert.
   \end{itemize}
   Es gilt weiter, dass $M_n < \infty$ für $n \in \N \implies \abs{m_m} \leq M_n$.
   \begin{align*}
-    M_p                         & = \int_{-\infty}^\infty \abs{x}^p f_X(x) \; dx \\
-    m_n                         & = \int_{-\infty}^\infty x^n f_X(x) \; dx       \\
+    M_p                         & = \int_{-\infty}^\infty \abs{x}^p f_X (x) \; dx \\
+    m_n                         & = \int_{-\infty}^\infty x^n f_X (x) \; dx       \\
     p \leq q \land M_q < \infty & \implies M_p < \infty
   \end{align*}
   \subsection*{Gemeinsame Verteilung/Dichte}
-  Die Gemeinsame Verteilungsfunktion von Zufallsvariablen
-  $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto [0, 1]$ mit:
+  Die Gemeinsame Verteilungsfunktion von Zufallsvariablen $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto [0, 1]$ mit:
   \begin{align*}
-    F(x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                                                \\
-                       & = \int_{-\infty}^{x_1} \dots \int_{-\infty}^{x_n} f(t_1, \dots, t_n) \; dt_n \dots t_1
+    F (x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                                                \\
+                       & = \int_{-\infty}^{x_1} \dots \int_{-\infty}^{x_n} f (t_1, \dots, t_n) \; dt_n \dots t_1
   \end{align*}
-  dann heisst $f(x_1, \dots, x_n)$ die gemeinsame Dichte, welche folgende
+  dann heisst $f (x_1, \dots, x_n)$ die gemeinsame Dichte, welche folgende
   Eigenschaften hat:
   \begin{itemize}
-    \item $f(x_1, \dots, x_n) \geq 0$ und $= 0$ ausserhalb von $\W(\zufallsvariablen)$.
-    \item $\int_{-\infty}^\infty \dots \int_{-\infty}^\infty f(t_1, \dots, t_n) \; dt_n \dots t_1 = 1$
-    \item $P[(\zufallsvariablen) \in A] = \int_{(x_1, \dots, x_n) \in A} f(t_1, \dots, t_n) \; dt_n \dots t_1$ für $A \subseteq \R^n$
+    \item $f (x_1, \dots, x_n) \geq 0$ und $= 0$ ausserhalb von $\W (\zufallsvariablen)$.
+    \item $\int_{-\infty}^\infty \dots \int_{-\infty}^\infty f (t_1, \dots, t_n) \; dt_n \dots t_1 = 1$
+    \item $P[ (\zufallsvariablen) \in A] = \int_{ (x_1, \dots, x_n) \in A} f (t_1, \dots, t_n) \; dt_n \dots t_1$ für $A \subseteq \R^n$
   \end{itemize}
   \subsection*{Randverteilung}
-  Haben $X, Y$ die gemeinsame Verteilungsfunktion $F$,
-  dann ist:
+  Haben $X, Y$ die gemeinsame Verteilungsfunktion $F$, dann ist:
   \begin{align*}
-    F_X(x) & = P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F(x, y) \\
-    f_X(x) & = \int_{-\infty}^\infty f(x, y) \; dy
+    F_X (x) & = P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y) \\
+    f_X (x) & = \int_{-\infty}^\infty f (x, y) \; dy
   \end{align*}
   \subsection*{Unabhängigkeit}
-  Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig,
-  falls gilt (äquivalent):
+  Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
+   (äquivalent):
   \begin{align*}
-    F(x_1, \dots, x_n) = F_{X_1}(x_1) \cdot \hdots \cdot F_{X_n}(X_n) \\
-    f(x_1, \dots, x_n) = f_{X_1}(x_1) \cdot \hdots \cdot f_{X_n}(X_n)
+    F (x_1, \dots, x_n) = F_{X_1} (x_1) \cdot \hdots \cdot F_{X_n} (X_n) \\
+    f (x_1, \dots, x_n) = f_{X_1} (x_1) \cdot \hdots \cdot f_{X_n} (X_n)
   \end{align*}
   für alle $x_1, \dots, x_n$.
   \subsection*{Bedingte Verteilungen}
   Es gilt:
   \begin{align*}
-    f_{X_1 \; | \; X_2}(x_1 \; | \; x_2) & = \frac{f_{X_1,  X_2}(x_1,  x_2)}{f_{X_2}(x_2)}               \\
+    f_{X_1 \; | \; X_2} (x_1 \; | \; x_2) & = \frac{f_{X_1,  X_2} (x_1,  x_2)}{f_{X_2} (x_2)}               \\
     \cond{Y > t}{Y < a}                  & = \frac{P[t < Y < a]}{P[Y < a]}                               \\
-    E[X_1 \; | \; X_2]                   & = \int x_1 \cdot f_{x_1 \; | \; x_2}(x_1 \; | \; x_2) \; dx_1
+    E[X_1 \; | \; X_2]                   & = \int x_1 \cdot f_{x_1 \; | \; x_2} (x_1 \; | \; x_2) \; dx_1
   \end{align*}
   \subsection*{Summen von Zufallsvariablen}
   Sei $Z = X + Y$ eine Zufallsvariable mit:
   \begin{align*}
-    F_Z(z) & = P[Z \leq z] = P[X + Y \leq z]                                    \\
-           & = \int_{-\infty}^\infty \int_{-\infty}^{z - x} f(x, y )\; dy \, dx \\
-    f_Z(z) & = \int_{-\infty}^\infty f(z - y, y) \; dy
+    F_Z (z) & = P[Z \leq z] = P[X + Y \leq z]                                    \\
+           & = \int_{-\infty}^\infty \int_{-\infty}^{z - x} f (x, y )\; dy \, dx \\
+    f_Z (z) & = \int_{-\infty}^\infty f (z - y, y) \; dy
   \end{align*}
   \subsection*{Transformationen}
   Sei $X$ eine Zufallsvariable mit Verteilung und Dichte. Sei $g: \R \mapsto \R$
-  eine messbare Funktion. Betrachte nun $Y = g(X)$, wir
-  suchen Verteilung und Dichte von $Y$:
+  eine messbare Funktion. Betrachte nun $Y = g (X)$, wir suchen Verteilung und
+  Dichte von $Y$:
   \begin{align*}
-    F_Y(t) & = P[Y \leq t] = P[g(Y) \leq t] = \int_{A_g} f_X(s) \; ds \\
-    A_g    & := \{s \in \R \; | \; g(s) \leq t\}
+    F_Y (t) & = P[Y \leq t] = P[g (Y) \leq t] = \int_{A_g} f_X (s) \; ds \\
+    A_g    & := \{s \in \R \; | \; g (s) \leq t\}
   \end{align*}
   Wobei man die Dichte durch ableiten der Verteilung erhält.
   \subsection*{Anwendung von Transformationen}
-  Sei $F$ eine stetige und streng monoton wachsende Verteilungsfunktion
-  mit Unkehrfunktion $F^{-1}$. Ist $X \sim \mathcal{U}(0, 1)$ und
-  $Y = F^{-1}(X)$, so hat $Y$ gerade die Verteilungsfunktion $F$:
+  Sei $F$ eine stetige und streng monoton wachsende Verteilungsfunktion mit
+  Unkehrfunktion $F^{-1}$. Ist $X \sim \mathcal{U} (0, 1)$ und $Y = F^{-1} (X)$, so
+  hat $Y$ gerade die Verteilungsfunktion $F$:
   \begin{align*}
-    F_Y(t) & = P[Y \leq t] = P[F^{-1}(X) \leq t] \\
-           & = P[X \leq F(t)] = F(t)
+    F_Y (t) & = P[Y \leq t] = P[F^{-1} (X) \leq t] \\
+           & = P[X \leq F (t)] = F (t)
   \end{align*}
   \subsection*{Markov Ungleichung}
-  Sei $X$ eine Zufallsvariable und ferner $g : \W(X) \mapsto [0, \infty)$ eine
-  wachsende Funktion. Für jedes $c \in \R$ mit $g(c) > 0$ git dann:
+  Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
+  wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
   \begin{align*}
-    P[X \geq c] \leq \frac{E[g(X)]}{g(c)}
+    P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
   \end{align*}
   \subsection*{Chebyshev-Ungleichung}
-  Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$
-  git dann:
+  Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
   \begin{align*}
     P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
   \end{align*}
   \subsection*{Schwaches Gesetz der grossen Zahlen}
-  Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen,
-  die alle den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche
-  Varianz $Var[X_i] = \sigma^2$ haben. Sei
+  Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+  den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
+    \sigma^2$ haben. Sei
   \begin{align*}
     \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
   \end{align*}
@@ -762,11 +740,11 @@ contents={}
     P \left[ \abs{\overline{X}_n - \mu} > \varepsilon \right] \underset{n \ra \infty}{\longrightarrow} 0
      &  & \text{für jedes } \varepsilon > 0
   \end{align*}
-  (Statt unabhängig genügt auch $Cov(X_i, X_k) = 0$ für $i \neq k$)
+   (Statt unabhängig genügt auch $Cov (X_i, X_k) = 0$ für $i \neq k$)
   \subsection*{Starkes Gesetz der grossen Zahlen}
-  Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen,
-  die alle dieselbe Verteilung haben, und ihr Erwartungswert
-  $\mu = E[X_i]$ sei endlich. Für:
+  Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+  dieselbe Verteilung haben, und ihr Erwartungswert $\mu = E[X_i]$ sei endlich.
+  Für:
   \begin{align*}
     \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
   \end{align*}
@@ -776,182 +754,250 @@ contents={}
   \end{align*}
   d.h.:
   \begin{align*}
-    P \left[ \left\{ \omega \in \Omega : \overline{X}_n(\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
+    P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
   \end{align*}
   \subsection*{i.i.d. / u.i.v.}
   Independent identically distributed
   \subsection*{Zentraler Grenzwertsatz}
-  Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit
-  $E[X_i] = \mu$ und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$
-  gilt dann:
+  Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
+  und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
   \begin{align*}
-    \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi(x)
+    \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x)
      &  & \text{für alle } x \in \R
   \end{align*}
   wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist.
-  \subsection*{Spezielle unbestimmte Integrale}
-  \includegraphics[scale=0.45]{integrale.png}
+  \section{Tabellen}
+  \subsection{Ableitungen}
+  \begin{center}
+    \begin{tabularx}{\linewidth}{c>{\centering\arraybackslash}Xc}
+    $\mathbf{F(x)}$ & $\mathbf{f(x)}$ & $\mathbf{f'(x)}$ \\
+    %\midrule
+    $(x-1)e^x $ & $xe^x$ & $(x+1)e^x$ \\ 
+    $\frac{x^{-a+1}}{-a+1}$ & $\frac{1}{x^a}$ & $\frac{a}{x^{a+1}}$ \\
+    $\frac{x^{a+1}}{a+1}$ & $x^a \ (a \ne -1)$ & $a \cdot x^{a-1}$ \\
+    $\frac{1}{k \ln(a)}a^{kx}$ & $a^{kx}$ & $ka^{kx} \ln(a)$ \\
+    $\ln |x|$ & $\frac{1}{x}$ & $-\frac{1}{x^2}$ \\
+    $\frac{2}{3}x^{3/2}$ & $\sqrt{x}$ & $\frac{1}{2\sqrt{x}}$\\
+    $-\cos(x)$ & $\sin(x)$ & $\cos(x)$ \\
+    $ $ & $\frac{\sin(x)^2}{2} $ & $\sin(x)\cos(x)$ \\ 
+    $\sin(x)$ & $\cos(x)$ & $-\sin(x)$ \\
+    $\frac{1}{2}(x-\frac{1}{2}\sin(2x))$ & $\sin^2(x)$ & $2 \sin(x)\cos(x)$ \\
+    $\tan(x) - x$ & $\tan(x)^2$ & $2\sec(x)^2 \tan(x)$\\
+    $-\cot(x) - x$ & $\cot(x)^2$ & $-2 \cot(x) \csc(x)^2$\\
+    $\frac{1}{2}(x + \frac{1}{2}\sin(2x))$ & $\cos^2(x)$ & $-2\sin(x)\cos(x)$ \\
+    \multirow{2}*{$-\ln|\cos(x)|$} & \multirow{2}*{$\tan(x)$} & $\frac{1}{\cos^2(x)}$  \\
+    & & $1 + \tan^2(x)$ \\
+    $\cosh(x)$ & $\sinh(x)$ & $\cosh(x)$ \\
+    $\log(\cosh(x))$ & $\tanh(x)$ & $\frac{1}{\cosh^2(x)}$ \\
+    $\ln | \sin(x)|$ & $\cot(x)$ & $-\frac{1}{\sin^2(x)}$ \\
+    $\frac{1}{c} \cdot e^{cx}$ & $e^{cx}$ & $c \cdot e^{cx}$ \\
+    $x(\ln |x| - 1)$ & $\ln |x|$ & $\frac{1}{x}$ \\
+    $\frac{1}{2}(\ln(x))^2$ & $\frac{\ln(x)}{x}$ & $\frac{1 - \ln(x)}{x^2}$ \\
+    $\frac{x}{\ln(a)} (\ln|x| -1)$ & $\log_a |x|$ & $\frac{1}{\ln(a)x}$ \\
+  
+    %\bottomrule
+    \end{tabularx}
+  \end{center}
+
+  
+%\subsection{Weitere Ableitungen}
+\begin{center}
+  \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+  
+  $\mathbf{F(x)}$ & $\mathbf{f(x)}$ \\
+  \midrule
+  $\arcsin(x) / \arccos(x)$ & $\frac{1 / -1}{\sqrt{1 - x^2}}$ \\
+  $\arctan(x)$ & $\frac{1}{1 + x^2}$ \\ 
+
+  $x\arcsin(x) + \sqrt{1 - x^2}$ & $\arcsin(x)$\\
+  $x\arccos(x) - \sqrt{1 - x^2}$ & $\arccos(x)$\\
+  $x\arctan(x) - \frac{1}{2}\ln(1+x^2)$ & $\arctan(x)$\\
+  $\ln(\cosh(x))$ & $\tanh(x)$\\
+
+   
+  $x^x \ (x > 0)$ & $x^x \cdot (1 + \ln{x})$ \\
+$f(x)^{g(x)}$ & $e^{g(x) ln(f(x))}$\\
+$f(x) = cos(\alpha)$ & $f(x)^n = sin(x + n\frac{\pi}{2})$\\
+$f(x) = \frac{1}{ax + b}$ & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$\\
+  $-\ln(\cos(x))$ & $\tan(x)$\\
+  $\ln(\sin(x))$ & $\cot(x)$\\
+  $\ln(\tan(\frac{x}{2}))$ & $\frac{1}{\sin(x)}$\\
+  $\ln{\tan(\frac{x}{2} + \frac{\pi}{4})}$ & $\frac{1}{\cos(x)}$\\
+
+  \bottomrule
+  \end{tabularx}
+\end{center}
+
+%\subsection{Integrale}
+\begin{center}
+  \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    $\mathbf{f(x)}$ & $\mathbf{F(x)}$ \\
+    \midrule
+    $\int f'(x) f(x) \, dx$ & $\frac{1}{2}(f(x))^2$ \\
+    $\int \frac{f'(x)}{f(x)} \, dx$ & $\ln|f(x)|$ \\
+    $\int_{-\infty}^\infty e^{-x^2} \, dx$ & $\sqrt{\pi}$ \\
+    $\int (ax+b)^n \, dx$ & $\frac{1}{a(n+1)}(ax+b)^{n+1}$ \\
+    $\int x(ax+b)^n \, dx$ & $\frac{(ax+b)^{n+2}}{(n+2)a^2} - \frac{b(ax+b)^{n+1}}{(n+1)a^2}$ \\
+    $\int (ax^p+b)^n x^{p-1} \, dx$ & $\frac{(ax^p+b)^{n+1}}{ap(n+1)}$ \\
+    $\int (ax^p + b)^{-1} x^{p-1} \, dx$ & $\frac{1}{ap} \ln |ax^p + b|$ \\
+    $\int \frac{ax+b}{cx+d} \, dx$ & $\frac{ax}{c} - \frac{ad-bc}{c^2} \ln |cx +d|$ \\
+    $\int \frac{1}{x^2+a^2} \, dx$ & $\frac{1}{a} \arctan \frac{x}{a}$ \\
+    $\int \frac{1}{x^2 - a^2} \, dx$ & $\frac{1}{2a} \ln\left| \frac{x-a}{x+a} \right|$ \\
+    $\int \sqrt{a^2+x^2} \, dx $ & $\frac{x}{2}f(x) + \frac{a^2}{2}\ln(x+f(x))$ \\
+    \bottomrule
+  \end{tabularx}
+\end{center}
+
+
   \subsection*{Momenterzeugende Funktion}
   Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
   \begin{align*}
-    M_X(t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
+    M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
   \end{align*}
   \subsection*{Grosse Summenabweichung}
-  Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die Momenterzeugende
-  Funktion $M_X(t)$ für alle $t \in \R$ endlich ist. Für jedes $b \in \R$
-  gilt dann:
+  Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
+  Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
+  $b \in \R$ gilt dann:
   \begin{align*}
-    P[S_n \geq b] \leq \exp \left( \inf_{t \in \R} ( n \cdot \log M_X(t) - t \cdot b ) \right)
+    P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
   \end{align*}
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
-  \\
   \subsection*{Chernoff Schranken}
-  Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be(p)$ und $S_n = \Sn X_i$.
+  Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $S_n = \Sn X_i$.
   Sei $\mu_n := E[S_n] = \Sn p_i$ und $\delta > 0$. Dann gilt:
   \begin{align*}
-    P[S_n \geq (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{(1+\delta)^{1 + \delta}} \right)^{\mu_n}
+    P[S_n \geq  (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{ (1+\delta)^{1 + \delta}} \right)^{\mu_n}
   \end{align*}
   \hypertarget{sec:3}{\section{Schätzer}}
   \subsection*{Schätzer}
-  Wir suchen ein Modell für eine Stichprobe $\zufallsvariablen$ und haben
-  einen Parameteraum $\vartheta \subseteq \varTheta$ und für jedes $\vt$
-  einen Wahrscheinlichkeitsraum $(\Omega, \F, P_\vt)$. Wir möchten nun
-  die Parameter $\vt_1, \dots, \vt_m$ bestimmen. Ein Schätzer $T_j$ für
-  einen Parameter $\vt_j$ ist eine Zufallsvariable der Form
-  $T_j := t_j(\zufallsvariablen)$ für eine Schätzfunktion $t_j$.
+  Wir suchen ein Modell für eine Stichprobe $\zufallsvariablen$ und haben einen
+  Parameteraum $\vartheta \subseteq \varTheta$ und für jedes $\vt$ einen
+  Wahrscheinlichkeitsraum $ (\Omega, \F, P_\vt)$. Wir möchten nun die Parameter
+  $\vt_1, \dots, \vt_m$ bestimmen. Ein Schätzer $T_j$ für einen Parameter $\vt_j$
+  ist eine Zufallsvariable der Form $T_j := t_j (\zufallsvariablen)$ für eine
+  Schätzfunktion $t_j$.
   \subsection*{Schätzwert}
-  Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl.
-  Sie entsteht durch das Einsetzen konkreter Daten in einen Schätzer:
-  $T_j(\omega) = t_j(x_1, \dots, x_n)$ und liefert damit einen Wert für
-  genau einen Parameter.
+  Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl. Sie
+  entsteht durch das Einsetzen konkreter Daten in einen Schätzer: $T_j (\omega) =
+    t_j (x_1, \dots, x_n)$ und liefert damit einen Wert für genau einen Parameter.
   \subsection*{Eigenschaften von Schätzern}
   Sei $T$ ein Schätzer.
   \begin{itemize}
     \item $T$ ist erwartungstreu, falls $E_\vt[T] = \vt$ gilt. $T$ schätzt
           im Mittel also richtig.
-    \item Bias $:= E_\vt[T] - \vt$. Ein erwartungstreuer
-          Schätzer hat also keinen Bias.
-    \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[(T - \vt)^2]$.
-    \item Eine Folge $T^{(n)}$ von Schätzern heisst konsistent für $\vt$,
-          falls $T^{(n)}$ für $n \ra \infty$ in $P_\vt$-Wahrscheinlichkeit gegen
-          $\vt$ konvergiert, d.h. für jedes $\vt \in \varTheta$ gilt:
+    \item Bias $:= E_\vt[T] - \vt$. Ein erwartungstreuer Schätzer hat also keinen Bias.
+    \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ (T - \vt)^2]$.
+    \item Eine Folge $T^{ (n)}$ von Schätzern heisst konsistent für $\vt$, falls $T^{ (n)}$
+          für $n \ra \infty$ in $P_\vt$-Wahrscheinlichkeit gegen $\vt$ konvergiert, d.h.
+          für jedes $\vt \in \varTheta$ gilt:
           \begin{align*}
-            \lim_{n \ra \infty} P_\vt \left[ \abs{T^{(n)} - \vt} > \varepsilon \right] = 0
+            \lim_{n \ra \infty} P_\vt \left[ \abs{T^{ (n)} - \vt} > \varepsilon \right] = 0
           \end{align*}
   \end{itemize}
   \subsection*{Maximum-Likelihood Methode}
-  (Analog im diskreten Fall.) In einem Modell $P_\vt$ sind die Zufallsvariablen
+   (Analog im diskreten Fall.) In einem Modell $P_\vt$ sind die Zufallsvariablen
   $\zufallsvariablen$ stetig mit einer gemeinsamen Dichtefunktion
-  $f(x_1, \dots, x_n, \vt)$. Oft sind die $X_i$ i.i.d. und man erhält:
+  $f (x_1, \dots, x_n, \vt)$. Oft sind die $X_i$ i.i.d. und man erhält:
   \begin{align*}
-    f(x_1, \dots, x_n, \vt) & = P[X_1 = x_1, \dots, X_n = x_n] \\
-                            & = \prod_{i = 1}^n f_X(x_i, \vt)
+    f (x_1, \dots, x_n, \vt) & = P[X_1 = x_1, \dots, X_n = x_n] \\
+                            & = \prod_{i = 1}^n f_X (x_i, \vt)
   \end{align*}
   Wir nehmen nun an, dass die Daten die wir erhalten haben sehr
   Wahrscheinlich sind und versuchen nun folgende Likelihood funktion
   zu Maximieren durch Anpassungen an $\vt$:
   \begin{align*}
-    L(x_1, \dots, x_n; \vt)      & := f(x_1, \dots, x_n; \vt)      \\
-    \log L(x_1, \dots, x_n; \vt) & := \log f(x_1, \dots, x_n; \vt)
+    L (x_1, \dots, x_n; \vt)      & := f (x_1, \dots, x_n; \vt)      \\
+    \log L (x_1, \dots, x_n; \vt) & := \log f (x_1, \dots, x_n; \vt)
   \end{align*}
   letzteres kann bei Produkt zu Summe umwandlung hilfreich sein.
-  \subsection*{Empirisches Moment}
-  Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment
-  oder Stichprobenmoment $\hat{m}_k$ der Realisierung $(x_1, \dots, x_n)$:
+  \BoxStart{}
+  Sei $\Theta = [0, 1]$. Wir betrachten die Modellfamilie $ {P_\theta}_{\theta \in \Theta}$, wobei $X_1, \ldots, X_n$ unter $\mathbb{P}_\theta$ unabhängig und identisch verteilt sind mit $X_1 \sim \text{Geom} (\theta)$. Was ist die Likelihood-Funktion $L (x_1, \ldots, x_n; \theta)$ für $x_1, \ldots, x_n \in \{1, 2, \ldots\}$?
   \begin{align*}
-    \hat{m}_k(x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
+    L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]            \\
+                                & =\prod_{i = 1}^n \mathbb{P}_\theta[X_i = x_i]          \\
+                                & = \theta^n \cdot  (1 - \theta)^{x_1 + \ldots + x_n - n}
+  \end{align*}
+  \\
+  Was ist der Maximum-Likelihood-Schätzer $T_{\text{ML}}$ für $\theta$?
+
+  $$n \cdot \log (\theta) +  (x_1 + \ldots + x_n - n) \cdot \log (1 - \theta)$$
+
+  Wir setzen nun die Ableitung der log-Likelihood-Funktion nach $\theta$ gleich
+  $0$ und erhalten:
+
+  \begin{align*}
+     & \frac{n}{\theta} - \frac{x_1 + \ldots + x_n - n}{1 - \theta} = 0              \\
+     & \Longleftrightarrow n - n\theta =  (x_1 + \ldots + x_n) \cdot \theta - n\theta \\
+     & \Longleftrightarrow \theta = \frac{n}{x_1 + \ldots + x_n}                     \\
+     & = \frac{n}{X_1 + \ldots + X_n}
+  \end{align*}
+
+  \BoxEnd{}
+  \subsection*{Empirisches Moment}
+  Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment oder
+  Stichprobenmoment $\hat{m}_k$ der Realisierung $ (x_1, \dots, x_n)$:
+  \begin{align*}
+    \hat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
   \end{align*}
   \subsection*{Momentenmethode}
-  Der Momentenmethode liegt zugrunde, dass die Momente einer Zufallsvariable
-  bzw. einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt
-  werden können.\\
-  Sei $\zufallsvariablen$ eine Stichprobe und $\varTheta$ der Parameterraum. Für
-  jeden Parameter $\vt = (\vt_1, \dots, \vt_m) \in \varTheta$ sei
-  $\zufallsvariablen$ i.i.d. unter dem Wahrscheinlichkeitsraum $(\Omega, \F, P_\vt)$.
-  Methode:
+  Der Momentenmethode liegt zugrunde, dass die Momente einer Zufallsvariable bzw.
+  einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden
+  können.\\ Sei $\zufallsvariablen$ eine Stichprobe und $\varTheta$ der
+  Parameterraum. Für jeden Parameter $\vt =  (\vt_1, \dots, \vt_m) \in \varTheta$
+  sei $\zufallsvariablen$ i.i.d. unter dem Wahrscheinlichkeitsraum $ (\Omega, \F,
+    P_\vt)$. Methode:
   \begin{enumerate}
-    \item Für gegebene Realisierungen $x_1, \dots, x_n$ bestimme für jedes
-          $k \in \{1, \dots, m\}$ das $k$-te empirische Moment
-    \item Stelle ein Gleichungssystem für die Unbekannten Parameter
-          $\vt_1, \dots, \vt_m$ auf, in dem das $k$-te empirische Moment dem
-          $k$-ten Moment gleichgesetzt wird, also:
+    \item Für gegebene Realisierungen $x_1, \dots, x_n$ bestimme für jedes $k \in \{1,
+            \dots, m\}$ das $k$-te empirische Moment
+    \item Stelle ein Gleichungssystem für die Unbekannten Parameter $\vt_1, \dots, \vt_m$
+          auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird,
+          also:
           \begin{align*}
-            \hat{m}_k(x_1, \dots, x_n) = g_k(\vt_1, \dots, \vt_m)
+            \hat{m}_k (x_1, \dots, x_n) = g_k (\vt_1, \dots, \vt_m)
              &  & k \in \{1, \dots, m\}
           \end{align*}
     \item Existiert eine Eindeutige Lösung so wird das unsere Schätzung für $\vt$.
   \end{enumerate}
   \subsection*{Momentenschätzer}
-  Der Vektor $\hat{\vt}(X_1, \dots, X_m)$ heisst Momentenschätzer
-  des Parameters $\vt$.
+  Der Vektor $\hat{\vt} (X_1, \dots, X_m)$ heisst Momentenschätzer des Parameters
+  $\vt$.
   \subsection*{Beispiel: Normalverteile Stichprobe}
   Sei $\zufallsvariablen$ i.i.d. $\Normalverteilt$-verteilt mit unbekannten
-  Parametern $\vt = (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$
-  max likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
+  Parametern $\vt =  (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$ max
+  likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
   \begin{align*}
     T_1 & = \frac{1}{n} \Sn X_i = \overline{X}_n     \\
-    T_2 & = \frac{1}{n} \Sn (X_1 - \overline{X}_n)^2
+    T_2 & = \frac{1}{n} \Sn {X_1 - \overline{X}_n}^2
   \end{align*}
   möchten wir aber noch, dass der Schätzer erwartungstreu wird,
   so wählen wir für $T_2 = S^2$:
   \begin{align*}
-    S^2 = \frac{1}{n-1} \Sn (X_i - \overline{X}_n)^2
+    S^2 = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
   \end{align*}
   \subsection*{Normalverteile Stichproben}
   Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
   \begin{itemize}
-    \item $\overline{X}_n \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$
+    \item $\overline{X}_n \sim \mathcal{N} (\mu, \frac{\sigma^2}{n})$
           und $\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt$.
-    \item $\frac{n-1}{\sigma^2} S^2 = \left( \frac{1}{\sigma^2} \Sn (X_i - \overline{X}_n)^2 \right) \sim \mathcal{X}^2_{n-1}$
+    \item $\frac{n-1}{\sigma^2} S^2 = \left( \frac{1}{\sigma^2} \Sn  (X_i - \overline{X}_n)^2 \right) \sim \mathcal{X}^2_{n-1}$
     \item $\overline{X}_n$ und $S^2$ sind unabhängig
     \item $\frac{\overline{X}_n - \mu}{S / \sqrt{n}} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{S / \sigma} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}} \sim t_{n-1}$
   \end{itemize}
   \hypertarget{sec:4}{\section{Statistik}}
   \subsection*{$\X^2$-Verteilung}
-  Die $\X^2$- Verteilung mit $n$ Freiheitsgraden (bez. $\X^2_n$) gehört zu einer
+  Die $\X^2$- Verteilung mit $n$ Freiheitsgraden  (bez. $\X^2_n$) gehört zu einer
   stetigen Zufallsvariable $Y$ mit Dichtefunktion:
   \begin{align*}
-    f_Y(y) = \frac{1}{2^{\frac{n}{2}}  \Gamma(\frac{n}{2})} y^{\frac{n}{2} - 1} e^{-\frac{1}{2} y}
+    f_Y (y) = \frac{1}{2^{\frac{n}{2}}  \Gamma (\frac{n}{2})} y^{\frac{n}{2} - 1} e^{-\frac{1}{2} y}
   \end{align*}
-  wobei dies ein Spezialfall der $Ga(\alpha, \lambda)$ Verteilung ist mit
+  wobei dies ein Spezialfall der $Ga (\alpha, \lambda)$ Verteilung ist mit
   $\alpha = \frac{n}{2}$ und $\lambda = \frac{1}{2}$. Sind die Zufallsvariablen
   $\zufallsvariablen$ i.i.d. $\sim \Standardnormalverteilt$, so ist die Summe
   $Y := \Sn X_i^2 \sim \X^2_n$.
   \subsection*{$t$-Verteilung}
-  Die $t$-Verteilung mit $n$ Freiheitsgraden gehört zu einer stetigen Zufallsvariable
-  $Z$ mit Dichtefunktion
+  Die $t$-Verteilung mit $n$ Freiheitsgraden gehört zu einer stetigen
+  Zufallsvariable $Z$ mit Dichtefunktion
   \begin{align*}
-    f_Z(z) = \frac{\Gamma(\frac{n+1}{2})}{\sqrt{n \pi} \, \Gamma(\frac{n}{2})} \left( 1 + \frac{z^2}{n} \right)^{-\frac{n+1}{2}}
+    f_Z (z) = \frac{\Gamma (\frac{n+1}{2})}{\sqrt{n \pi} \, \Gamma (\frac{n}{2})} \left( 1 + \frac{z^2}{n} \right)^{-\frac{n+1}{2}}
      &  & \text{für } z \in \R
   \end{align*}
   für $n = 1$ ist das eine Cauchy Verteilung und für $n \ra \infty$ erhält man
@@ -976,71 +1022,71 @@ contents={}
   \end{itemize}
   Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
   \begin{enumerate}
-    \item Man wählt ein \textbf{Signifikanzniveau} $\alpha \in (0, 1)$ und kontrolliert
+    \item Man wählt ein \textbf{Signifikanzniveau} $\alpha \in  (0, 1)$ und kontrolliert
           die Wahrscheinlichkeit eines Fehlers 1. Art durch
           \begin{align*}
             \sup_{\vt \in \varTheta_0} P_\vt[T \in K] \leq \alpha
           \end{align*}
-    \item Man versucht die Wahrscheinlichkeit für einen Fehler zweiter Art
-          $P_\vt[T \not \in K]$ für $\vt \in \varTheta_A$ zu minimieren. Dazu maximiert
-          man die \textbf{Macht des Tests}:
+    \item Man versucht die Wahrscheinlichkeit für einen Fehler zweiter Art $P_\vt[T \not
+              \in K]$ für $\vt \in \varTheta_A$ zu minimieren. Dazu maximiert man die
+          \textbf{Macht des Tests}:
           \begin{align*}
-            \beta : \varTheta_A \mapsto [0, 1] &  & \vt \mapsto \beta(\vt) := P_\vt[T \in K]
+            \beta : \varTheta_A \mapsto [0, 1] &  & \vt \mapsto \beta (\vt) := P_\vt[T \in K]
           \end{align*}
   \end{enumerate}
   Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
   Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
   \subsection*{Likelihood Quotient}
-  Sei $L(x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in \varTheta_0$
-  sowie $\vt_A \in \varTheta_A$. Dann definieren wir:
+  Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
+    \varTheta_0$ sowie $\vt_A \in \varTheta_A$. Dann definieren wir:
   \begin{align*}
-    R(x_1, \dots, x_n; \vt_0, \vt_A) = \frac{L(x_1, \dots, x_n; \vt_A)}{L(x_1, \dots, x_n; \vt_0)}
+    R (x_1, \dots, x_n; \vt_0, \vt_A) = \frac{L (x_1, \dots, x_n; \vt_A)}{L (x_1, \dots, x_n; \vt_0)}
   \end{align*}
   je grösser der Quotient, desto wahrscheinlicher die Alternative. Es gibt auch:
   \begin{align*}
-    R(x_1, \dots, x_n)             & = \frac{ \sup_{\vt \in \varTheta_A} L(x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L(x_1, \dots, x_n; \vt)}                  \\
-    \widetilde{R}(x_1, \dots, x_n) & = \frac{ \sup_{\vt \in \varTheta_A \cup \varTheta_0} L(x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L(x_1, \dots, x_n; \vt)} \\
+    R (x_1, \dots, x_n)             & = \frac{ \sup_{\vt \in \varTheta_A} L (x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L (x_1, \dots, x_n; \vt)}                  \\
+    \widetilde{R} (x_1, \dots, x_n) & = \frac{ \sup_{\vt \in \varTheta_A \cup \varTheta_0} L (x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L (x_1, \dots, x_n; \vt)} \\
   \end{align*}
-  Wähle Konstante $c_0$ für $K_0 = (c_0, \infty)$ mithilfe von Signifikanzniveau.
+  Wähle Konstante $c_0$ für $K_0 =  (c_0, \infty)$ mithilfe von Signifikanzniveau.
   \subsection*{Neyman-Pearson Lemma}
-  Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei
-  $T = R(\zufallsvariablen; \vt_0, \vt_A)$ und $K := (c, \infty)$, sowie
-  $\alpha^* := P_{\vt_0}[T \in K] = P_{\vt_0}[T > c]$. Der Likelihood
-  Quotienten Test mit Teststatistik $T$ und kritischem Bereich $K$ ist dann
-  in folgendem Sinn optimal: Jeder andere Test mit Signifikanzniveau
-  $\alpha \leq \alpha^*$ hat eine kleinere Macht (bez. Grössere WS Fehler 2. Art).
+  Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei $T =
+    R (\zufallsvariablen; \vt_0, \vt_A)$ und $K :=  (c, \infty)$, sowie $\alpha^* :=
+    P_{\vt_0}[T \in K] = P_{\vt_0}[T > c]$. Der Likelihood Quotienten Test mit
+  Teststatistik $T$ und kritischem Bereich $K$ ist dann in folgendem Sinn
+  optimal: Jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat
+  eine kleinere Macht  (bez. Grössere WS Fehler 2. Art).
   \subsection*{$p$-Wert}
-  (Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
+   (Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
   so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
   \begin{align*}
-    p(x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
-    p(x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
+    p (x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
+    p (x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
   \end{align*}
   \subsection*{$z$-Test}
-  Normalverteilung, Test für Erwartungswert bei bekannter Varianz.
-  Hier sind $\zufallsvariablen$ i.i.d. $\mathcal{N}(\vt, \sigma^2)$.
-  Wir möchten die Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$
-  sind $\vt > \vt_0$, $\vt < \vt_0$ (einseitig) oder $\vt \neq \vt_0$ (zweiseitig).
-  Die Teststatistik ist:
+  Normalverteilung, Test für Erwartungswert bei bekannter Varianz. Hier sind
+  $\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die
+  Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$ sind $\vt >
+    \vt_0$, $\vt < \vt_0$  (einseitig) oder $\vt \neq \vt_0$  (zweiseitig). Die
+  Teststatistik ist:
   \begin{align*}
     T & = \frac{\overline{X} - \vt_0}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt
       &                                                                               & \text{unter } P_{\vt_0}
   \end{align*}
   Und die Verwerfungebereiche:
   \begin{align*}
-    \vt < \vt_0    &  & (-\infty, z_\alpha)                                                     \\
-    \vt > \vt_0    &  & (z_{1 - \alpha}, \infty)                                                \\
-    \vt \neq \vt_0 &  & (-\infty, z_{\frac{\alpha}{2}}) \cup (z_{1 - \frac{\alpha}{2}}, \infty)
+    \vt < \vt_0    &  &  (-\infty, z_\alpha)                                                     \\
+    \vt > \vt_0    &  &  (z_{1 - \alpha}, \infty)                                                \\
+    \vt \neq \vt_0 &  &  (-\infty, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, \infty)
   \end{align*}
   Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
   und es gilt $z_\alpha = - z_{1 - \alpha}$.
   \subsection*{Beispiel Fehler 2. Art Berechnen}
-  Nehme an: einseitiger $z$-Test,
-  $T = \frac{\overline{X}_n - \mu_0}{\sigma / \sqrt{n}}$, $\mu_0 = 70$.
+  Nehme an: einseitiger $z$-Test, $T = \frac{\overline{X}_n - \mu_0}{\sigma /
+      \sqrt{n}}$, $\mu_0 = 70$.
   \begin{align*}
     H_0 : \mu = \mu_0 &  & H_A : \mu < \mu_0
   \end{align*}
-  Kritischer Bereich mit $5$\% niveau: $K = (- \infty, -1.645)$. Wir
+  Kritischer Bereich mit $5$\% niveau: $K =  (- \infty, -1.645)$. Wir
   nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt$:
   \begin{align*}
     P_{\mu_A}[T \not \in K]
@@ -1052,38 +1098,37 @@ contents={}
   \end{align*}
   \subsection*{$t$-Test}
   Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. Hier sind
-  $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$,
-  wobei $\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$
-  testen. Die Teststatistik ist:
+  $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
+  $\vec{\vt} =  (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
+  Die Teststatistik ist:
   \begin{align*}
     T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
         &                                                             & \text{unter } P_{\vt_0} \\
-    S^2 & = \frac{1}{n-1} \Sn (X_i - \overline{X}_n)^2
+    S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
   \end{align*}
   Und die Verwerfungsbereiche:
   \begin{align*}
-    c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                    &  & \mu < \mu_0    \\
-    c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                     &  & \mu > \mu_0    \\
-    c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup (c_>, \infty) &  & \mu \neq \mu_0
+    c_<      & = t_{n-1, \alpha}               &  &  (-\infty, c_<)                    &  & \mu < \mu_0    \\
+    c_>      & = t_{n-1, 1 - \alpha}           &  &  (c_>, \infty)                     &  & \mu > \mu_0    \\
+    c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  &  (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
   \end{align*}
   Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
   \subsection*{Gepaarter Zweiproben-Test}
-  Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N}(\mu_X, \sigma^2)$
-  und $Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N}(\mu_Y, \sigma^2)$ unter
-  $P_\vt$. Insbesondere ist $m = n$ und die Varianz beider Stichproben
-  dieselbe. Differenzen $Z_i := X_I - Y_i$ sind unter $P_\vt$ i.i.d.
-  $\mathcal{N}(\mu_X - \mu_Y, 2 \sigma^2)$. Dann analog $z$ und $t$-Test.
-  (Setzt natürliche Paarung von Daten voraus!)
+  Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
+  $Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N} (\mu_Y, \sigma^2)$ unter $P_\vt$.
+  Insbesondere ist $m = n$ und die Varianz beider Stichproben dieselbe.
+  Differenzen $Z_i := X_I - Y_i$ sind unter $P_\vt$ i.i.d. $\mathcal{N} (\mu_X -
+    \mu_Y, 2 \sigma^2)$. Dann analog $z$ und $t$-Test.  (Setzt natürliche Paarung
+  von Daten voraus!)
   \subsection*{Ungepaarter Zweiproben-Test}
-  Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$
-  i.i.d. $\sim \mathcal{N}(\mu_X, \sigma^2)$ und
-  $Y_1, \dots, Y_m$ i.i.d. $\sim \mathcal{N}(\mu_Y, \sigma^2)$, wobei
-  die Varianz in beiden Fällen dieselbe ist.
+  Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
+    \mathcal{N} (\mu_X, \sigma^2)$ und $Y_1, \dots, Y_m$ i.i.d. $\sim
+    \mathcal{N} (\mu_Y, \sigma^2)$, wobei die Varianz in beiden Fällen dieselbe ist.
   \begin{itemize}
     \item Bei bekannter Varianz:
           \begin{align*}
-            H_0 & : \mu_X - \mu_Y = \mu_0 \quad (z.B. \; \mu_0 = 0)                                                                                \\
-            T   & = \frac{\overline{X}_n - \overline{Y}_m - (\mu_X - \mu_Y)}{\sigma \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim \Standardnormalverteilt
+            H_0 & : \mu_X - \mu_Y = \mu_0 \quad  (z.B. \; \mu_0 = 0)                                                                                \\
+            T   & = \frac{\overline{X}_n - \overline{Y}_m -  (\mu_X - \mu_Y)}{\sigma \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim \Standardnormalverteilt
           \end{align*}
           Die kritischen Werte für den Verwerfungsbereich sind wie oben
           geeignete Quantile der $\Standardnormalverteilt$-Verteilung, je nach
@@ -1091,30 +1136,29 @@ contents={}
 
     \item Bei unbekannter Varianz:
           \begin{align*}
-            S_X^2 & := \frac{1}{n-1} \Sn (X_i - \overline{X}_n)^2                                                                 \\
-            S_Y^2 & := \frac{1}{m-1} \sum_{j = 1}^m (Y_j - \overline{Y}_m)^2                                                      \\
-            S^2   & := \frac{1}{m+n-2} \left( (n-1) \cdot S_X^2 + (m-1) \cdot S_Y^2 \right)                                       \\
-            T     & = \frac{\overline{X}_n - \overline{Y}_m - (\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t_{n+m-2}
+            S_X^2 & := \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2                                                                 \\
+            S_Y^2 & := \frac{1}{m-1} \sum_{j = 1}^m  (Y_j - \overline{Y}_m)^2                                                      \\
+            S^2   & := \frac{1}{m+n-2} \left(  (n-1) \cdot S_X^2 +  (m-1) \cdot S_Y^2 \right)                                       \\
+            T     & = \frac{\overline{X}_n - \overline{Y}_m -  (\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t_{n+m-2}
           \end{align*}
           unter jedem $P_\vt$. Dieser Test heisst ungepaarter Zweistichproben-$t$-Test.
   \end{itemize}
   \subsection*{Konfidenzbereich}
-  Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine
-  Menge $C(x_1, \dots, x_n) \subseteq \varTheta$. Damit ist
-  $C(\zufallsvariablen)$ eine zufällige Teilmenge von $\varTheta$. Dieses
-  $C$ heisst Konfidenzbereich zum Niveau $1 - \alpha$, falls für alle
-  $\vt \in \varTheta$ gilt:
+  Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine Menge
+  $C (x_1, \dots, x_n) \subseteq \varTheta$. Damit ist $C (\zufallsvariablen)$ eine
+  zufällige Teilmenge von $\varTheta$. Dieses $C$ heisst Konfidenzbereich zum
+  Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
   \begin{align*}
-    P_\vt [\vt \in C(\zufallsvariablen)] \geq 1 - \alpha
+    P_\vt [\vt \in C (\zufallsvariablen)] \geq 1 - \alpha
   \end{align*}
   \subsection*{Beispiel Konfidenzbereich}
   Machen wir den Ansatz:
   \begin{align*}
-    C(\zufallsvariablen) = [\overline{X}_n - \dots, \overline{X}_n + \dots]
+    C (\zufallsvariablen) = [\overline{X}_n - \dots, \overline{X}_n + \dots]
   \end{align*}
   so wollen wir erreichen, dass gilt:
   \begin{align*}
-    1 - \alpha \leq P_\vt[\vt \in  C(\zufallsvariablen)] \\
+    1 - \alpha \leq P_\vt[\vt \in  C (\zufallsvariablen)] \\
     = P_\vt \left[ \mu \in [\overline{X}_n - \dots, \overline{X}_n + \dots] \right]
     = P_\vt \left[ \abs{\overline{X}_n - \mu} \leq \dots \right]
   \end{align*}
@@ -1125,16 +1169,8 @@ contents={}
   \end{align*}
   also erhalten wir das Konfidenzintervall für $\mu$ zum Niveau $1 - \alpha$:
   \begin{align*}
-    C(\zufallsvariablen) = \left[ \overline{X}_n - t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}}, \overline{X}_n + t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right]
+    C (\zufallsvariablen) = \left[ \overline{X}_n - t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}}, \overline{X}_n + t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right]
   \end{align*}
-
-
-
-
-
-
-
-
 
 \end{multicols*}
 \end{document}

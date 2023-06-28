@@ -97,6 +97,19 @@ Built up by:
 - (Sequence number is only contained inside of the transport header but not the IP header)
 - (There is no checksum in the IPv6 header)
 
+## Link State Routing
+1. Nodes flood topology in the form of link state packets and each node leanrs the full topology
+2. Each node computes its own forwarding table by finding the shrtest path to each other node (according to some cost metric). An algorithm that eables this shortest paht calculation is Dijkstra.
+- Knows all the distances
+- More RAM/CPU
+- Faster Convergence
+
+## Distance Vector Routing
+- Only know next hop
+- Less RAM/CPU
+- Slower Convergence
+
+
 ## Random
 - slow start threshold (ssthresh):
     - function of congestion
@@ -120,6 +133,13 @@ Built up by:
 - Connection hand-over is possible by identifying connection with a connection ID instead of the 5(/4)-tuple (even with changing IP addresses e.g. when chaning neworks with a mobile device)
 - resoles head-of-line blocking by the logical abstraction of streams (contrary to TCP, which required you to open multiple parallel TCP connections)
 - Middleboxes and NAT routers are known to drop unfamiliar transport layer protocols. Quic uses UDP to give interperability with existing hardware.
+
+## Modulation
+### Baseband modulation
+- bit stream directly send onto wire
+
+### Passband modulation
+- bit stream send by modulating a carrier frequency and sending this signal which now encodes the bitstream in its modulation.
 
 ## Timeout-Value
 - Exponential averaging of RTT

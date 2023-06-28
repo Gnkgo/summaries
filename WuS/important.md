@@ -1,6 +1,23 @@
 # Wichtig zu merken
 Wir haben eine $\sigma-Algebra$ auf $\Omega$. Dann muss die leere, die volle und immer das jeweilige Komplement in der Algebra vorhanden sein.
 
+![alt text](diskrete_stetige_verteilung.png "Diskrete und stetige Verteilung")
+
+## Dichte
+- Eine Wahrscheinlichkeitsdichte muss integriert über den gesamten Definitionsbereich 1 ergeben 
+- Nichtnegativität: Die Dichte $f(x, y)$ muss für alle $x$ und $y$ grösser oder gleich 0 sein
+- Seien $X$ und $Y$ zwei stetige Zufallsvariablen mit Dichte $f_X$ resp $f_Y$
+    - Nicht notwendigerweise gemeinsame Dichte
+    - Wenn $X$, $Y$ unabhängig dann gemeinsame Dichte
+    $$f_{X, Y}(x, y) = f_X(x)*f_Y(y)$$
+
+## Wahrscheinlichkeiten
+### Approximationen
+- Wenn $Bin()$ Wahrscheinlichkeit $p = \sim \frac{1}{2}$ hat, dann ist es wie eine Normalverteilung:
+$$X \stackrel{approx.}\sim \mathcal{N}(\frac{n}{2}, \frac{n}{4})$$
+- Wenn $Bin()$ Wahrscheinlichkeit $p$ sehr klein hat und $n$ sehr gross, dann ist es wie eine Poissonverteilung:
+$$X \stackrel{approx.}\sim Poi(\lambda = np)$$
+
 ## Quiz
 Sei $(\Omega, F, P)$ ein Wahrscheinlichkeitsraum und $A \in F$. Was ist korrekt:
 - $A$ ist unabhängigvon sich selbst genau dann, wenn $P[A] = 1$.
@@ -19,4 +36,4 @@ Stetige Zufallsvariable
 - Dichtefunktion kann auch einmal (strikt) grösser als 1 sein
 
 Seien $X$ und $Y$ zwei Zufallsvariablen mit gemeinsamer Dichte $f_{X, Y}$.
-- Check Quiz
+- Die Zufallsvariablen $X$ und $Y$ sind immer stetig. 
