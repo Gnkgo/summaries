@@ -12,7 +12,7 @@ Evaluate across a distribution: IMSE $= \int E[(\hat{f}(x)-f(x))^2] = E[\int_\Om
 
 \noindent Bias(x) = $h^2f''(x)\int z^2 K(z) dz/2 + o(h^2)$
 
-\noindent Var($\hat{f}(x) = (nh)^{-1} f(x) \int K(z)^2 dz + o((nh)^{-1})$
+\noindent Var($\hat{f}(x) = (nh)^{-1} f(x) \int K(z)^2 dz + o((nh)^{-1}))$
 
 \begin{lstlisting}[language = R]
 ke = density(data, bw = 'sj', kernel = 'gaussian', n = npoints, from = -1, to = 5)
