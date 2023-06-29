@@ -22,4 +22,8 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 - A convolutional neural network consists of an input layer, hidden layers and an output layer. In a convolutional neural network, the hidden layers include one or more layers that perform convolutions.
 - In a CNN, the input is a tensor with shape: (number of inputs) × (input height) × (input width) × (input channels). After passing through a convolutional layer, the image becomes abstracted to a feature map, also called an activation map, with shape: (number of inputs) × (feature map height) × (feature map width) × (feature map channels). 
 
+
+## Generalization Error
+- 
 ## Stochastic gradient method (SGD)
+

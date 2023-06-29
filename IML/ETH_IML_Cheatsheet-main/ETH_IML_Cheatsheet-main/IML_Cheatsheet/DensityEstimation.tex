@@ -1,0 +1,20 @@
+\section*{Density Estimation:}
+
+Univariate: $\hat{f}(x)=\frac{1}{nh}\sum^{n}_{i=1}K(\frac{x-X_i}{h})$
+
+\noindent Multivariate: $\hat{f}(x) = \frac{1}{nh^d}\sum^{n}_{i=1}K(\frac{x-X_i}{h})$
+
+\noindent where $K(\frac{x-X_i}{h}) = \frac{1}{\sqrt{2\pi h^2}}e^{-(x-X_i)^2/2h^2}$ and for multivariate: $K(\frac{x-X_i}{h}) = \Pi^d_{i=1}K_{uni}(\frac{x-X_i}{h}) $
+
+\subsection*{Density evaluation:}
+
+Evaluate across a distribution: IMSE $= \int E[(\hat{f}(x)-f(x))^2] = E[\int_\Omega \hat{f}(x)-f(x))^2] \sim$  Get average mean squared loss across a range for each bandwidth - MAKE Matrix, choose smallest loss bandwidth.
+
+\noindent Bias(x) = $h^2f''(x)\int z^2 K(z) dz/2 + o(h^2)$
+
+\noindent Var($\hat{f}(x) = (nh)^{-1} f(x) \int K(z)^2 dz + o((nh)^{-1})$
+
+\begin{lstlisting}[language = R]
+ke = density(data, bw = 'sj', kernel = 'gaussian', n = npoints, from = -1, to = 5)
+ke$y; ke$x; ke$bw
+\end{lstlisting}
