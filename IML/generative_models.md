@@ -22,8 +22,12 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 - A convolutional neural network consists of an input layer, hidden layers and an output layer. In a convolutional neural network, the hidden layers include one or more layers that perform convolutions.
 - In a CNN, the input is a tensor with shape: (number of inputs) × (input height) × (input width) × (input channels). After passing through a convolutional layer, the image becomes abstracted to a feature map, also called an activation map, with shape: (number of inputs) × (feature map height) × (feature map width) × (feature map channels). 
 
+- A higher treshhold leads to leass positive predictions. Therefore the false positive rate is lower for higher treshholds. 
 
-## Generalization Error
-- 
-## Stochastic gradient method (SGD)
+## Ridge Regression
+- Has increased bias for decreased variance
+
+## Ordinary Least Squares
+- Augmenting the set of features used for the regression will never increase the least squares loss
+- Subtracting the empirical mean from the data before performing regression on the centrered samples
 
