@@ -1,0 +1,189 @@
+\hypertarget{sec:4}{\section{Statistik}}
+\subsection*{$\X^2$-Verteilung}
+Die $\X^2$- Verteilung mit $n$ Freiheitsgraden (bez. $\X^2_n$) gehört zu einer
+stetigen Zufallsvariable $Y$ mit Dichtefunktion:
+\begin{align*}
+  f_Y (y) = \frac{1}{2^{\frac{n}{2}}  \Gamma (\frac{n}{2})} y^{\frac{n}{2} - 1} e^{-\frac{1}{2} y}
+\end{align*}
+wobei dies ein Spezialfall der $Ga (\alpha, \lambda)$ Verteilung ist mit
+$\alpha = \frac{n}{2}$ und $\lambda = \frac{1}{2}$. Sind die Zufallsvariablen
+$\zufallsvariablen$ i.i.d. $\sim \Standardnormalverteilt$, so ist die Summe
+$Y := \Sn X_i^2 \sim \X^2_n$.
+\subsection*{$t$-Verteilung}
+Die $t$-Verteilung mit $n$ Freiheitsgraden gehört zu einer stetigen
+Zufallsvariable $Z$ mit Dichtefunktion
+\begin{align*}
+  f_Z (z) = \frac{\Gamma (\frac{n+1}{2})}{\sqrt{n \pi} \, \Gamma (\frac{n}{2})} \left( 1 + \frac{z^2}{n} \right)^{-\frac{n+1}{2}}
+   &  & \text{für } z \in \R
+\end{align*}
+für $n = 1$ ist das eine Cauchy Verteilung und für $n \ra \infty$ erhält man
+$\Standardnormalverteilt$. Sind $X, Y$ unabhängig und $X \sim \Standardnormalverteilt$
+und $Y \sim \X^2_n$, so ist der Quotient:
+\begin{align*}
+  Z := \frac{X}{\sqrt{\frac{1}{n} Y}} \sim t_n \text{, also $t$-Verteilt mit $n$ Freiheitsgraden}
+\end{align*}
+\subsection*{Hypothesen}
+Es gibt:
+\begin{itemize}
+  \item Hypothese $H_0 : \vt \in \varTheta_0$
+  \item Alternative $H_A : \vt \in \varTheta_A$
+\end{itemize}
+Man verwirft die Hypothese genau dann, wenn der realisierte Wert im
+Verwerfungebereich $K$ liegt.
+\subsection*{Fehler}
+Es gibt folgende Fehler:
+\begin{itemize}
+  \item 1. Art: Hypothese wird zu unrecht abgelehnt. $P_\vt[T \in K]$ für $\vt \in \varTheta_0$
+  \item 2. Art: Hypothese wird zu unrecht nicht verworfen. $P_\vt[T \not \in K]$ für $\vt \in \varTheta_A$
+\end{itemize}
+Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
+\begin{enumerate}
+  \item Man wählt ein \textbf{Signifikanzniveau} $\alpha \in (0, 1)$ und kontrolliert
+        die Wahrscheinlichkeit eines Fehlers 1. Art durch
+        \begin{align*}
+          \sup_{\vt \in \varTheta_0} P_\vt[T \in K] \leq \alpha
+        \end{align*}
+  \item Man versucht die Wahrscheinlichkeit für einen Fehler zweiter Art $P_\vt[T \not
+            \in K]$ für $\vt \in \varTheta_A$ zu minimieren. Dazu maximiert man die
+        \textbf{Macht des Tests}:
+        \begin{align*}
+          \beta : \varTheta_A \mapsto [0, 1] &  & \vt \mapsto \beta (\vt) := P_\vt[T \in K]
+        \end{align*}
+\end{enumerate}
+Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
+Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
+\subsection*{Likelihood Quotient}
+Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
+  \varTheta_0$ sowie $\vt_A \in \varTheta_A$. Dann definieren wir:
+\begin{align*}
+  R (x_1, \dots, x_n; \vt_0, \vt_A) = \frac{L (x_1, \dots, x_n; \vt_A)}{L (x_1, \dots, x_n; \vt_0)}
+\end{align*}
+je grösser der Quotient, desto wahrscheinlicher die Alternative. Es gibt auch:
+\begin{align*}
+  R (x_1, \dots, x_n)             & = \frac{ \sup_{\vt \in \varTheta_A} L (x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L (x_1, \dots, x_n; \vt)}                  \\
+  \widetilde{R} (x_1, \dots, x_n) & = \frac{ \sup_{\vt \in \varTheta_A \cup \varTheta_0} L (x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L (x_1, \dots, x_n; \vt)} \\
+\end{align*}
+Wähle Konstante $c_0$ für $K_0 =  (c_0, \infty)$ mithilfe von Signifikanzniveau.
+\subsection*{Neyman-Pearson Lemma}
+Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei $T =
+  R (\zufallsvariablen; \vt_0, \vt_A)$ und $K := (c, \infty)$, sowie $\alpha^* :=
+  P_{\vt_0}[T \in K] = P_{\vt_0}[T > c]$. Der Likelihood Quotienten Test mit
+Teststatistik $T$ und kritischem Bereich $K$ ist dann in folgendem Sinn
+optimal: Jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat
+eine kleinere Macht (bez. Grössere WS Fehler 2. Art).
+\subsection*{$p$-Wert}
+(Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
+so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
+\begin{align*}
+  p (x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
+  p (x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
+\end{align*}
+\subsection*{$z$-Test}
+Normalverteilung, Test für Erwartungswert bei bekannter Varianz. Hier sind
+$\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die
+Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$ sind $\vt >
+  \vt_0$, $\vt < \vt_0$ (einseitig) oder $\vt \neq \vt_0$ (zweiseitig). Die
+Teststatistik ist:
+\begin{align*}
+  T & = \frac{\overline{X} - \vt_0}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt
+    &                                                                               & \text{unter } P_{\vt_0}
+\end{align*}
+Und die Verwerfungebereiche:
+\begin{align*}
+  \vt < \vt_0    &  & (-\infty, z_\alpha)                                                      \\
+  \vt > \vt_0    &  & (z_{1 - \alpha}, \infty)                                                 \\
+  \vt \neq \vt_0 &  & (-\infty, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, \infty)
+\end{align*}
+Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
+und es gilt $z_\alpha = - z_{1 - \alpha}$.
+\subsection*{Beispiel Fehler 2. Art Berechnen}
+Nehme an: einseitiger $z$-Test, $T = \frac{\overline{X}_n - \mu_0}{\sigma /
+    \sqrt{n}}$, $\mu_0 = 70$.
+\begin{align*}
+  H_0 : \mu = \mu_0 &  & H_A : \mu < \mu_0
+\end{align*}
+Kritischer Bereich mit $5$\% niveau: $K =  (- \infty, -1.645)$. Wir
+nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt$:
+\begin{align*}
+  P_{\mu_A}[T \not \in K]
+   & = P_{\mu_A}[T > -1.645]                                                                                                            \\
+   & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_0}{\sigma / \sqrt{n}} > -1.645 \right]                                                \\
+   & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} > \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right]        \\
+   & = 1 - P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \leq \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right] \\
+   & = 1 - \Phi \left( \frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645 \right)       \quad \text{Weil } \sim \Standardnormalverteilt
+\end{align*}
+\subsection*{$t$-Test}
+Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. Hier sind
+$\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
+$\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
+Die Teststatistik ist:
+\begin{align*}
+  T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
+      &                                                             & \text{unter } P_{\vt_0} \\
+  S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
+\end{align*}
+Und die Verwerfungsbereiche:
+\begin{align*}
+  c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                     &  & \mu < \mu_0    \\
+  c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                      &  & \mu > \mu_0    \\
+  c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
+\end{align*}
+Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
+\subsection*{Gepaarter Zweiproben-Test}
+Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
+$Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N} (\mu_Y, \sigma^2)$ unter $P_\vt$.
+Insbesondere ist $m = n$ und die Varianz beider Stichproben dieselbe.
+Differenzen $Z_i := X_I - Y_i$ sind unter $P_\vt$ i.i.d. $\mathcal{N} (\mu_X -
+  \mu_Y, 2 \sigma^2)$. Dann analog $z$ und $t$-Test. (Setzt natürliche Paarung
+von Daten voraus!)
+\subsection*{Ungepaarter Zweiproben-Test}
+Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
+  \mathcal{N} (\mu_X, \sigma^2)$ und $Y_1, \dots, Y_m$ i.i.d. $\sim \mathcal{N}
+  (\mu_Y, \sigma^2)$, wobei die Varianz in beiden Fällen dieselbe ist.
+\begin{itemize}
+  \item Bei bekannter Varianz:
+        \begin{align*}
+          H_0 & : \mu_X - \mu_Y = \mu_0 \quad  (z.B. \; \mu_0 = 0)                                                                                \\
+          T   & = \frac{\overline{X}_n - \overline{Y}_m -  (\mu_X - \mu_Y)}{\sigma \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim \Standardnormalverteilt
+        \end{align*}
+        Die kritischen Werte für den Verwerfungsbereich sind wie oben
+        geeignete Quantile der $\Standardnormalverteilt$-Verteilung, je nach
+        Alternative. Das ist der ungepaarte Zweistichproben-$z$-Test.
+
+  \item Bei unbekannter Varianz:
+        \begin{align*}
+          S_X^2 & := \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2                                                                 \\
+          S_Y^2 & := \frac{1}{m-1} \sum_{j = 1}^m  (Y_j - \overline{Y}_m)^2                                                      \\
+          S^2   & := \frac{1}{m+n-2} \left(  (n-1) \cdot S_X^2 +  (m-1) \cdot S_Y^2 \right)                                      \\
+          T     & = \frac{\overline{X}_n - \overline{Y}_m -  (\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t_{n+m-2}
+        \end{align*}
+        unter jedem $P_\vt$. Dieser Test heisst ungepaarter Zweistichproben-$t$-Test.
+\end{itemize}
+\subsection*{Konfidenzbereich}
+Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine Menge $C
+  (x_1, \dots, x_n) \subseteq \varTheta$. Damit ist $C (\zufallsvariablen)$ eine
+zufällige Teilmenge von $\varTheta$. Dieses $C$ heisst Konfidenzbereich zum
+Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
+\begin{align*}
+  P_\vt [\vt \in C (\zufallsvariablen)] \geq 1 - \alpha
+\end{align*}
+\subsection*{Beispiel Konfidenzbereich}
+Machen wir den Ansatz:
+\begin{align*}
+  C (\zufallsvariablen) = [\overline{X}_n - \dots, \overline{X}_n + \dots]
+\end{align*}
+so wollen wir erreichen, dass gilt:
+\begin{align*}
+  1 - \alpha \leq P_\vt[\vt \in  C (\zufallsvariablen)] \\
+  = P_\vt \left[ \mu \in [\overline{X}_n - \dots, \overline{X}_n + \dots] \right]
+  = P_\vt \left[ \abs{\overline{X}_n - \mu} \leq \dots \right]
+\end{align*}
+Nach Satz 7.1 ist für jedes $\vt \in \varTheta$:
+\begin{align*}
+  \frac{\overline{X}_n - \mu}{S / \sqrt{n}} \sim t_{n-1} &  & \text{unter } P_\vt \\
+  1 - \alpha \leq P_\vt \left[ \abs{\frac{\overline{X}_n - \mu}{S / \sqrt{n}}} \leq \frac{\dots}{S / \sqrt{n}} \right]
+\end{align*}
+also erhalten wir das Konfidenzintervall für $\mu$ zum Niveau $1 - \alpha$:
+\begin{align*}
+  C (\zufallsvariablen) = \left[ \overline{X}_n - t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}}, \overline{X}_n + t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right]
+\end{align*}
