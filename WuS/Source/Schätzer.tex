@@ -1,0 +1,115 @@
+\hypertarget{sec:3}{\section{Schätzer}}
+\subsection*{Schätzer}
+Wir suchen ein Modell für eine Stichprobe $\zufallsvariablen$ und haben einen
+Parameteraum $\vartheta \subseteq \varTheta$ und für jedes $\vt$ einen
+Wahrscheinlichkeitsraum $ (\Omega, \F, P_\vt)$. Wir möchten nun die Parameter
+$\vt_1, \dots, \vt_m$ bestimmen. Ein Schätzer $T_j$ für einen Parameter $\vt_j$
+ist eine Zufallsvariable der Form $T_j := t_j (\zufallsvariablen)$ für eine
+Schätzfunktion $t_j$.
+\subsection*{Schätzwert}
+Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl. Sie
+entsteht durch das Einsetzen konkreter Daten in einen Schätzer: $T_j (\omega) =
+  t_j (x_1, \dots, x_n)$ und liefert damit einen Wert für genau einen Parameter.
+\subsection*{Eigenschaften von Schätzern}
+Sei $T$ ein Schätzer.
+\begin{itemize}
+  \item $T$ ist erwartungstreu, falls $E_\vt[T] = \vt$ gilt. $T$ schätzt
+        im Mittel also richtig.
+  \item Bias $:= E_\vt[T] - \vt$. Ein erwartungstreuer Schätzer hat also keinen Bias.
+  \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ (T - \vt)^2]$.
+  \item Eine Folge $T^{ (n)}$ von Schätzern heisst konsistent für $\vt$, falls $T^{
+              (n)}$ für $n \ra \infty$ in $P_\vt$-Wahrscheinlichkeit gegen $\vt$ konvergiert,
+        d.h. für jedes $\vt \in \varTheta$ gilt:
+        \begin{align*}
+          \lim_{n \ra \infty} P_\vt \left[ \abs{T^{ (n)} - \vt} > \varepsilon \right] = 0
+        \end{align*}
+\end{itemize}
+\subsection*{Maximum-Likelihood Methode}
+(Analog im diskreten Fall.) In einem Modell $P_\vt$ sind die Zufallsvariablen
+$\zufallsvariablen$ stetig mit einer gemeinsamen Dichtefunktion
+$f (x_1, \dots, x_n, \vt)$. Oft sind die $X_i$ i.i.d. und man erhält:
+\begin{align*}
+  f (x_1, \dots, x_n, \vt) & = P[X_1 = x_1, \dots, X_n = x_n] \\
+                           & = \prod_{i = 1}^n f_X (x_i, \vt)
+\end{align*}
+Wir nehmen nun an, dass die Daten die wir erhalten haben sehr
+Wahrscheinlich sind und versuchen nun folgende Likelihood funktion
+zu Maximieren durch Anpassungen an $\vt$:
+\begin{align*}
+  L (x_1, \dots, x_n; \vt)      & := f (x_1, \dots, x_n; \vt)      \\
+  \log L (x_1, \dots, x_n; \vt) & := \log f (x_1, \dots, x_n; \vt)
+\end{align*}
+letzteres kann bei Produkt zu Summe umwandlung hilfreich sein.
+\BoxStart{}
+Sei $\Theta = [0, 1]$. Wir betrachten die Modellfamilie $ {P_\theta}_{\theta \in \Theta}$, wobei $X_1, \ldots, X_n$ unter $\mathbb{P}_\theta$ unabhängig und identisch verteilt sind mit $X_1 \sim \text{Geom} (\theta)$. Was ist die Likelihood-Funktion $L (x_1, \ldots, x_n; \theta)$ für $x_1, \ldots, x_n \in \{1, 2, \ldots\}$?
+\begin{align*}
+  L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]            \\
+                               & =\prod_{i = 1}^n \mathbb{P}_\theta[X_i = x_i]           \\
+                               & = \theta^n \cdot  (1 - \theta)^{x_1 + \ldots + x_n - n}
+\end{align*}
+\\
+Was ist der Maximum-Likelihood-Schätzer $T_{\text{ML}}$ für $\theta$?
+
+$$n \cdot \log (\theta) +  (x_1 + \ldots + x_n - n) \cdot \log (1 - \theta)$$
+
+Wir setzen nun die Ableitung der log-Likelihood-Funktion nach $\theta$ gleich
+$0$ und erhalten:
+
+\begin{align*}
+   & \frac{n}{\theta} - \frac{x_1 + \ldots + x_n - n}{1 - \theta} = 0               \\
+   & \Longleftrightarrow n - n\theta =  (x_1 + \ldots + x_n) \cdot \theta - n\theta \\
+   & \Longleftrightarrow \theta = \frac{n}{x_1 + \ldots + x_n}                      \\
+   & = \frac{n}{X_1 + \ldots + X_n}
+\end{align*}
+
+\BoxEnd{}
+\subsection*{Empirisches Moment}
+Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment oder
+Stichprobenmoment $\hat{m}_k$ der Realisierung $ (x_1, \dots, x_n)$:
+\begin{align*}
+  \hat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
+\end{align*}
+\subsection*{Momentenmethode}
+Der Momentenmethode liegt zugrunde, dass die Momente einer Zufallsvariable bzw.
+einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden
+können.\\ Sei $\zufallsvariablen$ eine Stichprobe und $\varTheta$ der
+Parameterraum. Für jeden Parameter $\vt = (\vt_1, \dots, \vt_m) \in \varTheta$
+sei $\zufallsvariablen$ i.i.d. unter dem Wahrscheinlichkeitsraum $ (\Omega, \F,
+  P_\vt)$. Methode:
+\begin{enumerate}
+  \item Für gegebene Realisierungen $x_1, \dots, x_n$ bestimme für jedes $k \in \{1,
+          \dots, m\}$ das $k$-te empirische Moment
+  \item Stelle ein Gleichungssystem für die Unbekannten Parameter $\vt_1, \dots, \vt_m$
+        auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird,
+        also:
+        \begin{align*}
+          \hat{m}_k (x_1, \dots, x_n) = g_k (\vt_1, \dots, \vt_m)
+           &  & k \in \{1, \dots, m\}
+        \end{align*}
+  \item Existiert eine Eindeutige Lösung so wird das unsere Schätzung für $\vt$.
+\end{enumerate}
+\subsection*{Momentenschätzer}
+Der Vektor $\hat{\vt} (X_1, \dots, X_m)$ heisst Momentenschätzer des Parameters
+$\vt$.
+\subsection*{Beispiel: Normalverteile Stichprobe}
+Sei $\zufallsvariablen$ i.i.d. $\Normalverteilt$-verteilt mit unbekannten
+Parametern $\vt = (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$ max
+likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
+\begin{align*}
+  T_1 & = \frac{1}{n} \Sn X_i = \overline{X}_n     \\
+  T_2 & = \frac{1}{n} \Sn {X_1 - \overline{X}_n}^2
+\end{align*}
+möchten wir aber noch, dass der Schätzer erwartungstreu wird,
+so wählen wir für $T_2 = S^2$:
+\begin{align*}
+  S^2 = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
+\end{align*}
+\subsection*{Normalverteile Stichproben}
+Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
+\begin{itemize}
+  \item $\overline{X}_n \sim \mathcal{N} (\mu, \frac{\sigma^2}{n})$
+        und $\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt$.
+  \item $\frac{n-1}{\sigma^2} S^2 = \left( \frac{1}{\sigma^2} \Sn  (X_i - \overline{X}_n)^2 \right) \sim \mathcal{X}^2_{n-1}$
+  \item $\overline{X}_n$ und $S^2$ sind unabhängig
+  \item $\frac{\overline{X}_n - \mu}{S / \sqrt{n}} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{S / \sigma} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}} \sim t_{n-1}$
+\end{itemize}

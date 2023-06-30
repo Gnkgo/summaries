@@ -1,0 +1,98 @@
+\section{Tabellen}
+\subsection{Ableitungen}
+\begin{center}
+  \begin{tabularx}{\linewidth}{c>{\centering\arraybackslash}Xc}
+    $\mathbf{F(x)}$                        & $\mathbf{f(x)}$          & $\mathbf{f'(x)}$         \\
+    %\midrule
+    $(x-1)e^x $                            & $xe^x$                   & $(x+1)e^x$               \\
+    $\frac{x^{-a+1}}{-a+1}$                & $\frac{1}{x^a}$          & $\frac{a}{x^{a+1}}$      \\
+    $\frac{x^{a+1}}{a+1}$                  & $x^a \ (a \ne -1)$       & $a \cdot x^{a-1}$        \\
+    $\frac{1}{k \ln(a)}a^{kx}$             & $a^{kx}$                 & $ka^{kx} \ln(a)$         \\
+    $\ln |x|$                              & $\frac{1}{x}$            & $-\frac{1}{x^2}$         \\
+    $\frac{2}{3}x^{3/2}$                   & $\sqrt{x}$               & $\frac{1}{2\sqrt{x}}$    \\
+    $-\cos(x)$                             & $\sin(x)$                & $\cos(x)$                \\
+    $ $                                    & $\frac{\sin(x)^2}{2} $   & $\sin(x)\cos(x)$         \\
+    $\sin(x)$                              & $\cos(x)$                & $-\sin(x)$               \\
+    $\frac{1}{2}(x-\frac{1}{2}\sin(2x))$   & $\sin^2(x)$              & $2 \sin(x)\cos(x)$       \\
+    $\tan(x) - x$                          & $\tan(x)^2$              & $2\sec(x)^2 \tan(x)$     \\
+    $-\cot(x) - x$                         & $\cot(x)^2$              & $-2 \cot(x) \csc(x)^2$   \\
+    $\frac{1}{2}(x + \frac{1}{2}\sin(2x))$ & $\cos^2(x)$              & $-2\sin(x)\cos(x)$       \\
+    \multirow{2}*{$-\ln|\cos(x)|$}         & \multirow{2}*{$\tan(x)$} & $\frac{1}{\cos^2(x)}$    \\
+                                           &                          & $1 + \tan^2(x)$          \\
+    $\cosh(x)$                             & $\sinh(x)$               & $\cosh(x)$               \\
+    $\log(\cosh(x))$                       & $\tanh(x)$               & $\frac{1}{\cosh^2(x)}$   \\
+    $\ln | \sin(x)|$                       & $\cot(x)$                & $-\frac{1}{\sin^2(x)}$   \\
+    $\frac{1}{c} \cdot e^{cx}$             & $e^{cx}$                 & $c \cdot e^{cx}$         \\
+    $x(\ln |x| - 1)$                       & $\ln |x|$                & $\frac{1}{x}$            \\
+    $\frac{1}{2}(\ln(x))^2$                & $\frac{\ln(x)}{x}$       & $\frac{1 - \ln(x)}{x^2}$ \\
+    $\frac{x}{\ln(a)} (\ln|x| -1)$         & $\log_a |x|$             & $\frac{1}{\ln(a)x}$      \\
+
+    %\bottomrule
+  \end{tabularx}
+\end{center}
+
+%\subsection{Weitere Ableitungen}
+\begin{center}
+  \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+
+    $\mathbf{F(x)}$                          & $\mathbf{f(x)}$                                \\
+    \midrule
+    $\arcsin(x) / \arccos(x)$                & $\frac{1 / -1}{\sqrt{1 - x^2}}$                \\
+    $\arctan(x)$                             & $\frac{1}{1 + x^2}$                            \\
+
+    $x\arcsin(x) + \sqrt{1 - x^2}$           & $\arcsin(x)$                                   \\
+    $x\arccos(x) - \sqrt{1 - x^2}$           & $\arccos(x)$                                   \\
+    $x\arctan(x) - \frac{1}{2}\ln(1+x^2)$    & $\arctan(x)$                                   \\
+    $\ln(\cosh(x))$                          & $\tanh(x)$                                     \\
+
+    $x^x \ (x > 0)$                          & $x^x \cdot (1 + \ln{x})$                       \\
+    $f(x)^{g(x)}$                            & $e^{g(x) ln(f(x))}$                            \\
+    $f(x) = cos(\alpha)$                     & $f(x)^n = sin(x + n\frac{\pi}{2})$             \\
+    $f(x) = \frac{1}{ax + b}$                & $f(x)^n = (-1)^n * a^n * n! * (ax + b)^{-n+1}$ \\
+    $-\ln(\cos(x))$                          & $\tan(x)$                                      \\
+    $\ln(\sin(x))$                           & $\cot(x)$                                      \\
+    $\ln(\tan(\frac{x}{2}))$                 & $\frac{1}{\sin(x)}$                            \\
+    $\ln{\tan(\frac{x}{2} + \frac{\pi}{4})}$ & $\frac{1}{\cos(x)}$                            \\
+
+    \bottomrule
+  \end{tabularx}
+\end{center}
+
+%\subsection{Integrale}
+\begin{center}
+  \begin{tabularx}{\linewidth}{>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    $\mathbf{f(x)}$                        & $\mathbf{F(x)}$                                                  \\
+    \midrule
+    $\int f'(x) f(x) \, dx$                & $\frac{1}{2}(f(x))^2$                                            \\
+    $\int \frac{f'(x)}{f(x)} \, dx$        & $\ln|f(x)|$                                                      \\
+    $\int_{-\infty}^\infty e^{-x^2} \, dx$ & $\sqrt{\pi}$                                                     \\
+    $\int (ax+b)^n \, dx$                  & $\frac{1}{a(n+1)}(ax+b)^{n+1}$                                   \\
+    $\int x(ax+b)^n \, dx$                 & $\frac{(ax+b)^{n+2}}{(n+2)a^2} - \frac{b(ax+b)^{n+1}}{(n+1)a^2}$ \\
+    $\int (ax^p+b)^n x^{p-1} \, dx$        & $\frac{(ax^p+b)^{n+1}}{ap(n+1)}$                                 \\
+    $\int (ax^p + b)^{-1} x^{p-1} \, dx$   & $\frac{1}{ap} \ln |ax^p + b|$                                    \\
+    $\int \frac{ax+b}{cx+d} \, dx$         & $\frac{ax}{c} - \frac{ad-bc}{c^2} \ln |cx +d|$                   \\
+    $\int \frac{1}{x^2+a^2} \, dx$         & $\frac{1}{a} \arctan \frac{x}{a}$                                \\
+    $\int \frac{1}{x^2 - a^2} \, dx$       & $\frac{1}{2a} \ln\left| \frac{x-a}{x+a} \right|$                 \\
+    $\int \sqrt{a^2+x^2} \, dx $           & $\frac{x}{2}f(x) + \frac{a^2}{2}\ln(x+f(x))$                     \\
+    \bottomrule
+  \end{tabularx}
+\end{center}
+
+\subsection*{Momenterzeugende Funktion}
+Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
+\begin{align*}
+  M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
+\end{align*}
+\subsection*{Grosse Summenabweichung}
+Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
+Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
+$b \in \R$ gilt dann:
+\begin{align*}
+  P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
+\end{align*}
+\subsection*{Chernoff Schranken}
+Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $S_n = \Sn X_i$.
+Sei $\mu_n := E[S_n] = \Sn p_i$ und $\delta > 0$. Dann gilt:
+\begin{align*}
+  P[S_n \geq  (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{ (1+\delta)^{1 + \delta}} \right)^{\mu_n}
+\end{align*}

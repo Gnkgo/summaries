@@ -1,0 +1,244 @@
+\hypertarget{sec:2}{\section{Zufallsvariablen}}
+\subsection*{Zufallsvariable}
+Sein $ (\Omega, \F, P)$ ein Wahrscheinlichkeitsraum. Also $\Omega$ ein
+Grundraum, $\F \subseteq 2^\Omega$ die beobachtbaren Ereignisse und $P$ ein
+Wahrscheinlichkeitsmass auf $\F$. Eine (reelwertige) Zufallsvariable auf
+$\Omega$ ist eine messbare Funktion $X : \Omega \mapsto \R$. Das bedeutet, dass
+die Menge $\{X \leq t\} = \{\omega : X (\omega) \leq t\}$ für jedes $t$ ein
+beobachtbares Ereigniss sein muss.
+\subsection*{Verteilungsfunktion}
+Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$:
+\begin{align*}
+  t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
+\end{align*}
+und hat die Eigenschaften:
+\begin{itemize}
+  \item $F_X$ ist wachsend und rechtsstetig. Das bedeutet,
+        dass $F_X (s) \leq F_X (t)$ für $s \leq t$ gilt und $F_X (u) \ra F_X (t)$
+        für $u \ra t$ mit $u > t$
+  \item $\lim_{t \ra - \infty} F_X (t) = 0$ und $\lim_{t \ra + \infty} F_X (t) = 1$
+\end{itemize}
+\subsection*{Dichtefunktion}
+Das Analogon der Gewichtsfunktion im Diskreten Fall. Eine Zufallsvariable $X$
+mit Verteilungsfunktion $F_X (t) = P[X \leq t]$ heisst (absolut) stetig mit
+Dichte (funktion) $f_X : \R \mapsto [0, \infty)$, falls gilt:
+\begin{align*}
+  F_X (t) = \int_{-\infty}^t f_X (s) \; dx &  & \text{für alle } t \in \R
+\end{align*}
+und hat die Eigenschaften:
+\begin{itemize}
+  \item $f_X \geq 0$ und $f_X = 0$ ausserhalb von $\W (X)$.
+  \item $\int_{-\infty}^\infty f_X (s) \; ds = 1$;
+        das folgt aus $\lim_{t \ra + \infty} F_X (t) = 1$
+\end{itemize}
+\subsection*{Gleichverteilung}
+Die Gleichverteilung auf dem Intervall $[a, b]$ ist ein Modell für die
+Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige Zufallsvariable $X$
+hat den Wertebereich $\W (X) = [a, b]$, sowie
+\begin{align*}
+  f_X (t) & =
+  \begin{cases}
+    \frac{1}{b-a} & \text{für } a \leq t \leq b \\
+    0             & \text{sonst.}
+  \end{cases} \\
+  F_X (t) & =
+  \begin{cases}
+    0               & \text{für } t < a           \\
+    \frac{t-a}{b-a} & \text{für } a \leq t \leq b \\
+    1               & \text{für } t > b.
+  \end{cases}
+\end{align*}
+wir schreiben kurz $X \sim U (a, b)$.
+\begin{align*}
+  E[X] = \frac{a + b}{2} &  & Var[X] = \frac{ (b - a + 1)^2 - 1}{12}
+\end{align*}
+\subsection*{Exponentialverteilung}
+Die Exponentialverteilung mit Parameter $\lambda > 0$ ist das stetige Analogon
+der Geometrischen Verteilung. Die zugehörige Zufallsvariable $X$ hat $\W (X) =
+  [0, \infty)$, Dichte und Verteilungsfunktion:
+\begin{align*}
+  f_X (t) & =
+  \begin{cases}
+    \lambda \cdot e^{-\lambda t} & \text{für } t \geq 0 \\
+    0                            & \text{für }t < 0
+  \end{cases} \\
+  F_X (t) & =
+  \int_{-\infty}^t f_X (s) \; ds =
+  \begin{cases}
+    1 - e^{-\lambda t} & \text{für } t \geq 0 \\
+    0                  & \text{für }t < 0
+  \end{cases}
+\end{align*}
+wir schreiben kurz $X \sim Exp (\lambda)$. Weiter ist
+die Funktion Gedächtsnislos, dh. $\cond{X > t + s}{X > s} = P[X > t]$.
+\begin{align*}
+  E[X] = \frac{1}{\lambda} &  & Var[X] = \frac{1}{\lambda^2}
+\end{align*}
+\subsection*{Normalverteilung}
+Die Normalverteilung hat zwei Parameter: $\mu \in \R$ und $\sigma^2 > 0$. Die
+zugehörige Zufallsvariable $X$ hat den Wertebereich $\W (X) = \R$ und die
+Dichtefunktion:
+\begin{align*}
+  f_X (t) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{ (t - \mu)^2}{2 \sigma^2}}
+   &  & \text{für } t \in \R
+\end{align*}
+welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
+\subsection*{Standard Normalverteilung}
+Wichtige Normalverteilung mit $\Standardnormalverteilt$. Weder für die
+zugehörige Dichte $\vp (t)$ noch Verteilungsfunktion $\Phi (t)$ gibt es
+geschlossene Ausdrücke, aber das Integral
+\begin{align*}
+  \Phi (t) = \int_{-\infty}^t \vp (s) \; ds =
+  \frac{1}{\sqrt{2\pi}} \int_{-\infty}^t e^{-\frac{1}{2} s^2} \; ds
+\end{align*}
+ist tabelliert. Ist $X \sim \Normalverteilt$, so ist
+$\frac{X - \mu}{\sigma} \sim \Standardnormalverteilt$, also:
+\begin{align*}
+  F_X (t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left  ( \frac{t - \mu}{\sigma} \right)
+\end{align*}
+deshalb genügt es $\Phi$ zu tabellieren.
+\begin{align*}
+  \Phi (-z) = 1 - \Phi (z)
+\end{align*}
+\subsection*{Normalapproximation}
+Wenn $S_n \sim Bin (n, p)$ dann
+\begin{align*}
+  S_n \sim_{approx} N (np, np (1-p))
+\end{align*}
+\subsection*{Erwartungswert}
+Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
+\begin{align*}
+  E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
+\end{align*}
+sofern das Integral absolut konvergiert. Ist das Integral nicht
+absolut konvergent, so existiert der Erwartungswert nicht.
+\subsection*{Erwartungswert einer Funktion}
+Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
+$X$ stetig mit Dichte $f_X$, so ist
+\begin{align*}
+  E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
+\end{align*}
+\subsection*{Momente \& Absolute Momente}
+Sei $X$ eine Zufallsvariable und $p \in \R^+$. Wir definieren:
+\begin{itemize}
+  \item $p$-te absolute Moment von $X$: $M_p := E[\abs{X}^p]$
+  \item falls $M_n < \infty$ für ein $n$, dann ist das $n$-te (rohe) Moment von $X$
+        durch $m_n := E[X^n]$ definiert.
+  \item Das $n$-te zentralisierte Moment von $X$ ist durch $\mu_n := E[ (X - E[X])^n]$
+        definiert.
+\end{itemize}
+Es gilt weiter, dass $M_n < \infty$ für $n \in \N \implies \abs{m_m} \leq M_n$.
+\begin{align*}
+  M_p                         & = \int_{-\infty}^\infty \abs{x}^p f_X (x) \; dx \\
+  m_n                         & = \int_{-\infty}^\infty x^n f_X (x) \; dx       \\
+  p \leq q \land M_q < \infty & \implies M_p < \infty
+\end{align*}
+\subsection*{Gemeinsame Verteilung/Dichte}
+Die Gemeinsame Verteilungsfunktion von Zufallsvariablen $\zufallsvariablen$ ist
+die Abbildung $F: \R^n \mapsto [0, 1]$ mit:
+\begin{align*}
+  F (x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                                                 \\
+                      & = \int_{-\infty}^{x_1} \dots \int_{-\infty}^{x_n} f (t_1, \dots, t_n) \; dt_n \dots t_1
+\end{align*}
+dann heisst $f (x_1, \dots, x_n)$ die gemeinsame Dichte, welche folgende
+Eigenschaften hat:
+\begin{itemize}
+  \item $f (x_1, \dots, x_n) \geq 0$ und $= 0$ ausserhalb von $\W (\zufallsvariablen)$.
+  \item $\int_{-\infty}^\infty \dots \int_{-\infty}^\infty f (t_1, \dots, t_n) \; dt_n \dots t_1 = 1$
+  \item $P[ (\zufallsvariablen) \in A] = \int_{ (x_1, \dots, x_n) \in A} f (t_1, \dots, t_n) \; dt_n \dots t_1$ für $A \subseteq \R^n$
+\end{itemize}
+\subsection*{Randverteilung}
+Haben $X, Y$ die gemeinsame Verteilungsfunktion $F$, dann ist:
+\begin{align*}
+  F_X (x) & = P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y) \\
+  f_X (x) & = \int_{-\infty}^\infty f (x, y) \; dy
+\end{align*}
+\subsection*{Unabhängigkeit}
+Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
+(äquivalent):
+\begin{align*}
+  F (x_1, \dots, x_n) = F_{X_1} (x_1) \cdot \hdots \cdot F_{X_n} (X_n) \\
+  f (x_1, \dots, x_n) = f_{X_1} (x_1) \cdot \hdots \cdot f_{X_n} (X_n)
+\end{align*}
+für alle $x_1, \dots, x_n$.
+\subsection*{Bedingte Verteilungen}
+Es gilt:
+\begin{align*}
+  f_{X_1 \; | \; X_2} (x_1 \; | \; x_2) & = \frac{f_{X_1,  X_2} (x_1,  x_2)}{f_{X_2} (x_2)}              \\
+  \cond{Y > t}{Y < a}                   & = \frac{P[t < Y < a]}{P[Y < a]}                                \\
+  E[X_1 \; | \; X_2]                    & = \int x_1 \cdot f_{x_1 \; | \; x_2} (x_1 \; | \; x_2) \; dx_1
+\end{align*}
+\subsection*{Summen von Zufallsvariablen}
+Sei $Z = X + Y$ eine Zufallsvariable mit:
+\begin{align*}
+  F_Z (z) & = P[Z \leq z] = P[X + Y \leq z]                                     \\
+          & = \int_{-\infty}^\infty \int_{-\infty}^{z - x} f (x, y )\; dy \, dx \\
+  f_Z (z) & = \int_{-\infty}^\infty f (z - y, y) \; dy
+\end{align*}
+\subsection*{Transformationen}
+Sei $X$ eine Zufallsvariable mit Verteilung und Dichte. Sei $g: \R \mapsto \R$
+eine messbare Funktion. Betrachte nun $Y = g (X)$, wir suchen Verteilung und
+Dichte von $Y$:
+\begin{align*}
+  F_Y (t) & = P[Y \leq t] = P[g (Y) \leq t] = \int_{A_g} f_X (s) \; ds \\
+  A_g     & := \{s \in \R \; | \; g (s) \leq t\}
+\end{align*}
+Wobei man die Dichte durch ableiten der Verteilung erhält.
+\subsection*{Anwendung von Transformationen}
+Sei $F$ eine stetige und streng monoton wachsende Verteilungsfunktion mit
+Unkehrfunktion $F^{-1}$. Ist $X \sim \mathcal{U} (0, 1)$ und $Y = F^{-1} (X)$,
+so hat $Y$ gerade die Verteilungsfunktion $F$:
+\begin{align*}
+  F_Y (t) & = P[Y \leq t] = P[F^{-1} (X) \leq t] \\
+          & = P[X \leq F (t)] = F (t)
+\end{align*}
+\subsection*{Markov Ungleichung}
+Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
+wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
+\begin{align*}
+  P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
+\end{align*}
+\subsection*{Chebyshev-Ungleichung}
+Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
+\begin{align*}
+  P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
+\end{align*}
+\subsection*{Schwaches Gesetz der grossen Zahlen}
+Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
+  \sigma^2$ haben. Sei
+\begin{align*}
+  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
+\end{align*}
+Dann konvergiert $\overline{X}_n$ für $n \ra \infty$ in Wahrscheinlichkeit/
+stochastisch gegen $\mu = E[X_i]$, d.h.:
+\begin{align*}
+  P \left[ \abs{\overline{X}_n - \mu} > \varepsilon \right] \underset{n \ra \infty}{\longrightarrow} 0
+   &  & \text{für jedes } \varepsilon > 0
+\end{align*}
+(Statt unabhängig genügt auch $Cov (X_i, X_k) = 0$ für $i \neq k$)
+\subsection*{Starkes Gesetz der grossen Zahlen}
+Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+dieselbe Verteilung haben, und ihr Erwartungswert $\mu = E[X_i]$ sei endlich.
+Für:
+\begin{align*}
+  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
+\end{align*}
+gilt dann
+\begin{align*}
+  \overline{X}_n \underset{n \ra \infty}{\longrightarrow} \mu &  & \text{P-fastsicher}
+\end{align*}
+d.h.:
+\begin{align*}
+  P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
+\end{align*}
+\subsection*{i.i.d. / u.i.v.}
+Independent identically distributed
+\subsection*{Zentraler Grenzwertsatz}
+Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
+und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
+\begin{align*}
+  \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x)
+   &  & \text{für alle } x \in \R
+\end{align*}
+wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist.

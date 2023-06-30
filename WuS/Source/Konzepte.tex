@@ -1,0 +1,292 @@
+\hypertarget{sec:0}{\section{Konzepte}}
+\subsection*{Ereignisraum}
+Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse des betrachteten
+Zufallsexperiments. Die Elemente $\omega \in \Omega$ heissen
+Elementarereignisse.
+\subsection*{Potenzmenge}
+Die Potenzmenge von $\Omega$, bezeichnet mit $\mathcal{P} (\Omega)$ oder
+$2^\Omega$ ist die Menge aller Teilmengen von $\Omega$. Ein Prinzipielles
+Ereignis ist eine Teilmenge $A \subseteq \Omega$, also eine Kollektion von
+Elementarereignissen. Die Klasse aller beobachtbaren Ereignisse ist
+$\mathcal{F}$.
+\subsection*{$\sigma$-Algebra}
+Ein Mengensystem ist eine $\sigma$-Algebra falls
+\begin{enumerate}[label=  (\arabic*)]
+  \item $\Omega \in \mathcal{F}$
+  \item Für jedes $A \in \mathcal{F}$ ist auch $A^\complement \in \mathcal{F}$
+  \item Für jede Folge ${A_n}_{n \in \mathbb{N}}$ mit $A_n \in \mathcal{F}$ für alle $n
+          \in \N$ auch die Vereinigung $\bigcup_{n = 1}^\infty A_n \in \F$
+\end{enumerate}
+\subsection*{Wahrscheinlichkeitsmass}
+Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden Eigenschaften:
+\begin{enumerate}[label= (\arabic*)]
+  \item $\mathcal{P}[A] \geq 0 \text{ für alle Ereignisse } A \in \F$
+  \item $P[\Omega] = 1$
+  \item Für $A_i \in \F$ paarweise disjunkt gilt $P[\bigcup_{i = 1}^\infty A_i] =
+          \sum_{i = 1}^\infty \mathcal{P}[A_i]$
+\end{enumerate}
+Es gelten weiter folgende Rechenregeln:
+\begin{itemize}
+  \item $\mathcal{P}[A^\complement] = 1 - \mathcal{P}[A]$
+  \item $\mathcal{P}[\emptyset] = 0$
+  \item Für $A \subseteq B$ gilt $\mathcal{P}[A] \leq \mathcal{P}[B]$
+  \item $\mathcal{P}[A \cup B] = \mathcal{P}[A] + \mathcal{P}[B] - \mathcal{P}[A \cap B]$
+\end{itemize}
+\subsection*{Diskrete Wahrscheinlichkeitsräume}
+Impliziert:
+\begin{itemize}
+  \item $\Omega$ ist endlich oder abzählbar unendlich
+  \item $\F = 2^{\Omega}$
+\end{itemize}
+\subsection*{Laplace Raum}
+Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $\abs*{\Omega} = N$
+und $\F = 2^\Omega$ sowie alle $\omega_i$ gleich wahrscheinlich mit $p_i =
+  \frac{1}{n}$, so heisst $\Omega$ ein Laplace Raum und $P$ die diskrete
+Gleichverteilung auf $\Omega$. Dann ist für $A \subseteq \Omega$:
+\begin{align*}
+  P[A] = \frac{\abs{A}}{\abs{\Omega}}
+\end{align*}
+\subsection*{Bedingte Wahrscheinlichkeit}
+Seien $A, B$ Ereignisse mit $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$
+unter der Bedingung, dass $A$ eintritt wird definiert durch:
+\begin{align*}
+  P[B \;|\; A] & := \frac{P[B \cap A]}{P[A]}            \\
+               & = \frac{P[A \;|\; B] \cdot P[B]}{P[A]}
+\end{align*}
+\subsection*{Multiplikationsregel}
+Es gilt:
+\begin{align*}
+  P[A \cap B] = P[A \;|\; B] \cdot P[B] = P[B \;|\; A] \cdot P[A]
+\end{align*}
+\subsection*{Satz der totalen Wahrscheinlichkeit}
+Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte
+Ereignisse, d.h. $\bigcup_{i = 1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset
+  \quad \forall i \neq k$. Dann gilt:
+\begin{align*}
+  P[B] = \sum_{i = 1}^n P[B \; | \; A_i] \cdot P[A_i]
+\end{align*}
+\emph{Beweis.}
+Da $B \subseteq \Omega \implies B = B \cap \Omega
+  = B \cap  (\bigcup_{i=1}^n A_i) = \bigcup_{i = 1}^n  (B \cap A_i)$.
+Weiter sind alle Mengen der Art $ (B \cap A_i)$ paarweise disjunkt,
+was bedeutet, dass $ (B \cap A_i)$ eine disjunkte Zerlegung von $B$
+bilden. Damit folgt:
+\begin{align*}
+  P[B] = P \left[ \bigcup_{i = 1}^n  (B \cap A_i)\right] \\
+  = \Sn P[B \cap A_i] = \sum_{i = 1}^n P[B \; | A_i] \cdot P[A_i]
+\end{align*}
+\subsection*{Satz von Bayes}
+Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i \in
+  \{1, \dots, n\}$. Sei $B$ ein Ereignis mit $P[B > 0]$. Dann gilt für jedes $k$:
+\begin{align*}
+  \cond{A_k}{B} = \frac{\cond{B}{A_k} \cdot P[A_k] }{\Sn \cond{B}{A_i} \cdot P[A_i]}
+\end{align*}
+\emph{Beweis.} Verwende Definition Bedingte Wahrscheinlichkeit,
+im Zähler Multiplikationsregel und im Nenner Satz der totalen Wahrscheinlichkeit.
+\subsection*{Unabhängige Ereignisse  (2)}
+Zwei ereignisse heissen (stochastisch) Unabhängig, falls
+\begin{align*}
+  P[A \cap B] = P[A] \cdot P[B]
+\end{align*}
+Ist $P[A] = 0$ oder $P[B] = 0$, so sind $A, B$ immer unabhängig.
+Für $P[A] \neq 0$ gilt:
+\begin{align*}
+  A, B \text{ unabhängig} \Longleftrightarrow \cond{A}{B} = P[A]
+\end{align*}
+\subsection*{Unabhängige Ereignisse  ($\infty$)}
+Die Ereignisse $\ereignisse$ heissen (stochastisch) unabhängig, wenn für jede
+endliche Teilfamilie der Produktformel gilt, d.h. für $m \in \N$ und $\{k_1,
+  \dots, k_m\} \subseteq \{1, \dots, n\}$:
+\begin{align*}
+  P \left[\bigsubsection* A_{k_i} \right] = \Pn P[A_{k_i}]
+\end{align*}
+\subsection*{Diskrete Zufallsvariable}
+Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
+  \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch $\W (X) = \{x_1, x_2,
+  \dots\}$ endlich oder abzählbar.
+\begin{itemize}
+  \item Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$,
+        definiert durch:
+        \begin{align*}
+          t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
+        \end{align*}
+  \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W
+          (X) \mapsto [0, 1]$, definiert durch:
+        \begin{align*}
+          p_X (X_k) := P[X = x_k] = P[\{\omega : X (\omega) = x_k\}]
+        \end{align*}
+\end{itemize}
+Wobei gilt:
+\begin{itemize}
+  \item $F_X (t) = P[X \leq t] = \sum_{k \text{ mit } x_k \leq t} p_X (x_k)$
+  \item Für jedes $x_k \in \W (X)$ gilt $0 \leq p_X (x_k) \leq 1$ und $\sum_{x_k \in \W
+            (X)} p_X (x_k) = 1$
+  \item $\mu_X (B) := P[X \in B] = \sum_{x_k \in B} p_X (x_k)$
+  \item $\sum_{x_k \in \W (X)} p_X (x_k) = P[X \in \W (X)] = 1$
+\end{itemize}
+\subsection*{Indikatorfunktion}
+Für jede Teilmenge $A \subseteq \Omega$ ist die Indikatorfunktion $I_A$ von $A$
+definiert durch:
+\begin{align*}
+  I_A (\omega) :=
+  \begin{cases}
+    1 \quad \text{falls } \omega \in A             \\
+    0 \quad \text{falls } \omega \in A^\complement \\
+  \end{cases}
+\end{align*}
+\subsection*{Erwartungswert}
+Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$, dann ist
+der Erwartungswert definiert durch:
+\begin{align*}
+  E[X] := \sum_{x_k \in \W (X)} x_k \cdot p_X (x_k)
+\end{align*}
+und hat folgende Eigenschaften:
+\begin{itemize}
+  \item Linearität: $E[a \cdot X + b] = a \cdot E[X] + b$
+  \item Monotonie: $X \leq Y \implies E[X] \leq E[Y]$
+  \item Nimmt $X$ nur Werte in $\N $ an:
+        \begin{align*}
+          E[X] = \Sinfty P[X \geq i]
+        \end{align*}
+\end{itemize}
+\subsection*{Erwartungswert von Funktionen}
+Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y = g
+  (X)$ für eine Funktion $Y: \R \mapsto \R$. Dann gilt:
+\begin{align*}
+  E[Y] = E[g (X)] = \sum_{x_k \in \W (X)} g (x_k) \cdot p_X (x_k)
+\end{align*}
+\subsection*{Varianz}
+Sei $X$ eine diskrete Zufallsvariable. Ist $E[X^2] < \infty$, so heisst:
+\begin{align*}
+  Var[X] & := E[ {X - E[X]}^2]                                     \\
+         & = \sum_{x_k \in \W (X)}  {x_k - E[X]}^2 \cdot p_X (x_k)
+\end{align*}
+die Varianz von $X$. Es gilt weiter:
+\begin{itemize}
+  \item $Var[X] = E[X^2] - {E[X]}^2$
+  \item $Var[a \cdot X + b] = a^2 \cdot Var[X]$
+  \item $Var[X - Y] = Var[X] +  {-1}^2 \cdot Var[Y]$
+\end{itemize}
+\subsection*{Standardabweichung}
+$$
+  \sigma (X) = \sqrt{Var[X]}
+$$
+\subsection*{Gemeinsame Verteilung}
+Seien $\zufallsvariablen$ beliebige Zufallsvariablen. Die Gemeinsame
+Verteilungsfunktion von $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto
+  [0, 1]$, definiert durch:
+\begin{align*}
+  (x_1, \dots, x_n) \mapsto F (x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                        \\
+                                                & = \sum_{y_1 \leq x_1, \dots, y_n \leq x_n} p (y_1, \dots, y_n)
+\end{align*}
+Die Gemeinsame Gewichtsfunktion ist:
+\begin{align*}
+  p (x_1, \dots, x_n) := P[X_1 = x_1, \dots, X_n = x_n]
+\end{align*}
+\subsection*{Randverteilung}
+Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
+  \R \mapsto [0, 1]$,
+\begin{align*}
+  x \mapsto F_X (x) := P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y)
+\end{align*}
+Sind $X, Y$ diskrete Zufallsvariablen mit $\W (Y) = \{y_1, y_2, \dots\}$
+und gemeinsamer Gewichtsfunktion $p (x, y)$, so ist die Gewichtsfunktion
+der Randverteilung von $X$ gegeben durch:
+\begin{align*}
+  x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
+\end{align*}
+\subsection*{Unabhängige Zufallsvariablen}
+Zufallsvariablen $\zufallsvariablen$ heissen Unabhängig, falls gilt
+(äquivalent):
+\begin{align*}
+  F (x_1, \dots, x_n) & = F_{X_1} (x_1) \cdot \hdots \cdot F_{X_n} (x_n) \\
+  p (x_1, \dots, x_n) & = p_{X_1} (x_1) \cdot \hdots \cdot p_{X_n} (x_n)
+\end{align*}
+\subsection*{Unabhängige Ereignisse}
+Ereignisse $\ereignisse$ heissen Unabhängig, falls für beliebige Teilmengen
+$B_i \subseteq \W (X_i) \quad i = 1, \dots, n$ gilt (äquivalent):
+\begin{align*}
+  P[X_1 \in B_1, \dots, X_n \in B_n] = \Pn P[X_i \in B_i]
+\end{align*}
+\subsection*{Funktionen von Zufallsvariablen}
+Seien $\zufallsvariablen$ diskrete Unabhängige Zufallsvariablen und $f_i: \R
+  \mapsto \R$ irgendwelche Funktionen. Sei weiter $Y_i := f_i (X_i)$. Dann sind
+die Zufallsvariablen $Y_1, \dots, Y_n$ ebenfalls unabhängig.
+\subsection*{Linearität des Erwartungswertes}
+Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
+Erwartungswerten. $E[X_1], \dots, E[X_n]$. Sei $Y = a + \Sn b_i \cdot X_i$ mit
+Konstanten $a, b_1, \dots, b_n$. Dann gilt:
+\begin{align*}
+  E[Y] = a + \Sn b_i \cdot E[X_i]
+\end{align*}
+\subsection*{Kovarianz}
+Seien $X, Y$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $ (\Omega, \F,
+  P)$ mit endlichen Erwartungswerten. Dann ist die Kovarianz definiert als:
+\begin{align*}
+  Cov (X, Y) & := E[XY] - E[X]E[Y]          \\
+             & = E[ (X - E[X])  (Y - E[Y])]
+\end{align*}
+Wobei $Cov (X, X) = Var[X]$.
+\subsection*{Korrelation}
+Die Korrelation von $X, Y$ ist definiert durch
+\begin{align*}
+  \rho (X, Y) := \begin{cases}
+                   \frac{Cov (X, Y)}{\sigma (X) \cdot \sigma (Y)} & \text{falls } \sigma (X) \cdot \sigma (Y) > 0 \\
+                   0                                              & \text{sonst.}
+                 \end{cases}
+\end{align*}
+und es gilt $\abs{Cov (X, Y)} \leq \sigma (X) \cdot \sigma (Y)$
+beziehungsweise $-1 \leq \rho (X, Y) \leq 1$.
+\subsection*{Summenformel für Varianzen}
+\begin{align*}
+  Var \left[ \Sn X_i \right] = \Sn Var[X_i] + 2 \cdot \sum_{i < j} Cov (X_i, X_j)
+\end{align*}
+ist aber $Cov (X, Y) = 0$  ($X, Y$ paarweise unkorreliert), so wird
+die Summe linear.
+\subsection*{Produkte von Zufallsvariablen}
+Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
+Erwartungswerten. Falls $\zufallsvariablen$ unabhängig sind, so ist:
+\begin{align*}
+  E \left[ \Pn X_i \right] = \Pn E[X_i]
+\end{align*}
+Dann sind auch $\zufallsvariablen$ paarweise unkorreliert und:
+\begin{align*}
+  Var \left[ \Sn X_i \right] = \Sn Var[X_i]
+\end{align*}
+da Unabhängig $\implies$ paarweise Unabhängig $\implies$ unkorreliert.
+\subsection*{Bedingte Verteilung}
+Seien $X, Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p (x,
+  y)$. Die bedingte Gewichtsfunktion von $X$, gegeben dass $Y = y$, ist definiert
+durch:
+\begin{align*}
+  p_{X \, | \, Y} (x \; | \; y)    & := \cond{X = x}{Y = y}     \\
+  \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p (x, y)}{p_Y (y)}
+\end{align*}
+für $p_Y (y) > 0$ und $0$ sonst.
+\subsection*{Kriterium für Unabhängigkeit}
+$X, Y$ sind genau dann unabhängig, wenn für alle $y$ mit $p_Y (y) > 0$
+gilt:
+\begin{align*}
+  p_{X\,|\,Y} (x \; | \; y) = p_X (x) &  & \forall x \in \W (X)
+\end{align*}
+\subsection*{$n$ tief $k$}
+\begin{align*}
+  \binom{n}{k} = \frac{n!}{k! \cdot  (n - k)!}
+\end{align*}
+\subsection*{Ableitung, Integration}
+Es gilt:
+\begin{itemize}
+  \item \textbf{Summenregel} $ (f (x) + g (x))' = f' (x) + g' (x)$
+  \item \textbf{Produktregel} $ (f (x) \cdot g (x))' = f' (x) \cdot g (x) + f (x) \cdot g' (x)$
+  \item \textbf{Quotientenregel} $\left( \frac{f (x)}{g (x)} \right)' = \frac{f' (x) \cdot g (x) - f (x) \cdot g' (x)}{g^2 (x)}$ wenn $g (x) \neq 0$
+  \item \textbf{Kettenregel} $ (f (g (x)))' = f' (g (x)) \cdot g' (x)$
+  \item \textbf{Partielle Integration} $\int_a^b f' (x) \cdot g (x) \; dx = [f (x) \cdot g (x)]_a^b - \int_a^b f (x) \cdot g' (x) \; dx$
+  \item \textbf{Substitution} $\int_{\varphi (a)}^{\varphi (b)} f (x) \; dx = \int_a^b f (\varphi (t)) \cdot \varphi' (t) \; dt$
+  \item $a+c, b+c \in I: \quad \int_a^b f (t + c) \; dt = \int_{a+c}^{b+c} f (x) \; dx$
+  \item \textbf{Logarithmus} $\int \frac{f' (t)}{f (t)} \; dt = \log (\abs{f (x)})$
+\end{itemize}
+\subsection*{Substitution Beispiel}
+\begin{align*}
+  \int \cos (x^2) 2x \; dx &  & u = x^2                              \\
+  \int \cos (u) du         &  & \frac{du}{dx} = \frac{dx^2}{dx} = 2x
+\end{align*}

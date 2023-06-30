@@ -88,3 +88,34 @@ Function parity takes a list of Integers and transforms it into a list of
 `parity xs = map elemPar xs where elemPar x = mod x 2`
 
 `parity' = map ('mod' 2)`
+
+### General procedure of foldr, foldl
+1. Identify recursive, dynamic, and static arguments.
+````Haskell
+foldl f z (x:xs) = foldl f (f z x) xs
+````
+2. Write an aux function that has the recursive, then the dynamic arguments. Static
+arguments can still occur freely (and will come from the final context).
+````Haskell
+aux [] z = z
+aux (x:xs) z = aux xs (f z x)
+````
+3. Write the dynamic arguments as lambdas.
+````Haskell
+aux [] = \z -> z
+aux (x:xs) = \z -> aux xs (f z x)
+````
+4. Rewrite aux in terms of foldr. x and aux xs become arguments of the function for the
+recursive case.
+````Haskell
+aux = foldr (\x rec -> \z -> rec (f z x)) (\z -> z)
+````
+5. Express the original function in terms of aux (reorder the dynamic and recursive
+arguments, if needed).
+````Haskell
+foldl f z xs = aux xs z
+````
+6. Replace aux with its implementation.
+````Haskell
+foldl f z xs = foldr (\x rec z -> rec (f z x)) (\z -> z) xs z
+````

@@ -31,3 +31,6 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 - Augmenting the set of features used for the regression will never increase the least squares loss
 - Subtracting the empirical mean from the data before performing regression on the centrered samples
 
+## SVM
+- support vectors are the closest to the boundary
+![alt text](svm.png "support vector machine")
