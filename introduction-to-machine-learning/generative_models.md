@@ -34,3 +34,22 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 ## SVM
 - support vectors are the closest to the boundary
 ![alt text](svm.png "support vector machine")
+
+## Quiz
+**K-means clustering**
+- It seeks cluster centres and assignments to minimise the within-cluster sum of squares
+- it is appropriate if the underlying cluster are sparable, spherical and approximately of same size
+- k-means clustering can be kernelised
+
+**Find k**
+- By using a heuristic like the elbow method that identifies the diminishing returns from increasing k
+- By using an information criterion that regularizes solution to favour simpler models with lower k
+
+**Lloyd's algorithm**
+- It cannot cycle; i.e. it does never return to a particular solution after having previously changed to a different solution
+- Using specialized initialization schemes (e.g. k-means++) can improve the quality of solutions found by the algorithm and reduce its runtime
+
+**PCA**
+- PCA can be kernelised
+- unsupervised learning algorithm
+- It is orthogonal to all other principal components found by PCA

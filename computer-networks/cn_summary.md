@@ -281,6 +281,45 @@ Each client is served the same HTML with URLs for CDN-hosted objects already rew
     - Different network patterns occur in different environments, for example a mobile environment is different from a home TV
     - Depending on the device, there might be different requirements in terms of the so called Quality of Experience (e.g. HDTV users might need a higher video quality in comparison to mobile users for the same QoE)
 
+### Video-On-Demand (VOD)
+Short:
+- overload the server with tons of HTTP requests. 
+- Increase frequency of key frames
+- fine-grained decisions as the bandwidth fluctuates, being quicker in adapting its rate
+
+Long:
+- risk of frequent quality switches, ath the price of having less reactivity to bandwidth fluctuations and higher risk of rebuffering
+- DASH architecture, a chunk is playable once it has been completely downloaded. We would have to wait until whole video is downloaded before playing
+
+
+## Byte Stuffing
+- Replace each FLAG in data with ESC FLAG
+- Replace each ESC in data with ESC ESC
+- Only *byte* stuffing, between it is not visible (see bit stuffing)
+- Any unescaped FLAG is the start/end of frame
+
+## Bit Stuffing
+- Can stuff at the bit level too
+- Call a flag six consecutive 1s
+- On transmit, after five 1s in the data, insert a 0
+- On receive, a 0 after five 1s is deleted
+
+## Hamming Distance
+For data of length *n*, the length of the Hamming code is given by
+$$n + k = 2^k - 1$$
+where *k* is the number of check bits to detect and correct an error in one bit (minimum Hamming distance of 3).
+
+## Cyclic Redundancy Check (CRC)
+- Given *n* data bits, generate *k* check bits such that the $n + k$ bits are evenly divisible by a generator *C*.
+
+### Send Procedure
+1. Extend the *n* data bits with *k* zeros
+2. Divide by the generator value *C*
+3. Keep remainder, ignore quotient
+4. Adjust *k* check bits by remainder
+
+### Receive Procedure
+1. Divide and check for zero remainder
 ### Path Lookup
 ![Alt text](internet.png)
 
