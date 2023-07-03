@@ -5,7 +5,7 @@
 ### First Normal Form
 1. Using row order to convey information is not permitted
 2. Mixing data types within the same column is not permitted
-3. Having a table without a rimary key is not permitted
+3. Having a table without a primary key is not permitted
 4. Repeating groups is not permitted
 
 ### Second Normal Form
@@ -19,11 +19,11 @@
 - No transitive relations
 
 ### Boyce-Codd Normal Form
-- Each attributee in the table must depend on the key, the whole key, and nothing but the key.
+- Each attribute in the table must depend on the key, the whole key, and nothing but the key.
 - If everything ont the right is a full key it is fine (but check again)
 
-### Foruth Normal Form
-The only kinds of multivalued dependency allowed in a table are mulivalued dependencies on the key.
+### Fourth Normal Form
+The only kinds of multivalued dependency allowed in a table are multivalued dependencies on the key.
 
 ### Fifth Normal Form
 It must not be possible to describe the table as being the logical result of joining some other tables together.
@@ -47,7 +47,7 @@ It must not be possible to describe the table as being the logical result of joi
 - B-Tree Index
 - Hash Table
 - Sort
-It provides a higher-level abstraction to acess information in a table without interacting with the buffer or disk
+It provides a higher-level abstraction to access information in a table without interacting with the buffer or disk
 
 ### Operator Execution
 Executes a relational algebra
@@ -60,7 +60,7 @@ Executes a relational algebra
 
 ## Important things to know
 
-**Heap File** = an unordered colletion of pages where tuples are stored in random order
+**Heap File** = an unordered collection of pages where tuples are stored in random order
 
 **Record ID** = (Page ID, Slot ID)
 
@@ -79,7 +79,7 @@ Executes a relational algebra
 ### Block Nested Loop Join (equi-join)
 
 ### Index Nested Loop Join (equi-join)
-- Effieicent: Low selectivity (few reads per disk)
+- Efficient: Low selectivity (few reads per disk)
 - Inefficient: High selectivity (loads of reads per disk)
 
 ### Hash join (equi-join)
@@ -94,10 +94,10 @@ Executes a relational algebra
 - **Lecture 16, Slide 41**
 
 **Sequential scan or B-Tree**
-- When nearly *all* the tuples fullfill the requirement, *scan* is fast, B - Tree is slow
-- When only a *few* or only one fullfills the requirement, *B - Tree* is fast, scan is slow
+- When nearly *all* the tuples fulfil the requirement, *scan* is fast, B - Tree is slow
+- When only a *few* or only one fulfils the requirement, *B - Tree* is fast, scan is slow
 
-- $$T_{scan} = T_{acces} + \frac{(pageSize *  m)}{Bandwidth}$$
+- $$T_{scan} = T_{access} + \frac{(pageSize *  m)}{Bandwidth}$$
 
 - $$T_{index}(k) = (T_{access} \frac{page size} {/} ...)$$
 
@@ -139,7 +139,7 @@ b. ON clause - Before joining. Records (from right table) will be filtered befor
 
 ## SQL `WITH`
 - Referencing a temporary table multiple times in a single query
-- Performaing multi-level aggregations, such as finding the average of maximums
+- Performing multi-level aggregations, such as finding the average of maximums
 - Performing an identical calculation multiple times over within the context of a larger query
 - Using it as an alternative to creating a view in the database
 

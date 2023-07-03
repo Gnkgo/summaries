@@ -23,13 +23,13 @@ Physical address space - Pagesize + Flags(Metadata)
 **Size of processors page table**
 Virtual address space - pagesize + PTE size
 
-**False Sharing** Poor performance when on different processors -> flush whole cache eventough they didn't need the same location. Good performance when on same processor
+**False Sharing** Poor performance when on different processors -> flush whole cache even tough they didn't need the same location. Good performance when on same processor
 
 **Number of misses** Two arrays map to the same cache line, if address % cachesize is the same. Then you would have 100% cache misses
 
 ## Parallel Programming
 ### Solving ABA problem
-- Harard Pointers
+- Hazard Pointers
    - Threads keep track of questioned pointers in a shared data structure. In this way, each thread knows that the object on the given memory address defined by the pointer might have been modified by another thread
 - Immutability
     - The usage of immutable objects solves this problem, as we don't reuse objects across the application
@@ -40,7 +40,7 @@ Virtual address space - pagesize + PTE size
 ## Architecture
 *Section header table* Offsets and sizes of each section
 
-*symtab.*   S  ymbol table, procedure and static variable names, section names and locations
+*symtab.*   Symbol table, procedure and static variable names, section names and locations
 
 *.rel.text* relocation info for .text section instructions for modifying
 
@@ -52,15 +52,15 @@ It exists 1 virtual address space per process
 - D: Dirty
 - A: Accessed
 - P: page is present in physical memory (1) or not(0)
-- Avail: availabel for system programmers
+- Avail: available for system programmers
 
 ### Memory
 
-performance is *not unifrom*!
+performance is *not uniform*!
 - cache and virtual memory effects can greatly affect program performance.
 
 *typed*
-- different kinds of memory behave differentyl
+- different kinds of memory behave differently
 
 *not unbounded*
 - It must be allocated and managed
@@ -68,18 +68,18 @@ performance is *not unifrom*!
 **Non-Uniform Memory Access (NUMA)** Removes bottleneck
 - Multiple, independent memory banks
 - Processors have independent paths to memory
-- Canpt snoop on the bus anymore -> it's not a bus! Use a message-passing interconnect
+- Cannot snoop on the bus anymore -> it's not a bus! Use a message-passing interconnect
 
 Solution1:
 Bus emulation
 
 - similar to snooping but without a shared bus
 - Each node sends a message to all other nodes (e.g. read exclusive)
-- Waits for a repyl from all nodes before proceeding (e.g. acknowledge)
+- Waits for a reply from all nodes before proceeding (e.g. acknowledge)
 - *AMD coherent HyperTransport*
 
 Solution2: cache Directory
-- Augemnt each node's local memory with a cache directory
+- Augment each node's local memory with a cache directory
 
 **Directory-based Cache Coherence**
 - Home node maintains set of nodes that may have line
@@ -129,17 +129,17 @@ void release(lock_t *lock, struct qnode *local) {
 
 lock -> last element of a queue is spinning process
 1. add ourselves to the end of this queue using XCHG
-2. if the queue was empty, we have the lockè
+2. if the queue was empty, we have the lock
 3. if not, point the previous tail at us, and spin
 
 -
 1. we have the lock. is someone after us waiting?
 2. if yes, tell them, and they will do the rest (see acquire())
-3. if no, set the lock to NULL unselss someone appears in the meantime
+3. if no, set the lock to NULL unless someone appears in the meantime
 4. if they do, wait for them to enqueue, and then go to (2).
 
 **Flags**
-![texxt](flag_table.png)
+![text](flag_table.png)
 
 **Synonym** 
 - Only in virtual part 
@@ -149,21 +149,21 @@ lock -> last element of a queue is spinning process
 **Homonym**
 - Same name for different data
 - same VA refers to different PAs
-- flush cache on context swithc
+- flush cache on context switch
 - force non-overlapping address-space
 - tag VA with address-space
 ### Jumps
 *Longjmp* If retval = 0, longjmp returns 1
 
-*Setjumpt* saves current calling environment
-- program counter (not nececcessary)
+*Setjump* saves current calling environment
+- program counter (not necessary)
 - stack pointer
 - general purpose register
 
 Or as it was mentioned in the exam:
 - current stack pointer
 - The current program counter (%rip)
-- Calle-save processor registers
+- Callee-save processor registers
 - Frame pointer register §rbp
 
 ### MESI
@@ -181,7 +181,7 @@ Think of PPROG -> Order important but you can move instructions horizontally
 1) Operations from a processor appear (to all others) in program order
 2) Every processor's visibility order is the interleaving of all the program orders
 
-*Requieremts:* 
+*Requirements:* 
 - Each processor issues memory ops in program order
 - Memory operations are atomic
 
@@ -202,7 +202,7 @@ saved base pointer
 
 local variables
 ## Exceptions
-**Processor Exception** changes the control flow exceptionally and most of the time context swithces to the OS for further instructions how the given exception should be handled. Exeptions are associated with an exception code that at the same time are an index into an exception table defined by the OS. In contrast to for example java exceptions, processor exceptions are not always bad; a system call is often hadndled as an exception too.
+**Processor Exception** changes the control flow exceptionally and most of the time context switches to the OS for further instructions how the given exception should be handled. Exceptions are associated with an exception code that at the same time are an index into an exception table defined by the OS. In contrast to for example java exceptions, processor exceptions are not always bad; a system call is often handled as an exception too.
 
 **Asynchronous exception** caused by events outside of processor --> ctr-c (interrupt)
 
@@ -214,7 +214,7 @@ local variables
 - machine check
 - **Aborts current program**
 ### Fault
-- potentially recoverable errer
+- potentially recoverable error
 - sync
 - unintentional
 - page fault, protection fault
@@ -223,7 +223,7 @@ local variables
 - intentional 
 - sync
 - system calls, breakpoint trap
-- **returns control to "next" instruciton**
+- **returns control to "next" instruction**
 
 ## Linker
 - Resolving symbol references from other files
@@ -236,14 +236,14 @@ C source - Preprocessor - Compiler - Assembler - Linker - Executable
 
 *GNU gcc Toolchain*
 
-CPP (Macro subsitution include header files) - CC1 (compile each C file into assembly language) - as (Assemble each file into object code) - Id (link object files into program binary) - Executable
+CPP (Macro substitution include header files) - CC1 (compile each C file into assembly language) - as (Assemble each file into object code) - Id (link object files into program binary) - Executable
 
 ## Debugger
 **Valgrind** helpful for memory-related errors
 
 **GDB** conventional debugger, good for finding bad pointer dereferences, hard to detect the other memory bugs
 
-**Objdump** Useful tool for examinibg object code, analyzes bit pattern of series of instructions
+**Objdump** Useful tool for examining object code, analyzes bit pattern of series of instructions
 
 ## Random
 \\\ is an escape. 
@@ -253,11 +253,11 @@ CPP (Macro subsitution include header files) - CC1 (compile each C file into ass
 
 *PIC, Programmable Interrupt Controller*
 - Map physical interrupt pins to interrupt vectors
-- Buffer simultanous interrupts -> Won't lose some devices interrupt
+- Buffer simultaneous interrupts -> Won't lose some devices interrupt
 - Prioritize interrupts
-- Selectievly mask any individual device's interrupts useful for high interrupt rate
+- Selectively mask any individual device's interrupts useful for high interrupt rate
 
-How many BxB blocks fint into a cache and how many blocks do you need? -> $X B^2 < C$ where X is mostly 3 and C the Cache size
+How many BxB blocks fit into a cache and how many blocks do you need? -> $X B^2 < C$ where X is mostly 3 and C the Cache size
 
 
 Reading string of length 10 in buffer
@@ -270,7 +270,7 @@ fscanf(stdin, "%9s", buf);
 NULL = (void *) 0
 ````
 ````c
-strncpy(char *dest, const cahr *source, size)
+strncpy(char *dest, const char *source, size)
 ````
 
 

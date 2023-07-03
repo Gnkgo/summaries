@@ -26,7 +26,7 @@ Syntax for IO type:
 
 - show converts values to Strings
 - read converts Strings to values (Always specify the desired type!)
-- for $\alpha$-equivalance, no variables can be free!
+- for $\alpha$-equivalence, no variables can be free!
 
 Syntax Tree
 - $\land$ binds stronger than $\lor$ stronger than $\rightarrow$.

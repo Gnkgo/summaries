@@ -2,8 +2,8 @@
 ## Internet
 
 - Internet connects End Systems/ Hosts by a system of communications links and package switches
-- Pakets: data segment and header
-- IP (Internet Protoco): Specifies the format for packets sent among routers and end systems
+- Packets: data segment and header
+- IP (Internet Protocol): Specifies the format for packets sent among routers and end systems
 - DSL (digital subscriber line): broadband residential access
 - FDM (Frequency-division multiplexing): link dedicates a frequency band on the band to a communication for the duration of connection. The width of this band is called bandwidth.
 - TDM (time-division multiplexing): time is divided into frames of fixes size, and each frame is split into a fixed amount of slots. These slots are dedicated to one connection
@@ -11,7 +11,7 @@
 ## Delays
 - **nodal processing delay:** 
     - Time used to decode the header, determine which output needs to be used, bit level checking etc.
-    - nedligible in comparison to other delays, little room for improvement here
+    - negligible in comparison to other delays, little room for improvement here
     
 - **queuing delay:** 
     - Time that the packet has to wait in the queue until the desired output will be free
@@ -27,7 +27,7 @@
 ## Layers
 |Layers|
 |-|
-|Aplication|
+|Application|
 |Transport|
 |Network|
 |Link|
@@ -56,15 +56,15 @@ with alias Name.
 Signals that warn about congestion:
 - **Packet loss**: 
     - Advantage: can be detected easily (doesn't require in-network feature support) by using timers. 
-    - Disadvantage: only considers binary feedbaack (i.e., packet either arrives at sender or not)
+    - Disadvantage: only considers binary feedback (i.e., packet either arrives at sender or not)
     - Disadvantage: loss can also be caused by other factors (i.e. cosmic radiation in a satellite link), careful parametrization is needed
 
 - **Packet latency**:
-    - Advantage: can be detected easily (doesn't require innetwork feature support). 
+    - Advantage: can be detected easily (doesn't require interwork feature support). 
     - Advantage: relatively quick feedback of a continuous signal
     - Disadvantage: many factors in the network can affect latency, not only congestion, careful parametrization is needed.
 
-- **In-network marking (i.e. ECN- Explicit Congestionn Notifictation)**
+- **In-network marking (i.e. ECN- Explicit Congestions Notification)**
     - Indicate congestion through setting a bit in packet
     - Advantage: early signal of congestion
     - Disadvantage: requires support in the network by i.e. the routers/switches
@@ -77,12 +77,12 @@ Signals that warn about congestion:
 - Duplication
 - Corruption
 
-### Goals of reliable tranfer
+### Goals of reliable transfer
 - Correctness: ensure data is delivered, in order, and untouched
 - Fairness: play well with concurrent communications
 - Timeliness: minimize time until data is transferred
 - Efficiency: optimal use of bandwidth
-- Cannot guarante 100% correct packet order and packet integrity but corruption can often be detected using checksums and the correct oder can be reconstructed through the equence numbers in packet headers. Note that a packet, and thus its content, checksum, and sequence number, could be corrupted in such a way that it still looks like a valid packet. However, in practice and assuming that there is no malicious entity in the nework, this is highly unlikely to happen.
+- Cannot guarantee 100% correct packet order and packet integrity but corruption can often be detected using checksums and the correct oder can be reconstructed through the sequence numbers in packet headers. Note that a packet, and thus its content, checksum, and sequence number, could be corrupted in such a way that it still looks like a valid packet. However, in practice and assuming that there is no malicious entity in the network, this is highly unlikely to happen.
 
 ### Advantages of using unreliable transport protocol?
 - Better performance/less overhead
@@ -98,8 +98,8 @@ Built up by:
 - (There is no checksum in the IPv6 header)
 
 ## Link State Routing
-1. Nodes flood topology in the form of link state packets and each node leanrs the full topology
-2. Each node computes its own forwarding table by finding the shrtest path to each other node (according to some cost metric). An algorithm that eables this shortest paht calculation is Dijkstra.
+1. Nodes flood topology in the form of link state packets and each node learns the full topology
+2. Each node computes its own forwarding table by finding the shortest path to each other node (according to some cost metric). An algorithm that enables this shortest path calculation is Dijkstra.
 - Knows all the distances
 - More RAM/CPU
 - Faster Convergence
@@ -113,15 +113,15 @@ Built up by:
 ## Random
 - slow start threshold (ssthresh):
     - function of congestion
-    - timout, we set sstresh = cwnd/2
+    - timeout, we set ssthresh = cwnd/2
     - initially cwnd is infinity
     - slow start until a timeout occurs
-    - slow sart until timeout or we reach ssthresh -> we switch to AIMD
+    - slow start until timeout or we reach ssthresh -> we switch to AIMD
 
 - A socket is a software abstraction by which an application process exchanges network messages with the (transport layer in the) operating system
 - The ideal congestion window size is the Bandwidth delay product. $$W = bandwidth * delay$$
-- The ideal congestion window size is the bandwidth deay product: $W = bandwidth * dely$
-- Transmission delay per segment: $\frac{packet_size}{bandwidt}$
+- The ideal congestion window size is the bandwidth delay product: $W = bandwidth * delay$
+- Transmission delay per segment: $\frac{packet_size}{bandwidth}$
 
 ## Go-back-N
 - You have a window size with segments. When you send a packet, the ACK is sent after the propagation delay + transmission delay. If the packet gets lost, the ACK always sends the last valid ACK. E.G. packet 2 is lost and packets 0, 1, 3, 4 are successfully sent and received, you only get ACK for packet 0, 1. 1 is the highest number to receive 
@@ -153,22 +153,22 @@ There are more transitions in the 4B5B-encoded signal. This allows for clock rec
 ## NAT
 
 **Advantages of middleboxes**
-- A possible rapid deplyment path when there is no other option
+- A possible rapid deployment path when there is no other option
 - Control over many hosts
 
 **Disadvantages of middleboxes**
-- Breaking layering interferes with connectivit; strange side effects
+- Breaking layering interferes with connectivity; strange side effects
 - Poor vantage point for many tasks
 - Cause Internet ossification: almost impossible to deploy new transport protocols
 How to deploy publicly accessible services wih NAT?
-- Manually configure entries in NAT table - "port forwardin"
+- Manually configure entries in NAT table - "port forwarding"
 
 **NAT Downsides**
-- Connectifity has been broken
+- Connectivity has been broken
     - Can only receive incoming packets after an outgoing connection is set up
     - Difficult to run servers at home - requires explicit "port-forwarding" rules
 -Additional issues when there are no connections (UDP apps)
-    - often solved with regula "keep-alive" messages to keep table entries
+    - often solved with regular "keep-alive" messages to keep table entries
 
 **NAT Upsides**
 - Relieves much IP address pressure 
@@ -179,9 +179,9 @@ How to deploy publicly accessible services wih NAT?
     - Hides internal network structure and configuration ($\rightarrow$ privacy)
 
 **How does client access server (get destination address)?**
-- Contact server through its ublic IP address
-- NAT tranlate source address to NAT's public address
-- choose new port number from a pool of available ports and kep mapping between selected port number and interal host information.
+- Contact server through its public IP address
+- NAT translate source address to NAT's public address
+- choose new port number from a pool of available ports and kep mapping between selected port number and internal host information.
 
 **Stores**
 - port from client
@@ -192,14 +192,14 @@ How to deploy publicly accessible services wih NAT?
 ## TCP Congestion Control
 ### Slow Start
 - Multiplicative increase of the congestion window
-- Every packet is ACK'ed, the size of the cogestion window grows by one packet.
+- Every packet is ACK'ed, the size of the congestion window grows by one packet.
 - This leads to a doubling of the window size, every RTT. Slow start operates when the *cwnd* is lower than the *ssthresh*
 
 ### Congestion avoidance - additive increase
-- For every RTT, the congestion windwo size grows with a single packet unlsess packet losses are inferred, in which case, the congestion window reduces by half. The connection has already experienced congestion before, and as such, it "knows" that exponential growth (slow start algorithm) will be too aggressive. Congestion avoidance is operating when the *cwnd* is higher than or equal to the *sstresh*
+- For every RTT, the congestion window size grows with a single packet unless packet losses are inferred, in which case, the congestion window reduces by half. The connection has already experienced congestion before, and as such, it "knows" that exponential growth (slow start algorithm) will be too aggressive. Congestion avoidance is operating when the *cwnd* is higher than or equal to the *ssthresh*
 
 ### Fast retransmission and fast recovery
-- When three duplicate ACKs are received by the sender, it will (fast) retransmit the apparent data packet that got lost. The fast recovery mechanism halves the *cwnd* and sets $sstresh = cwnd$. It does not return to the slow start (by setting $cwnd = 1$) as would be done upon a timeout. The main intuition is that a timeout, and the resulting significant reduction in throughput, should only occur if no packets can be transmitted anymore (in the client-server direction, in the server-client direction, or in both directions). Three duplicate ACKs indicate less severe congestioin (i.e., some packets sill arrive), which can be solved by halving the congestion window.
+- When three duplicate ACKs are received by the sender, it will (fast) retransmit the apparent data packet that got lost. The fast recovery mechanism halves the *cwnd* and sets $ssthresh = cwnd$. It does not return to the slow start (by setting $cwnd = 1$) as would be done upon a timeout. The main intuition is that a timeout, and the resulting significant reduction in throughput, should only occur if no packets can be transmitted anymore (in the client-server direction, in the server-client direction, or in both directions). Three duplicate ACKs indicate less severe congestion (i.e., some packets sill arrive), which can be solved by halving the congestion window.
 
 ## Bloom Filter
 ### Potential applications for Bloom filters on small platforms
@@ -228,7 +228,7 @@ CDNs can also be used to increase security and reliability by providing redundan
 |Reactive|Proactive|
 |After fetching resource for a client, also store it in a cache|Place content that will likely be requested close to clients|
 |Like caching DNS records and DNS resolvers|Can distribute load over multiple servers|
-|Saves time for your browser and decreases netwrk and server load|Optimiz latency of requests|
+|Saves time for your browser and decreases network and server load|Optimize latency of requests|
 
 ### Why distribute content
 - Fault tolerance
@@ -237,74 +237,83 @@ CDNs can also be used to increase security and reliability by providing redundan
     - Distribute requests over multiple servers
     - Could e solved with multiple servers in one location
 - Optimize latency
-    - Requess are directed to "close" server
+    - Requests are directed to "close" server
 - Network inefficiency
     - Don't need to transmit data all across the globe
 
 ## Anycast-based CDN
-- content is distribted and seerved though a network of erversthat aespread across differnet geographical locations
-- Serversare configured with the same IP addressand are part f the same aycast group
-- When user requests content, network routes the request o the nearest serverbased on network topology, typically using BGP
-server that receives the reues the serves the content directly to the user
+- content is distributed and served though a network of servers that are spread across different geographical locations
+- Servers are configured with the same IP address and are part of the same anycast group
+- When user requests content, network routes the request o the nearest server based on network topology, typically using BGP
+server that receives the request the serves the content directly to the user
 - provide faster content delivery by minimizing the distance between the user and the nearest server. 
-- Reducing atency and improving perforance
+- Reducing latency and improving performance
 
 ## DNS-based CDN
 - content is distributed through DNS
-- when user requests content, theirDNS resolver queres the CDN's DNS server to reslve the domain name
-- CDN's DNS server respond with the IP address of the server thatis best suited to serve the content based on various factrs like the user's location, server load, and netork conditions.
-- Rely on intelligent DNS routng to direct the user's reqest to the appropriat server based on the DNs response
-Allows dynamic load balacing ad content distribution based on real-time conditions
-- actual content delivery is then handled by the selected erver
+- when user requests content, theirDNS resolver queries the CDN's DNS server to resolve the domain name
+- CDN's DNS server respond with the IP address of the server that is best suited to serve the content based on various factors like the user's location, server load, and network conditions.
+- Rely on intelligent DNS routing to direct the user's request to the appropriate server based on the DNs response
+Allows dynamic load balancing ad content distribution based on real-time conditions
+- actual content delivery is then handled by the selected server
 
 ### Different ways to direct clients to the closest server
 |DNS-based|BGP-anycast-based|
 |-|-|
 |Return different IP addresses based on |Always use same IP address (or small set of addresses)|
-|resolver's geo-localization| Addresse are advertised via BGPfrom multiple locations|
+|resolver's geo-localization| Address are advertised via BGPfrom multiple locations|
 |server load ($\rightarrow$ load balancing)| Closest location is found by BGP|
 |Use short TTL of DNS records to prevent caching| Same approach as opn DNS resolvers (e.g., 9.9.9.9)|
 
 |DNS-based|BGP-anycast-based|
 |-|-|
-|+ Very high cotrol|+"Simple": optimization is done by BGP|
-|+ Dyamic changes are possible| |
+|+ Very high control|+"Simple": optimization is done by BGP|
+|+ Dynamic changes are possible| |
 |- Complicated| - Less precise control|
 |- Potential issues when clients do not use their local resolver| - Longer reconfiguration times|
 
-DNS-bsed CDN overwrites URL
+DNS-based CDN overwrites URL (statically at the server for each client request) 
+Each client is served the same HTML with URLs for CDN-hosted objects already rewritten
 
+### Video streaming
+- Adaptation algorithms may vary depending on users' devices
+    - video buffer size can vary across devices. A device with a large buffer may benefit from a different algorithm (or at least a differently tuned algorithm) than one with a very small buffer
+    - Different network patterns occur in different environments, for example a mobile environment is different from a home TV
+    - Depending on the device, there might be different requirements in terms of the so called Quality of Experience (e.g. HDTV users might need a higher video quality in comparison to mobile users for the same QoE)
+
+### Path Lookup
+![Alt text](internet.png)
 
 ## Quiz
 - **The Maximum Segment Size(MSS) of TCP is equal to:**
-MSS = MTU - header(IP) - headeer(TCP)
+MSS = MTU - header(IP) - header(TCP)
 
 - UDP sockets type is SOCK_DGRAM while TCP sockets type is SOCK_STREAM
 - For a SOCK_STREAM, an operating system stores both local and remote port
 - Given a directed graph G(V, E) with |V| and |E| being the numbers of vertices and edges, how many variables do you need for the max-flow LP formulation discussed in class?
-- There is no connectio establishment in UDP
+- There is no connection establishment in UDP
 - The objective of flow control is not to overwhelm the hosts
-- The objective of congestion control is to not ovewhelm the network
-- During congestion avoidance in TCP, the successful acknowledgement of a segment results in the sender congestion window growin by one segment per RTT.
+- The objective of congestion control is to not overwhelm the network
+- During congestion avoidance in TCP, the successful acknowledgement of a segment results in the sender congestion window growing by one segment per RTT.
 - TCP (SOCK_STREAM) is a connection-based protocol. The connection is established and the two parties have a conversation until the connection is terminated by one of the parties or by a network error.
 - UDP (SOCK_DGRAM) is a datagram-based protocol. You send one datagram and get one reply and then the connection terminates.
 - Given a directed graph G(V,E), with |V| and |E| being the numbers of vertices and edges, how many variables do you need for the max-flow LP formulation discussed in
 class?: O(|E|)
-- QUIC can handle switching from WiFi to a cellular network without having to reestablsih the connection:
-    - uses connection IDs independent of the IP address istead of a 4-tuple like TCP to identify connections.
+- QUIC can handle switching from WiFi to a cellular network without having to reestablish the connection:
+    - uses connection IDs independent of the IP address instead of a 4-tuple like TCP to identify connections.
     - This way packets using the connection ID are still valid, even if the source IP address changes.
 
 - If we create our simple query (dig @a.root-servers.net www.ethz.ch)
 and send it to the first root-server, we don’t get an www.ethz.ch IP in
 return. Why is this?
 - Root server does not support recursive resolution
-    - If we request the domain from a root srver, we don't get back a result because of the hierachical structure of the DNS system. The root server just refers us to the next lower level DNS server, the one for the ch TLD. Note that the "dig @server name" command just sends a query to this single stated server while the "dig name" command issues multiple requests down in the DNS hierarchy in order to iteratively resove the domain name. This would be the first step of an iterative resolution.
+    - If we request the domain from a root server, we don't get back a result because of the hierarchical structure of the DNS system. The root server just refers us to the next lower level DNS server, the one for the ch TLD. Note that the "dig @server name" command just sends a query to this single stated server while the "dig name" command issues multiple requests down in the DNS hierarchy in order to iteratively resolve the domain name. This would be the first step of an iterative resolution.
     ![alt text](DNS_hierarchy.png "DNS_hierarchy")
 
 ## Quic
 - Operate in Application and Transport layer
 - combines connection and TLS handshake $\rightarrow$ reducing the connection setup time by one RTT
 - enables Zero-RTT communication if the hosts have communicated before (improved handshake)
-- Connection hand-over is possible by identifying connection with a connection ID instead of the 5(/4)-tuple (even with changing IP addresses e.g. when chaning neworks with a mobile device)
+- Connection hand-over is possible by identifying connection with a connection ID instead of the 5(/4)-tuple (even with changing IP addresses e.g. when changing networks with a mobile device)
 - resoles head-of-line blocking by the logical abstraction of streams (contrary to TCP, which required you to open multiple parallel TCP connections)
-- Middleboxes and NAT routers are known to drop unfamiliar transport layer protocols. Quic uses UDP to give interperability with existing hardware.
+- Middleboxes and NAT routers are known to drop unfamiliar transport layer protocols. Quic uses UDP to give inseparability with existing hardware.

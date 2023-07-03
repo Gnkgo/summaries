@@ -54,7 +54,7 @@ public class M {
             threads[i] = t;
         }
         for (int i = 0; i < 20; i++) {
-            try { //need catchblock around join
+            try { //need catch block around join
                 threads[i].join();
             } catch (InterruptedException e) {
                //Some catch block 
@@ -121,7 +121,7 @@ Code has data races, but it doesn't occur --> proof by contradiction
 
 $S_p := \frac{T_1}{T_P}$
 
-Where $T_1$ is the sequentail time (Time with one processor) and $T_P$ with the time with $P$ processors.
+Where $T_1$ is the sequential time (Time with one processor) and $T_P$ with the time with $P$ processors.
 
 Reasons why program is nevertheless slower: _
 _Additional overheads caused by inter-thread dependencies, creating threads,
@@ -213,7 +213,7 @@ $S_P = f + P(1 -f)
  try {
      System.out.println(max.get());
  } catch(Exception e){
-     //somethinbg
+     //something
  }
  ex.shutdown();
  ```
@@ -285,7 +285,7 @@ not pick up I do something else.
 - Asynchronous + blocking: wait until your crush texts you back.
 - Asynchronous + non-blocking: send an E-Mail and continue working until you get a response.
 
-In the actor model, messages are sent in an **asynchronous, non-blocking fashion**. --> The sender places the message into the buffer of the receiver and continues execution. In contrast, when the sender sends **syncrhonous-messages**, it blocks until the message has been received.
+In the actor model, messages are sent in an **asynchronous, non-blocking fashion**. --> The sender places the message into the buffer of the receiver and continues execution. In contrast, when the sender sends **synchronous-messages**, it blocks until the message has been received.
 
 
 MPI collects processes into groups, where each group can have multiple **colors**.  A
@@ -543,7 +543,7 @@ public class TASLock implements Lock {
 
 ## TATASLock
 ````Java
-public class TATASLock implemnts Lock{
+public class TATASLock implements Lock{
     AtomicBoolean state = new AtomicBoolean(false);
 
     public void lock() {
