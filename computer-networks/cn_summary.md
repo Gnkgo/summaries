@@ -126,13 +126,6 @@ Built up by:
 ## Go-back-N
 - You have a window size with segments. When you send a packet, the ACK is sent after the propagation delay + transmission delay. If the packet gets lost, the ACK always sends the last valid ACK. E.G. packet 2 is lost and packets 0, 1, 3, 4 are successfully sent and received, you only get ACK for packet 0, 1. 1 is the highest number to receive 
 
-## Quic
-- Operate in Application and Transport layer
-- combines connection and TLS handshake $\rightarrow$ reducing the connection setup time by one RTT
-- enables Zero-RTT communication if the hosts have communicated before (improved handshake)
-- Connection hand-over is possible by identifying connection with a connection ID instead of the 5(/4)-tuple (even with changing IP addresses e.g. when chaning neworks with a mobile device)
-- resoles head-of-line blocking by the logical abstraction of streams (contrary to TCP, which required you to open multiple parallel TCP connections)
-- Middleboxes and NAT routers are known to drop unfamiliar transport layer protocols. Quic uses UDP to give interperability with existing hardware.
 
 ## Modulation
 ### Baseband modulation
@@ -140,6 +133,16 @@ Built up by:
 
 ### Passband modulation
 - bit stream send by modulating a carrier frequency and sending this signal which now encodes the bitstream in its modulation.
+
+### Why is it beneficial to use 4B5B encoding?
+There are more transitions in the 4B5B-encoded signal. This allows for clock recovery to prevent resynchronization after long runs of 0s or 1s
+
+![Alt text](waveforms.png)
+
+    a. NRZ Signal of Bits
+    b. Amplitude Key Shifting
+    c. Frequency Key Shifting
+    d. Phase Key Shifting
 
 ## Timeout-Value
 - Exponential averaging of RTT
@@ -186,6 +189,91 @@ How to deploy publicly accessible services wih NAT?
 - IP address of server
 - port number from server
 
+## TCP Congestion Control
+### Slow Start
+- Multiplicative increase of the congestion window
+- Every packet is ACK'ed, the size of the cogestion window grows by one packet.
+- This leads to a doubling of the window size, every RTT. Slow start operates when the *cwnd* is lower than the *ssthresh*
+
+### Congestion avoidance - additive increase
+- For every RTT, the congestion windwo size grows with a single packet unlsess packet losses are inferred, in which case, the congestion window reduces by half. The connection has already experienced congestion before, and as such, it "knows" that exponential growth (slow start algorithm) will be too aggressive. Congestion avoidance is operating when the *cwnd* is higher than or equal to the *sstresh*
+
+### Fast retransmission and fast recovery
+- When three duplicate ACKs are received by the sender, it will (fast) retransmit the apparent data packet that got lost. The fast recovery mechanism halves the *cwnd* and sets $sstresh = cwnd$. It does not return to the slow start (by setting $cwnd = 1$) as would be done upon a timeout. The main intuition is that a timeout, and the resulting significant reduction in throughput, should only occur if no packets can be transmitted anymore (in the client-server direction, in the server-client direction, or in both directions). Three duplicate ACKs indicate less severe congestioin (i.e., some packets sill arrive), which can be solved by halving the congestion window.
+
+## Bloom Filter
+### Potential applications for Bloom filters on small platforms
+- Pre-filtering
+    - If there is a cache server, bloom filter can implemented on NIC to filter out requests for entries that are certainly not in cache and thus, reduce latency and the overall load on the server's CPU
+- track specific information about network flows
+    - instead of deploying a filter on a NIC, the filter can be installed on a switch that connects multiple cache servers. Thus, the same effect can be achieved as in the previous example, just at te switch, which further improves the latency.
+
+### Answers a Bloom filter gives
+- Surely not present or possibly present
+    - Could give false positive
+    - Never give false negative
+### False Positive
+$$P[FP] = (1 - (1- \frac{1}{m})^{nk})^k$$
+
+## CDN
+A content delivery network (CDN) is a distributed network of servers that delivers web content to users based on their geographical location. The main purpose of a CDN is to improve the performance of websites and reduce latency by caching static content such as images, videos, and HTML files in multiple locations around the world.
+
+When a user requests a webpage that has been cached on a CDN server, the server closest to the user's geographical location will serve up the content. This reduces latency and improves website performance.
+
+CDNs can also be used to increase security and reliability by providing redundancy, in the case of an outage or cyberattack. 
+
+
+|Caching|Replication|
+|-|-|
+|Reactive|Proactive|
+|After fetching resource for a client, also store it in a cache|Place content that will likely be requested close to clients|
+|Like caching DNS records and DNS resolvers|Can distribute load over multiple servers|
+|Saves time for your browser and decreases netwrk and server load|Optimiz latency of requests|
+
+### Why distribute content
+- Fault tolerance
+    - service remains available (at least partially) even if some datacenter or network fails
+- Load balancing
+    - Distribute requests over multiple servers
+    - Could e solved with multiple servers in one location
+- Optimize latency
+    - Requess are directed to "close" server
+- Network inefficiency
+    - Don't need to transmit data all across the globe
+
+## Anycast-based CDN
+- content is distribted and seerved though a network of erversthat aespread across differnet geographical locations
+- Serversare configured with the same IP addressand are part f the same aycast group
+- When user requests content, network routes the request o the nearest serverbased on network topology, typically using BGP
+server that receives the reues the serves the content directly to the user
+- provide faster content delivery by minimizing the distance between the user and the nearest server. 
+- Reducing atency and improving perforance
+
+## DNS-based CDN
+- content is distributed through DNS
+- when user requests content, theirDNS resolver queres the CDN's DNS server to reslve the domain name
+- CDN's DNS server respond with the IP address of the server thatis best suited to serve the content based on various factrs like the user's location, server load, and netork conditions.
+- Rely on intelligent DNS routng to direct the user's reqest to the appropriat server based on the DNs response
+Allows dynamic load balacing ad content distribution based on real-time conditions
+- actual content delivery is then handled by the selected erver
+
+### Different ways to direct clients to the closest server
+|DNS-based|BGP-anycast-based|
+|-|-|
+|Return different IP addresses based on |Always use same IP address (or small set of addresses)|
+|resolver's geo-localization| Addresse are advertised via BGPfrom multiple locations|
+|server load ($\rightarrow$ load balancing)| Closest location is found by BGP|
+|Use short TTL of DNS records to prevent caching| Same approach as opn DNS resolvers (e.g., 9.9.9.9)|
+
+|DNS-based|BGP-anycast-based|
+|-|-|
+|+ Very high cotrol|+"Simple": optimization is done by BGP|
+|+ Dyamic changes are possible| |
+|- Complicated| - Less precise control|
+|- Potential issues when clients do not use their local resolver| - Longer reconfiguration times|
+
+DNS-bsed CDN overwrites URL
+
 
 ## Quiz
 - **The Maximum Segment Size(MSS) of TCP is equal to:**
@@ -213,14 +301,10 @@ return. Why is this?
     - If we request the domain from a root srver, we don't get back a result because of the hierachical structure of the DNS system. The root server just refers us to the next lower level DNS server, the one for the ch TLD. Note that the "dig @server name" command just sends a query to this single stated server while the "dig name" command issues multiple requests down in the DNS hierarchy in order to iteratively resove the domain name. This would be the first step of an iterative resolution.
     ![alt text](DNS_hierarchy.png "DNS_hierarchy")
 
-## TCP Congestion Control
-### Slow Start
-- Multiplicative increase of the congestion window
-- Every packet is ACK'ed, the size of the cogestion window grows by one packet.
-- This leads to a doubling of the window size, every RTT. Slow start operates when the *cwnd* is lower than the *ssthresh*
-
-### Congestion avoidance - additive increase
-- For every RTT, the congestion windwo size grows with a single packet unlsess packet losses are inferred, in which case, the congestion window reduces by half. The connection has already experienced congestion before, and as such, it "knows" that exponential growth (slow start algorithm) will be too aggressive. Congestion avoidance is operating when the *cwnd* is higher than or equal to the *sstresh*
-
-### Fast retransmission and fast recovery
-- When three duplicate ACKs are received by the sender, it will (fast) retransmit the apparent data packet that got lost. The fast recovery mechanism halves the *cwnd* and sets $sstresh = cwnd$. It does not return to the slow start (by setting $cwnd = 1$) as would be done upon a timeout. The main intuition is that a timeout, and the resulting significant reduction in throughput, should only occur if no packets can be transmitted anymore (in the client-server direction, in the server-client direction, or in both directions). Three duplicate ACKs indicate less severe congestioin (i.e., some packets sill arrive), which can be solved by halving the congestion window.
+## Quic
+- Operate in Application and Transport layer
+- combines connection and TLS handshake $\rightarrow$ reducing the connection setup time by one RTT
+- enables Zero-RTT communication if the hosts have communicated before (improved handshake)
+- Connection hand-over is possible by identifying connection with a connection ID instead of the 5(/4)-tuple (even with changing IP addresses e.g. when chaning neworks with a mobile device)
+- resoles head-of-line blocking by the logical abstraction of streams (contrary to TCP, which required you to open multiple parallel TCP connections)
+- Middleboxes and NAT routers are known to drop unfamiliar transport layer protocols. Quic uses UDP to give interperability with existing hardware.
