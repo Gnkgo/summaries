@@ -124,6 +124,8 @@ Executes a relational algebra
     - You can ignore the aborts 
     - No reads, then it is automatically recoverable and ACA -> just need to check strict
 
+
+# SQL
 ## Difference On, Where
 
 The information is from [here](https://stackoverflow.com/questions/354070/sql-join-where-clause-vs-on-clause).
@@ -134,6 +136,118 @@ The information is from [here](https://stackoverflow.com/questions/354070/sql-jo
 a. WHERE clause: After joining. Records will be filtered after join has taken place.
 
 b. ON clause - Before joining. Records (from right table) will be filtered before joining. This may end up as null in the result (since OUTER join).
+
+## SQL `WITH`
+- Referencing a temporary table multiple times in a single query
+- Performaing multi-level aggregations, such as finding the average of maximums
+- Performing an identical calculation multiple times over within the context of a larger query
+- Using it as an alternative to creating a view in the database
+
+|OrderDetailID|	OrderID	|ProductID	|Quantity|
+|-|-|-|-|
+|1	|10248	|11	|12|
+|2	|10248	|42	|10|
+|3	|10248	|72	|5|
+|4	|10249	|14	|9|
+|5	|10249	|51	|40|
+
+The objective is to return the average quantity ordered per ProductID:
+````SQL
+WITH cte_quantity
+AS
+(SELECT
+    SUM(Quantity) as Total
+FROM OrderDetails
+GROUP BY ProductID)
+ 
+SELECT
+    AVG(Total) average_product_quantity
+FROM cte_quantity;
+````
+
+|average_product_quantity|
+|-|
+|165.493|
+
+If you didn't use `WITH`:
+
+````SQL
+SELECT
+    AVG(Total) average_product_quantity
+FROM
+(SELECT
+SUM(Quantity) as Total
+FROM OrderDetails
+GROUP BY ProductID)
+````
+The general sequence of steps to execute a WITH clause is:
+
+1. Initiate the `WITH`
+2. Specify the expression name for the to-be-defined query.
+3. Optional: Specify column names separated by commas.
+4. After assigning the name of the expression, enter the `AS` command. The expressions, in this case, are the named result sets that you will use later in the main query to refer to the CTE.
+5. Write the query required to produce the desired temporary data set.
+6. If working with more than one CTEs or WITH clauses, initiate each subsequent one separated by a comma and repeat steps 2-4. Such an arrangement is also called a nested WITH clause.
+7. Reference the expressions defined above in a subsequent query using `SELECT`, `INSERT`, `UPDATE`, `DELETE`, or `MERGE`
+````SQL
+--CTE
+WITH expression_name_1 (column_1, column_2,…,column_n)
+AS
+(CTE query definition 1),
+expression_name_2 (column_1, column_2,…,column_n)
+AS
+(CTE query definition 2)
+ 
+--Final query using CTE
+SELECT expression_A, expression_B, ...
+FROM expression_name_2
+````
+## SQL `OVER`
+|sale_day   |sale_month |sale_time 	|branch 	|article 	|quantity 	|revenue|
+|-|-|-|-|-|-|-|
+|2021-08-11| 	AUG 	|11:00 |	New York 	|Rolex P1 	|   1 	     |   3000.00|
+|2021-08-14| 	AUG 	|11:20 |	New York 	|Rolex P1 	|   2 	     |   6000.00|
+|2021-08-17| 	AUG 	|10:00 |	Paris 	    |Omega 100 |	3 	     |   4000.00|
+|2021-08-19| 	AUG 	|10:00 |	London 	    |Omega 100 |	1 	     |   1300.00|
+|2021-07-17| 	JUL 	|09:30 |	Paris 	    |Cartier A1| 	1 	     |   2000.00|
+|2021-07-11| 	JUL 	|10:10 |	New York 	|Cartier A1| 	1 	     |   2000.00|
+|2021-07-10| 	JUL 	|11:40 |	London 	    |Omega 100 |	2 	     |   2600.00|
+|2021-07-15| 	JUL 	|10:30 |	London 	    |Omega 100 |	3 	     |   4000.00|
+
+The window frame is a set of rows that depends on the current row; thus, the set of rows could change for each row processed by the query. We define window frames using the `OVER` clause. The syntax is:
+````SQL
+OVER ([PARTITION BY columns] [ORDER BY columns])
+````
+The `PARTITION` BY subclause defines the criteria that the records must satisfy to be part of the window frame. In other words, `PARTITION` BY defines the groups into which the rows are divided; this will be clearer in our next example query. Finally, the ORDER BY clause defines the order of the records in the window frame.
+
+Let’s see the SQL `OVER` clause in action. Here’s a simple query that returns the total quantity of units sold for each article. 
+
+
+````SQL
+SELECT sale_day, sale_time,
+       branch, article, quantity, revenue,
+       SUM(quantity) OVER (PARTITION BY article) AS total_units_sold
+FROM   sales
+````
+This query will show all the records of the `sales` table with a new column displaying the total number of units sold for the relevant article. We can obtain the quantity of units sold using the `SUM` aggregation function, but then we couldn’t show the individual records.
+
+In this query, the `OVER PARTITION BY` article subclause indicates that the window frame is determined by the values in the article column; all records with the same article value will be in one group. Below, we have the result of this query:
+
+|sale_day   |sale_month |sale_time 	|branch 	|article 	|quantity 	|revenue| total units sold|
+|-|-|-|-|-|-|-|-|
+|2021-08-11| 	AUG 	|11:00 |	New York 	|Rolex P1 	|   1 	     |   3000.00|2|
+|2021-08-14| 	AUG 	|11:20 |	New York 	|Rolex P1 	|   2 	     |   6000.00|2|
+|2021-08-17| 	AUG 	|10:00 |	Paris 	    |Omega 100 |	3 	     |   4000.00|9|
+|2021-08-19| 	AUG 	|10:00 |	London 	    |Omega 100 |	1 	     |   1300.00|9|
+|2021-07-17| 	JUL 	|09:30 |	Paris 	    |Cartier A1| 	1 	     |   2000.00|9|
+|2021-07-11| 	JUL 	|10:10 |	New York 	|Cartier A1| 	1 	     |   2000.00|9|
+|2021-07-10| 	JUL 	|11:40 |	London 	    |Omega 100 |	2 	     |   2600.00|3|
+|2021-07-15| 	JUL 	|10:30 |	London 	    |Omega 100 |	3 	     |   4000.00|3|
+
+
+## View
+1. An `UPDATE` statement against a View can only effect one target table at a time
+2. Your `UPDATE` statement cannot update data in a derived column
 
 ## Keys
 ### Super key
