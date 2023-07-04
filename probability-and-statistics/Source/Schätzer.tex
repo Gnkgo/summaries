@@ -24,6 +24,22 @@ Sei $T$ ein Schätzer.
           \lim_{n \ra \infty} P_\vt \left[ \abs{T^{ (n)} - \vt} > \varepsilon \right] = 0
         \end{align*}
 \end{itemize}
+\BoxStart{}
+
+Seien $X_1, \ldots, X_n$ unabhängige, identisch verteilte Zufallsvariablen mit $X_i \sim \mathcal{U}([\theta - 1, \theta]) unter \mathbb{P}_\theta$ 
+wobei $\theta \in \mathbb{R}$. Wir betrachten den Schätzer 
+\[T_1^{(n)} := \frac{1}{n} \cdot \sum_{i = 1}^n X_i + \frac{1}{2}\]
+Sind Schätzer erwartungstreu?
+
+Here's the formatted text in LaTeX:
+
+Sei $\theta \in \mathbb{R}$ fixiert. Aus der Gleichverteilung folgt, dass
+\[
+\mathbb{E}_{\theta}[T(n)_1] = \left(\frac{1}{n} \sum_{i=1}^{n} \mathbb{E}_{\theta}[X_i]\right) + \frac{1}{2} = \mathbb{E}_{\theta}[X_1] + \frac{1}{2} = \theta - \frac{1}{2} + \frac{1}{2} = \theta
+\]
+Somit folgt, dass der Schätzer $T(n)_1$ erwartungstreu ist.
+
+\BoxEnd{}
 \subsection*{Maximum-Likelihood Methode}
 (Analog im diskreten Fall.) In einem Modell $P_\vt$ sind die Zufallsvariablen
 $\zufallsvariablen$ stetig mit einer gemeinsamen Dichtefunktion
