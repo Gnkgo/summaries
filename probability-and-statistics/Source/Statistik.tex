@@ -52,6 +52,29 @@ Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
 \end{enumerate}
 Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
 Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
+\BoxStart{}
+Christoph hat in 100 Versuchen 60 Mal richtig gelegen mit seiner Vorhersage. Soll man nun
+Christoph hellseherische Fähigkeiten zuschreiben, oder war das purer Zufall? Führen Sie dazu
+einen statistischen Test durch.
+Mittels eines Binomial-Tests möchten wir testen ob Christoph hellseherische Fähigkeiten be-
+sitzt oder nicht. Wir gehen dabei wir folgt vor:
+\begin{itemize}
+  \item $H_0$: Christoph besitzt keine hellseherische Fähigkeiten, d.h. $ X \sim Bin(n, p)$ mit $p = \frac{1}{2}$
+  \item $H_A$: Christoph besitzt hellseherische Fähigkeiten, d.h. $X \sim Bin(n, p)$ mit $p > \frac{1}{2}$
+  \item Der Test ist einseitig durchzuführen. Wir möchten herausfinden ob Christophs Vorhersagen
+  häufiger korrekt sind (d.h. $p > \frac{1}{2}$) sind als diejenigen einer Person die einfach zufällig
+  etwas tippt (d.h. $p = \frac{1}{2}$)  
+  \item sei wieder $X$ die Anzahl korrekter Vorhersagen aus n Versuchen. Unter $H_0$ ist also $X \sim Bin(p = \frac{1}{2}, n = 100)$ 
+  und somit verwerfen wir $H_0$ für alljene $k \in \N$, für welche $P_{H_0} (X \geq k) \leq 0.05$. 
+  Durch Ablesen von der Binomialtabelle erhalten wir $P_{H_0} (X \geq 58) = 1 - P_{H_0} (X \leq 57) = 0.0666$ und $P_{H_0} (X \geq 59) = 0.0443$.
+  Der Verwerfungsbereich V ist also gegeben durch $V = {k \in \N : k \geq 59}$.
+\end{itemize}
+
+
+
+
+\BoxEnd{}
+
 \subsection*{Likelihood Quotient}
 Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
   \varTheta_0$ sowie $\vt_A \in \varTheta_A$. Dann definieren wir:

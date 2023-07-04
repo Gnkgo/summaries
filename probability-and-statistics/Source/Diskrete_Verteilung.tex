@@ -1,7 +1,8 @@
+% chktex-file 8
 \hypertarget{sec:1}{\section{Diskrete Verteilungen}}
 \subsection*{Diskrete Gleichverteilung}
 Die diskrete Gleichverteilung auf einer endlichen Menge $\W = \{ x_1, \dots,
-  x_n \}$ gehärt zu einer Zufallsvariablen $X$ mit Wertebereich $\W$ und
+  x_n \}$ gehört zu einer Zufallsvariablen $X$ mit Wertebereich $\W$ und
 Gewichtsfunktion:
 \begin{align*}
   p_X (x_k) = P[X = x_k] = \frac{1}{N} &  & k \in \{1, \dots, N\}
@@ -11,13 +12,13 @@ Es sei $A_i := \{\text{Erfolg beim $i$-ten Experiment}\}$ und:
 \begin{itemize}
   \item Die $A_i$ sind unabhängig
   \item $P[A_i] = p$ für alle $i$
-  \item $$
+  \item \[
           Y_i (\omega) =
           \begin{cases}
             1 & \omega \in A_i      \\
             0 & \omega \not \in A_i
           \end{cases}
-        $$
+        \]
 \end{itemize}
 \subsection*{Bernoulli-Verteilung}
 Ein einziges 0-1-Experiment mit $\W (X) = \{0, 1\}$. Die Gewichtsfunktion ist
@@ -25,7 +26,7 @@ gegeben durch $p_X (1) = p$, sowie $p_X (0) = 1-p$. Man schreibt kurz $X \sim
   Be (p)$. Es gilt:
 \begin{align*}
   E[X]   & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
-  Var[X] & = E[X^2] - E[X]^2 = p \cdot  (1-p)
+  Var[X] & = E[X^2] - {E[X]}^2 = p \cdot  (1-p)
 \end{align*}
 \subsection*{Binomialverteilung}
 Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1-Experimenten mit
