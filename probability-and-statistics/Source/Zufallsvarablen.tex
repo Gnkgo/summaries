@@ -192,6 +192,21 @@ so hat $Y$ gerade die Verteilungsfunktion $F$:
   F_Y (t) & = P[Y \leq t] = P[F^{-1} (X) \leq t] \\
           & = P[X \leq F (t)] = F (t)
 \end{align*}
+Mit der Substitution
+\begin{align*}
+  \phi(X) &= Y\\
+  X &= \phi^{-1}(y)\\
+  f_Y(y) &= f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)|\\
+\end{align*}
+\BoxStart{}
+Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Was ist die Dichte $f_Y(y), y > 0$ der Zufallsvariable $Y$?
+\begin{align*}
+  Y &= e^X\\
+  X &= \ln Y\\
+  \frac{dx}{dy} &= \frac{1}{y}\\
+  f_Y(y) &= f_X(\ln y) \cdot \frac{1}{y}\\
+\end{align*}
+\BoxEnd{}
 \subsection*{Markov Ungleichung}
 Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
 wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
