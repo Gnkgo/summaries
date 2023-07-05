@@ -86,6 +86,98 @@ Executes a relational algebra
 - Efficient: 
 - Inefficient: 
 
+## Functional Dependencies
+````
+A -> BC
+B -> C
+A -> B
+AB -> C
+````
+1. Convert right-hand-side attribute into singleton attribute
+````
+A -> B
+A -> C
+B -> C
+A -> B
+AB -> C
+````
+2. Remove the extra left-hand-side attribute
+
+Find the closure of A
+
+$A_+ = {A, B, C}$
+
+So, `AB -> C`can be converted into `A -> C`
+````
+A -> B
+A -> C
+B -> C
+A -> B
+A -> C
+````
+3. Remove redundant functional dependencies
+````
+A -> B
+B -> C
+````
+Now, we will convert the above set of FDs into canonical cover.
+
+The canonical cover for the above set of FDs will be as follows −
+````
+A -> BC
+B -> C
+````
+
+### Example
+
+To get the minimal cover, you have to make two steps. To demonstrate, I'll first split the dependencies into multiple (only one attribute on the right side) to make it more clean:
+````
+A -> B
+ABCD -> E
+EF -> G
+EF -> H
+ACDF -> E
+ACDF -> G
+````
+The following steps must be done in this order (#1 and then #2), otherwise you can get incorrect result.
+
+1. get rid of redundant attributes (reduce left sides):
+
+Take each left side and try to remove one each attribute one at a time, then try to deduce the right side (which is now only one attribute for all dependencies). If you succeed you can then remove that letter from the left side, then continue. Note that there might be more than one correct result, it depends on the order in which you do the reduction.
+
+You will find out, that you can remove B from the dependency `ABCD -> E`, because `ACD -> ABCD` (use first dep.) and from `ABCD -> E`. You can use the full dep. you are currently reducing, this is sometimes confusing at first, but if you think about it, it will become clear that you can do that.
+
+Similarly, you can remove `F` from `ACDF -> E`, because `ACD -> ABCD -> ABCDE -> E` (you can obviously deduce a single letter from the letter itself). After this step you get:
+````
+A -> B
+ACD -> E
+EF -> G
+EF -> H
+ACD -> E
+ACDF -> G
+````
+These rules still represent the same dependencies as the original. Note that now we have a duplicate rule `ACD -> E`. If you look at the whole thing as a set (in the mathematical sense), then of course you can't have the same element twice in one set. For now, I'm just leaving it twice here, because the next step will get rid of it anyway.
+
+2. get rid of redundant dependencies
+
+Now for each rule, try to remove it, and see if you deduce the same rule by only using others. In this step you, of course, cannot use the dep. you're currently trying to remove (you could in the previous step).
+
+If you take the left side of the first rule `A -> B`, hide it for now, you see you can't deduce anything from A alone. Therefore this rule is not redundant. Do the same for all others. You'll find out, that you can (obviously) remove one of the duplicate rules `ACD -> E`, but strictly speaking, you can use the algorithm also. Hide only one of the two same rules, then take the left side `(ACD)`, and use the other to deduce the right side. Therefore you can remove `ACD -> E` (only once of course).
+
+You'll also see you can remove `ACDF -> G`, because `ACDF -> ACDFE -> G`. Now the result is:
+````
+A -> B
+EF -> G
+EF -> H
+ACD -> E
+````
+Which is the minimal cover of the original set.
+
+## Lossless
+- $$S = S_1 \cup S_2$$
+- $$S = S_1 \Join S_2$$
+
+
 
 
 ## Quiz Questions and Answers
@@ -248,6 +340,21 @@ In this query, the `OVER PARTITION BY` article subclause indicates that the wind
 ## View
 1. An `UPDATE` statement against a View can only effect one target table at a time
 2. Your `UPDATE` statement cannot update data in a derived column
+
+## Referential Constraints
+### Cascade
+- Propagate update or delete
+
+### Restrict
+- Prevent deletion of the primary key before trying to do the change, cause an error
+- Throw error immediately
+
+### No Action
+- Prevent modifications after attempting the change cause an error
+- throw error after trying
+
+### Set default, set null
+- Set referenced to NULL or to a default value
 
 ## Keys
 ### Super key
