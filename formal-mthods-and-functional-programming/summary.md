@@ -9,7 +9,7 @@ String inp2 = Console.readLine();
 if (inp2.equals(inp1)) System.out.println(out); }
 ```` 
 
-How to convert to Haskell?
+## How to convert to Haskell?
 ````Haskell
 f :: String -> IO ()
 f out = do
@@ -19,7 +19,7 @@ f out = do
         then putStrLn out
         else return ()
 ````
-Syntax for IO type:
+## Syntax for IO type:
 - do block sequences side effects
 - <- extracts values from IO
 - return wraps values in IO
@@ -28,17 +28,17 @@ Syntax for IO type:
 - read converts Strings to values (Always specify the desired type!)
 - for $\alpha$-equivalence, no variables can be free!
 
-Syntax Tree
+## Syntax Tree
 - $\land$ binds stronger than $\lor$ stronger than $\rightarrow$.
 - I $\rightarrow$ associates to the right; $\land$ and $\lor$ to the left.
 - I Negation binds stronger than binary operators.
 - I Quantifiers extend to the right as far as possible.
 
 Proof Rule fore Induction Step:
-![alt text](induction-step-tree.png "Induction Step Tree")
-## Foldr/Foldl
+![alt text](assets/induction-step-tree.png "Induction Step Tree")
 
-Foldr:
+## Foldr/Foldl
+### Foldr:
 The easiest way to understand foldr is to rewrite the list you're folding over without the sugar.
 ````Haskell
 [1,2,3,4,5] => 1:(2:(3:(4:(5:[]))))
@@ -119,3 +119,22 @@ foldl f z xs = aux xs z
 ````Haskell
 foldl f z xs = foldr (\x rec z -> rec (f z x)) (\z -> z) xs z
 ````
+
+## IMP
+Remember the following:
+![Alt text](assets/substitution-rule.png)
+![Alt text](assets/free-variable.png)
+
+### Proof Structure
+#### Free Variables /Arithmetic Expression
+Let $x, y$ be arbitrary... strong structural induction on... Thus we have to prove $P(e)$ for some arbitrary arithmetic expression $e$ and assume $\forall e'' \subset$ e \cdot P(e'') $ aso our induction hypothesis
+- **Case** $e \equiv n$ for some numerical value $n$
+- **Case** $e \equiv y$ for some variable $y$
+- **Case** $e \equiv e_1 \text{ op } e_2$ for some arithmetic expression $e_1, e_2$ and some arithmetic operator $op$
+
+#### Boolean Expression
+- **Case** $b \equiv b_1 \text{ or } b_2 $ for some boolean expressions $b_1, b_2$
+- **Case** $e \equiv b_1 \text{ and } b_2 $ for some boolean expressions $b_1, b_2$
+- **Case** $e \equiv \text{ not } b'$ for some boolean expression $b'$
+- **Case** $e \equiv e_1 \text{ op } e_2$ for some arithmetic expression $e_1, e_2$ and some arithmetic operator $op$
+
