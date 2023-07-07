@@ -4,12 +4,12 @@ $\Rightarrow w^* = \underset{w, \theta}{\operatorname{argmin}} \sum_{i=1}^n l(y_
 $f(x; w, \theta_{1:d}) = \sum_{j=1}^m w_j \varphi(\theta_j^T x) = w^T \varphi(\Theta x)$
 
 \subsection*{Activation functions}
-Sigmoid: $\frac{1}{1+exp(-z)}$,  $\varphi'(z) = (1 - \varphi(z))\cdot\varphi(z)$\\
-tanh: $\varphi(z) = tanh(z) = \frac{exp(z)-exp(-z)}{exp(z)+exp(-z)}$\\
+Sigmoid: $\frac{1}{1+\exp(-z)}$,  $\varphi'(z) = (1 - \varphi(z))\cdot\varphi(z)$\\
+$\tanh$: $\varphi(z) = \tanh(z) = \frac{\exp(z)-\exp(-z)}{\exp(z)+\exp(-z)}$\\
 ReLU:  $\varphi(z) = \max(z,0)$
 
 \subsection*{Predict: forward propagation}
-$v^{(0)} = x$; for $l = 1,...,L-1$: \\
+$v^{(0)} = x$; for $l = 1,\ldots,L-1$: \\
 $v^{(l)} = \varphi(z^{(l)})$, $z^{(l)} = W^{(l)}v^{(l-1)}$\\
 $f = W^{(L)}v^{(L-1)}$\\
 Predict $f$ for regression, $\operatorname{sign}(f)$ for class.
@@ -18,9 +18,25 @@ Predict $f$ for regression, $\operatorname{sign}(f)$ for class.
 Output layer: 
 $\delta_j = l_j'(f_j)$,
 $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$\\
-Hidden layer $l=L-1,...,1$:\\
+Hidden layer $l=L-1,\ldots,1$:\\
 $\delta_j = \varphi'(z_j) \cdot \sum_{i\in Layer_{l+1}} w_{i,j}\delta_i$,
 $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
 
 \subsection*{Learning with momentum}
 $a \leftarrow m \cdot a + \eta_t \nabla_W l(W;y,x)$; $W_{t+1} \leftarrow W_t - a$
+
+\subsection*{Convolution}
+\begin{itemize}
+    \item $K = kernelSize$
+    \item $C = channel$
+    \item $F = filter$    \item $inputSize = I$
+    \item $padding = P$
+    \item $stride = S$
+\end{itemize}
+
+
+\begin{itemize}
+    \item $\text{Number of parameters} = K^{dimensions} \times C \times F$
+    \item $\text{Output size} = \frac{I + 2P - K}{S} + 1$
+    \item $\text{Inputs} = W * H * D * C * N$
+\end{itemize}

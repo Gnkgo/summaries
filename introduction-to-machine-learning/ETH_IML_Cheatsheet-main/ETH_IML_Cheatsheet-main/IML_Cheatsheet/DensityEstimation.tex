@@ -8,7 +8,7 @@ Univariate: $\hat{f}(x)=\frac{1}{nh}\sum^{n}_{i=1}K(\frac{x-X_i}{h})$
 
 \subsection*{Density evaluation:}
 
-Evaluate across a distribution: IMSE $= \int E[(\hat{f}(x)-f(x))^2] = E[\int_\Omega \hat{f}(x)-f(x))^2] \sim$  Get average mean squared loss across a range for each bandwidth - MAKE Matrix, choose smallest loss bandwidth.
+Evaluate across a distribution: IMSE $= \int E[(\hat{f}(x)-f(x))^2] = E[\int_\Omega \hat{f}(x)-f(x)^2] \sim$  Get average mean squared loss across a range for each bandwidth - MAKE Matrix, choose smallest loss bandwidth.
 
 \noindent Bias(x) = $h^2f''(x)\int z^2 K(z) dz/2 + o(h^2)$
 

@@ -13,6 +13,9 @@ $C(y,a) =
  \end{cases}$\\
  \emph{Regression}:  $C(y,a) = (y-a)^2$; asymmetric: $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$\\
 E.g. $y \in \{-1,+1\}$, predict $+$ if $c_+ < c_-$, $c_+ = \mathbb{E}(C(y, +1)|x) = P(y = 1|x) \cdot 0 + P(y = -1|x) \cdot c_{FP}$, $c_-$ likewise
+\subsection*{Robbins-Monro condition}
+Learning rate $\eta_t$ guarantees convergence if $\sum_t \eta_t = \infty$ and $\sum_t \eta_t^2 < \infty$
+
 
 %\subsection*{Optimal decision for logistic regression}
 %$a^* = \underset{y}{argmax} \hat{P}(y|x) = sign(w^T x)$
