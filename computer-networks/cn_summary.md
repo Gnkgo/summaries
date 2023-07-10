@@ -38,10 +38,25 @@
 - **Transport Layer:** Transports application layer messages between application endpoints. In the internet, there’s TCP and UDP. E.g. longer messages are split into shorter segment. Packets in this layer are called segments.(TCP & UDP) or Datagram (UDP).
 
 - **Network Layer:** The layer is responsible for moving datagrams from host to host. It receives a segment and an address. This layer includes the IP, which defines the fields in a datagram and how to work on those fields. Packets in this layer are called datagrams / packet. 
+    - ARP: broadcast domain receives everyone until a router. 
+    - goes through mac
 
-- **Link Layer:** The network layer brings a datagram from one node to another, but to move a packet from one specific node to another, it relies on the link layer. It delivers the packet to the next node. E.g. Ethernet or WiFi. Link layer protocols are called frames.
+- **Link Layer:** The network layer brings a datagram from one node to another, but to move a packet from one specific node to another, it relies on the link layer. 
+    - It delivers the packet to the next node. E.g. Ethernet or WiFi. Link layer protocols are called frames.
+    - error detection
 
 - **Physical layer:** The job of the link layer is to move whole frames from one node to another; however, the job of the physical layer is to move individual bits. Many protocols exist, depending on the physical medium; e.g. Ethernet has different protocols for different cable types.
+
+## Ethernet
+1. frame starts with destination address
+    - if not destined to this device, it can be simply dropped
+2.  source address
+3. type / length field
+    - tells receiver what payload this frame carries
+4. data and pad
+    - minimum length of an ethernet frame is 64 bytes in total
+5. checksum
+    - determines whether the bits of the frame have been received correctly. If error, frame is dropped
 
 
 ## DNS servers
@@ -96,6 +111,7 @@ Built up by:
 - TTL
 - (Sequence number is only contained inside of the transport header but not the IP header)
 - (There is no checksum in the IPv6 header)
+- hostname can map to multiple IP addresses for reasons of fallback and load distribution
 
 ## Link State Routing
 1. Nodes flood topology in the form of link state packets and each node learns the full topology
@@ -151,7 +167,10 @@ There are more transitions in the 4B5B-encoded signal. This allows for clock rec
 - Sample RTT $$SampleRTT = AckRcvdTime - SendPacketTime$$
 
 ## NAT
-
+- can modify outgoing packets traveling from an internal network to the internet
+    - source IP address
+    - source port
+    - IP checksum
 **Advantages of middleboxes**
 - A possible rapid deployment path when there is no other option
 - Control over many hosts
@@ -189,6 +208,9 @@ How to deploy publicly accessible services wih NAT?
 - IP address of server
 - port number from server
 
+## TCP
+- in-sequence delivery
+- a connection-oriented service
 ## TCP Congestion Control
 ### Slow Start
 - Multiplicative increase of the congestion window
@@ -207,6 +229,8 @@ How to deploy publicly accessible services wih NAT?
     - If there is a cache server, bloom filter can implemented on NIC to filter out requests for entries that are certainly not in cache and thus, reduce latency and the overall load on the server's CPU
 - track specific information about network flows
     - instead of deploying a filter on a NIC, the filter can be installed on a switch that connects multiple cache servers. Thus, the same effect can be achieved as in the previous example, just at te switch, which further improves the latency.
+- after insertion of $n$ independent elements, what is the probability that a particular bit is 1
+    - $$(1 - \frac{1}{m})^{kn}$$
 
 ### Answers a Bloom filter gives
 - Surely not present or possibly present
@@ -290,6 +314,15 @@ Short:
 Long:
 - risk of frequent quality switches, ath the price of having less reactivity to bandwidth fluctuations and higher risk of rebuffering
 - DASH architecture, a chunk is playable once it has been completely downloaded. We would have to wait until whole video is downloaded before playing
+
+## HTTP
+- stateless protocol
+
+## Linear Programming
+- all finite linear programs are solvable in polynomial time
+- general space of integer linear programs is NP hard
+    - This does not mean that ever problem that can be expressed an ILP is hard
+
 
 
 ## Byte Stuffing
