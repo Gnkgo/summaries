@@ -154,12 +154,31 @@ Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
   F_X (x) & = P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y) \\
   f_X (x) & = \int_{-\infty}^\infty f (x, y) \; dy
 \end{align*}
+
 Sind $X, Y$ diskrete Zufallsvariablen mit $\W (Y) = \{y_1, y_2, \dots\}$
 und gemeinsamer Gewichtsfunktion $p (x, y)$, so ist die Gewichtsfunktion
 der Randverteilung von $X$ gegeben durch:
 \begin{align*}
   x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
 \end{align*}
+\BoxStart{}
+Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
+Parameter $\lambda > 0$. Definiere
+\[
+  U := \frac{X}{X + Y} und V := X + Y
+\]
+Seien $f_U$ und $f_V$ die zu $U$ und $V$ gehörigen Dichtefunktionen. Berechne
+die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
+\begin{align*} 
+  P[U \leq u] &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx\\ 
+  &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx\\ 
+  &= \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx\\ 
+  &= \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx \\ 
+  &= \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx\ &= \lambda \int_0^\infty e^{-\lambda u^-1 x}dx\\ 
+  &= u 
+\end{align*}
+
+\BoxEnd{}
 \BoxStart{}
 Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
 \[
@@ -178,15 +197,15 @@ Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame 
 \end{itemize}
 
 \begin{align*}
-   D = &\{(a, b) \in \mathbb{R}^2 : -1 \leq a \leq 1 \text{ and } -2 \leq b \leq 2\} \\
-   \cup & \{(a, b) \in \mathbb{R}^2 : 1 \leq a \leq 2 \text{ and } -1 \leq b \leq 1\}\\
-  & f_{U,V}(u, v) = 
+  D =  & \{(a, b) \in \mathbb{R}^2 : -1 \leq a \leq 1 \text{ and } -2 \leq b \leq 2\} \\
+  \cup & \{(a, b) \in \mathbb{R}^2 : 1 \leq a \leq 2 \text{ and } -1 \leq b \leq 1\}  \\
+       & f_{U,V}(u, v) =
   \begin{cases}
     1/10 & \text{if } (u, v) \in D \\
-    0 & \text{otherwise}
+    0    & \text{otherwise}
   \end{cases}
 \end{align*}
-For $u < -1$, $F_U(u) = P(U \leq u) = 0$. 
+For $u < -1$, $F_U(u) = P(U \leq u) = 0$.
 For $-1 \leq u \leq 1$, $F_U(u) = P(U \leq u) = $
 \[
   \int_u^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds = \frac{4(u + 1)}{10}
@@ -194,7 +213,7 @@ For $-1 \leq u \leq 1$, $F_U(u) = P(U \leq u) = $
 
 For $1 \leq u \leq 2$, $F_U(u) = P(U \leq u) =$
 \[
-\int_1^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds + \int_u^1 \int_{-1}^{1} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds
+  \int_1^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds + \int_u^1 \int_{-1}^{1} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds
 \]
 \[
   = \frac{8}{10} + \frac{2(u - 1)}{10}
@@ -203,27 +222,28 @@ For $1 \leq u \leq 2$, $F_U(u) = P(U \leq u) =$
 and $F_U(u) = 1$ for $u > 2$.
 
 \[
-f_U(u) = \begin{cases}
-\frac{4}{10} & \text{if } -1 \leq u \leq 1 \\
-\frac{2}{10} & \text{if } 1 \leq u \leq 2 \\
-0 & \text{otherwise}
-\end{cases}
+  f_U(u) = \begin{cases}
+    \frac{4}{10} & \text{if } -1 \leq u \leq 1 \\
+    \frac{2}{10} & \text{if } 1 \leq u \leq 2  \\
+    0            & \text{otherwise}
+  \end{cases}
 \]
 
 \[
-f_V(v) = \int_{-\infty}^{\infty} f_{U,V}(u,v) \, du = 
+  f_V(v) = \int_{-\infty}^{\infty} f_{U,V}(u,v) \, du =
 \]
 \[
-\frac{1}{2}\left(2[v \in [-2,2]] + [v \in [-1,1]]\right)
+  \frac{1}{2}\left(2[v \in [-2,2]] + [v \in [-1,1]]\right)
 \]
 
 If U and V are independent, then for all u and v:
 
 \[
-f_U(u) \cdot f_V(v) = f_{U,V}(u,v)
+  f_U(u) \cdot f_V(v) = f_{U,V}(u,v)
 \]
 
-However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5} \cdot \frac{1}{5} \neq 0\).
+However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5}
+\cdot \frac{1}{5} \neq 0\).
 
 Therefore, U and V are not independent.
 
@@ -282,71 +302,3 @@ Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Wa
   f_Y(y)        & = f_X(\ln y) \cdot \frac{1}{y} \\
 \end{align*}
 \BoxEnd{}
-\subsection*{Markov Ungleichung}
-Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
-wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
-\begin{align*}
-  P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
-\end{align*}
-\subsection*{Chebyshev-Ungleichung}
-Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
-\begin{align*}
-  P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
-\end{align*}
-\subsection*{Momenterzeugende Funktion}
-Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
-\begin{align*}
-  M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
-\end{align*}
-\subsection*{Grosse Summenabweichung}
-Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
-Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
-$b \in \R$ gilt dann:
-\begin{align*}
-  P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
-\end{align*}
-\subsection*{Chernoff Schranken}
-Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $S_n = \Sn X_i$.
-Sei $\mu_n := E[S_n] = \Sn p_i$ und $\delta > 0$. Dann gilt:
-\begin{align*}
-  P[S_n \geq  (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{ (1+\delta)^{1 + \delta}} \right)^{\mu_n}
-\end{align*}
-\subsection*{Schwaches Gesetz der grossen Zahlen}
-Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
-den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
-  \sigma^2$ haben. Sei
-\begin{align*}
-  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
-\end{align*}
-Dann konvergiert $\overline{X}_n$ für $n \ra \infty$ in Wahrscheinlichkeit/
-stochastisch gegen $\mu = E[X_i]$, d.h.:
-\begin{align*}
-  P \left[ \abs{\overline{X}_n - \mu} > \varepsilon \right] \underset{n \ra \infty}{\longrightarrow} 0
-   &  & \text{für jedes } \varepsilon > 0
-\end{align*}
-(Statt unabhängig genügt auch $Cov (X_i, X_k) = 0$ für $i \neq k$)
-\subsection*{Starkes Gesetz der grossen Zahlen}
-Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
-dieselbe Verteilung haben, und ihr Erwartungswert $\mu = E[X_i]$ sei endlich.
-Für:
-\begin{align*}
-  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
-\end{align*}
-gilt dann
-\begin{align*}
-  \overline{X}_n \underset{n \ra \infty}{\longrightarrow} \mu &  & \text{P-fastsicher}
-\end{align*}
-d.h.:
-\begin{align*}
-  P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
-\end{align*}
-\subsection*{i.i.d. / u.i.v.}
-Independent identically distributed
-\subsection*{Zentraler Grenzwertsatz}
-Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
-und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
-\begin{align*}
-  \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x)
-   &  & \text{für alle } x \in \R
-\end{align*}
-wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist.

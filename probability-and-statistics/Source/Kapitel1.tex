@@ -1,0 +1,106 @@
+% chktex-file 12
+% chktex-file 8
+
+
+{\section{Wahrscheinlichkeiten}}
+\subsection*{Ereignisraum}
+Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse des betrachteten
+Zufallsexperiments. Die Elemente $\omega \in \Omega$ heissen
+Elementarereignisse.
+\subsection*{Potenzmenge}
+Die Potenzmenge von $\Omega$, bezeichnet mit $\mathcal{P} (\Omega)$ oder
+$2^\Omega$ ist die Menge aller Teilmengen von $\Omega$. Ein Prinzipielles
+Ereignis ist eine Teilmenge $A \subseteq \Omega$, also eine Kollektion von
+Elementarereignissen. Die Klasse aller beobachtbaren Ereignisse ist
+$\mathcal{F}$.
+\subsection*{$\sigma$-Algebra}
+Ein Mengensystem ist eine $\sigma$-Algebra falls
+\begin{enumerate}[label=  (\arabic*)]
+  \item $\Omega \in \mathcal{F}$
+  \item Für jedes $A \in \mathcal{F}$ ist auch $A^\complement \in \mathcal{F}$
+  \item Für jede Folge ${A_n}_{n \in \mathbb{N}}$ mit $A_n \in \mathcal{F}$ für alle $n
+          \in \N$ auch die Vereinigung $\bigcup_{n = 1}^\infty A_n \in \F$
+\end{enumerate}
+\subsection*{Wahrscheinlichkeitsmass}
+Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden Eigenschaften:
+\begin{enumerate}[label= (\arabic*)]
+  \item $\mathcal{P}[A] \geq 0 \text{ für alle Ereignisse } A \in \F$
+  \item $P[\Omega] = 1$
+  \item Für $A_i \in \F$ paarweise disjunkt gilt $P[\bigcup_{i = 1}^\infty A_i] =
+          \sum_{i = 1}^\infty \mathcal{P}[A_i]$
+\end{enumerate}
+Es gelten weiter folgende Rechenregeln:
+\begin{itemize}
+  \item $\mathcal{P}[A^\complement] = 1 - \mathcal{P}[A]$
+  \item $\mathcal{P}[\emptyset] = 0$
+  \item Für $A \subseteq B$ gilt $\mathcal{P}[A] \leq \mathcal{P}[B]$
+  \item $\mathcal{P}[A \cup B] = \mathcal{P}[A] + \mathcal{P}[B] - \mathcal{P}[A \cap B]$
+\end{itemize}
+\subsection*{Diskrete Wahrscheinlichkeitsräume}
+Impliziert:
+\begin{itemize}
+  \item $\Omega$ ist endlich oder abzählbar unendlich
+  \item $\F = 2^{\Omega}$
+\end{itemize}
+\subsection*{Laplace Raum}
+Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $\abs*{\Omega} = N$
+und $\F = 2^\Omega$ sowie alle $\omega_i$ gleich wahrscheinlich mit $p_i =
+  \frac{1}{n}$, so heisst $\Omega$ ein Laplace Raum und $P$ die diskrete
+Gleichverteilung auf $\Omega$. Dann ist für $A \subseteq \Omega$:
+\begin{align*}
+  P[A] = \frac{\abs{A}}{\abs{\Omega}}
+\end{align*}
+\subsection*{Bedingte Wahrscheinlichkeit}
+Seien $A, B$ Ereignisse mit $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$
+unter der Bedingung, dass $A$ eintritt wird definiert durch:
+\begin{align*}
+  P[B \;|\; A] & := \frac{P[B \cap A]}{P[A]}            \\
+               & = \frac{P[A \;|\; B] \cdot P[B]}{P[A]}
+\end{align*}
+\subsection*{Multiplikationsregel}
+Es gilt:
+\begin{align*}
+  P[A \cap B] = P[A \;|\; B] \cdot P[B] = P[B \;|\; A] \cdot P[A]
+\end{align*}
+\subsection*{Satz der totalen Wahrscheinlichkeit}
+Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte
+Ereignisse, d.h. $\bigcup_{i = 1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset
+  \quad \forall i \neq k$. Dann gilt:
+\begin{align*}
+  P[B] = \sum_{i = 1}^n P[B \; | \; A_i] \cdot P[A_i]
+\end{align*}
+\emph{Beweis.}
+Da $B \subseteq \Omega \implies B = B \cap \Omega
+  = B \cap  (\bigcup_{i=1}^n A_i) = \bigcup_{i = 1}^n  (B \cap A_i)$.
+Weiter sind alle Mengen der Art $ (B \cap A_i)$ paarweise disjunkt,
+was bedeutet, dass $ (B \cap A_i)$ eine disjunkte Zerlegung von $B$
+bilden. Damit folgt:
+\begin{align*}
+  P[B] = P \left[ \bigcup_{i = 1}^n  (B \cap A_i)\right] \\
+  = \Sn P[B \cap A_i] = \sum_{i = 1}^n P[B \; | A_i] \cdot P[A_i]
+\end{align*}
+\subsection*{Satz von Bayes}
+Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i \in
+  \{1, \dots, n\}$. Sei $B$ ein Ereignis mit $P[B > 0]$. Dann gilt für jedes $k$:
+\begin{align*}
+  \cond{A_k}{B} = \frac{\cond{B}{A_k} \cdot P[A_k] }{\Sn \cond{B}{A_i} \cdot P[A_i]}
+\end{align*}
+\emph{Beweis.} Verwende Definition Bedingte Wahrscheinlichkeit,
+im Zähler Multiplikationsregel und im Nenner Satz der totalen Wahrscheinlichkeit.
+\subsection*{Unabhängige Ereignisse  (2)}
+Zwei ereignisse heissen (stochastisch) Unabhängig, falls
+\begin{align*}
+  P[A \cap B] = P[A] \cdot P[B]
+\end{align*}
+Ist $P[A] = 0$ oder $P[B] = 0$, so sind $A, B$ immer unabhängig.
+Für $P[A] \neq 0$ gilt:
+\begin{align*}
+  A, B \text{ unabhängig} \Longleftrightarrow \cond{A}{B} = P[A]
+\end{align*}
+\subsection*{Unabhängige Ereignisse  ($\infty$)}
+Die Ereignisse $\ereignisse$ heissen (stochastisch) unabhängig, wenn für jede
+endliche Teilfamilie der Produktformel gilt, d.h. für $m \in \N$ und $\{k_1,
+  \dots, k_m\} \subseteq \{1, \dots, n\}$:
+\begin{align*}
+  P \left[\bigsubsection* A_{k_i} \right] = \Pn P[A_{k_i}]
+\end{align*}

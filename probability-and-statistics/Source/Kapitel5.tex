@@ -1,0 +1,68 @@
+\subsection*{Markov Ungleichung}
+Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
+wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
+\begin{align*}
+  P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
+\end{align*}
+\subsection*{Chebyshev-Ungleichung}
+Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
+\begin{align*}
+  P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
+\end{align*}
+\subsection*{Momenterzeugende Funktion}
+Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
+\begin{align*}
+  M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
+\end{align*}
+\subsection*{Grosse Summenabweichung}
+Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
+Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
+$b \in \R$ gilt dann:
+\begin{align*}
+  P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
+\end{align*}
+\subsection*{Chernoff Schranken}
+Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $S_n = \Sn X_i$.
+Sei $\mu_n := E[S_n] = \Sn p_i$ und $\delta > 0$. Dann gilt:
+\begin{align*}
+  P[S_n \geq  (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{ (1+\delta)^{1 + \delta}} \right)^{\mu_n}
+\end{align*}
+\subsection*{Schwaches Gesetz der grossen Zahlen}
+Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
+  \sigma^2$ haben. Sei
+\begin{align*}
+  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
+\end{align*}
+Dann konvergiert $\overline{X}_n$ für $n \ra \infty$ in Wahrscheinlichkeit/
+stochastisch gegen $\mu = E[X_i]$, d.h.:
+\begin{align*}
+  P \left[ \abs{\overline{X}_n - \mu} > \varepsilon \right] \underset{n \ra \infty}{\longrightarrow} 0
+   &  & \text{für jedes } \varepsilon > 0
+\end{align*}
+(Statt unabhängig genügt auch $Cov (X_i, X_k) = 0$ für $i \neq k$)
+\subsection*{Starkes Gesetz der grossen Zahlen}
+Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
+dieselbe Verteilung haben, und ihr Erwartungswert $\mu = E[X_i]$ sei endlich.
+Für:
+\begin{align*}
+  \overline{X}_n = \frac{1}{n} S_n = \frac{1}{n} \Sn X_i
+\end{align*}
+gilt dann
+\begin{align*}
+  \overline{X}_n \underset{n \ra \infty}{\longrightarrow} \mu &  & \text{P-fastsicher}
+\end{align*}
+d.h.:
+\begin{align*}
+  P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
+\end{align*}
+\subsection*{i.i.d. / u.i.v.}
+Independent identically distributed
+\subsection*{Zentraler Grenzwertsatz}
+Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
+und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
+\begin{align*}
+  \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x)
+   &  & \text{für alle } x \in \R
+\end{align*}
+wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist.
