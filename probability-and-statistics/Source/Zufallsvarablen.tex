@@ -148,11 +148,86 @@ Eigenschaften hat:
   \item $P[ (\zufallsvariablen) \in A] = \int_{ (x_1, \dots, x_n) \in A} f (t_1, \dots, t_n) \; dt_n \dots t_1$ für $A \subseteq \R^n$
 \end{itemize}
 \subsection*{Randverteilung}
-Haben $X, Y$ die gemeinsame Verteilungsfunktion $F$, dann ist:
+Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
+  \R \mapsto [0, 1]$,
 \begin{align*}
   F_X (x) & = P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y) \\
   f_X (x) & = \int_{-\infty}^\infty f (x, y) \; dy
 \end{align*}
+Sind $X, Y$ diskrete Zufallsvariablen mit $\W (Y) = \{y_1, y_2, \dots\}$
+und gemeinsamer Gewichtsfunktion $p (x, y)$, so ist die Gewichtsfunktion
+der Randverteilung von $X$ gegeben durch:
+\begin{align*}
+  x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
+\end{align*}
+\BoxStart{}
+Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
+\[
+  f_{U, V} (u, v) =
+  \begin{cases}
+    c & \text{falls } (u, v) \in D \\
+    0 & \text{sonst}               \\
+  \end{cases}
+\]
+\begin{center}
+  \includegraphics[width=0.2\textwidth]{dichte_aufgabe.png}
+\end{center}
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]  \item bestimme Konstnte $c$
+  \item bestimme Randverteiungsfunktion von U und Randdichtefunktion $f_U(u)$.
+  \item Sind $U$ und $V$ unabhängig?
+\end{itemize}
+
+\begin{align*}
+   D = &\{(a, b) \in \mathbb{R}^2 : -1 \leq a \leq 1 \text{ and } -2 \leq b \leq 2\} \\
+   \cup & \{(a, b) \in \mathbb{R}^2 : 1 \leq a \leq 2 \text{ and } -1 \leq b \leq 1\}\\
+  & f_{U,V}(u, v) = 
+  \begin{cases}
+    1/10 & \text{if } (u, v) \in D \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+For $u < -1$, $F_U(u) = P(U \leq u) = 0$. 
+For $-1 \leq u \leq 1$, $F_U(u) = P(U \leq u) = $
+\[
+  \int_u^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds = \frac{4(u + 1)}{10}
+\]
+
+For $1 \leq u \leq 2$, $F_U(u) = P(U \leq u) =$
+\[
+\int_1^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds + \int_u^1 \int_{-1}^{1} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds
+\]
+\[
+  = \frac{8}{10} + \frac{2(u - 1)}{10}
+\]
+
+and $F_U(u) = 1$ for $u > 2$.
+
+\[
+f_U(u) = \begin{cases}
+\frac{4}{10} & \text{if } -1 \leq u \leq 1 \\
+\frac{2}{10} & \text{if } 1 \leq u \leq 2 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+\[
+f_V(v) = \int_{-\infty}^{\infty} f_{U,V}(u,v) \, du = 
+\]
+\[
+\frac{1}{2}\left(2[v \in [-2,2]] + [v \in [-1,1]]\right)
+\]
+
+If U and V are independent, then for all u and v:
+
+\[
+f_U(u) \cdot f_V(v) = f_{U,V}(u,v)
+\]
+
+However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5} \cdot \frac{1}{5} \neq 0\).
+
+Therefore, U and V are not independent.
+
+\BoxEnd{}
 \subsection*{Unabhängigkeit}
 Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
 (äquivalent):
@@ -194,17 +269,17 @@ so hat $Y$ gerade die Verteilungsfunktion $F$:
 \end{align*}
 Mit der Substitution
 \begin{align*}
-  \phi(X) &= Y\\
-  X &= \phi^{-1}(y)\\
-  f_Y(y) &= f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)|\\
+  \phi(X) & = Y                                              \\
+  X       & = \phi^{-1}(y)                                   \\
+  f_Y(y)  & = f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)| \\
 \end{align*}
 \BoxStart{}
 Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Was ist die Dichte $f_Y(y), y > 0$ der Zufallsvariable $Y$?
 \begin{align*}
-  Y &= e^X\\
-  X &= \ln Y\\
-  \frac{dx}{dy} &= \frac{1}{y}\\
-  f_Y(y) &= f_X(\ln y) \cdot \frac{1}{y}\\
+  Y             & = e^X                          \\
+  X             & = \ln Y                        \\
+  \frac{dx}{dy} & = \frac{1}{y}                  \\
+  f_Y(y)        & = f_X(\ln y) \cdot \frac{1}{y} \\
 \end{align*}
 \BoxEnd{}
 \subsection*{Markov Ungleichung}

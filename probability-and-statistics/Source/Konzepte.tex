@@ -2,7 +2,7 @@
 % chktex-file 8
 
 
-\hypertarget{sec:0}{\section{Konzepte}}
+{\section{Konzepte}}
 \subsection*{Ereignisraum}
 Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse des betrachteten
 Zufallsexperiments. Die Elemente $\omega \in \Omega$ heissen
@@ -188,18 +188,7 @@ Die Gemeinsame Gewichtsfunktion ist:
 \begin{align*}
   p (x_1, \dots, x_n) := P[X_1 = x_1, \dots, X_n = x_n]
 \end{align*}
-\subsection*{Randverteilung}
-Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
-  \R \mapsto [0, 1]$,
-\begin{align*}
-  x \mapsto F_X (x) := P[X \leq x, Y < \infty] = \lim_{y \ra \infty} F (x, y)
-\end{align*}
-Sind $X, Y$ diskrete Zufallsvariablen mit $\W (Y) = \{y_1, y_2, \dots\}$
-und gemeinsamer Gewichtsfunktion $p (x, y)$, so ist die Gewichtsfunktion
-der Randverteilung von $X$ gegeben durch:
-\begin{align*}
-  x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
-\end{align*}
+
 \subsection*{Unabhängige Zufallsvariablen}
 Zufallsvariablen $\zufallsvariablen$ heissen Unabhängig, falls gilt
 (äquivalent):
