@@ -267,20 +267,3 @@ gilt:
 \begin{align*}
   \binom{n}{k} = \frac{n!}{k! \cdot  (n - k)!}
 \end{align*}
-\subsection*{Ableitung, Integration}
-Es gilt:
-\begin{itemize}
-  \item \textbf{Summenregel} $ (f (x) + g (x))' = f' (x) + g' (x)$
-  \item \textbf{Produktregel} $ (f (x) \cdot g (x))' = f' (x) \cdot g (x) + f (x) \cdot g' (x)$
-  \item \textbf{Quotientenregel} $\left( \frac{f (x)}{g (x)} \right)' = \frac{f' (x) \cdot g (x) - f (x) \cdot g' (x)}{g^2 (x)}$ wenn $g (x) \neq 0$
-  \item \textbf{Kettenregel} $ (f (g (x)))' = f' (g (x)) \cdot g' (x)$
-  \item \textbf{Partielle Integration} $\int_a^b f' (x) \cdot g (x) \; dx = [f (x) \cdot g (x)]_a^b - \int_a^b f (x) \cdot g' (x) \; dx$
-  \item \textbf{Substitution} $\int_{\varphi (a)}^{\varphi (b)} f (x) \; dx = \int_a^b f (\varphi (t)) \cdot \varphi' (t) \; dt$
-  \item $a+c, b+c \in I: \quad \int_a^b f (t + c) \; dt = \int_{a+c}^{b+c} f (x) \; dx$
-  \item \textbf{Logarithmus} $\int \frac{f' (t)}{f (t)} \; dt = \log (\abs{f (x)})$
-\end{itemize}
-\subsection*{Substitution Beispiel}
-\begin{align*}
-  \int \cos (x^2) 2x \; dx &  & u = x^2                              \\
-  \int \cos (u) du         &  & \frac{du}{dx} = \frac{dx^2}{dx} = 2x
-\end{align*}

@@ -293,6 +293,24 @@ Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
 \begin{align*}
   P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
 \end{align*}
+\subsection*{Momenterzeugende Funktion}
+Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
+\begin{align*}
+  M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
+\end{align*}
+\subsection*{Grosse Summenabweichung}
+Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
+Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
+$b \in \R$ gilt dann:
+\begin{align*}
+  P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
+\end{align*}
+\subsection*{Chernoff Schranken}
+Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $S_n = \Sn X_i$.
+Sei $\mu_n := E[S_n] = \Sn p_i$ und $\delta > 0$. Dann gilt:
+\begin{align*}
+  P[S_n \geq  (1 + \delta) \cdot \mu_n] \leq \left( \frac{e^\delta}{ (1+\delta)^{1 + \delta}} \right)^{\mu_n}
+\end{align*}
 \subsection*{Schwaches Gesetz der grossen Zahlen}
 Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
 den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
