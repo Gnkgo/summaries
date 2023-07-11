@@ -7,21 +7,41 @@
 2. Mixing data types within the same column is not permitted
 3. Having a table without a primary key is not permitted
 4. Repeating groups is not permitted
+**The Key**
+- values in each column should not be tables
+- records in the table should be unique
+- primary key
+![Alt text](assets/first_normal_form.png "First Normal Form")
+
 
 ### Second Normal Form
 - Each non-key attribute in the table must be dependent on the entire primary key.
 - If you have a strict subset of the key, it is not in 2NF.
 - If everything on the right side is a key then it is in 2NF
+**The Whole Key**
+- no partial dependencies on the candidate keys
+- columns must be dependent on the whole key
+![Alt text](assets/second_normal_form.png "Second Normal Form")
+- the arrow from supplier to supplier country violates the 2NF rule. Rather than starting in the whole key (product, supplier), the arrow starts in part of the key, the supplier column
+- no arrows that start inside a candidate key
 
 ### Third Normal Form
 - Each non-key attribute in the table must depend on the key, the whole key, and nothing but the key.
 - If everything on the right side is a key then it is in 3NF
 - No transitive relations
+**Nothing but the Key (Attribute)**
+- every non-key attribute is non-transively (directly) dependent on the candidate key. The columns can only be dependent on the key columns.
+![Alt text](assets/third_normal_form.png)
+- arrow between teacher and teacher date of birth violates the 3NF rule. Both the teacher and teacher's date of birth are non-key attributes, so the dependency between them is not allowed
+
 
 ### Boyce-Codd Normal Form
 - Each attribute in the table must depend on the key, the whole key, and nothing but the key.
 - If everything ont the right is a full key it is fine (but check again)
-
+**Nothing but the Key**
+- all arrows must be out of candidate keys
+- check if you have super key with transivity for each key
+![Alt text](assets/b_normal_form.png)
 ### Fourth Normal Form
 The only kinds of multivalued dependency allowed in a table are multivalued dependencies on the key.
 
