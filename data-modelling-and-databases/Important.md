@@ -89,7 +89,7 @@ R4 = (A, B, F)
 
 **Nothing but the Key (Attribute)**
 
-- every non-key attribute is non-transively (directly) dependent on the candidate key. The columns can only be dependent on the key columns.
+- every non-key attribute is non-transitively (directly) dependent on the candidate key. The columns can only be dependent on the key columns.
 ![Alt text](assets/third_normal_form.png)
 - arrow between teacher and teacher date of birth violates the 3NF rule. Both the teacher and teacher's date of birth are non-key attributes, so the dependency between them is not allowed
 
@@ -101,7 +101,7 @@ R4 = (A, B, F)
 **Nothing but the Key**
 
 - all arrows must be out of candidate keys
-- check if you have super key with transivity for each key
+- check if you have super key with transitivity for each key
 ![Alt text](assets/b_normal_form.png)
 
 ### Fourth Normal Form
@@ -201,108 +201,6 @@ EF -> H
 ACD -> E
 ````
 Which is the minimal cover of the original set.
-
-
-# Database Systems
-### Disk Manager
-- allocates, deletes, fetches pages
-- no other layer has to interact with disk directly
-
-### Buffer Pool Manager
-- Maintains an in-memory buffer
-- upper layers have illusion that the entire data is in memory and not on disk
-- provides functionality to fetch and update pages
-
-### Access Methods
-- Sequential Scan
-- B-Tree Index
-- Hash Table
-- Sort
-It provides a higher-level abstraction to access information in a table without interacting with the buffer or disk
-
-### Operator Execution
-Executes a relational algebra
-- Join 
-- Projection
-- Select
-
-### Query Optimization
-- Generates a good execution plan
-
-**Heap File** = an unordered collection of pages where tuples are stored in random order
-
-**Record ID** = (Page ID, Slot ID)
-
-**Pages**
- = A page is a fixed-size block of data:
-    Contain tuples, meta-data, indexes, log records etc.
-
-## Different Joins
-### Sort Merge Join (equi-join)
-- Efficient: Sorted attribute (e.g., clustered index)
-- Inefficient: Unsorted attribute
-### Nested Loop Join
-- Efficient: Smaller relation fits into memory
-- Inefficient: Both relations do not fit into memory
-- $B(R) + |R| \cdot B(S)$
-
-### Block Nested Loop Join (equi-join)
-
-### Index Nested Loop Join (equi-join)
-- Efficient: Low selectivity (few reads per disk)
-- Inefficient: High selectivity (loads of reads per disk)
-
-### Hash join (equi-join)
-- If Hash table fits in DRAM: $B(S) + B(R)$
-- Very efficient 
-- Hash join algorithms are in general only applicable to quijoins and natural joins
-- Efficient: Result of join fits into memory
-- Inefficient: Result deosn't fit into memory
-- Solution: Grace Hash Join
-
-### Grace Hash Join
-- $3(B(R) + B(S))$
-- all data ends up in the same partition or all data ends up in the same hash bucket, then the Grace Hash algorithm perfomrs worse. $\rightarrow$ all the join attributes have the same value
-
-## Lossless
-- $$S = S_1 \cup S_2$$
-- $$S = S_1 \Join S_2$$
-
-## Quiz Questions and Answers
-**While adding tuples ot a page, both the slot array and the data of the tuples will grow from the beginning to the end:**
-- The slot array will grow from the beginning to the end, whereas the data of the tuples will grow from the end to the beginning. When they meet, the page becomes full. 
-- **Lecture 16, Slide 41**
-
-**Sequential scan or B-Tree**
-- When nearly *all* the tuples fulfil the requirement, *scan* is fast, B - Tree is slow
-- When only a *few* or only one fulfils the requirement, *B - Tree* is fast, scan is slow
-
-- $$T_{scan} = T_{access} + \frac{(pageSize *  m)}{Bandwidth}$$
-
-- $$T_{index}(k) = (T_{access} \frac{page size} {/} ...)$$
-
-
-# Recoverability
-### RC
-- If $T_1$ reads from
-- You do not need to undo the commit
-### ACA
-- Aborting a transaction does not cause aborting others
-### ST
-- If we need to undo one transaction, we don't need to redo or undo the others
-
-### Serializable
-- Defined by the equivalence of result
-
-### Conflict Serializable
-- Defined by swap adjacent, non-conflicting, operations
-- Conflict Serializable is a **subset** of Serializable
-    
-## How to decide Conflict-Serializability?
-- Go from definition -- do the swap
-- Dependency Graph 
-    - You can ignore the aborts 
-    - No reads, then it is automatically recoverable and ACA -> just need to check strict
 
 
 # SQL
@@ -458,5 +356,156 @@ In this query, the `OVER PARTITION BY` article subclause indicates that the wind
 - Unique
 - should not have null values (email, phone number is not that good)
 
-### Alternate key
+
+# Database Systems
+### Disk Manager
+- allocates, deletes, fetches pages
+- no other layer has to interact with disk directly
+
+### Buffer Pool Manager
+- Maintains an in-memory buffer
+- upper layers have illusion that the entire data is in memory and not on disk
+- provides functionality to fetch and update pages
+
+### Access Methods
+- Sequential Scan
+- B-Tree Index
+- Hash Table
+- Sort
+It provides a higher-level abstraction to access information in a table without interacting with the buffer or disk
+
+### Operator Execution
+Executes a relational algebra
+- Join 
+- Projection
+- Select
+
+### Query Optimization
+- Generates a good execution plan
+
+**Heap File** = an unordered collection of pages where tuples are stored in random order
+
+**Record ID** = (Page ID, Slot ID)
+
+**Pages**
+ = A page is a fixed-size block of data:
+    Contain tuples, meta-data, indexes, log records etc.
+
+## Different Joins
+### Sort Merge Join (equi-join)
+- Efficient: Sorted attribute (e.g., clustered index)
+- Inefficient: Unsorted attribute
+### Nested Loop Join
+- Efficient: Smaller relation fits into memory
+- Inefficient: Both relations do not fit into memory
+- $B(R) + |R| \cdot B(S)$
+
+### Block Nested Loop Join (equi-join)
+
+### Index Nested Loop Join (equi-join)
+- Efficient: Low selectivity (few reads per disk)
+- Inefficient: High selectivity (loads of reads per disk)
+
+### Hash join (equi-join)
+- If Hash table fits in DRAM: $B(S) + B(R)$
+- Very efficient 
+- Hash join algorithms are in general only applicable to equi joins and natural joins
+- Efficient: Result of join fits into memory
+- Inefficient: Result doesn't fit into memory
+- Solution: Grace Hash Join
+
+### Grace Hash Join
+- $3(B(R) + B(S))$
+- all data ends up in the same partition or all data ends up in the same hash bucket, then the Grace Hash algorithm performs worse. $\rightarrow$ all the join attributes have the same value
+
+## Lossless
+- $$S = S_1 \cup S_2$$
+- $$S = S_1 \Join S_2$$
+
+## Quiz Questions and Answers
+**While adding tuples ot a page, both the slot array and the data of the tuples will grow from the beginning to the end:**
+- The slot array will grow from the beginning to the end, whereas the data of the tuples will grow from the end to the beginning. When they meet, the page becomes full. 
+- **Lecture 16, Slide 41**
+
+**Sequential scan or B-Tree**
+- When nearly *all* the tuples fulfil the requirement, *scan* is fast, B - Tree is slow
+- When only a *few* or only one fulfils the requirement, *B - Tree* is fast, scan is slow
+
+- $$T_{scan} = T_{access} + \frac{(pageSize *  m)}{Bandwidth}$$
+
+- $$T_{index}(k) = (T_{access} \frac{page size} {/} ...)$$
+
+
+# Recoverability
+### Recoverable (RC)
+- If $T_i$ reads from $T_j$ then $c_j < c_i$
+- Each transaction commits only after each transaction from which it has read has committed.
+    - No need to undo a committed transaction
+    
+![Alt text](assets/recoverable.png)
+
+
+### Avoids Cascading Aborts (ACA)
+
+- If $T_i$ reads $X$ from $T_j$ and commits then $c_j < ri[x]$
+- $ri[X]$ is the time $T_i$ reads $X$
+- avoids cascading rollback if transactions may read only values written by committed transactions.
+    - Aborting a transaction does not cause aborting others
+
+![Alt text](assets/aca.png)
+
+
+### Strict (ST)
+- If $T_i$ reads from or overwrites a value written by $T_j$, then $(c_j < ri[X]$ AND $c_j < w_i[X])$ or $(a_j < r_i[X]$ AND $a_j < w_i[X])$
+- $a_j$ is the abort time of $T_j$
+- transaction must not release any exclusive locks until the transaction has either committed or aborted, and the commit or abort log record has been flushed to disk.
+    - a schedule of transactions that follow the strict-locking rule is called a strict schedule
+    - undoing a transaction does not undo the changes of other transaction
+
+![Alt text](assets/strict.png)
+
+### Serializable
+- Defined by the equivalence of result
+
+### Conflict Serializable
+- Defined by swap adjacent, non-conflicting, operations
+- Conflict Serializable is a **subset** of Serializable
+    
+## How to decide Conflict-Serializability?
+- Go from definition -- do the swap
+- Dependency Graph 
+    - You can ignore the aborts 
+    - No reads, then it is automatically recoverable and ACA -> just need to check strict
+
+## Snapshot Isolation
+- When a transaction $T$ starts it receives a timestamp $TS(T)$
+- All reads are carried out as of the DB version of $TS(T)$
+- All writes are carried out in a separate buffer
+- When a transaction commits, DBMS checks for conflicts - Abort $T_1$ if exists $T_2$ such that $T_2$ committed after $TS(T_1)$ and before $T_1$ commits, and $T_1$ and $T_2$ updated the same object.
+- writes and readers do not block each other
+- concurrency and availability
+    - no read or write of a transaction is ever blocked
+- overhead
+    - need to keep write-set of a transaction only
+    - very efficient way to implement aborts
+- no deadlocks, but unnecessary rollbacks
+
+![Alt text](assets/snapshot_isolation.png)
+
+## Two Phase Locking
+**Phase 1: Growing**
+- each transaction requests the lock that it needs from the DBMS's lock manager
+- it cannot release locks in phase 1.
+
+**Phase 2: Shrinking**
+- transaction is only allowed to release locks that it previously required. It cannot acquire new locks
+- guarantees conflict serializability
+    - only generates schedules whose dependency graph is acyclic
+
+![Alt text](assets/two_phase_locking.png)
+
+## Strict Two Phase Locking
+At phase 2: all locks are kept until the end of transaction (commit or abort)
+
+![Alt text](assets/strict_two_phase_locking.png)
    
