@@ -1,9 +1,14 @@
-# Important stuff
 ## Internet
 
 - Internet connects End Systems/ Hosts by a system of communications links and package switches
 - Packets: data segment and header
 - IP (Internet Protocol): Specifies the format for packets sent among routers and end systems
+    - unreliable service
+    - best-effort delivery
+    - modify before forwarding the packet to the next hop
+        - destination MAC address
+        - Time-to-live
+        - IP checksum
 - DSL (digital subscriber line): broadband residential access
 - FDM (Frequency-division multiplexing): link dedicates a frequency band on the band to a communication for the duration of connection. The width of this band is called bandwidth.
 - TDM (time-division multiplexing): time is divided into frames of fixes size, and each frame is split into a fixed amount of slots. These slots are dedicated to one connection
@@ -44,6 +49,8 @@
 - **Link Layer:** The network layer brings a datagram from one node to another, but to move a packet from one specific node to another, it relies on the link layer. 
     - It delivers the packet to the next node. E.g. Ethernet or WiFi. Link layer protocols are called frames.
     - error detection
+- an ethernet switch can interconnect a 10 Mbps Ethernet network and a 1 Gbps Ethernet network
+- The 802.11b wireless protocol incorporates a link-layer ACK not present in regular Ethernet
 
 - **Physical layer:** The job of the link layer is to move whole frames from one node to another; however, the job of the physical layer is to move individual bits. Many protocols exist, depending on the physical medium; e.g. Ethernet has different protocols for different cable types.
 
@@ -57,15 +64,36 @@
     - minimum length of an ethernet frame is 64 bytes in total
 5. checksum
     - determines whether the bits of the frame have been received correctly. If error, frame is dropped
+- Ethernet switches (or bridges) learn addresses by looking at the source address of packets as they pass by $\rightarrow$ backwards learning
 
+## ICMP
+- application that requires the use of ICMP:
+    - ping works by sending ICMP echo requests
+    - traceroute relies on ICMP answers in every implementation, but some implementations send UDP packets by default
+
+## MAC 
+- are assigned randomly by manufacturer
+- we need both MAC and IP address:
+    - Pro:
+        - lower / no management overhead because MAC addresses are assigned by the manufacturer whereas IP addresses have to be assigned or there has to be an automatic assignment procedure like DHCP
+        - mobility / persistent connections could be easier because the address doesn't change
+        - better network utilization because of smaller headers (only one address)
+    - Contra:
+        - not possible to group them using prefixes, since MAC is randomly assigned. Routing tables grow to unmanageable sizes
+
+## IP
 
 ## DNS servers
+![Alt text](assets/DNS_hierarchy.png)
+
 ### Resource Records (RRs)
 - **Type=A:** Name refers to a hostname, Value refers to the corresponding IP address. Hence, this type provides a standard hostname to IP mapping.
 - **Type=NS:** Name is a domain (e.g. foo.com) and Value is the hostname of an authoritative DNS server who can how to obtain the IP address of the query.
 - **Type=CNAME:** Value is the canonical host name for the alias host name Name.
 - **Type=MX:** Value is the canonical name of a mail server
 with alias Name.
+
+![Alt text](assets/dns_server_iterative.png)
 
 ## Congestion signals
 Signals that warn about congestion:
@@ -153,7 +181,7 @@ Built up by:
 ### Why is it beneficial to use 4B5B encoding?
 There are more transitions in the 4B5B-encoded signal. This allows for clock recovery to prevent resynchronization after long runs of 0s or 1s
 
-![Alt text](waveforms.png)
+![Alt text](assets/waveforms.png)
 
     a. NRZ Signal of Bits
     b. Amplitude Key Shifting
@@ -211,7 +239,9 @@ How to deploy publicly accessible services wih NAT?
 ## TCP
 - in-sequence delivery
 - a connection-oriented service
+
 ## TCP Congestion Control
+
 ### Slow Start
 - Multiplicative increase of the congestion window
 - Every packet is ACK'ed, the size of the congestion window grows by one packet.
@@ -239,6 +269,16 @@ How to deploy publicly accessible services wih NAT?
 ### False Positive
 $$P[FP] = (1 - (1- \frac{1}{m})^{nk})^k$$
 
+## Wireless sending
+Assume A wants to send to B. Those terminals that are invisible to A but not to B: hidden. Those terminals that are exposed to A but not B: exposed
+![Alt text](assets/hidden-exposed.png)
+
+**RTS/CTS prevents hidden terminal from interfering with a sender**
+- receiver sends its CTS, all terminals in range receive it
+- they know that they should not start sending
+
+**Terminal infers that it is exposed and can thus send to another destination**
+- When the sender sends its RTS, the exposed terminal receives it too, but then it does not receive the CTS from the receiver, so it knows it can start transmitting. 
 ## CDN
 A content delivery network (CDN) is a distributed network of servers that delivers web content to users based on their geographical location. The main purpose of a CDN is to improve the performance of websites and reduce latency by caching static content such as images, videos, and HTML files in multiple locations around the world.
 
@@ -354,7 +394,7 @@ where *k* is the number of check bits to detect and correct an error in one bit 
 ### Receive Procedure
 1. Divide and check for zero remainder
 ### Path Lookup
-![Alt text](internet.png)
+![Alt text](assets/internet.png)
 
 ## Quiz
 - **The Maximum Segment Size(MSS) of TCP is equal to:**
@@ -380,7 +420,7 @@ and send it to the first root-server, we don’t get an www.ethz.ch IP in
 return. Why is this?
 - Root server does not support recursive resolution
     - If we request the domain from a root server, we don't get back a result because of the hierarchical structure of the DNS system. The root server just refers us to the next lower level DNS server, the one for the ch TLD. Note that the "dig @server name" command just sends a query to this single stated server while the "dig name" command issues multiple requests down in the DNS hierarchy in order to iteratively resolve the domain name. This would be the first step of an iterative resolution.
-    ![alt text](DNS_hierarchy.png "DNS_hierarchy")
+    ![alt text](assets/DNS_hierarchy.png "DNS_hierarchy")
 
 ## Quic
 - Operate in Application and Transport layer
