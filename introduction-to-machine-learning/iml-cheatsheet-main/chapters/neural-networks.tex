@@ -30,3 +30,13 @@ Only compute \color{Red} \textbf{the gradient}\color{Black}. Rand. init. weights
 The output dimension when applying $m$ different $f \times f$ filters to an $n \times n$ image with padding $p$ and stride $s$ is: $l = \frac{n + 2p - f}{s} + 1$
 
 For each channel there is a separate filter.
+
+\subsection*{Convolution}
+    $K = kernelSize$ $C = channel$ $F = filter$ $inputSize = I$ $padding = P$
+    $stride = S$ 
+\begin{align*}
+    \text{Number of parameters} &= K^{dimensions} C F\\
+    \text{Output size} &= \frac{I + 2P - K}{S} + 1\\
+    \text{Inputs} &= W * H * D * C * N
+\end{align*}
+

@@ -1,6 +1,6 @@
 # Discriminative vs Generative Models
 
-![alt text](dis_vs_gen.png "difference")
+![alt text](assets/dis_vs_gen.png "difference")
 
 Description | Discriminative | Generative
 ---|---|---
@@ -42,20 +42,40 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 
 ## SVM
 - support vectors are the closest to the boundary
-![alt text](svm.png "support vector machine")
+![alt text](assets/svm.png "support vector machine")
 
 ## EM algorithm
 - EM algorithm converges to a local maximum/saddle point, not only with careful initialization
 - every iteration of the EM algorithm increases the marginal likelihood (of the data)
 - instead of EM algorithm, it is possible to adapt gradient descent for learning the parameters of the GMM and its latent assignments
 - doesn't have step size
+- iterative optimization algorithm used to estimate the parameters of probabilistic models when some data is missing or unobserved
+- E-step
+    - algorithm computes expected value of the unobserved or missing data, given the current estimate of the model parameters
+- M-step
+    - maximizes the likelihood function by updating the model parameters based on the expected values computed in the E-step
+
+## Gaussian Mixture Model
+- probabilistic model used for representing complex data distributions
+- works well when data is believed to be generated from a mixture of Gaussian distributions
+- parameters of GMM
+    - means
+        - represent the center of each component
+    - covariance
+        - controls the shape and orientation of the component
+    - mixing coefficients
+        - relative contribution of each component to the overall distribution
+- trained using Expectation-Maximization (EM) algorithm
+
+
+## Error
+![alt text](assets/graph_error.png "error")
 
 ## Quiz
 **K-means clustering**
 - It seeks cluster centres and assignments to minimise the within-cluster sum of squares
 - it is appropriate if the underlying cluster are sparable, spherical and approximately of same size
 - k-means clustering can be kernelised
-
 
 **Find k**
 - By using a heuristic like the elbow method that identifies the diminishing returns from increasing k
@@ -68,11 +88,14 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 - So after choosing centers and clustering, move centers to new centers
 - repeat until done
 - converges, local or global minimum
+
 **PCA**
 - PCA can be kernelised
 - unsupervised learning algorithm
 - It is orthogonal to all other principal components found by PCA
+
 **PCA first principal component**
 - Captures the maximum amount of variance in the data among all possible linear combinations of the original features
 - represents the direction in the data space along which the data exhibits the highest variability or spread
 - orthogonal to all other subsequent principal components, meaning it is uncorrelated with them. This orthogonality property allows PCA to create uncorrelated features
+- first principal component is given by the eigenvector of th data covariance matrix with the largest eigenvalue
