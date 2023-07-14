@@ -138,3 +138,15 @@ Let $x, y$ be arbitrary... strong structural induction on... Thus we have to pro
 - **Case** $e \equiv \text{ not } b'$ for some boolean expression $b'$
 - **Case** $e \equiv e_1 \text{ op } e_2$ for some arithmetic expression $e_1, e_2$ and some arithmetic operator $op$
 
+
+## Liveness
+- something good will happen eventually
+- if the good thing has not happened yet, it could happen in the future
+- a liveness property does not rule out any prefix
+- every finite prefix can be extended to an infinite sequence that is in $P$
+- liveness properties are violated in infinite time
+
+## Safety 
+- Something bad is never allowed to happen (and can't be fixed)
+- safety properties are violated in finite time and cannot be repaired
+
