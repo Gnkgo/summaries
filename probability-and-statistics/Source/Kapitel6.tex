@@ -117,6 +117,7 @@ Und die Verwerfungebereiche:
 \end{align*}
 Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
 und es gilt $z_\alpha = - z_{1 - \alpha}$.
+\BoxStart{}
 \subsection*{Beispiel Fehler 2. Art Berechnen}
 Nehme an: einseitiger $z$-Test, $T = \frac{\overline{X}_n - \mu_0}{\sigma /
     \sqrt{n}}$, $\mu_0 = 70$.
@@ -131,8 +132,10 @@ nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Stan
    & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_0}{\sigma / \sqrt{n}} > -1.645 \right]                                                \\
    & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} > \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right]        \\
    & = 1 - P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \leq \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right] \\
-   & = 1 - \Phi \left( \frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645 \right)       \quad \text{Weil } \sim \Standardnormalverteilt
+   & = 1 - \Phi \left( \frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645 \right) \\
+   & \text{Weil } \sim \Standardnormalverteilt
 \end{align*}
+\BoxEnd{}
 \subsection*{$t$-Test}
 Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. Hier sind
 $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei

@@ -173,7 +173,6 @@ die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
   P[U \leq u] &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx\\ 
   &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx\\ 
   &= \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx\\ 
-  &= \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx \\ 
   &= \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx\ &= \lambda \int_0^\infty e^{-\lambda u^-1 x}dx\\ 
   &= u 
 \end{align*}
