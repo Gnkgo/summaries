@@ -55,6 +55,23 @@ so
 ````Haskell
 sum [1,2,3] === 1+(2+(3+0)) = 6
 ````
+## Currying, uncurrying
+- Currying is the process of transforming  function that takes multiple arguments in a tuple as its argument, into a function that takes just a single argument and returns another function which accepts further arguments, one y one, that the original function would receive in the rest of that tuple
+
+````Haskell
+f :: a -> (b > c) -- which can also be written as f :: a -> b-> c
+````
+is the curried form of
+````Haskell
+g :: (a, b) -> c
+````
+You can convert these two types in either directions wih the Prelude functions `curry` and `uncurry`
+
+```Haskell
+f = curry g
+g = uncurry f
+f x y = g (x, y)
+`````
 
 ## CYP
 ```CYP
@@ -72,6 +89,8 @@ Case y:ys
     . . .
 QED
 ```
+
+
 
 ## $\eta$-conversion
 - The following tow terms are equivalent under $\eta$-conversion:
@@ -149,4 +168,6 @@ Let $x, y$ be arbitrary... strong structural induction on... Thus we have to pro
 ## Safety 
 - Something bad is never allowed to happen (and can't be fixed)
 - safety properties are violated in finite time and cannot be repaired
+
+
 
