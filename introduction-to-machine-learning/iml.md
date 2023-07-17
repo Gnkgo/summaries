@@ -67,6 +67,21 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
         - relative contribution of each component to the overall distribution
 - trained using Expectation-Maximization (EM) algorithm
 
+## Bootstrap
+### Advantage of using bootstrap parameter estimates in comparison with distribution-dependent parameter estimates
+- there is no closed-form solution for bootstrap parameter estimates
+- bootstrap sampling is a way of artificially creating more datasets. Basically you take random samples from the dataset with replacement
+- Sampling with replacements makes it computationally expensive
+- bootstrapping is possible for any ML technique, since it can be computed for any black-box predictor
+- bootstrap estimates are not asymptotically stable
+
+## Generative Adversarial Networks
+$D$: discriminator
+$G$: neural network generator 
+- If $D$ and $G$ both have enough capacity, i.e., if they can model arbitrary functions, the optimal $G$ will be such that $G(z) \sim p_{data}$
+- the objective can be interpreted as a two-player game between $G$ and $D$
+- output of discriminator is the probability of classifying $x$ as being real:
+$$1 - D_G(x)$
 
 ## Error
 ![alt text](assets/graph_error.png "error")
