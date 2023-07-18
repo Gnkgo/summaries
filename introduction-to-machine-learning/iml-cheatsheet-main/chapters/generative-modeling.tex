@@ -8,23 +8,29 @@ GM for classification tasks. Assuming for a class label, each feature is indepen
 
 \subsection*{Gaussian Naive Bayes Classifier}
 
-Naive Bayes Model with Gaussians features. Estimate the parameters via MLE:
+Naive Bayes Model with Gaussian's features. Estimate the parameters via MLE:
 
-MLE for class prior: $p(y) = \hat p_y = \frac{\text{Count}(Y = y)}{n}$
-MLE for feature distribution:
+MLE for class prior: \color{violet}$p(y) = \hat p_y = \frac{\text{Count}(Y = y)}{n}$
 
-\qquad \qquad $p(x_i \; | \; y) = \mathcal{N}(x_i; \hat \mu_{y,i}, \sigma^2_{y,i})$ \\[-13pt]
+\color{black}MLE for feature distribution:
+\begin{scriptsize}
+\color{violet}
 
-Where:\\[-10pt]
-
-\qquad \quad $\mu_{y,i} = \frac{1}{\text{Count}(Y = y)} \sum_{j \; | \; y_j = y} x_{j,i}$
-
-\qquad \quad $\sigma^2_{y,i} = \frac{1}{\text{Count}(Y = y)} \sum_{j \; | \; y_j = y} (x_{j,i} - \hat \mu_{y, i})^2$
-
+\begin{align*}
+    %p(x_i \; | \; y)    &= \mathcal{N}(x_i; \hat \mu_{y,i}, \sigma^2_{y,i}) \\[-13pt]\\[-4pt]
+    %\mu_{y,i}           &= \frac{1}{\text{Count}(Y = y)} \sum_{j \; | \; y_j = y} x_{j,i}\\[-4pt]
+    %\sigma^2_{y,i}      &= \frac{1}{\text{Count}(Y = y)} \sum_{j \; | \; y_j = y} (x_{j,i} - \hat \mu_{y, i})^2\\[-4pt]
+    P(x_i | y)          &= \frac{Count(X_i = x_i, Y = y)}{Count(Y = y)}
+\end{align*}
+\color{black}
+\end{scriptsize}
 
 Predictions are made by: \\[-20pt]
-$$y = \argmax{\hat y} \; p(\hat y \; | \; x) = \argmax{\hat y} \; p(\hat y) \cdot \prod_{i=1}^d p(x_i \; | \; \hat y)$$
-
+\color{violet}
+\[
+y = \argmax{\hat y} \; p(\hat y \; | \; x) = \argmax{\hat y} \; p(\hat y) \cdot \prod_{i=1}^d p(x_i \; | \; \hat y)
+\]
+\color{Black}
 Equivalent to decision rule for bin. class.: \\[-8pt]
 
 \qquad \qquad $y = \sgn \left( \color{Red} \log \frac{p(Y = +1 \; | \; x)}{p(Y = -1 \; | \; x)} \color{Black} \right)$ \\[-3pt]

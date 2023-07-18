@@ -34,8 +34,8 @@ $\hat{\Sigma}_{y} = \frac{1}{n_y} \sum_{i:y_i=y} (x_i - \hat{\mu}_{y})(x_i-\hat{
 \subsection*{Fisher's lin. discrim. analysis (LDA, c=2)}
 Assume: $p = 0.5$; $\hat{\Sigma}_- = \hat{\Sigma}_+ = \hat{\Sigma}$\\
 discriminant function: 
-$f(x) = \operatorname{log} \frac{p}{1-p} + \\
-\frac{1}{2}[\operatorname{log} \frac{|\hat{\Sigma}_-|}{|\hat{\Sigma}_+|}
+$f(x) = \operatorname{\log} \frac{p}{1-p} + \\
+\frac{1}{2}[\operatorname{\log} \frac{|\hat{\Sigma}_-|}{|\hat{\Sigma}_+|}
 + \left((x - \hat{\mu}_-)^T \hat{\Sigma}_-^{-1} (x - \hat{\mu}_-)\right) - \\
 \left((x - \hat{\mu}_+)^T \hat{\Sigma}_+^{-1} (x - \hat{\mu}_+)\right)]$\\
 Predict: $y = \operatorname{sign}(f(x)) = \operatorname{sign} (w^T x + w_0)$\\

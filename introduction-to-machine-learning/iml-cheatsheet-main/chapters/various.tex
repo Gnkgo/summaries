@@ -16,9 +16,11 @@ $\mathcal{N}(x; \mu, \Sigma) = \frac{1}{\sqrt{(2 \pi)^d \text{det}(\Sigma)}} \ex
 
 $\text{Tr}(AB) = \text{Tr}(BA)$, $\text{Var}(X) = \E[X^2] - \E[X]^2$, $X \in \mathbb{R}^{n \times d}: \; \; X^{-1} \rightarrow \mathcal{O}(d^3) \; X^\top X \rightarrow \mathcal{O}(nd^2)$, $\binom{n}{k} = \frac{n!}{(n-k)!k!}$, $||w^\top w||_2 = \sqrt{w^\top w}$
  
-Cov$[X] = \E[(X- \E[X])(X- \E[X])^\top]$
+Cov$[X] = \E[(X- \E[X]){(X- \E[X])}^\top] = E[XX^{\top}] - E[X]E[X]^{\top}$
 
 $p(z|x,\theta) = \frac{p(x,z|\theta)}{p(x | \theta)}$
+
+$E[s \cdot {s}^\top] = \mu \cdot \mu^\top + \Sigma = \Sigma$ where $s$ follows a multivariate normal distribution with mean $\mu$ and covariance matrix $\Sigma$
 
 \textbf{Convexity}
 

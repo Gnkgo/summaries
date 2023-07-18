@@ -81,7 +81,13 @@ $G$: neural network generator
 - If $D$ and $G$ both have enough capacity, i.e., if they can model arbitrary functions, the optimal $G$ will be such that $G(z) \sim p_{data}$
 - the objective can be interpreted as a two-player game between $G$ and $D$
 - output of discriminator is the probability of classifying $x$ as being real:
-$$1 - D_G(x)$
+$$1 - D_G(x)$$
+
+## Naive Bayes classifiers
+- every pair of features being classified is independent of each other
+- Bayes' Theorem:
+    - $$P(A|B = \frac{P(B|A)P(A)}{P(B)})
+- 
 
 ## Error
 ![alt text](assets/graph_error.png "error")
