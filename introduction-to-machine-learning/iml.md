@@ -88,9 +88,21 @@ $$1 - D_G(x)$$
 - Bayes' Theorem:
     - $$P(A|B = \frac{P(B|A)P(A)}{P(B)})
 - 
-
 ## Error
 ![alt text](assets/graph_error.png "error")
+![alt text](assets/errors.png "error")
+
+## Asymmetric 0-1 loss with abstention
+We shall define a new loss named 0-1 loss with abstention with an *extended action space*:
+$$f(x) \in \{-1, +1, r\}$$
+where $r$ indicates **abstaining from a prediction**. This method is sometimes called **selective classification**. We also introduce a cost $c \in[0, 0.5]$ for abstaining. The loss becomes:
+$$l(f(x), y) = \mathbf {1}_{f(x)\neq y} \mathbf{1}_{f(x) \neq r} + c \mathbf{1}_{f(x) = r}$$
+
+We should abstain if 
+$$c < min \{p(x), 1 - p(x)\}$$
+
+![Alt text](assets/0-1-loss.png)
+
 
 ## Quiz
 **K-means clustering**
@@ -114,6 +126,8 @@ $$1 - D_G(x)$$
 - PCA can be kernelised
 - unsupervised learning algorithm
 - It is orthogonal to all other principal components found by PCA
+- if we use the Gaussian kernel for kernel PCA, we implicitly perform PCA on an infinite-dimensional feature space.
+- Gaussian kernel has infinite dimensions
 
 **PCA first principal component**
 - Captures the maximum amount of variance in the data among all possible linear combinations of the original features
