@@ -42,6 +42,7 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 
 ## SVM
 - support vectors are the closest to the boundary
+- unconstrained soft-margin SVM is a $l_2$-penalized hinge loss
 ![alt text](assets/svm.png "support vector machine")
 
 ## EM algorithm
@@ -91,6 +92,13 @@ $$1 - D_G(x)$$
 ## Error
 ![alt text](assets/graph_error.png "error")
 ![alt text](assets/errors.png "error")
+**Logistic**: minimum is at $\infty$
+**Square**: well-defined minimum, the points is that this minimum (at 1) seems a bit random and does not make a lot of sense
+**Exponential**: penalizes wrong labels very much and very quickly, this means that even one error could heavily penalize your model
+
+**Hinge** for SVM
+**Logistic** for cross entropy
+
 
 ## Asymmetric 0-1 loss with abstention
 We shall define a new loss named 0-1 loss with abstention with an *extended action space*:
@@ -128,6 +136,7 @@ $$c < min \{p(x), 1 - p(x)\}$$
 - It is orthogonal to all other principal components found by PCA
 - if we use the Gaussian kernel for kernel PCA, we implicitly perform PCA on an infinite-dimensional feature space.
 - Gaussian kernel has infinite dimensions
+- Autoencoders and PCA are the same thing if we choose the activation function $\varphi(\cdot)$ 
 
 **PCA first principal component**
 - Captures the maximum amount of variance in the data among all possible linear combinations of the original features
