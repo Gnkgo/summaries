@@ -1,13 +1,7 @@
-% a slightly adapted Copy of https://tex.stackexchange.com/questions/181081/clickable-chapters-on-the-right-side-of-each-page
-% The credit goes to Gonzalo Medina, I only made slight changes  (Converted to landscape and made Tabs nameable)
-
-% ANOTHER IMPORTANT NOTE: The Boxlayout with Titles was copied from here: https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
-% The Credit goes to Drew Ulick
-
-\documentclass[10pt]{extarticle}
+\documentclass[9pt]{extarticle}
 % Article
 % \documentclass[9pt]{extarticle}
-\usepackage[landscape, left=0.20cm, top=0.2cm, right=0.20cm, bottom=0.6cm, footskip=15pt]{geometry}
+\usepackage[landscape, left=0.10cm, top=0.1cm, right=0.1cm, bottom=0.3cm, footskip=2pt]{geometry}
 \usepackage{background}
 \usepackage{etoolbox}
 \usepackage{graphicx}
@@ -125,8 +119,8 @@
 \linespread{0.7}
 \allowdisplaybreaks{}
 
-\titleformat*{\section}{\fontsize{11}{11}\bfseries\color{blue}}
-\titleformat*{\subsection}{\fontsize{11}{11}\bfseries\color{purple}}
+\titleformat*{\section}{\fontsize{10}{10}\bfseries\color{blue}}
+\titleformat*{\subsection}{\fontsize{10}{10}\bfseries\color{purple}}
 % define box
 \begin{document}
 \setlength{\columnseprule}{0.4pt}

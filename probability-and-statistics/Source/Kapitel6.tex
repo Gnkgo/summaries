@@ -53,6 +53,7 @@ Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
 Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
 Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
 \BoxStart{}
+\subsection*{Beispiel: Hypothesen-Test}
 Christoph hat in 100 Versuchen 60 Mal richtig gelegen mit seiner Vorhersage. Soll man nun
 Christoph hellseherische Fähigkeiten zuschreiben, oder war das purer Zufall? Führen Sie dazu
 einen statistischen Test durch.
@@ -191,7 +192,8 @@ Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
 \begin{align*}
   P_\vt [\vt \in C (\zufallsvariablen)] \geq 1 - \alpha
 \end{align*}
-\subsection*{Beispiel Konfidenzbereich}
+\BoxStart{}
+\subsection*{Beispiel: Konfidenzbereich}
 Machen wir den Ansatz:
 \begin{align*}
   C (\zufallsvariablen) = [\overline{X}_n - \dots, \overline{X}_n + \dots]
@@ -211,3 +213,4 @@ also erhalten wir das Konfidenzintervall für $\mu$ zum Niveau $1 - \alpha$:
 \begin{align*}
   C (\zufallsvariablen) = \left[ \overline{X}_n - t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}}, \overline{X}_n + t_{n-1, 1 - \frac{\alpha}{2}} \frac{S}{\sqrt{n}} \right]
 \end{align*}
+\BoxEnd{}

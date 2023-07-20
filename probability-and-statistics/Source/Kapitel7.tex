@@ -20,7 +20,7 @@ Sei $T$ ein Schätzer.
   \item $T$ ist erwartungstreu, falls $E_\vt[T] = \vt$ gilt. $T$ schätzt
         im Mittel also richtig.
   \item Bias $:= E_\vt[T] - \vt$. Ein erwartungstreuer Schätzer hat also keinen Bias.
-  \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ (T - \vt)^2]$.
+  \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ {(T - \vt)}^2]$.
   \item Eine Folge $T^{ (n)}$ von Schätzern heisst konsistent für $\vt$, falls $T^{
               (n)}$ für $n \ra \infty$ in $P_\vt$-Wahrscheinlichkeit gegen $\vt$ konvergiert,
         d.h. für jedes $\vt \in \varTheta$ gilt:
@@ -29,19 +29,20 @@ Sei $T$ ein Schätzer.
         \end{align*}
 \end{itemize}
 \BoxStart{}
-
+\subsection*{Beispiel: Erwartungstreuer Schätzer}
 Seien $X_1, \ldots, X_n$ unabhängige, identisch verteilte Zufallsvariablen mit $X_i \sim \mathcal{U}([\theta - 1, \theta]) unter \mathbb{P}_\theta$ 
 wobei $\theta \in \mathbb{R}$. Wir betrachten den Schätzer 
 \[T_1^{(n)} := \frac{1}{n} \cdot \sum_{i = 1}^n X_i + \frac{1}{2}\]
 Sind Schätzer erwartungstreu?
 
-Here's the formatted text in LaTeX:
-
 Sei $\theta \in \mathbb{R}$ fixiert. Aus der Gleichverteilung folgt, dass
-\[
-\mathbb{E}_{\theta}[T(n)_1] = \left(\frac{1}{n} \sum_{i=1}^{n} \mathbb{E}_{\theta}[X_i]\right) + \frac{1}{2} = \mathbb{E}_{\theta}[X_1] + \frac{1}{2} = \theta - \frac{1}{2} + \frac{1}{2} = \theta
-\]
-Somit folgt, dass der Schätzer $T(n)_1$ erwartungstreu ist.
+
+\begin{align*}
+  \mathbb{E}_{\theta}[{T(n)}_1] &= \left(\frac{1}{n} \sum_{i=1}^{n} \mathbb{E}_{\theta}[X_i]\right) + \frac{1}{2} \\
+                                &= \mathbb{E}_{\theta}[X_1] + \frac{1}{2} = \theta - \frac{1}{2} + \frac{1}{2} \\
+                                &= \theta
+\end{align*}
+Somit folgt, dass der Schätzer ${T(n)}_1$ erwartungstreu ist.
 
 \BoxEnd{}
 \subsection*{Maximum-Likelihood Methode}
@@ -61,16 +62,19 @@ zu Maximieren durch Anpassungen an $\vt$:
 \end{align*}
 letzteres kann bei Produkt zu Summe umwandlung hilfreich sein.
 \BoxStart{}
+\subsection*{Beispiel: Maximum Likelyhood-Funktion}
 Sei $\Theta = [0, 1]$. Wir betrachten die Modellfamilie $ {P_\theta}_{\theta \in \Theta}$, wobei $X_1, \ldots, X_n$ unter $\mathbb{P}_\theta$ unabhängig und identisch verteilt sind mit $X_1 \sim \text{Geom} (\theta)$. Was ist die Likelihood-Funktion $L (x_1, \ldots, x_n; \theta)$ für $x_1, \ldots, x_n \in \{1, 2, \ldots\}$?
 \begin{align*}
   L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]            \\
                                & =\prod_{i = 1}^n \mathbb{P}_\theta[X_i = x_i]           \\
-                               & = \theta^n \cdot  (1 - \theta)^{x_1 + \ldots + x_n - n}
+                               & = \theta^n \cdot  {(1 - \theta)}^{x_1 + \ldots + x_n - n}
 \end{align*}
 \\
 Was ist der Maximum-Likelihood-Schätzer $T_{\text{ML}}$ für $\theta$?
 
-$$n \cdot \log (\theta) +  (x_1 + \ldots + x_n - n) \cdot \log (1 - \theta)$$
+\[
+  n \cdot \log (\theta) +  (x_1 + \ldots + x_n - n) \cdot \log (1 - \theta)
+\]
 
 Wir setzen nun die Ableitung der log-Likelihood-Funktion nach $\theta$ gleich
 $0$ und erhalten:
@@ -123,15 +127,15 @@ likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
 möchten wir aber noch, dass der Schätzer erwartungstreu wird,
 so wählen wir für $T_2 = S^2$:
 \begin{align*}
-  S^2 = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
+  S^2 = \frac{1}{n-1} \Sn  {(X_i - \overline{X}_n)}^2
 \end{align*}
+\BoxEnd{}
 \subsection*{Normalverteile Stichproben}
 Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
 \begin{itemize}
   \item $\overline{X}_n \sim \mathcal{N} (\mu, \frac{\sigma^2}{n})$
         und $\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt$.
-  \item $\frac{n-1}{\sigma^2} S^2 = \left( \frac{1}{\sigma^2} \Sn  (X_i - \overline{X}_n)^2 \right) \sim \mathcal{X}^2_{n-1}$
+  \item $\frac{n-1}{\sigma^2} S^2 = \left( \frac{1}{\sigma^2} \Sn  {(X_i - \overline{X}_n)}^2 \right) \sim \mathcal{X}^2_{n-1}$
   \item $\overline{X}_n$ und $S^2$ sind unabhängig
   \item $\frac{\overline{X}_n - \mu}{S / \sqrt{n}} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{S / \sigma} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}} \sim t_{n-1}$
 \end{itemize}
-\BoxEnd{}
