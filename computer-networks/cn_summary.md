@@ -82,9 +82,19 @@
         - not possible to group them using prefixes, since MAC is randomly assigned. Routing tables grow to unmanageable sizes
 
 ## IP
+- kind of like a phone number
+- opens up communication
+- 
 
 ## DNS servers
 ![Alt text](assets/DNS_hierarchy.png)
+
+- uses DNS
+    - on port number 53 to serve requests
+    - DNS queries consist of a single UDP request from the client followed by a single UDP reply from the server
+    1. UDP is much faster
+    2. DNS requests are generally very small and fit well within UDP segments
+    3. UDP is not reliable, but reliability can be added to the application layer. An application can use UDP and can be reliable by using a timeout and resend at the application layer
 
 ### Resource Records (RRs)
 - **Type=A:** Name refers to a hostname, Value refers to the corresponding IP address. Hence, this type provides a standard hostname to IP mapping.
@@ -154,17 +164,9 @@ Built up by:
 - Slower Convergence
 
 
-## Random
-- slow start threshold (ssthresh):
-    - function of congestion
-    - timeout, we set ssthresh = cwnd/2
-    - initially cwnd is infinity
-    - slow start until a timeout occurs
-    - slow start until timeout or we reach ssthresh -> we switch to AIMD
 
 - A socket is a software abstraction by which an application process exchanges network messages with the (transport layer in the) operating system
-- The ideal congestion window size is the Bandwidth delay product. $$W = bandwidth * delay$$
-- The ideal congestion window size is the bandwidth delay product: $W = bandwidth * delay$
+
 - Transmission delay per segment: $\frac{packet_size}{bandwidth}$
 
 ## Go-back-N
@@ -241,6 +243,13 @@ How to deploy publicly accessible services wih NAT?
 - a connection-oriented service
 
 ## TCP Congestion Control
+- slow start threshold (ssthresh):
+    - function of congestion
+    - timeout, we set ssthresh = cwnd/2
+    - initially cwnd is infinity
+    - slow start until a timeout occurs
+    - slow start until timeout or we reach ssthresh -> we switch to AIMD
+- The ideal congestion window size is the Bandwidth delay product. $$W = bandwidth * delay$$
 
 ### Slow Start
 - Multiplicative increase of the congestion window
