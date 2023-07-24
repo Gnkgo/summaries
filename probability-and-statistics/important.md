@@ -1,7 +1,7 @@
 # Wichtig zu merken
 Wir haben eine $\sigma-Algebra$ auf $\Omega$. Dann muss die leere, die volle und immer das jeweilige Komplement in der Algebra vorhanden sein.
 
-![alt text](diskrete_stetige_verteilung.png "Diskrete und stetige Verteilung")
+![alt text](Source/assets/diskrete_stetige_verteilung.png "Diskrete und stetige Verteilung")
 
 ## Dichte
 - Eine Wahrscheinlichkeitsdichte muss integriert über den gesamten Definitionsbereich 1 ergeben 
@@ -37,3 +37,19 @@ Stetige Zufallsvariable
 
 Seien $X$ und $Y$ zwei Zufallsvariablen mit gemeinsamer Dichte $f_{X, Y}$.
 - Die Zufallsvariablen $X$ und $Y$ sind immer stetig. 
+
+## Errors
+|| $H_0$| $H_0$|
+|-|-|-|
+||True| False
+|Reject $H_0$|Type I Error| $\checkmark$
+|Fail to reject $H_0$| $\checkmark$|Type II Error|
+
+**Type I error:** Null Hypothese verwerfen, obwohl sie wahr ist.
+
+**Type II error:** Null Hypothese nicht verwerfen, obwohl sie falsch ist. 
+
+$$P(\text{type I error } / H_0 \text{ is true}) = \alpha$$
+$$P(\text{type II error } / H_0 \text{ is false}) = \beta$$
+$$P(\text{rejecting a false } H_0) = 1 - \beta$$
+
