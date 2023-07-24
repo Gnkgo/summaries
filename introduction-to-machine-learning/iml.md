@@ -1,3 +1,19 @@
+# Convexity
+- If $f$ is differentiable convex function and $\nabla f(w) = 0$ then $w$ is global minimum of $f$
+![Alt text](assets/convex.png)
+- you see that even it is not strong convex, it has for sure a global minimum, just not only one.
+- **Attention**, just it is differentiable and convex, it doesn't mean that it has a stationary point:
+$f (w^{t+1}) < f (w^t)$
+
+![Alt text](assets/x.jpeg)
+- it is convex but has no maximum, minimum, saddle point
+- only a strong convex function implies a semi-definite positive hessian matrix
+
+
+# Gradient Descent
+- Consider the gradient descent algorithm for minimizing a differentiable function $f$ with iterates $w^{t + 1} = w^{t} - \eta \nabla f(w^t)$.  Suppose that $||\nabla f(w^t)|| > 0$ Then there always exists a
+step-size $\eta > 0$ such that 
+- **Attention** This is only the case for gradient descent and not stochastic gradient descent!!
 # Discriminative vs Generative Models
 
 ![alt text](assets/dis_vs_gen.png "difference")
@@ -137,6 +153,14 @@ $$c < min \{p(x), 1 - p(x)\}$$
 - if we use the Gaussian kernel for kernel PCA, we implicitly perform PCA on an infinite-dimensional feature space.
 - Gaussian kernel has infinite dimensions
 - Autoencoders and PCA are the same thing if we choose the activation function $\varphi(\cdot)$ 
+- For every arbitrary finite dataset with two classes and distinct points, there exists a feature map $\phi$, such that the dataset becomes linearly separable.
+    - as long as it is finite with two datasets A, B to separate, one can literally define a feature map 
+$$
+\phi(x) = \begin{cases}
+      1         & \text{if } x \in A \\
+      -1        & \text{otherwise}
+   \end{cases}
+$$
 
 **PCA first principal component**
 - Captures the maximum amount of variance in the data among all possible linear combinations of the original features

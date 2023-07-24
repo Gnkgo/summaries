@@ -29,11 +29,12 @@ Only compute \color{Red} \textbf{the gradient}\color{Black}. Rand. init. weights
 For each channel there is a separate filter.
 
 \subsection*{Convolution}
-    $K = kernelSize$ $C = channel$ $F = filter$ $inputSize = I$ $padding = P$
+    $C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
     $stride = S$ 
 \begin{align*}
-    \text{Number of parameters} &= K^{dimensions} C F\\
-    \text{Output size} &= \frac{I + 2P - K}{S} + 1\\
-    \text{Inputs} &= W * H * D * C * N
+    \text{Output size l} &= \frac{I + 2P - K}{S} + 1\\
+    \text{Output dimension} &= l \times l \times m \\
+    \text{Inputs} &= W * H * D * C * N \\
+    \text{Trainable parameters} &= F * F * C * \# filters
 \end{align*}
 
