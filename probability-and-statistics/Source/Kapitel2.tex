@@ -47,6 +47,26 @@ und hat folgende Eigenschaften:
           E[X] = \Sinfty P[X \geq i]
         \end{align*}
 \end{itemize}
+
+\BoxStart{}
+\subsection*{Beispiel: Erwartungswert gemeinsame Dichte}
+Seien \(X\) und \(Y\) zwei stetige Zufallsvariablen mit gemeinsamer Dichte \(f(x, y)\):
+
+\[ f(x, y) = \begin{cases}
+             \frac{1}{2}, & \text{für } 0 \leq x \leq y \leq 2, \\
+             0, & \text{sonst}.
+            \end{cases} \]
+
+Berechne \(E[XY]\)\\[-20pt]
+
+\begin{align*}
+  E[XY] &= \int_{0}^{2} \int_{y}^{0} \frac{1}{2}xy \, dx \, dy \\
+        &= \frac{1}{4} x^2y \Big|_{0}^{y} = \frac{1}{4}y^3 \Big|_{0}^{2} = \frac{1}{16} \cdot 2^4 - \frac{1}{16} \cdot 0^4 = 1
+\end{align*}
+
+
+\BoxEnd{}
+
 \subsection*{Erwartungswert von Funktionen}
 Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y = g
   (X)$ für eine Funktion $Y: \R \mapsto \R$. Dann gilt:

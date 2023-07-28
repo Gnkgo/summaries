@@ -109,10 +109,14 @@ $$1 - D_G(x)$$
 ![alt text](assets/graph_error.png "error")
 ![alt text](assets/errors.png "error")
 **Logistic**: minimum is at $\infty$
+
+
 **Square**: well-defined minimum, the points is that this minimum (at 1) seems a bit random and does not make a lot of sense
+
 **Exponential**: penalizes wrong labels very much and very quickly, this means that even one error could heavily penalize your model
 
 **Hinge** for SVM
+
 **Logistic** for cross entropy
 
 
@@ -126,6 +130,9 @@ We should abstain if
 $$c < min \{p(x), 1 - p(x)\}$$
 
 ![Alt text](assets/0-1-loss.png)
+
+## Classification
+The margin of a decision hyperplane to be the(smallest) distance between the hyperplane and the data points. The margin of the hyperplane $\hat{w}$ is defined: $\frac{1}{||\hat{w}||}$
 
 
 ## Quiz

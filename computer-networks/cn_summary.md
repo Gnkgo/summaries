@@ -29,6 +29,7 @@
     - Time, the package takes to propagate through the physical medium (e.g. at light speed with radio waves), i.e. it takes on the way from router A to B
     - if possible, use data replication to shorten the client-server distance. Improving routing or physical transmission media also helps
 
+
 ## Layers
 |Layers|
 |-|
@@ -53,6 +54,9 @@
 - The 802.11b wireless protocol incorporates a link-layer ACK not present in regular Ethernet
 
 - **Physical layer:** The job of the link layer is to move whole frames from one node to another; however, the job of the physical layer is to move individual bits. Many protocols exist, depending on the physical medium; e.g. Ethernet has different protocols for different cable types.
+
+## Address Resolution Protocol (ARP)
+- It allows a host to get the MAC address associated with an IP address
 
 ## Ethernet
 1. frame starts with destination address
@@ -95,6 +99,8 @@
     1. UDP is much faster
     2. DNS requests are generally very small and fit well within UDP segments
     3. UDP is not reliable, but reliability can be added to the application layer. An application can use UDP and can be reliable by using a timeout and resend at the application layer
+- Between host and router, the headers are:
+Ethernet - IP - UDP - DNS
 
 ### Resource Records (RRs)
 - **Type=A:** Name refers to a hostname, Value refers to the corresponding IP address. Hence, this type provides a standard hostname to IP mapping.
@@ -172,7 +178,12 @@ Built up by:
 ## Go-back-N
 - You have a window size with segments. When you send a packet, the ACK is sent after the propagation delay + transmission delay. If the packet gets lost, the ACK always sends the last valid ACK. E.G. packet 2 is lost and packets 0, 1, 3, 4 are successfully sent and received, you only get ACK for packet 0, 1. 1 is the highest number to receive 
 
-
+### ACK
+- With individual ACKs, missing packets (gaps) are implicitly inferred rather than explicitly conveyed by the receiver
+- Cumulative ACKs indicate that packets up to a certain sequence number have arrived
+- In cumulative acknowledgement, duplicate ACKs are a sign of losses or reordering
+- Selective ACKs is a non-mandatory option that helps prevent unnecessary network congestion
+- With individual ACKs, the los of an ACK packet causes an unnecessary retransmission
 ## Modulation
 ### Baseband modulation
 - bit stream directly send onto wire
@@ -250,7 +261,26 @@ How to deploy publicly accessible services wih NAT?
     - slow start until a timeout occurs
     - slow start until timeout or we reach ssthresh -> we switch to AIMD
 - The ideal congestion window size is the Bandwidth delay product. $$W = bandwidth * delay$$
+- prevents a set of senders from overloading the network
+    - solved using a "congestion" window
 
+````Java
+Initially: 
+    cwnd = 1 
+    ssthresh = infinite
+New ACK received: 
+    if (cwnd < ssthresh): 
+        /* Slow Start*/ 
+        cwnd = cwnd + 1
+    else:
+        /* Congestion Avoidance */ 
+        cwnd = cwnd + 1/cwnd
+Timeout:    
+    /* Multiplicative decrease */ 
+    ssthresh = cwnd/2
+    cwnd = 1
+````
+![Alt text](assets/congestion_control.png)
 ### Slow Start
 - Multiplicative increase of the congestion window
 - Every packet is ACK'ed, the size of the congestion window grows by one packet.
@@ -261,6 +291,10 @@ How to deploy publicly accessible services wih NAT?
 
 ### Fast retransmission and fast recovery
 - When three duplicate ACKs are received by the sender, it will (fast) retransmit the apparent data packet that got lost. The fast recovery mechanism halves the *cwnd* and sets $ssthresh = cwnd$. It does not return to the slow start (by setting $cwnd = 1$) as would be done upon a timeout. The main intuition is that a timeout, and the resulting significant reduction in throughput, should only occur if no packets can be transmitted anymore (in the client-server direction, in the server-client direction, or in both directions). Three duplicate ACKs indicate less severe congestion (i.e., some packets sill arrive), which can be solved by halving the congestion window.
+
+### AIMD
+- converges to a fair state for two senders sharing the same single link at equal end-to-end RTT
+
 
 ## Bloom Filter
 ### Potential applications for Bloom filters on small platforms
@@ -313,6 +347,7 @@ CDNs can also be used to increase security and reliability by providing redundan
     - Requests are directed to "close" server
 - Network inefficiency
     - Don't need to transmit data all across the globe
+- uses combination of pull caching and push cashing in order to speed-up Web content delivery
 
 ## Anycast-based CDN
 - content is distributed and served though a network of servers that are spread across different geographical locations
@@ -321,10 +356,11 @@ CDNs can also be used to increase security and reliability by providing redundan
 server that receives the request the serves the content directly to the user
 - provide faster content delivery by minimizing the distance between the user and the nearest server. 
 - Reducing latency and improving performance
+- Anycast is a network addressing and routing technique that allows multiple servers or nodes to share the same IP address
 
 ## DNS-based CDN
 - content is distributed through DNS
-- when user requests content, theirDNS resolver queries the CDN's DNS server to resolve the domain name
+- when user requests content, their DNS resolver queries the CDN's DNS server to resolve the domain name
 - CDN's DNS server respond with the IP address of the server that is best suited to serve the content based on various factors like the user's location, server load, and network conditions.
 - Rely on intelligent DNS routing to direct the user's request to the appropriate server based on the DNs response
 Allows dynamic load balancing ad content distribution based on real-time conditions
@@ -333,8 +369,8 @@ Allows dynamic load balancing ad content distribution based on real-time conditi
 ### Different ways to direct clients to the closest server
 |DNS-based|BGP-anycast-based|
 |-|-|
-|Return different IP addresses based on |Always use same IP address (or small set of addresses)|
-|resolver's geo-localization| Address are advertised via BGPfrom multiple locations|
+|Return different IP addresses based on location and load|Always use same IP address (or small set of addresses)|
+|resolver's geo-localization| Address are advertised via BGP from multiple locations|
 |server load ($\rightarrow$ load balancing)| Closest location is found by BGP|
 |Use short TTL of DNS records to prevent caching| Same approach as opn DNS resolvers (e.g., 9.9.9.9)|
 
@@ -353,6 +389,73 @@ Each client is served the same HTML with URLs for CDN-hosted objects already rew
     - video buffer size can vary across devices. A device with a large buffer may benefit from a different algorithm (or at least a differently tuned algorithm) than one with a very small buffer
     - Different network patterns occur in different environments, for example a mobile environment is different from a home TV
     - Depending on the device, there might be different requirements in terms of the so called Quality of Experience (e.g. HDTV users might need a higher video quality in comparison to mobile users for the same QoE)
+
+#### Available bit rate (ABR)
+- Bitrate switching: ABR divides video content into multiple bitrate representations with varying quality levels. During playback, teh client device switches between different representations to match the available network bandwidth.
+- two videos encoded at the same resolution, do not have in general the same bitrate, in regard of the video content¨
+- Goals:
+
+|Maximize|Minimise|
+|-|-|
+|Downloaded video quality|Rebuffering|
+|Stream stability|Startup delay|
+||bandwidth wastage|
+
+#### Buffer-based algorithm
+- the higher the buffer health, the higher (typically) the quality downloaded
+
+1. **Buffer Initialization:** When video playback starts, the buffer is initially empty. The algorithm sets a target buffer level to achieve optimal performance
+
+2. **Video Bitrate Selection:** the algorithm selects an appropriative video bitrate representation to start playback. It may choose a conservative initial bitrate to avoid overfilling or underfilling the buffer.
+
+3. **Buffer Management:**
+    1. Buffer Filling: As video data is downloaded from the server, it is stored in the buffer. The algorithm continuously monitors the buffer level to ensure it stays above the target level.
+
+    2. Buffer Draining: During playback, video frames are consumed from the buffer. The buffer level decreases over time as frames are displayed on the screen.
+
+4. **Adaptation Decisions:** The algorithm periodically evaluates the network conditions and the buffer level to make adaptation decisions:
+
+    1. Network Conditions: The algorithm estimates the available bandwidth and network stability. This information helps determine the bitrate representation that can be sustained without interruptions.
+
+    2. Buffer Level: The algorithm assesses whether the buffer is too full or too empty. If the buffer is below the target level, it may increase the bitrate to fill it. If the buffer is approaching overflow, it may reduce the bitrate to avoid buffering delays.
+
+5. **Bitrate Switching:** Based on the adaptation decisions, the algorithm selects the appropriate video bitrate representation to be fetched from the server. It can switch to a higher bitrate when network conditions are favorable and revert to a lower bitrate if bandwidth decreases.
+
+6. **Smooth Playback:** The algorithm aims to maintain a smooth and uninterrupted video playback experience by dynamically adjusting the video quality to match the network conditions and buffer status.
+
+7. **Handling Variability:** The buffer-based algorithm accounts for variations in network bandwidth, packet loss, and other factors that can affect video streaming performance. It is designed to handle fluctuations and ensure continuous video playback.
+
+#### Bit-rate algorithm
+1. **Initial Bitrate Selection:** When video playback starts, the algorithm chooses an initial bitrate representation to begin streaming. This initial selection is often based on the client's network conditions or pre-defined settings.
+
+2. **Bandwidth Estimation:** During video playback, the algorithm periodically estimates the available network bandwidth. It measures the rate at which video data is being downloaded from the server.
+
+3. **Bitrate Adaptation:** Based on the estimated network bandwidth, the algorithm continuously adjusts the video bitrate representation. It aims to match the selected bitrate with the available bandwidth, ensuring a smooth streaming experience.
+
+4. **Bitrate Up-switching:** If the available network bandwidth is higher than the current video bitrate, the algorithm may switch to a higher quality representation to take advantage of the better network conditions. This results in improved video quality for the viewer.
+
+5. **Bitrate Down-switching:** Conversely, if the available network bandwidth decreases, the algorithm may switch to a lower quality representation. Lower bitrates consume less bandwidth and help prevent buffering or interruptions when the network is congested or experiencing fluctuations.
+
+6. **Rate Control:** To avoid abrupt or frequent bitrate switches, the rate-based algorithm typically includes a rate control mechanism. This control mechanism ensures that bitrate changes are gradual and not disruptive to the viewer's streaming experience.
+
+7. **Adaptive Behavior:** The rate-based algorithm continuously monitors the network conditions and dynamically adapts the bitrate based on changes in bandwidth. This adaptive behavior allows the algorithm to respond quickly to fluctuations in network performance.
+
+8. **Handling Packet Loss:** Rate-based algorithms may also consider packet loss as an indicator of network congestion. When packet loss occurs, the algorithm may react by reducing the bitrate to compensate for the network's instability.
+
+#### Differences
+Buffer-Based Algorithm:
+- **Focus:** Buffer-based algorithms primarily concentrate on managing and optimizing the buffer at the client-side to ensure smooth and uninterrupted video playback.
+
+- **Approach:** These algorithms monitor the buffer level, aiming to keep it above a target level to prevent buffering interruptions and maintain a consistent viewing experience.
+
+- **Key Decision Metric:** Buffer-based algorithms make adaptation decisions based on the buffer level and its filling/draining rate. They may adjust the bitrate to fill or drain the buffer, aiming for a balanced buffer state.
+
+Rate-Based Algorithm:
+- **Focus:** Rate-based algorithms primarily focus on adjusting the video quality based on the estimated available network bandwidth.
+- **Approach:** These algorithms continuously estimate the available network bandwidth and dynamically adapt the video bitrate to match the network conditions. They aim to deliver the best possible video quality given the available bandwidth.
+- **Key Decision Metric:** Rate-based algorithms make adaptation decisions based on the estimated network bandwidth. They may switch to higher or lower bitrate representations to optimize video quality based on the available bandwidth.
+
+In summary, the primary difference is in their focus: buffer-based algorithms prioritize buffer management to prevent buffering and maintain a consistent buffer state, while rate-based algorithms prioritize video bitrate adjustment to optimize video quality based on the available network bandwidth. Both types of algorithms are used in adaptive bitrate streaming to deliver smooth and high-quality video playback across varying network conditions. Some modern adaptive streaming solutions combine elements of both buffer-based and rate-based approaches to achieve more effective and efficient adaptive streaming behavior.
 
 ### Video-On-Demand (VOD)
 Short:

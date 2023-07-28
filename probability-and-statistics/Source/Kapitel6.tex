@@ -29,13 +29,15 @@ Es gibt:
   \item Alternative $H_A : \vt \in \varTheta_A$
 \end{itemize}
 Man verwirft die Hypothese genau dann, wenn der realisierte Wert im
-Verwerfungebereich $K$ liegt.
+Verwerfungsbereich $K$ liegt.
 \subsection*{Fehler}
 Es gibt folgende Fehler:
 \begin{itemize}
   \item 1. Art: Hypothese wird zu unrecht abgelehnt. $P_\vt[T \in K]$ für $\vt \in \varTheta_0$
   \item 2. Art: Hypothese wird zu unrecht nicht verworfen. $P_\vt[T \not \in K]$ für $\vt \in \varTheta_A$
 \end{itemize}
+
+
 Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
 \begin{enumerate}
   \item Man wählt ein \textbf{Signifikanzniveau} $\alpha \in (0, 1)$ und kontrolliert
@@ -53,26 +55,52 @@ Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
 Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
 Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
 \BoxStart{}
-\subsection*{Beispiel: Hypothesen-Test}
-Christoph hat in 100 Versuchen 60 Mal richtig gelegen mit seiner Vorhersage. Soll man nun
-Christoph hellseherische Fähigkeiten zuschreiben, oder war das purer Zufall? Führen Sie dazu
-einen statistischen Test durch.
-Mittels eines Binomial-Tests möchten wir testen ob Christoph hellseherische Fähigkeiten be-
-sitzt oder nicht. Wir gehen dabei wir folgt vor:
+\subsection*{Beispiel: Was passiert, wenn das Signifikanzniveau $\alpha$ kleiner wird?}
+Kleineres Signifikanzniveau ($\alpha$)
 \begin{itemize}
-  \item $H_0$: Christoph besitzt keine hellseherische Fähigkeiten, d.h. $ X \sim Bin(n, p)$ mit $p = \frac{1}{2}$
-  \item $H_A$: Christoph besitzt hellseherische Fähigkeiten, d.h. $X \sim Bin(n, p)$ mit $p > \frac{1}{2}$
-  \item Der Test ist einseitig durchzuführen. Wir möchten herausfinden ob Christophs Vorhersagen
-  häufiger korrekt sind (d.h. $p > \frac{1}{2}$) sind als diejenigen einer Person die einfach zufällig
-  etwas tippt (d.h. $p = \frac{1}{2}$)  
-  \item sei wieder $X$ die Anzahl korrekter Vorhersagen aus n Versuchen. Unter $H_0$ ist also $X \sim Bin(p = \frac{1}{2}, n = 100)$ 
-  und somit verwerfen wir $H_0$ für alljene $k \in \N$, für welche $P_{H_0} (X \geq k) \leq 0.05$. 
-  Durch Ablesen von der Binomialtabelle erhalten wir $P_{H_0} (X \geq 58) = 1 - P_{H_0} (X \leq 57) = 0.0666$ und $P_{H_0} (X \geq 59) = 0.0443$.
-  Der Verwerfungsbereich V ist also gegeben durch $V = {k \in \N : k \geq 59}$.
-  \item Testentscheidung: Christoph hat von den 100 Mal 60 Mal korrekt vorhergesagt und somit
-  verwerfen wir $H_0$, denn $60 \in V$.
+  \item Engerer Verwerfungsbereich
+  \item Weniger extreme Teststatistikwerte für Ablehnung der Nullhypothese erforderlich
+  \item Strengerer Test
+  \item Höhere Anforderungen an statistische Signifikanz
+  \item Geringere Wahrscheinlichkeit, Nullhypothese fälschlicherweise abzulehnen
+  \item Höhere Wahrscheinlichkeit für Fehler vom Typ II (falsche Akzeptanz der Nullhypothese, wenn sie in Wirklichkeit falsch ist)
+  \item Macht wird reduziert
 \end{itemize}
 \BoxEnd{}
+
+\BoxStart{}
+\subsection*{Beispiel: Hypothesen-Test}
+Wir haben eine Münze mit einer Seite rot und der anderen Seite
+blau gefärbt, und wir vermuten, dass die Münze gezinkt ist und eher auf der
+blauen Seite landet.
+\begin{enumerate}[leftmargin=0.4cm]
+  \item \textbf{Modell:} Unter $P_p$ sind die $X_i$ i.i.d., $\sim Ber(p), i = 1, \ldots, 10, p$ unbekannt
+  \item \textbf{Nullhypothese: }$H_0 : p = p_0 = 0.5$
+  \item \textbf{Alternativhypothese: } \(H_A: p = p_A > p_0\).
+  \item \textbf{Teststatistik: } \(T = \sum_{i=1}^{10} X_i\), denn
+  \begin{align*}
+    &R(x_1, \ldots , x_{10}; \lambda_0, \lambda_A) \\
+    &= L(x_1, \ldots , x_{10}; \lambda_0) L(x_1, \ldots , x_{10}; \lambda_A)\\ 
+    &= \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}\\
+    &= \left(\frac{p_0(1 - p_A)}{p_A(1 - p_0)}\right)^T \left(\frac{1 - p_0}{1 - p_A}\right)^{10}
+  \end{align*}
+  Da \(\frac{p_0(1-p_A)}{p_A(1-p_0)} < 1\) wird \(R(x_1, \ldots , x_{10}; p_0, p_A)\) klein, genau dann, wenn \(\sum_{i=1}^{10} x_i\) groß ist. Wir wählen als Teststatistik also \(T = \sum_{i=1}^{10} X_i\).
+  \item \textbf{Verteilung der Teststatistik unter \(H_0\): } \(T \sim \text{Bin}(10, 1/2)\).
+  \item \textbf{Verwerfungsbereich: } Der kritische Bereich "Quotient klein" hat die äquivalente Form "Summe groß", also ist der Verwerfungsbereich von der Form \(K = (k, \infty)\). Um das Signifikanzniveau einzuhalten, muss gelten
+  \[ P_{p_0}[T \in K] = P_{p_0}[T > k] \leq 1\% \Rightarrow P_{p_0}[T \leq k] \geq 99\%. \]
+  Deshalb haben wir als Verwerfungsbereich \(K = (9, \infty)\).
+  \item \textbf{Beobachteter Wert der Testst.: } \(t = T(\omega) = 8\).
+  \item \textbf{Testentscheid: } Da 8 nicht im Verwerfungsbereich liegt, wird die Nullhypothese nicht verworfen.
+  
+\end{enumerate}
+\BoxEnd{}
+\subsection*{Hypothesis testing}
+\begin{enumerate}
+  \item \textbf{Left-sided or left-tailed test: } If $H_0 : p = p_0$ is tested against the alternative $H_1 : p < p_0$, the region of rejection has the form $\{0, 1, \ldots, k\}$. The critical value $k$ is the largest value such that $P(X \leq k) \leq \alpha$.
+  \item \textbf{Right-sided or right-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p > p_0\), the region of rejection has the form \(\{k, k + 1, \ldots , n\}\). The critical value \(k\) is the smallest value such that \(P(X \geq k) \leq \alpha\).
+  \item \textbf{Two-sided or two-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p \neq p_0\), the region of rejection has the form \(K = \{0, 1, \ldots , k_1\} \cup \{k_2, k_2+1, \ldots , n\}\). The critical values \(k_1\) and \(k_2\) are determined as the smallest and largest value, respectively, such that \(P(X \leq k_1) \leq \frac{\alpha}{2}\) and \(P(X \geq k_2) \leq \frac{\alpha}{2}\).
+
+\end{enumerate}
 
 \subsection*{Likelihood Quotient}
 Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
@@ -110,7 +138,7 @@ Teststatistik ist:
   T & = \frac{\overline{X} - \vt_0}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt
     &                                                                               & \text{unter } P_{\vt_0}
 \end{align*}
-Und die Verwerfungebereiche:
+Und die Verwerfungsbereich:
 \begin{align*}
   \vt < \vt_0    &  & (-\infty, z_\alpha)                                                      \\
   \vt > \vt_0    &  & (z_{1 - \alpha}, \infty)                                                 \\
@@ -120,7 +148,7 @@ Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
 und es gilt $z_\alpha = - z_{1 - \alpha}$.
 
 \BoxStart{}
-\subsection*{Beipsiel Fehler 1. Art berechnen}
+\subsection*{Beispiel Fehler 1. Art berechnen}
 Sei $\Theta = [0, 1]$ und seien $X_1, \ldots , X_6$ unabhängig, identisch verteilt unter $P_\theta$
 mit $X_i \sim \text{Ber}(\theta)$. Wir betrachten die Nullhypothese $H_0 : \theta = \frac{1}{2}$ und die Alternativhypothese
 $H_A : \theta = \frac{1}{3}$. Wie hoch ist die Wahrscheinlichkeit eines Fehlers 1. Art für den Test $(T, K)$ mit
