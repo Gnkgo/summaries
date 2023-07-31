@@ -111,14 +111,31 @@ $$1 - D_G(x)$$
 **Logistic**: minimum is at $\infty$
 
 
-**Square**: well-defined minimum, the points is that this minimum (at 1) seems a bit random and does not make a lot of sense
+**Square** 
+- well-defined minimum, the points is that this minimum (at 1) seems a bit random and does not make a lot of sense
 
-**Exponential**: penalizes wrong labels very much and very quickly, this means that even one error could heavily penalize your model
+**Exponential**
+- penalizes wrong labels very much and very quickly, this means that even one error could heavily penalize your model
+- has exploding derivatives for wrong results and therefore is unstable
 
-**Hinge** for SVM
+**Hinge** 
+- for SVM
+- is convex
+- has minimum
+- not differentiable at 1
 
-**Logistic** for cross entropy
 
+**Logistic** 
+- for cross entropy
+- differentiable at all points
+- models conditional probability $p(y | w, x)$
+- the logistic loss doesn't necessarily maximize the margin between classes since it takes into account all the samples in both classes 
+
+**Linear**
+- too sensitive to outliers and returns garbage wenn there is an imbalance in data
+
+**0-1-Loss**
+- Derivative is always 0, doesn't make sense to optimize that
 
 ## Asymmetric 0-1 loss with abstention
 We shall define a new loss named 0-1 loss with abstention with an *extended action space*:
