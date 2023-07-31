@@ -139,6 +139,8 @@ foldl f z xs = aux xs z
 foldl f z xs = foldr (\x rec z -> rec (f z x)) (\z -> z) xs z
 ````
 
+
+
 ## IMP
 Remember the following:
 ![Alt text](assets/substitution-rule.png)
@@ -157,6 +159,81 @@ Let $x, y$ be arbitrary... strong structural induction on... Thus we have to pro
 - **Case** $e \equiv \text{ not } b'$ for some boolean expression $b'$
 - **Case** $e \equiv e_1 \text{ op } e_2$ for some arithmetic expression $e_1, e_2$ and some arithmetic operator $op$
 
+## Find invariants
+### Min, Max
+**$\{x = X \text{ and }  = Y\}$**
+
+    while (x < y) {
+        t := x; 
+        x := y;
+        y := t
+    }  
+**$\{\downarrow x = max(X, Y)\}$**
+
+Invariant: $max(x, y) = max(X, Y)$
+
+Variant = $y - x = Z$
+
+### Swap
+**$\{x \geq 0 \land x = X\}$**
+
+    a := x;
+    y := 0;
+    while (a # 0) {
+        y := y + 1;
+        a := a - 1;
+    }  
+$\{\downarrow y = X\}$
+
+
+Invariant: $\{a + y = X \land a \geq 0\}$
+
+Variant = $a$
+
+
+
+### $A^{2^N}$
+$\{a = A \land 0 < A \land n = N \land 0 \leq N \}$  
+
+    k := 0;
+    r := a;
+    while (k < n) do
+        k := k + 1;
+        r := r * r
+    end
+
+$\{r = A^{2^N}\}$
+
+Invariant: $\{a = A \land 0 < A \land n = N \land 0 \leq N \land r = A^{2^k} \land k \leq N\}$
+
+Variant: $n - k$
+
+### $N^K$
+$\{k \geq 1 \land k = K \land n \geq 1 \land n = N\}$
+
+    i := 0;
+    r := 1;
+    while (i < k) {
+        i := i + 1;
+        r := r * n;
+    }
+
+$\{\downarrow r = N^K\}$
+
+
+Invariant: $\{k = K \land n = N \land r = n^i \land i \leq k \}$
+
+Variant: $k - i = V$
+
+### $N = q \times D + r$
+$\{N \geq 0 \land D > 0 \land d = D \land r = N \land q = 0\}$
+
+    while (r >= 0) {
+        r := r - d;
+        q := q + 1;
+    }
+    r := r + d;
+    q := q - 1;
 
 ## Liveness
 - something good will happen eventually
