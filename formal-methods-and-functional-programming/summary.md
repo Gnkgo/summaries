@@ -207,6 +207,23 @@ $\{r = A^{2^N}\}$
 Invariant: $\{a = A \land 0 < A \land n = N \land 0 \leq N \land r = A^{2^k} \land k \leq N\}$
 
 Variant: $n - k$
+### Remainder
+$\{N \geq 0 \land D > 0 \land d = D \land r = N \land q = 0\}$  
+
+    while (r >= 0) { 
+        r := r - d; 
+        q := q + 1;
+    } 
+    
+    r := r + d;
+    q := q - 1;
+
+$\{\downarrow N = q \dot D + r \land r \geq 0 \land r < D\}$
+
+Invariant: $\{N = q \dot d + r \land d = D \land D > 0 \land r + d \geq 0\}$
+
+Variant: $r = Z$
+
 
 ### $N^K$
 $\{k \geq 1 \land k = K \land n \geq 1 \land n = N\}$
