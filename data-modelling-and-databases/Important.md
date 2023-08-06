@@ -1,4 +1,53 @@
-# Database
+---
+title: "Data Modelling and Databases"
+date: 2023-06-21T11:21:37+02:00
+draft: false
+mathjax: true
+---
+# Table of Contents
+
+1. [Database](#database)
+   - [Table of Contents](#table-of-contents)
+     - [Normal Forms](#normal-forms)
+       - [First Normal Form](#first-normal-form)
+       - [Second Normal Form](#second-normal-form)
+       - [Third Normal Form](#third-normal-form)
+       - [Boyce-Codd Normal Form](#boyce-codd-normal-form)
+       - [Fourth Normal Form](#fourth-normal-form)
+       - [Fifth Normal Form](#fifth-normal-form)
+     - [Candidate Key](#candidate-key)
+     - [Minimal Basis](#minimal-basis)
+     - [Example](#example)
+2. [SQL](#sql)
+   - [Difference Between ON and WHERE](#difference-on-where)
+   - [SQL WITH Clause](#sql-with)
+   - [SQL OVER Clause](#sql-over)
+   - [View](#view)
+   - [Referential Constraints](#referential-constraints)
+     - [Cascade](#cascade)
+     - [Restrict](#restrict)
+     - [No Action](#no-action)
+     - [Set Default, Set Null](#set-default-set-null)
+   - [Keys](#keys)
+     - [Super Key](#super-key)
+     - [Candidate Key](#candidate-key)
+     - [Primary Key](#primary-key)
+3. [Database Systems](#database-systems)
+   - [Disk Manager](#disk-manager)
+   - [Buffer Pool Manager](#buffer-pool-manager)
+   - [Access Methods](#access-methods)
+   - [Operator Execution](#operator-execution)
+   - [Query Optimization](#query-optimization)
+4. [Recoverability](#recoverability)
+   - [Recoverable (RC)](#recoverable-rc)
+   - [Avoids Cascading Aborts (ACA)](#avoids-cascading-aborts-aca)
+   - [Strict (ST)](#strict-st)
+   - [Serializable](#serializable)
+   - [Conflict Serializable](#conflict-serializable)
+   - [Snapshot Isolation](#snapshot-isolation)
+   - [Two Phase Locking](#two-phase-locking)
+   - [Strict Two Phase Locking](#strict-two-phase-locking)
+
 
 ## Normal Forms
 
@@ -58,6 +107,7 @@ Suppose you have a table R with scheme S which is in 1NF but not in 2NF. Let A -
 - Merge same left hand sides together 
 - Create a relation for every functional dependency
 ````
+R1 = (A, B, C, D, E, F)
 A -> D
 B -> C
 B -> D
@@ -77,7 +127,7 @@ R1 = (A, D)
 R2 = (B, C, D)
 R3 = (D, E)
 
-Does one of these relations contains a key of R? NO so we add a relation ith a minimal key of R:
+Does one of these relations contains a key of R? NO so we add a relation with a minimal key of R:
 
 R4 = (A, B, F)
 ````
@@ -86,6 +136,7 @@ R4 = (A, B, F)
 - Each non-key attribute in the table must depend on the key, the whole key, and nothing but the key.
 - If everything on the right side is a key then it is in 3NF
 - No transitive relations
+- Left hand side either super key or right hand side prime attribute
 
 **Nothing but the Key (Attribute)**
 
@@ -93,6 +144,38 @@ R4 = (A, B, F)
 ![Alt text](assets/third_normal_form.png)
 - arrow between teacher and teacher date of birth violates the 3NF rule. Both the teacher and teacher's date of birth are non-key attributes, so the dependency between them is not allowed
 
+**Higher Form - Decomposition Algorithm**
+1. Identify the dependencies which violates the BCNF definition and consider that as X->A
+
+2. Decompose the relation R into XA & R-{A} (R minus A).
+3. Validate if both the decomposition are in BCNF or not. If not re-apply the algorithm on the decomposition that is not in BCNF.
+
+![Alt text](assets/BCNF_decomposition.png)
+````
+R1 = (A, B, C, D, E)
+
+AB->CD 
+D->E
+A->C
+B->D
+
+Candidate Key: AB
+Prime Attributes: A, B
+Non Prime Attributes: C, D, E
+
+AB -> CD (Full Dependency - CD is dependent o candidate key)
+
+D -> E (Transitive Dependency: non prime derives non prime)
+
+A -> C (Partial Dependency: Prime derives non prime)
+
+B -> D (Partial Dependency: Prime derives non prime)
+
+Hence the dependency which violates BCNF are D -> E, A -> C, B -> D.
+
+so will take D -> E first as X -> ‘A’ {not the A listed in relation as attributes} So X = D & ‘A’ = E. X’A’ will be DE and R-{‘A’} will be ABCD
+````
+![Alt text](assets/BCNF.png)
 
 ### Boyce-Codd Normal Form
 - Each attribute in the table must depend on the key, the whole key, and nothing but the key.
@@ -110,11 +193,12 @@ The only kinds of multivalued dependency allowed in a table are multivalued depe
 ### Fifth Normal Form
 It must not be possible to describe the table as being the logical result of joining some other tables together.
 
+
 ## Candidate Key
 - You have a candidate key, if all its attributes appear only on the left side of the dependencies.
 - To get the candidate key, look at the closure. If you can reach all the important values, it is a super key for sure. If it is the only one than it is even a candidate key.
 
-## Functional Dependencies
+## Minimal Basis
 ````
 A -> BC
 B -> C
@@ -135,7 +219,7 @@ Find the closure of A
 
 $A_+ = {A, B, C}$
 
-So, `AB -> C`can be converted into `A -> C`
+So, `AB -> C` can be converted into `A -> C`
 ````
 A -> B
 A -> C
