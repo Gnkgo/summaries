@@ -23,7 +23,6 @@ f out = do
 - do block sequences side effects
 - <- extracts values from IO
 - return wraps values in IO
-
 - show converts values to Strings
 - read converts Strings to values (Always specify the desired type!)
 - for $\alpha$-equivalence, no variables can be free!
@@ -159,6 +158,24 @@ Let $x, y$ be arbitrary... strong structural induction on... Thus we have to pro
 - **Case** $e \equiv \text{ not } b'$ for some boolean expression $b'$
 - **Case** $e \equiv e_1 \text{ op } e_2$ for some arithmetic expression $e_1, e_2$ and some arithmetic operator $op$
 
+#### Trees
+$R[T] \equiv \forall T, P, Q, b, s... root(T) \equiv ... \implies ...$
+
+We want to prove $\forall T.R(T)
+$ by strong induction over the shape of $T$. Assume $\forall T' \subset T.R[T']$ Assume LHS holds. We do a case distinction on the last rule applied in T
+````
+Here goes the proof
+
+   \         T1          /
+    \                   /
+     -------------------
+            X, Y
+````
+Since $T1 \subset T$ and the root has the same statement we can apply the I.H. 
+
+<mark>We instantiate P, Q,... as P', Q'... respectively</mark> Since LHS holds we know $\exists T'$ s.t. $root(T') \equiv ...$
+
+
 ## Find invariants
 ### Min, Max
 **$\{x = X \text{ and }  = Y\}$**
@@ -251,6 +268,11 @@ $\{N \geq 0 \land D > 0 \land d = D \land r = N \land q = 0\}$
     }
     r := r + d;
     q := q - 1;
+
+
+- Use loop invariant in invariant
+- Use post condition in loop invariant
+- Check if you can already conclude with invariant your post condition
 
 ## Liveness
 - something good will happen eventually
