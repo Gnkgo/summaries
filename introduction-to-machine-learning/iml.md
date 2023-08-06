@@ -72,6 +72,11 @@ $$P(X = x | Y = y) = XI(x; M_y \sum_y )$$
 - M-step
     - maximizes the likelihood function by updating the model parameters based on the expected values computed in the E-step
 
+$p(x ; \theta)$
+- z hidden variable, discrete variable
+- $p(x, z ; \theta)$
+- 
+
 ## Gaussian Mixture Model
 - probabilistic model used for representing complex data distributions
 - works well when data is believed to be generated from a mixture of Gaussian distributions
