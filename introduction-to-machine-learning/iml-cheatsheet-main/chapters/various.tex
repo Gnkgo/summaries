@@ -14,13 +14,17 @@ $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\
 
 \textbf{Other Facts}
 
-$\text{Tr}(AB) = \text{Tr}(BA)$, $\text{Var}(X) = \E[X^2] - \E[X]^2$, $X \in \mathbb{R}^{n \times d}: \; \; X^{-1} \rightarrow \mathcal{O}(d^3) \; X^\top X \rightarrow \mathcal{O}(nd^2)$, $\binom{n}{k} = \frac{n!}{(n-k)!k!}$, $||w^\top w||_2 = \sqrt{w^\top w}$
+$\text{Tr}(AB) = \text{Tr}(BA)$, $\text{Var}(X) = \E[X^2] - \E[X]^2$
+
+$X \in \mathbb{R}^{n \times d}: \; \; X^{-1} \rightarrow \mathcal{O}(d^3) \; X^\top X \rightarrow \mathcal{O}(nd^2)$, $\binom{n}{k} = \frac{n!}{(n-k)!k!}$, $||w^\top w||_2 = \sqrt{w^\top w}$
  
 Cov$[X] = \E[(X- \E[X]){(X- \E[X])}^\top] = E[XX^{\top}] - E[X]E[X]^{\top}$
 
 $p(z|x,\theta) = \frac{p(x,z|\theta)}{p(x | \theta)}$
 
 $E[s \cdot {s}^\top] = \mu \cdot \mu^\top + \Sigma = \Sigma$ where $s$ follows a multivariate normal distribution with mean $\mu$ and covariance matrix $\Sigma$
+
+$p(x, y | \theta) = p(y | x, \theta) * p(x | \theta)$
 
 \textbf{Convexity}
 
@@ -32,6 +36,8 @@ $E[s \cdot {s}^\top] = \mu \cdot \mu^\top + \Sigma = \Sigma$ where $s$ follows a
 
 \begin{compactitem}
 	\item $\alpha f + \beta g$, $\alpha, \beta \geq 0$, convex if $f, g$ convex
-	\item $f \circ g$, convex if $f$ convex and $g$ affine or $f$ non-decresing and $g$ convex
+	\item $f \circ g$, convex if $f$ convex and $g$ affine or $f$ non-decreasing and $g$ convex
 	\item $\max(f, g)$, convex if $f,g$ convex
 \end{compactitem}
+
+

@@ -4,8 +4,9 @@ Parameterize: $w = \Phi^\top \alpha$, $K = \Phi \Phi^\top$
 
 A kernel is \textbf{valid} if $K$ is sym.: $k(x,z) = k(z,x)$ and psd: $z^\top K z \geq 0$
 
-\textbf{lin.}: $k(x, z) = x^\top z$, \textbf{poly.}: $k(x, z) = (x^\top z + 1)^m$
+\textbf{lin.}: $k(x, z) = x^\top z$, 
 \textbf{rbf}: $k(x, z) = \exp ( -\frac{||x - z||_\alpha}{\tau} )$
+\textbf{poly.}: $k(x, z) = (x^\top z + 1)^m$ $\mathcal{O}(n^2 * d)$
 
 $\alpha = 1 \Rightarrow $ laplacian kernel \\
 $\alpha = 2 \Rightarrow $ gaussian kernel
@@ -21,3 +22,5 @@ $\forall f. \; k(x,y) = f(x)k_1(x,y)f(y)$
 
 \textbf{Kern. Ridge Reg.}
 $\frac{1}{n} ||y - K\alpha ||_2^2 + \lambda \alpha^\top K \alpha$
+
+$\mathcal{O}(d^m)$ for large d, $\mathcal{O}(m^d)$ for large  m
