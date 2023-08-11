@@ -140,7 +140,22 @@ $$1 - D_G(x)$$
 - too sensitive to outliers and returns garbage wenn there is an imbalance in data
 
 **0-1-Loss**
-- Derivative is always 0, doesn't make sense to optimize that
+- Derivative is always 0, doesn't make sense to optimize that$
+
+**Cross-Entropy Loss in Classification**
+
+Cross-entropy loss is a crucial component in training classification models. It quantifies the dissimilarity between predicted class probabilities and actual class labels. For each data point, the cross-entropy loss is computed by taking the negative logarithm of the predicted probability assigned to the true class:
+
+$$L_i = -\sum_{k=1}^{K} y_{ik} \cdot \log(p_{ik})$$
+
+Where $y_{ik}$ is the true probability that the data point belongs to class $k$, and 
+$p_{ik}$ is the predicted probability assigned to class $k$.
+
+This loss function not only measures the correctness of the model's predictions but also encourages the model to be confident and accurate in its class probability assignments. The overall objective during training is to minimize the mean cross-entropy loss across the dataset:
+
+$$L = \frac{1}{N} \sum_{i=1}^{N} L_i$$
+
+This minimization process leads to improved classification accuracy and better-calibrated probabilities.
 
 ## Asymmetric 0-1 loss with abstention
 We shall define a new loss named 0-1 loss with abstention with an *extended action space*:

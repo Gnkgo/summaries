@@ -1,6 +1,6 @@
 \section*{Regression}
 
-\textbf{Squared loss} \quad (convex)
+\textbf{Squared loss} (convex, $\mathcal{O}(n^2d)$ $d = \text{dim. feat.}$)
 
 \qquad \qquad $\frac{1}{n}\sum (y_i - f(x_i))^2 = \frac{1}{n}||y - X w||_2^2$
 
@@ -10,11 +10,11 @@ Solution: $\hat{w} = (X^\top X)^{-1}X^\top y$
 
 \subsection*{Regularization}
 
-\textbf{Lasso Regression} \quad (sparse)
+\textbf{Lasso Regression} (sparse, Laplac. prior, i.o.i)
 
 \qquad \qquad $\argmin{w \in \R^d} ||y - \Phi w||_2^2 + \lambda ||w||_1$
 
-\textbf{Ridge Regression}
+\textbf{Ridge Regression} (convex, Gauss. prior, i.o.i)
 
 \qquad \qquad $\argmin{w \in \R^d} ||y - \Phi w||_2^2 + \lambda ||w||_2^2$
 

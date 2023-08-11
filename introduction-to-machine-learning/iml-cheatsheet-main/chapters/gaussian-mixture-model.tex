@@ -10,7 +10,7 @@ We don't have labels and want to cluster this data. The problem is to estimate t
 
 This is a non-convex objective. Similar to training a GBC without labels. Start with guess for our parameters, predict the unknown labels and then impute the missing data. Now we can get a closed form update.
 
-\subsection*{Hard-EM Algorithm}
+\subsection*{Hard-EM Algorithm, d.o.i}
 
 \textbf{E-Step}: predict the most likely class for each data point:
 \begin{align*}
@@ -21,18 +21,16 @@ This is a non-convex objective. Similar to training a GBC without labels. Start 
 
 Problems: labels if the model is uncertain, tries to extract too much inf. Works poorly if clusters are overlapping. With uniform weights and spherical covariances is equivalent to k-Means with Lloyd's heuristics.
 
-\subsection*{Soft-EM Algorithm}
+\subsection*{Soft-EM Algorithm, d.o.i}
 
 \textbf{E-Step}: calculate the cluster membership weights for each point ($w_j = \pi_j = p(Z = j))$: \\[-8pt]
 
 \quad $\gamma_j^{(t)}(x_i) = p(Z = j \; | \; D) =\frac{w_j \cdot p(x_i ; \theta_j^{(t-1)})}{\sum_k w_k \cdot p(x_i ; \theta_k^{(t-1)})}$
 		
 \textbf{M-Step}: compute MLE with closed form:
-
-$w_j^{(t)} = \frac{1}{n} \sum_{i=1}^n \gamma_j^{(t)}(x_i) \quad \; \mu_j^{(t)} = \frac{\sum_{i=1}^n x_i \cdot \gamma_j^{(t)}(x_i)}{\sum_{i=1}^n \gamma_j^{(t)}(x_i)}$
-
-\qquad \quad $\Sigma_j^{(t)} = \frac{\sum_{i=1}^n \gamma_j^{(t)}(x_i)(x_i - \mu_j^{(t)})(x_i - \mu_j^{(t)})^\top}{\sum_{i=1}^n \gamma_j^{(t)}(x_i)}$
-
+\[
+\hat{\Sigma}_y=\frac{1}{\operatorname{Count}(\mathrm{Y}=\mathrm{y})} \sum_{i: y_i=y}\left(\mathbf{x}_i-\hat{\mu}_y\right)\left(\mathbf{x}_i-\hat{\mu}_y\right)^T
+\]
 
 Init. the weights as uniformly distributed, rand. or with k-Means++ and for variances use spherical init. or empirical covariance of the data. Select $k$ using cross-validation.
 
