@@ -122,15 +122,15 @@ Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei $T =
 Teststatistik $T$ und kritischem Bereich $K$ ist dann in folgendem Sinn
 optimal: Jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat
 eine kleinere Macht (bez. Grössere WS Fehler 2. Art).
-\subsection*{$p$-Wert}
+\subsection*{definition}{$p$-Wert}
 (Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
 so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
 \begin{align*}
   p (x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
   p (x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
 \end{align*}
-\subsection*{$z$-Test}
-Normalverteilung, Test für Erwartungswert bei bekannter Varianz. Hier sind
+\begin{definition}{$z$-Test}
+\color{red}Normalverteilung, Test für Erwartungswert bei bekannter Varianz. \color{black} Hier sind
 $\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die
 Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$ sind $\vt >
   \vt_0$, $\vt < \vt_0$ (einseitig) oder $\vt \neq \vt_0$ (zweiseitig). Die
@@ -147,7 +147,7 @@ Und die Verwerfungsbereich:
 \end{align*}
 Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
 und es gilt $z_\alpha = - z_{1 - \alpha}$.
-
+\end{definition}
 \BoxStart{}
 \subsection*{Beispiel Fehler 1. Art berechnen}
 Sei $\Theta = [0, 1]$ und seien $X_1, \ldots , X_6$ unabhängig, identisch verteilt unter $P_\theta$
@@ -184,8 +184,8 @@ nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Stan
    & \text{Weil } \sim \Standardnormalverteilt
 \end{align*}
 \BoxEnd{}
-\subsection*{$t$-Test}
-Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. Hier sind
+\begin{definition}{$t$-Test}
+\color{red} Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. \color{black} Hier sind
 $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
 $\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
 Die Teststatistik ist:
@@ -201,6 +201,7 @@ Und die Verwerfungsbereiche:
   c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
 \end{align*}
 Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
+\end{definition}
 \subsection*{Gepaarter Zweiproben-Test}
 Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
 $Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N} (\mu_Y, \sigma^2)$ unter $P_\vt$.

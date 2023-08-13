@@ -52,12 +52,40 @@ Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
 \end{align*}
 wir schreiben $X \sim Geom (p)$ und es gilt:
 \begin{align*}
-  E[X]              & = \sum_{i = 0}^\infty  (1-p)^l
+  E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^k \cdot p
   = \frac{1}{1- (1-p)} = \frac{1}{p}                 \\
   E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}          \\
   Var[X]            & = \frac{1-p}{p^2}
 \end{align*}
 \end{definition}
+\BoxStart{}
+\subsection*{Beispiel: Gedächtsnislosigkeit Geometrische Verteilung}
+\begin{align*}
+  &\exists q \in (0, 1) : Z \sim \text{Geom}(q) \Leftrightarrow \\
+  &P[Z > n] = P[Z > n + k | Z > k], \quad n, k \geq 1.
+\end{align*}
+
+``$\Rightarrow$'': Let $Z \sim \text{Geom}(q)$, where $q \in [0, 1]$. Then, we have $P[Z > k] = (1 - q)^k$ for $k \in \mathbb{N}$, and thus for all $k, n \in \mathbb{N}$,
+\begin{align*}
+P[Z > n + k | Z > k] &= P[Z > n + k, Z > k] \\
+&= P[Z > k] = P[Z > n + k] \\
+&= (1 - q)^{n+k} \cdot (1 - q)^k \\
+&= (1 - q)^n = P[Z > n]
+\end{align*}
+``$\Leftarrow$'': Now, assume $P[Z > n + k | Z > k] = P[Z > n]$ for $n, k \in \mathbb{N}$. Then,
+\begin{align*}
+P[Z > n] &= P[Z > n + k | Z > k] = P[Z > n + k, Z > k] \\
+&= P[Z > k] = P[Z > n + k] \\
+&= (1 - q)^{n+k} \cdot (1 - q)^k = (1 - q)^n = P[Z > n].
+\end{align*}
+Define $f(n) = P[Z > n]$. It follows that $f(n)f(k) = f(n + k)$ for all $n, k \in \mathbb{N}$. Due to $f(n + 1) = f(n)f(1)$, by iteration, we immediately get $f(n) = a^n$ with $a = f(1)$, and thus
+\begin{align*}
+  P[Z = n] &= P[Z > n - 1] - P[Z > n]\\
+  &= f(n - 1) - f(n) = (1 - a)a^{n-1}
+\end{align*}
+
+Finally, $a = f(1) = P[Z > 1] \in [0, 1]$, which implies $q = 1 - a \in [0, 1]$, and consequently $Z \sim \text{Geom}(q)$.
+\BoxEnd{}
 \begin{definition}{Negativbnomiale Verteilung}
 Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
 Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg ($r \in \N$):
