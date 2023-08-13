@@ -10,7 +10,21 @@ Wahrscheinlichkeitsraum $ (\Omega, \F, P_\vt)$. Wir möchten nun die Parameter
 $\vt_1, \dots, \vt_m$ bestimmen. Ein Schätzer $T_j$ für einen Parameter $\vt_j$
 ist eine Zufallsvariable der Form $T_j := t_j (\zufallsvariablen)$ für eine
 Schätzfunktion $t_j$.
-\subsection*{Schätzwert}
+\begin{definition}{Schätzwert}
+Verschiedene $T_{\text{ML}}$
+\begin{equation*}
+	\begin{array}{cc}
+		\textbf{bern} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
+		\textbf{bin} (k,\theta) & \frac{1}{k} \overline{X}_n = \frac{1}{nk} \sum_{i=1}^{n} X_i\\[5pt]
+		\mathcal{P} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
+		\textbf{geom}(\theta) & n / \sum_{i=1}^{n} X_i \\[10pt]
+		\mathcal{U}([a,b]) & \max\{X_1, \ldots , X_n\}\\[5pt]
+		\textbf{exp}(\theta) & \frac{1}{\overline{X}_n} = n / \sum_{i=1}^{n} X_i \\[5pt]
+		\mathcal{N}(\mu, \sigma^2) & \hat{\mu} = \overline{X}_n \quad \hat{\sigma}^2 = S^2
+	\end{array}
+\end{equation*}
+\end{definition}
+
 Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl. Sie
 entsteht durch das Einsetzen konkreter Daten in einen Schätzer: $T_j (\omega) =
   t_j (x_1, \dots, x_n)$ und liefert damit einen Wert für genau einen Parameter.

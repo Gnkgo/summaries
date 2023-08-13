@@ -1,0 +1,170 @@
+\section*{Tests}%
+\label{sec:tests}
+
+\subsection*{Null- und Alternativhypothese}%
+\label{sub:null_und_alternativhypothese}
+
+Es existiert bereits eine Vermutung, wo in $\Theta$ der richtige, unbekannte Parameter $\theta$ liegt. Grundproblem:
+Entscheidung zwischen zwei konkurrierenden Modellklassen zu treffen.
+\begin{gather*}
+	\begin{array}{rcc}
+		\text{Nullhypothese} & H_0 : \theta \in \Theta_0 & \Theta_0 \subseteq \Theta \\
+		\text{Alternativhypothese} & H_A : \theta \in \Theta_A & \Theta_A \subseteq \Theta
+	\end{array}\\
+	\text{wobei} ~ \Theta_0 \cap \Theta_A = \emptyset.
+\end{gather*}
+Falls keine explizite Alternative gegeben ist: $\Theta_A = \Theta_0^c = \Theta \setminus \Theta_0$.\\
+Hypothesen heissen \emph{einfach}, wenn sie aus \underline{einem einzelnem Wert}, $\theta_0$ bzw. $\theta_A$,
+bestehen; sonst \emph{zusammengesetzt}.
+
+\subsection*{Test und Entscheidung}%
+\label{sub:test_und_entscheidung}
+
+\begin{definition}{Test}
+	Ein \emph{Test} ist ein Paar $(T,K)$, wobei
+	\begin{itemize}
+		\item $T$ eine ZV der Form $T = t(X_1 , \ldots , X_n)$ ist, und
+		\item $K \subseteq \R$ eine (deterministische) Teilmenge von $\R$ ist.
+	\end{itemize}
+	Die ZV $T = t(X_1 , \ldots , X_n)$ heisst dann \emph{Teststatistik}, und $K$ heisst \emph{kritischer Bereich} oder
+	\emph{Verwerfungbereich}.
+\end{definition}
+\begin{lemma}{Entscheidungsregel}
+	\begin{itemize}
+		\item Die Hypothese $H_0$ wird verworfen, falls\footnote{Wobei $T(\omega)$ die Teststatistik $T(\omega) = t(X_1
+			(\omega) , \ldots , X_n (\omega))$ ist.} $T(\omega) \in K$.
+		\item Die Hypothese $H_0$ wird nicht verworfen, falls $T(\omega) \not\in K$.
+	\end{itemize}
+\end{lemma}
+Die Entscheidung des Test hängt via $T(\omega)$ von $\omega$ ab. Weil $T$ eine ZV ist, ist die Menge $\{T \in K\}$ ein
+Ereignis, und wir können $\pr_\theta [T \in K]$ in jedem Modell $\pr_\theta$ betrachten. Die Entscheidung bei einem Test
+kann falsch herauskommen:
+\begin{enumerate}
+	\item \emph{Fehler 1. Art}: Nullhypothese wird zu Unrecht verworfen (d.h.\ obwohl sie richtig ist). Passiert für
+		$\theta \in \Theta_0$ und $T \in K$. Deshalb heisst $\pr_\theta [T \in K]$ für $\theta \in \Theta_0$ die
+		Wahrsch. für einen Fehler 1.\ Art. 
+	\item \emph{Fehler 2. Art}: Nullhypothese wird zu Unrecht \underline{nicht} verworfen (d.h.\ man akzeptiert sie,
+		obwohl sie falsch ist). Passiert für $\theta \in \Theta_A$ und $T \not\in K$. Deshalb heisst 
+		$\pr_\theta [T \not\in K] = 1 - \pr_\theta [T \in K]$ für $\theta \in \Theta_A$ die Wahrsch.\ für einen Fehler 2.\ Art. 
+\end{enumerate}
+
+
+\subsection*{Signifikanzniveau und Macht}%
+\label{sub:signifikanzniveau_und_macht}
+
+\begin{definition}{Signifikanzniveau}
+	Sei $\alpha \in ]0,1[$. Ein Test $(T,R)$ besitzt \emph{Signifikanzniveau} $\alpha$, falls
+	\begin{equation*}
+		\forall \theta \in \Theta_0 \quad \pr_\theta [T \in K] \leq \alpha
+	\end{equation*}
+\end{definition}
+\begin{definition}{Macht}
+	Die \emph{Macht} eines Tests $(T,K)$ wird definiert als folgende Funktion
+	\begin{equation*}
+		\beta : \Theta_A \rightarrow [0,1], \qquad \theta \mapsto \beta(\theta) \coloneqq \pr_\theta [T \in K]
+	\end{equation*}
+\end{definition}
+\begin{itemize}
+	\item Um einen Fehler 1. Art zu minimieren, fixieren wir ein Parameter $\alpha$, und designen einen Test zum
+		Signifikanzniveau $\alpha$.
+	\item Um einen Fehler 2. Art zu vermeiden, suche den Test mit grösster Macht (nachdem Signifikanzniveau $\alpha$
+		gefunden wurde). D.h. minimiere die Grösse $1 - \beta(\theta) = \pr_\theta [T \not\in K]$ für $\theta \in
+		\Theta_A$.
+\end{itemize}
+Diese asymmetrische Vorgehen macht es schwieriger, die Nullhypothese zu verwerfen als sie beizubehalten. Ein seriöser
+Test wird deshalb die Nullhypothese immer die Negation der eigentlich gewünschten Aussage benutzen.\\
+Die Entscheidung ist eine \textbf{Interpretation} der Übereinstimmung zwischen Daten und Modell, und nie ein Beweis.
+
+\subsubsection*{Bemerkung}%
+\label{ssub:bemerkung}
+
+Wenn die Teststatistik $T$ diskret ist, kann ein vorgegebene Niveau $\alpha$ in der Regel nicht genau eingehalten
+werden, d.h. es ist unmöglich, einen kritischen Bereich $K$ mit $\pr_{\theta_0} [T \in K] = \alpha$ zu finden. Ein
+Ausweg bietet ein sogenannter \emph{randomisierter Test}. Man wählt $ \gamma \in [0,1]$ so, dass $\gamma \pr_{\theta_0}
+[T > c] + (1- \gamma) \pr_{\theta_0} [T > c + 1] = \alpha$ gilt und entscheidet dann wie folgt: Ist $ T > c$, so
+verwirft man $H_0$ mit Wahrsch. $\gamma$, d.h. $H_0$ wird abgelehnt, falls erstens $T > c$ gilt und zweitens eine
+unabhängige $\unif (0,1)$-verteilte ZV einen Wert $\leq \gamma$ realisiert.
+
+\staredssubend
+
+\subsection*{Konstruktion von Tests}%
+\label{sub:konstruktion_von_tests}
+
+Annahmen:
+\begin{itemize*}
+	\item $\theta_0 \neq \theta_A$ zwei fixierte Zahlen.
+	\item Null- und Alternativhypothesen sind von einfacher Form.
+	\item ZV $X_1 , \ldots , X_n$ sind entweder diskret oder gemeinsam stetig unter $\pr_{\theta_0}$ und $\pr_{\theta_A}$
+		(somit ist Likelihood-Funktion für $\theta = \theta_0$ und $\theta = \theta_A$ wohldefiniert).
+\end{itemize*}
+\begin{definition}{Likelihood-Quotient}
+	Für jedes $x_1 , \ldots , x_n$, definieren wir den Likelihood-Quotienten durch
+	\begin{equation*}
+		R(x_1 , \ldots , x_n) \coloneqq \frac{L(x_1 , \ldots , x_n ; \theta_A)}{L (x_1 , \ldots , x_n; \theta_0)} 
+	\end{equation*}
+	Als Konvention setzen wie $R (x_1 , \ldots , x_n) = + \infty$, falls\\ $L(x_1 , \ldots , x_n; \theta_0) = 0$.
+\end{definition}
+\begin{definition}{Likelihood-Quotienten-Test}
+	Sei $c \geq 0$. Der Likelihood-Quotienten-Test mit Parameter $c$ ist ein Test $(T,K)$, wobei Teststatistik und
+	Verwerfungbereich gegeben sind durch
+	\begin{equation*}
+		T = R(X_1, \ldots , X_n) \quad\text{und}\quad K = ]c,\infty]
+	\end{equation*}
+\end{definition}
+\begin{theorem}{Neymann-Pearson-Lemma}
+	Sei $c \geq 0$. Sei $(T,K)$ ein Likelihood-Quotienten-Test mit Parameter $c$ und Signifikanzniveau $\alpha^*
+	\coloneqq \pr_{\theta_0}[T > c]$. Ist $(T',K')$ ein anderer Test mit Signifikanzniveau $\alpha \leq \alpha^*$, so
+	gilt
+	\begin{equation*}
+		\pr_{\theta_A} [T' \in K'] \leq \pr_{\theta_A} [T \in K]
+	\end{equation*}
+\end{theorem}
+
+\subsubsection*{Verallgemeinerter Likelihood-Quotient}%
+\label{ssub:verallgemeinerten_likelihood_quotient}
+
+\begin{gather*}
+	R (x_1 , \ldots , x_n) \coloneqq \frac{\sup_{\theta \in \Theta_A} L (x_1 , \ldots , x_n ; \theta)}{\sup_{\theta \in
+	\Theta_0} L (x_1 , \ldots , x_n ; \theta)}\\
+	\text{oder auch}\\
+	\tilde{R} (x_1 , \ldots , x_n) \coloneqq \frac{\sup_{\theta \in \Theta_A \cup \Theta_0} L (x_1 , \ldots , x_n ; \theta)}{\sup_{\theta \in
+	\Theta_0} L (x_1 , \ldots , x_n ; \theta)}
+\end{gather*}
+und wähle als Teststatistik $T_0 \coloneqq R (X_1 , \ldots , X_n)$ bzw. $\tilde{T} \coloneqq \tilde{R} (X_1 , \ldots ,
+x_n ; \theta)$ mit kritischem Bereich $K_0 \coloneqq ]c_0,\infty[$.
+
+\staredssubend
+
+
+\subsection*{Der $p$-Wert}%
+\label{sub:der_p_wert}
+
+Sei $X_1, \ldots , X_n$ ein Stichprobe vom Umfang $n$. Wir wollen $H_0 : \theta = \theta_0$ gegen $H_A : \theta \in
+\Theta_A$ testen. 
+\begin{definition}{Geordnete Testsammlung}
+	Sei $T$ eine Teststatistik. Eine Familie von Tests $(T, (K_t)_{t \geq 0})$ heiss \emph{geordnet bzgl. $T$} falls $K_i
+	\subset T$ und 
+	\begin{equation*}
+		s \leq t \Longrightarrow K_s \supset K_t
+	\end{equation*}
+	gilt.
+\end{definition}
+\begin{definition}{p-Wert}
+	Sei $H_0 : \theta = \theta_0$ eine einfache Nullhypothese. Sei $(T,K_t)_{t \geq 0}$ eine geordnete Familie von Tests.
+	Der \emph{p-Wert} ist definiert als ZV
+	\begin{equation*}
+		\text{p-Wert} = G(T) = P_{\mu_0} [|T| \geq a] \qquad a \coloneqq \text{beobachteter Wert}
+	\end{equation*}
+	wobei $G: \R_+ \rightarrow [0,1]$ mittels $G(t) = \pr_{\theta_0}[T \in K_t]$ definiert ist.
+\end{definition}
+
+\begin{itemize}
+	\item Der p-Wert hängt direkt von den anfänglichen Beobachtungen $X_1 , \ldots , X_n$ ab.
+	\item p-Wert liegt stets in $[0,1]$. Falls $T$ stetig und $K_t = ]t,\infty[$ dann ist der p-Wert unter
+		$\pr_{\theta_0}$ auf $[0,1]$ gleichverteilt.
+	\item p-Wert liefert Information, welche Tests in $(T, K_t)_{t \geq 0}$ die Nullhypothese $H_0$ ablehnen.\\
+		Für einen p-Wert mit Wert $p$ gilt. dass alle Tests mit Signifikanzniveau $ \alpha > p$ $H_0$ verwerfen und alle
+		Tests mit $\alpha \leq p$ $H_0$ nicht verwerfen.
+	\item Der p-Wert ist nur von $H_0$ abhängig.
+	\item p-Wert klein $\Longrightarrow$ $H_0$ wird wahrscheinlich verworfen.
+\end{itemize}

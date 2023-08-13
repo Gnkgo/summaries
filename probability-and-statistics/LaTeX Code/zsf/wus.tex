@@ -1,0 +1,34 @@
+\documentclass[a4paper, fontsize = 7pt, landscape]{scrartcl}
+\usepackage{fs}
+
+\author{Andrej Scheuer}
+\title{WuS}
+\subtitle{}
+
+\createtitlepagestyle
+\createmainpagestyle
+
+\begin{document}
+	\begin{multicols*}{3}
+		\thispagestyle{TitlePageStyle}
+		\maketitle
+		\input{sections/wahrscheinlichkeit/math_framework.tex}
+		\input{sections/wahrscheinlichkeit/zv_verteilungen.tex}
+		\input{sections/wahrscheinlichkeit/diskrete_stetige_zv.tex}
+		\input{sections/wahrscheinlichkeit/erwartungswert.tex}
+		\input{sections/wahrscheinlichkeit/gemeinsame_verteilung.tex}
+		\input{sections/wahrscheinlichkeit/asymptotische_resultate.tex}
+
+		\input{sections/statistik/grundideen.tex}
+		\input{sections/statistik/schaetzer.tex}
+		\input{sections/statistik/konfidenzintervalle.tex}
+		\input{sections/statistik/tests.tex}
+
+		% \input{sections/integrale.tex}
+		% \vfill\null
+		% \columnbreak
+		% \input{sections/weitere_bsp.tex}
+	\end{multicols*}
+
+	% \includepdf[pages=-, nup=2x1]{tables.pdf}
+\end{document}

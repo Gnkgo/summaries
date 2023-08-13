@@ -14,13 +14,18 @@ Ereignis ist eine Teilmenge $A \subseteq \Omega$, also eine Kollektion von
 Elementarereignissen. Die Klasse aller beobachtbaren Ereignisse ist
 $\mathcal{F}$.
 \subsection*{$\sigma$-Algebra}
-Ein Mengensystem ist eine $\sigma$-Algebra falls
-\begin{enumerate}[label=  (\arabic*)]
-  \item $\Omega \in \mathcal{F}$
-  \item Für jedes $A \in \mathcal{F}$ ist auch $A^\complement \in \mathcal{F}$
-  \item Für jede Folge ${A_n}_{n \in \mathbb{N}}$ mit $A_n \in \mathcal{F}$ für alle $n
-          \in \N$ auch die Vereinigung $\bigcup_{n = 1}^\infty A_n \in \F$
-\end{enumerate}
+Grundraum: Menge $\Omega$. $\omega \in \Omega$ heisst Elementarereigniss.
+\begin{itemize}
+  \item $\Omega \in \F$
+  \item $A \in \F \Rightarrow A^c \in \F$
+  \item $A_1 , A_2 , \ldots \in \F \Rightarrow \bigcup_{i=1}^\infty A_i \in \F$
+  \item $\emptyset \in \F$
+  \item $A_1 , A_2 , \ldots \in \F \Rightarrow \bigcap_{i=1}^\infty A_i \in \F$
+  \item $A,B \in \F \Rightarrow A \cup B \in \F$
+  \item $A,B \in \F \Rightarrow A \cap B \in \F$
+\end{itemize}	
+
+
 \subsection*{Wahrscheinlichkeitsmass}
 Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden Eigenschaften:
 \begin{enumerate}[label= (\arabic*)]

@@ -1,0 +1,195 @@
+\section*{Schätzer}%
+\label{sec:schatzer}
+
+Setup:
+\begin{itemize*}
+	\item Parameterraum $\Theta \subset \R$
+\item Grundraum $\Omega$
+	\item Sigma-Algebra $\F$
+	\item $(\pr_\theta)_{\theta \in \Theta}$ Familie von Wahrscheinlichkeitsmasse auf $(\Omega, \F)$
+	\item $X_1 , \ldots , X_n$ ZV auf $(\Omega, \F)$
+\end{itemize*}
+
+\subsection*{Grundbegriffe}%
+\label{sub:grundbegriffe}
+
+\begin{definition}{Schätzer}
+	Zufallsvariable $T : \Omega \rightarrow \R$ der Form
+	\begin{equation*}
+		T = t(X_1, \ldots , X_n)
+	\end{equation*}
+	wobei $t: \R^n \rightarrow \R$.
+\end{definition}
+
+
+\subsection*{Bias}%
+\label{sub:bias}
+
+\begin{definition}{Erwartungstreu}
+	Ein Schätzer ist \emph{erwartungstreu} für $\theta$, falls für alle $\theta \in \Theta$ gilt: \inlineieq{\E_\theta
+	[T] = \theta}.
+\end{definition}
+$T$ schätzt also richtig, unabhängig davon welches Modell $\pr_\theta$ zugrunde liegt.
+
+\begin{definition}{Bias}
+	Sei $\theta \in \Theta$ und $T$ ein Schätzer. Der \emph{Bias} (erwartete Schätzfehler) von $T$ im Modell $\pr_\theta$
+	ist definiert als
+	\begin{equation*}
+		\E_\theta [T] - \theta
+	\end{equation*}
+	Der mittlere quadratische Schätzfehler (\glqq mean squared error\grqq{}, \cemph{definitioncolor}{MSE}) von $T$ im Modell $\pr_\theta$ ist
+	definiert als
+	\begin{iequation}
+		\mse_\theta [T] \coloneqq \E_\theta \left[ (T - \theta)^2 \right] = \Var_\theta [T] + (\E_\theta [T] - \theta)^2
+	\end{iequation}
+\end{definition}
+
+\subsection*{Maximum-Likelihood (ML-Methode)}%
+\label{sub:maximum_likelihood_ml_methode_}
+
+\begin{definition}{Likelihood-Funktion}
+	\begin{equation*}
+		L(x_1 , \ldots , x_n ; \theta) \coloneqq 
+		\begin{cases}
+			p_{\vec{X}} (x_1 , \ldots , x_n; \theta) & \text{im diskreten Fall}\\
+			f_{\vec{X}} (x_1 , \ldots , x_n; \theta) & \text{im stetigen Fall}
+		\end{cases}
+	\end{equation*}
+	wobei $p_{\vec{X}} (x_1 , \ldots , x_n; \theta) = \pr_\theta [X_1 = x_1 , \ldots , X_n = x_n]$\\
+	Die Funktion $\log L(x_1 , \ldots , x_n ; \theta)$ heisst \emph{$\log$-Likelihood-Funktion}.
+\end{definition}
+Falls die $X_i$ unter $\pr_\theta$ \iid sind gilt:
+\begin{align*}
+	p_{\vec{X}} (x_1 , \ldots , x_n; \theta) &= \prod_{i=1}^n p_X (x_i ; \theta) & \sum_{i=1}^{n} \log(p_X (x_i ; \theta))\\
+	f_{\vec{X}} (x_1 , \ldots , x_n; \theta) &= \prod_{i=1}^n f_X (x_i ; \theta) & \sum_{i=1}^{n} \log(f_X (x_i ; \theta))
+\end{align*}
+\begin{definition}{ML-Schätzer}
+	Für jedes $x_1 , \ldots , x_n$ sei $t_{\text{ML}}(x_1 , \ldots , x_n) \in \R$ der Wert, der $\theta \mapsto L (x_1 ,
+	\ldots , x_n ; \theta)$ als Funktion maximiert. D.h.
+	\begin{equation*}
+		L (x_1 , \ldots , x_n ; t_{\text{ML}} (x_1, \ldots , x_n)) = \max_{\theta \in \Theta} L (x_1 , \ldots , x_n)
+	\end{equation*}
+	Ein \emph{Maximum-Likelihood-Schätzer (ML-Schätzer)} $T_{\text{ML}}$ für $\theta$ wird definiert durch
+	\begin{equation*}
+		T_{\text{ML}} = t_{\text{ML}} (X_1 , \ldots , X_n)
+	\end{equation*}
+\end{definition}
+Meistens sind $X_1 , \ldots , X_n$ \iid und dann ist es einfacher $\log L$ zu maximieren, da es sich dann um eine Summe
+handelt und man dann nur die Nullstellen der Ableitung nach $\theta$ suchen muss.
+
+\begin{recipe}{ML-Schätzer}
+	\begin{enumerate}
+		\item Bestimme $\log$-Likelihood-Funktion.
+		\item Setze Ableitung $\dv{\theta}$ gleich $0$.
+		\item Löse nach $\theta$ auf.
+		\item $T_{\text{ML}}$ ist (fast) gleich $\theta$
+	\end{enumerate}
+\end{recipe}
+\begin{example}
+	Sei $\Theta = [0,1]$ und $X_{1}, \ldots, X_{n}$ unter $\pr_\theta$ \iid mit $X_1 \sim \geom (\theta)$. Bestimme
+	$T_{\text{ML}}$.
+	\tcblower
+	Die $\log$-Likelihood-Funktion ist
+	\begin{equation*}
+		n \cdot \log (\theta) + (x_{1}, \ldots, x_{n} - n) \cdot \log(1 - \theta)
+	\end{equation*}
+	Die Ableitung gleich $0$ gesetzt ist
+	\begin{equation*}
+		\frac{n}{\theta} - \frac{x_{1}, \ldots, x_{n} -n}{1 - \theta} = 0
+	\end{equation*}
+	Löse nach $\theta$ auf
+	\begin{equation*}
+		\theta = \frac{n}{x_{1}, \ldots, x_{n}} 
+	\end{equation*}
+	Konstruiere $T_{\text{ML}}$
+	\begin{equation*}
+		T_{\text{ML}} = \frac{n}{X_{1}, \ldots, X_{n}} 
+	\end{equation*}
+\end{example}
+
+Verschiedene $T_{\text{ML}}$
+\begin{equation*}
+	\begin{array}{cc}
+		\bern (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
+		\bin (k,\theta) & \frac{1}{k} \overline{X}_n = \frac{1}{nk} \sum_{i=1}^{n} X_i\\[5pt]
+		\pois (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
+		\geom(\theta) & n / \sum_{i=1}^{n} X_i \\[10pt]
+		\unif([a,b]) & \max\{X_1, \ldots , X_n\}\\[5pt]
+		\expd(\theta) & \frac{1}{\overline{X}_n} = n / \sum_{i=1}^{n} X_i \\[5pt]
+		\normd(\mu, \sigma^2) & \hat{\mu} = \overline{X}_n \hspace{5mm} \hat{\sigma}^2 = S^2
+	\end{array}
+\end{equation*}
+
+\subsection*{Modelle mit mehreren Parametern}%
+\label{sub:modelle_mit_mehreren_parametern}
+
+\begin{definition}{Empirisches Moment}
+	Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment
+	oder Stichprobenmoment $\hat{m}_k$ der Realisierung $(x_1, \dots, x_n)$:
+	\begin{equation*}
+		\hat{m}_k(x_1, \dots, x_n) \coloneqq \frac{1}{n} \sum_{i=1}^{n}  x_i^k
+	\end{equation*}
+\end{definition}
+
+% \subsubsection*{Momentenmethode}%
+% \label{ssub:momentenmethode}
+%
+% Der Momentenmethode liegt zugrunde, dass die Momente einer ZV
+% bzw. einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden können.\\
+% Sei $X_1 , \ldots , X_n$ eine Stichprobe und $\Theta$ der Parameterraum. Für
+% jeden Parameter $\theta = (\theta_1, \dots, \theta_m) \in \Theta$ sei
+% $X_1 , \ldots X_n$ i.i.d. unter dem Wahrscheinlichkeitsraum $(\Omega, \F, \pr_\theta)$.
+% Methode:
+% \begin{enumerate}
+% 	\item Für gegebene Realisierungen $x_1, \dots, x_n$ bestimme für jedes
+% 		$k \in \{1, \dots, m\}$ das $k$-te empirische Moment
+% 	\item Stelle ein Gleichungssystem für die Unbekannten Parameter
+% 		$\theta_1, \dots, \theta_m$ auf, in dem das $k$-te empirische Moment dem
+% 		$k$-ten Moment gleichgesetzt wird, also:
+% 		\begin{equation*}
+% 			\hat{m}_k(x_1, \dots, x_n) = g_k(\theta_1, \dots, \theta_m)
+% 			\quad k \in \{1, \dots, m\}
+% 		\end{equation*}
+% 	\item Existiert eine Eindeutige Lösung so wird das unsere Schätzung für $\theta$.
+% \end{enumerate}
+%
+% \begin{definition}{Momentenschätzer}
+% 	Der Vektor $\hat{\theta}(X_1, \dots, X_m)$ heisst Momentenschätzer des Parameters $\theta$.
+% \end{definition}
+
+\subsubsection*{Normalverteile Stichprobe}%
+\label{ssub:normalverteile_stichprobe}
+
+Sei $X_1 , \ldots X_n$ i.i.d. $\normd \left(\mu, \sigma^2 \right)$-verteilt mit unbekannten
+Parametern $\theta = \left(\mu, \sigma^2 \right)$. Damit berechnen wir mit den Ableitungen der $\log L$
+\begin{align*}
+	T_1 & = \frac{1}{n} \sum_{i=1}^n X_i = \overline{X}_n     \\
+	T_2 & = \frac{1}{n} \sum_{i=1}^n (X_1 - \overline{X}_n)^2
+\end{align*}
+möchten wir aber noch, dass der Schätzer erwartungstreu wird,
+so wählen wir für $T_2 = S^2$:
+\begin{definition}{Empirische Stichprobenvarianz}
+	\begin{equation*}
+		S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X}_n)^2
+	\end{equation*}
+\end{definition}
+
+Der zentrale Grenzwertsatz liefert einen allgemeinen approximative Zugang.
+
+\begin{theorem}{1.6}
+	Seien $X_1 , \ldots X_n$ i.i.d. $\sim \normd \left( \mu, \sigma^2 \right)$. Dann gilt:
+	\begin{enumerate}
+		\item $\overline{X_n}$ ist normalverteilt gemäss $\normd \left( \mu, \frac{1}{n} \sigma^2 \right)$, und dann gilt
+			$\frac{\overline{X_n} - \mu}{\sigma / \sqrt{n}} \sim \normd (0,1)$.
+		\item $\frac{n-1}{\sigma^2} S^2 = \frac{1}{\sigma^2} \sum_{i=1}^{n} \left( X_i - \overline{X}_n \right)^2$ ist
+			$\chi^2$-verteilt mit $n-1$ Freiheitsgraden.
+		\item $\overline{X}_n$ und $S^2$ sind unabhängig.
+		\item Der Quotient
+			\begin{equation*}
+				\frac{\overline{X}_n - \mu}{S / \sqrt{n}} = \frac{\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}}}{S /
+				\sigma}  = \frac{\frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2}
+			S^2}}
+			\end{equation*}
+			ist $t$-verteilt mit $n-1$ Freiheitsgraden.
+	\end{enumerate}
+\end{theorem}

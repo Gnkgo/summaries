@@ -1,0 +1,282 @@
+\section{Diskrete und stetige Zufallsvariablen}%
+\label{sec:diskrete_und_stetige_zufallsvariablen}
+
+\subsection{(Un-)Stetigkeitspunkte von $F$}%
+\label{sub:_un_stetigkeitspunkte_von_f}
+
+\begin{tprop}{Wahrsch. eines gegeben Werts}
+	Sei $X : \omega \rightarrow \R$ eine ZV mit $F$. Dann gilt für jedes $a \in \R$: $\pr [X = a] = F(a) - F(a-)$.\\
+	Wobei $F (a-) \coloneqq \lim_{h \downarrow 0} F( a - h )$ (Linker Grenzwert).
+\end{tprop}
+
+
+\subsection{Fast sichere Ereignisse}%
+\label{sub:fast_sichere_ereignisse}
+
+\begin{definition}{Fast sicher}
+	Sei $A \in \F$ ein Ereignis. $A$ tritt \emph{fast sicher} ein, wenn $\pr [A] = 1$.
+\end{definition}
+
+
+
+\subsection{Diskrete Zufallsvariablen}%
+\label{sub:diskrete_zufallsvariablen}
+
+\begin{definition}{Diskrete ZV}
+	Eine ZV $X : \Omega \rightarrow \R$ ist \emph{diskret} falls eine endliche oder abzählbare Menge $W \subset \R$
+	existiert, sodass $X \in W$ fast sicher ist.
+\end{definition}
+Falls $\Omega$ endlich oder abzählbar ist, ist jede ZV diskret.
+\begin{definition}{Verteilung von $X$ (Gewichtsfunktion)}
+	Sei $X$ eine diskrete ZV mit Werten von einem endlichen/abzählbaren $W \subset \R$ als Argumenten. Die
+	\emph{Verteilung} von $X$ ist die Folge $(p(x))_{x \in W}$ definiert durch $ \forall x \in W ~ p(x) \coloneqq \pr [X
+	= x]$.
+\end{definition}
+\begin{prop}
+	Die Verteilung $(p(x))_{x \in W}$ einer diskreten ZV erfüllt $\sum_{x \in W} p(x) = 1$.
+\end{prop}
+Sei $X$ ein ZV
+\begin{equation*}
+	\forall \omega \in \Omega \quad X (\omega) \coloneqq 
+	\begin{cases}
+		-1 & \text{falls}~\omega = 1,2,3\\
+		0 & \text{falls}~\omega = 4\\
+		2 & \text{falls}~\omega = 5,6
+	\end{cases}
+	\qquad
+ W = \{-1, 0, 2\}
+\end{equation*}
+Dann nimmt $X$ in $W$ fast sicher an und die Verteilung ist:
+\begin{equation*}
+	p (-1) = \frac{1}{2} , \quad , p(0) = \frac{1}{6} , \quad p(2) = \frac{1}{3} 
+\end{equation*}
+
+\subsubsection{Verteilung $p$ vs Verteilungsfunktion $F_X$}%
+\label{ssub:verteilung_p_vs_verteilungsfunktion_f_x}
+
+\begin{prop}
+	Sei $X$ eine diskrete ZV, die fast sicher Werte in $W$ (endlich/abzählbar) annimmt.
+	\begin{equation*}
+		\forall x \in \R \quad F_X (x) = \sum_{y \leq x, y \in W}  p(y)
+	\end{equation*}
+\end{prop}
+
+
+\subsection{Beispiele diskreter ZV}%
+\label{sub:beispiele_diskreter_zv}
+
+\begin{definition}{Bernoulli Verteilung}
+	Sei $0 \leq p \leq 1$. Eine ZV $X$ ist Bernoulli ZV mit Parameter $p$, falls sie Werte in $W = \{0,1\}$ nimmt und
+	\begin{equation*}
+		\pr [X = 0] = 1-p \quad\text{und}\quad \pr [X = 1] = p
+	\end{equation*}
+	$ X \sim \bern (p)$
+	\begin{equation*}
+		f_p (x) =
+		\begin{cases}
+			p^x (1-p)^{1-x} & x \in \{0,1\}\\
+			0 & \text{sonst}
+		\end{cases}
+		\qquad
+		F_p (x) =
+		\begin{cases}
+			0 & x < 0\\
+			1-p & 0 \leq x < 1\\
+			1 & x \geq 1
+		\end{cases}
+	\end{equation*}
+\end{definition}
+\begin{definition}{Binomial Verteilung}
+	Sei $ 0 \leq p \leq 1$ und $n \in \N$. Eine ZV $x$ ist eine Binomial ZV mit Parametern $n$ und $p$, falls sie Werte
+	in $W = \{0 , \ldots , n\}$ nimmt und
+	\begin{equation*}
+		\forall k \in \{0 , \ldots , n\} \quad \pr [X = k] = \begin{pmatrix}n\\k\end{pmatrix} p^k (1-p)^{n-k}
+	\end{equation*}
+	$X \sim \bin (n,p)$
+\end{definition}
+Falls $X_1 , \ldots , X_n$ unabhängige Bernoulli ZV mit Parameter $p$ sind. Dann ist $S_n \coloneqq X_1 + \ldots + X_n$
+eine Binomial ZV mit Parametern $n$ und $p$.
+
+\begin{definition}{Geometrische Verteilung}
+	Sei $0 \leq p \leq 1$. Eine ZV $X$ ist eine Geometrische ZV mit Parameter $p$ falls sie Werte in $W = \N \setminus \{0\}$
+	nimmt und
+	\begin{align*}
+		\forall k \in \N \setminus \{0\} \quad \pr [X = k] &= (1-p)^{k-1} \cdot p\\
+		\pr[X > k] &= (1 - p)^k
+	\end{align*}
+	$X \sim \geom (p)$\\
+	Falls $p = 1$ und $k = 1$, verwenden wir die Konvention, dass $0^0 = 1$ und dementsprechend $\pr [X = 1] = 1$.
+\end{definition}
+Für eine ZV $T \in \N$ ist $T + 1 \sim \geom (p)$, woraus folgt: $\E [T + 1] = \E [T] + 1$.
+\begin{prop}
+	Sei $X_1 , X_2 , \ldots$ eine Folge von unendlich vielen unabhängigen Bernoulli ZV mit Parameter $p$. Dann ist $T
+	\coloneqq \min \{n \geq 1 : X_n = 1\}$ eine Geometrische ZV mit Parameter $p$.
+\end{prop}
+Zwar kann $T$ den Wert $+ \infty$ annehmen, falls alle $X_i = 0$ sind, jedoch gilt $\pr [T = \infty] = 0$.
+\begin{tprop}{Gedächtnislosigkeit}
+	Sei $T  \sim \geom (p)$ für ein $0 < p < 1$. Dann
+	\begin{equation*}
+		\forall n \geq 0, \forall k \geq 1 \quad \pr [T \geq n + k | T > n] = \pr [T \geq k]
+	\end{equation*}
+\end{tprop}
+\begin{definition}{Poisson Verteilung}
+	Sei $ \lambda > 0$ eine positive reelle Zahl. Eine ZV $X$ ist eine Poisson ZV mit Parameter $\lambda$, falls sie
+	Werte in $W = \N$ nimmt und 
+	\begin{equation*}
+		\forall k \in \N \quad \pr [X = k] = \frac{\lambda^k}{k!} e^{-\lambda}
+	\end{equation*}
+	$X \sim \pois (\lambda)$.\\
+	Sind $X \sim \pois (\lambda); Y \sim \pois (\mu); \lambda, \mu > 0$ dann $X + Y \sim \pois (\lambda + \mu)$.
+\end{definition}
+Sei $X_n \sim \bin (n, \frac{\lambda}{n} )$, dann $\forall k \in \N ~ \lim_{n \rightarrow \infty} \pr [X_n = k] = \pr [N
+= k]$, wobei $N ~ \pois (\lambda)$.
+
+
+\subsection{Stetige Zufallsvariablen}%
+\label{sub:stetige_zufallsvariablen}
+
+\begin{definition}{Stetige ZV}
+	Eine ZV $X : \Omega \rightarrow \R$ ist stetig, falls ihre Verteilungsfunktion $F_X$ als 
+	\begin{equation*}
+		F_X (a) = \int_{-\infty}^{a} f(x) \dif x \quad \forall a \in \R
+	\end{equation*}
+	geschrieben werden kann. $f$ ist eine nicht-negative Funktion $f : \R \rightarrow \R$, genannt \emph{Dichte}.
+\end{definition}
+$f(x) \dif x$ stellt die Wahrscheinlichkeit dar, dass $X$ einen Wert im (infinitessimalen) Intervall $[x,x + \dif x]$ annimmt.
+\begin{prop}
+	Die Dichte erfüllt:
+	\begin{equation*}
+		\int_{-\infty}^{\infty} f(x) \dif x = 1
+	\end{equation*}
+\end{prop}
+\begin{prop}
+	Sei $X$ eine ZV. Nehme an, dass die Verteilungsfunktion $F_X$ stetig und stückweise $\mathcal{C}^1$ ist\footnote{Es
+	existiert $x_0 = - \infty < x_1 < \ldots < x_{n-1} < x_n = + \infty$} sodass $F_X$ auf jedem Intervall
+	$]x_i,x_{i+1}[$ von $\mathcal{C}^1$ ist. Dann ist $X$ eine stetige ZV und eine Dichte $f$ kann durch
+	\begin{equation*}
+		\forall x \in ]x_i,x_{i+1}[ \quad f(x) = \od{}{x} F_X (x)
+	\end{equation*}
+	definiert werden. (mit beliebigen Werten für $x_1 , \ldots , x_{n-1}$)
+\end{prop}
+
+
+\subsection{Beispiele stetiger Zufallsvariablen}%
+\label{sub:besipiele_stetiger_zufallsvariablen}
+
+\begin{definition}{Gleichverteilt}
+	Eine stetige ZV $X$ ist \emph{gleich verteilt} in $[a,b]$, falls 
+	\begin{equation*}
+		f_{a,b} (x) = 
+		\begin{cases}
+			\frac{1}{b-a} & x \in [a,b]\\
+			0 & x \notin [a,b]\\
+		\end{cases}
+		\qquad
+		F_{a,b} (x) = 
+		\begin{cases}
+			0 & x \leq a\\
+			\frac{x-a}{b-a} & a < x < b\\
+			1 & x \geq b
+		\end{cases}
+	\end{equation*}
+	ist. $X \sim \unif ([a,b])$.
+\end{definition}
+Eigenschaften einer gleich verteilten ZV
+\begin{itemize}
+	\item Die Wahrscheinlichkeit in einem Intervall $[c,c + \ell] \subset [a,b]$ zu landen, hängt nur von der Länge
+		$\ell$ ab.
+		\begin{equation*}
+			\pr [X \in [c,c+\ell]] = \frac{\ell}{b-a} 
+		\end{equation*}
+\end{itemize}
+\begin{definition}{Exponentielle Verteilung (mit $\lambda > 0$)}
+	Eine stetige ZV $T$ ist exponentiell mit Parameter $\lambda$, falls 
+	\begin{equation*}
+		f_\lambda (x) = 
+		\begin{cases}
+			\lambda e^{-\lambda x} & x \geq 0\\
+			0 & x < 0
+		\end{cases}
+		\qquad F (x) = 1 - e^{-\lambda x}
+	\end{equation*}
+	ist. $T \sim \expd (\lambda)$
+\end{definition}
+Eigenschaften einer exponentiellen ZV
+\begin{itemize}
+	\item Die Wartewahrscheinlichkeit ist exponentiell klein.
+		\begin{equation*}
+			\forall t \geq 0 \quad \pr [T > t] = e^{-\lambda t}
+		\end{equation*}
+	\item Gedächtnislosigkeit $\forall t,s \geq 0 ~ \pr [T > t+s | T > t] = \pr [T > s]$
+	\item Sind $T_A \sim \expd(\lambda), T_B \sim \expd(\mu)$ dann ist die Dichte von $T_A + T_B$:
+		\begin{equation*}
+			f_{T_A + T_B} (z) = \int_{0}^{z} f_{T_A}(x) \cdot f_{T_B} (z-x) \dd{x}
+		\end{equation*}
+\end{itemize}
+\begin{definition}{Normalverteilung}
+	Eine stetige ZV $X$ ist normal(-verteilt) mit Parametern $m$ und $\sigma^2 > 0$, falls ihre Dichte gleich 
+	\begin{equation*}
+		f_{m,\sigma} (x) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x-m)^2}{2 \sigma^2}} 
+	\end{equation*}
+	ist. $X \sim \normd \left(m,\sigma^2\right)$. Wobei $m$ der Erwartungswert und $\sigma^2$ die Varianz sind. Falls
+	$X\sim \normd (0,1) \Rightarrow X^2 \sim \normd(1,2)$.
+\end{definition}
+\begin{center}
+	\begin{tikzpicture}[
+		declare function={
+			normaldist(\x,\m,\s) = (1/sqrt(2 * pi * \s)) * exp(- ((\x - \m)^2)/ 2 * \s);
+		},
+	]
+		\pgfmathsetmacro\m{3}
+		\pgfmathsetmacro\sigmasq{0.5}
+		\pgfmathsetmacro\sig{sqrt(0.5)}
+		\pgfmathsetmacro\ltop{normaldist(\m - 2 * \sig, \m, \sigmasq)}
+		\pgfmathsetmacro\rtop{normaldist(\m + 2 * \sig, \m, \sigmasq)}
+		\begin{axis}[
+				height=40mm,
+				width=60mm,
+				axis lines=middle,
+				xmin=-1.5,
+				xmax=8.5,
+				ymax=0.75,
+				ymin=-0.05,
+				xlabel=$x$,
+				yticklabels={,,},
+				xticklabels={,,},
+				ytick style={draw=none},
+				xtick style={draw=none},
+				clip=false,
+				samples=100,
+			]
+			\addplot[domain=-1.5:8.25, thick, color=lightblue, name path=A] {normaldist(x,\m,\sigmasq)};
+			\path[name path=B] (-1.5,0) -- (8.25,0);
+
+			\begin{pgfonlayer}{l1}
+				\addplot[dashed] coordinates {(\m - 2 * \sig, \ltop) (\m - 2 * \sig, 0)} node[below, font=\small] {$m - 2 \sigma$};
+				\addplot[dashed] coordinates {(\m + 2 * \sig, \rtop) (\m + 2 * \sig, 0)} node[below, font=\small] {$m + 2 \sigma$};
+			\end{pgfonlayer}
+			\node[] at (axis cs: 10,0.5) {$\pr [X \in [m-2\sigma, m + 2\sigma]] = 0.95$};
+%			\begin{pgfonlayer}{bg}
+				%\addplot[red] fill between [of=A and B];
+%			\end{pgfonlayer}
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+\begin{lemma}{Normalvert. $\Rightarrow$ Standardnormalvert.}
+	Sei $X \sim \normd \left(m,\sigma^2\right)$. Um zur Standardnormalverteilung $Z \sim \normd (0,1)$ zu kommen rechnet man
+	\begin{equation*}
+		Z = \frac{X - m}{\textcolor{red}{\sigma}}
+	\end{equation*}
+\end{lemma}
+Eigenschaften einer normalverteilten ZV
+\begin{itemize}
+\item Sind $X_1 \sim \normd (\mu_1, \sigma_1^2) , \ldots , X_n \sim \normd (\mu_n, \sigma_n^2)$ unabhängig, dann ist $X_{1},
+	\ldots, X_{n} \sim \normd \left( \sum_{i=1}^n \mu_i, \sum_{i=1}^{n} \sigma_i^2 \right)$.
+	\item $X \sim \normd (\mu, \sigma^2), a \in \R \Rightarrow X + a \sim \normd (\mu + a , \sigma^2)$
+	\item $X \sim \normd (\mu, \sigma^2), a \in \R\setminus\{0\} \Rightarrow X/a \sim \normd (\mu/a , \sigma^2/a^2)$
+	\item Falls $X \sim \normd (0,1)$, dann ist $Z = m + \sigma \cdot X$ eine normalverteilten ZV mit Parametern $m$ und
+		$\sigma^2$.
+	\item Falls $X$ eine normalverteilte ZV mit $m$ und $\sigma^2$ ist, dann ist das Wahrscheinlichkeitsmass
+		hauptsächlich das Intervall $[m -3 \sigma, m + 3 \sigma]$.\\
+		$\pr [| X - m | \geq 3\sigma] \leq 0.0027$
+\end{itemize}

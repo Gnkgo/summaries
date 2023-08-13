@@ -1,0 +1,166 @@
+\section*{Konfidenzintervalle}%
+\label{sec:konfidenzintervalle}
+
+
+Setup:
+\begin{itemize*}
+	\item Parameterraum $\Theta \subset \R$
+\item Grundraum $\Omega$
+	\item Sigma-Algebra $\F$
+	\item $(\pr_\theta)_{\theta \in \Theta}$ Familie von Wahrscheinlichkeitsmasse auf $(\Omega, \F)$
+	\item $X_1 , \ldots , X_n$ ZV auf $(\Omega, \F)$
+\end{itemize*}
+
+\subsection*{Definition}%
+\label{sub:definition}
+
+Um zu beschreiben wie weit $T_{\text{ML}}$ vom wahren Wert $p$ ist, führen wir Konfidenzintervalle ein.
+\begin{definition}{Konfidenzintervall}
+	Sei $\alpha \in [0,1]$. Ein \emph{Konfidenzintervall für $\theta$ mit Niveau $1 - \alpha$} ist ein Zufallsintervall
+	$I = [A,B]$, sodass gilt
+	\begin{equation*}
+		\forall \theta \in \Theta \qquad \pr_\theta [A \leq \theta \leq B] \geq 1 - \alpha
+	\end{equation*}
+	wobei $A,B$ ZV der Form $A = a(X_1 , \ldots , X_n)$, $B = b(X_1, \ldots , X_n)$ mittels $a, b : \R^n \rightarrow \R$
+	sind. Für Niveau $95\%$: \inlineieq{c_{1-\alpha/2} = c_{0.975} = 1.96}
+	\tcblower
+	$\theta$ ist deterministisch und nicht zufällig. Die stochastischen Elemente sind gerade die Schranken $A = a (X_1 ,
+	\ldots , X_n)$ und $B = b (X_1 , \ldots , X_n)$.
+\end{definition}
+
+\begin{lemma}{Normal mit $\sigma$ und $m$ unbekannt}
+	\begin{equation*}
+		\overline{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i \qquad S^2 = \frac{1}{n-1} \sum_{i=1}^{n} \left( X_i - \overline{X}_n
+		\right)^2
+	\end{equation*}
+	Seien $X_1 , \ldots , X_n$ \iid $\sim \normd \left( \mu, \sigma^2 \right)$. Dann sind $\overline{X}_n$ und $S^2$
+	unabhängig.
+\end{lemma}
+
+\subsubsection*{Konstruktion von Konfidenzintervallen}%
+\label{ssub:konstruktion_von_konfidenzintervallen}
+
+\begin{enumerate}[label=Fall \arabic*:, align=left, leftmargin=*]
+	\item $\sigma^2$ bekannt. Seien $X_1 , \ldots , X_n \overset{\text{\iid}}{\sim} \normd \left( \mu , \sigma^2 \right)$,
+		$\theta = \mu \in \R$.
+		\begin{equation*}
+			\Longrightarrow I = \left[ \overline{X}_n - c_{1 - \frac{\alpha}{2} } \cdot \frac{\sigma}{\sqrt{n}} ,\overline{X}_n + c_{1 - \frac{\alpha}{2} } \cdot \frac{\sigma}{\sqrt{n}} \right]
+		\end{equation*}
+		für $c_{1 - \frac{\alpha}{2}}$ sodass $\Phi(c_{1 - \frac{\alpha}{2}}) \geq 1 - \frac{\alpha}{2} $\\
+		$I$ ist ein $(1-\alpha)$-Konfidenzintervall für $\mu$.
+	\item Seien $X_1 , \ldots , X_n \overset{\text{\iid}}{\sim} \normd \left( \mu , \sigma^2 \right)$, $\theta = \left(
+		\mu, \sigma^2 \right)$.
+		\begin{equation*}
+			\Longrightarrow I = \left[ \overline{X}_n - c \sqrt{\frac{S^2}{n}} ,\overline{X}_n + c \sqrt{\frac{S^2}{n}} \right]
+		\end{equation*}
+		$c$ wird so gewählt, dass $F_{n-1}(c) \geq 1 - \frac{\alpha}{2}$\\
+		Wobei $F_{n-1}$ Verteilungsfunktion von $t_{n-1}$ ist.
+	\item Seien $X_1 , \ldots , X_n$ \iid mit $(\pr_\theta)_{\theta \in \Theta}$.\\
+		Aus dem zentralen GWS. folgt
+		\begin{gather*}
+			\underbrace{\frac{X_1 + \ldots + X_n - n \mu}{\sqrt{\sigma^2 n}} }_{= Z} \overset{\text{approx.}}{\approx}
+			\normd(0,1)\\
+			\Rightarrow \pr[-c \leq Z \leq c] \approx 2 \Phi(c) -1 \geq 1 -\alpha \Leftrightarrow \Phi (c) \geq 1 -
+			\frac{\alpha}{2} \\
+			\Rightarrow \pr \left[ -c \leq \frac{X_1 + \ldots + X_n - \E[X_1] \cdot n}{\sqrt{\Var(X_1) \cdot n}} \leq c \right]
+		\end{gather*}
+		$\pr [-c \leq Z \leq c]$ so umformen, dass sich $\pr[A \leq \theta \leq B]$ ergibt, dann ist K.I. $[A,B]$.
+\end{enumerate}
+
+
+\subsubsection*{Konfidenzintervall eines normalen Modells mit Varianz 1 und unbk. Mittelwert}%
+\label{ssub:konfidenzintervall_eines_normalen_modells_mit_varianz_1_und_unbk_mittelwert}
+
+Seien $X_1, \ldots , X_n$ \iid und $\sim \normd (m, 1)$. Betrachte also ein stochastisches Modell mit bekannter Varianz
+$\left( \sigma^2 = 1 \right)$ aber unbekanntem Mittelwert $m$.\\
+Der Maximum-Likelihood-Schätzer ist gegeben durch
+\begin{equation*}
+	T = T_{\text{ML}} = \frac{X_1 + \ldots + X_n}{n}
+\end{equation*}
+Wir suchen nun für $m$ Konfidenzintervalle der Form
+\begin{equation*}
+	I = \left[ T - \frac{c}{\sqrt{n}} , T + \frac{c}{\sqrt{n}} \right]
+\end{equation*}
+wobei $c > 0$ eine von $n$ unabhängige Konstante ist. Betrachte zuerst
+\begin{equation*}
+	\pr_\theta \left[ T - \frac{c}{\sqrt{n}} \leq m \leq T + \frac{c}{\sqrt{n}} \right] = \pr_\theta[ -c \leq Z \leq c ]
+\end{equation*}
+wobei $Z = \sqrt{n}(t-m) = \frac{X_1 + \ldots + X_n - nm}{\sqrt{n}} $ eine standardnormalverteilte ZV ist. Somit ist
+\begin{equation*}
+	\pr_\theta[ -c \leq Z \leq c ] = \pr_\theta [Z \leq c] - \pr_\theta [X < -c] = 2 \Phi(c) -1
+\end{equation*}
+Mittels Tabelle: $2 \Phi (1.96) - 1 \geq 0.95$. Somit folgt für $c = 1.96$
+\begin{gather*}
+	\pr_\theta \left[ T - \frac{1.96}{\sqrt{n}} \leq m \leq T + \frac{1.96}{\sqrt{n}} \right] \geq \frac{95}{100} \\
+	I = \left[ T - \frac{1.96}{\sqrt{n}} , T + \frac{1.96}{\sqrt{n}} \right]
+\end{gather*}
+Was nach Definition ein Konfidenzintervall für $m$ mit Niveau $95 \%$ ist.
+
+\staredssubend
+
+
+\subsection*{Verteilungsaussagen}%
+\label{sub:verteilungsaussagen}
+
+\begin{definition}{$\chi^2$-Verteilung}
+	Die $\chi^2$-Verteilung mit $m$ Freiheitsgraden gehört zu einer stetigen ZV $Y$ mit Dichtefunktion
+	\begin{equation*}
+		f_Y (y) = \frac{1}{2^{\frac{m}{2}} \Gamma (\frac{m}{2})} y^{\frac{m}{2} -1} e^{-\frac{1}{2} y} ~\text{für}~ y \geq
+		0
+	\end{equation*}
+	Die Gamma-Funktion ist 
+	\begin{equation*}
+		\Gamma (v) \coloneqq
+		\begin{cases}
+			(n-1)! & \text{falls} ~ v = n \in \N\\
+			\int_{0}^{\infty} t^{v-1} e^{-t} \dif t & \text{sonst}
+		\end{cases}
+	\end{equation*}
+	\tcblower
+	Die $\chi^2$ Verteilung mit $m$ Freiheitsgraden ist ein Spezialfall einer $\normd(\alpha, \lambda)$-Verteilung
+	mit $\alpha = \frac{m}{2}$ und $\lambda = \frac{1}{2}$.\\
+	Für $m = 2$ ergibt das eine Exponetialverteilung mit Parameter $\frac{1}{2}$.
+\end{definition}
+\begin{tcolorbox}[lemmacore]
+	Sind die ZV $X_1 , \ldots , X_m$ \iid $\sim \normd(0,1)$, so ist die Summe $Y \coloneqq \sum_{i=1}^{m} X_i^2 \sim
+	\chi^2_m$. $Z \coloneqq \frac{1}{m} \sum_{i=1}^{m} X_i^2 \sim \chi_1^2$.
+\end{tcolorbox}
+\begin{definition}{$t$-Verteilung}
+	Die $t$-Verteilung mit $m$ Freiheitsgraden gehört zu einer stetigen ZV $z$ mit Dichtefunktion
+	\begin{equation*}
+		f_Z(z) = \frac{\Gamma \left(\frac{m+1}{2} \right)}{\sqrt{m \pi} \Gamma \left( \frac{m}{2} \right)} \left( 1 +
+		\frac{z^2}{m} \right)^{- \frac{m+1}{2}} ~\text{für}~Z \in \R
+	\end{equation*}
+	\begin{itemize}
+		\item $m=1$: Cauchy-Verteilung
+		\item $m \rightarrow \infty$: $\normd (0,1)$
+	\end{itemize}
+	Die $t$-Verteilung ist symmetrisch um $0$ und geht langsamer gegen $0$ als die Normalverteilung.
+\end{definition}
+\begin{tcolorbox}[lemmacore]
+	Sind $X \sim \normd(0,1)$ und $Y \sim \chi_m^2$ unabhängig ist der Quotient $Z \coloneqq \frac{X}{\sqrt{(1/m)Y}}$
+	$t$-Verteilt mit $m$ Freiheitsgraden. 
+\end{tcolorbox}
+\begin{example}
+	Sei $X_{0}, \ldots, X_{n}$ \iid $\sim \normd(0,1)$, dann
+	\begin{align*}
+		t_n & \sim \frac{X_0}{\sqrt{\frac{X_1^2 + \ldots + X_n^2}{n}}} \\
+		t_{n-1} & \sim \frac{X_0 + X_1}{\sqrt{\frac{2X_{2}^2, \ldots, 2X_{n}^2}{n-1} }} 
+	\end{align*}
+	Letzteres ergibt sich aus: $Y = \frac{X_0 + X_1}{\sqrt{2}}$ und $Z = X_{2}^2, \ldots, X_{n}^2$. Nun ist $Y \sim
+	\normd (0,1), Z \sim \chi_{n-1}^2$ und $Y,Z$ unabhängig. Daraus folgt
+	\begin{equation*}
+		t_{n-1} \sim \frac{Y}{\sqrt{Z/n-1}} 
+	\end{equation*}
+
+\end{example}
+
+\subsection*{Approximative Konfidenzintervalle}%
+\label{sub:approximative_konfidenzintervalle}
+
+Gegeben ein $\normd (0,1)$ verteilter Schätzer, berechne approximatives K.I. wie folgt:
+\begin{enumerate}
+	\item Berechne Konfidenzintervall wie normal.
+	\item Forme um, bis man Schätzer einsetzen kann.
+\end{enumerate}
+

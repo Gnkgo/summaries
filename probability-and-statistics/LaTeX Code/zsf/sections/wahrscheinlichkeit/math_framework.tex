@@ -1,0 +1,124 @@
+\section{Mathematisches Framework}%
+\label{sec:mathematisches_framework}
+
+\subsection{Wahrscheinlichkeitsraum}%
+\label{sub:wahrscheinlichkeitsraum}
+
+Grundraum: Menge $\Omega$. $\omega \in \Omega$ heisst Elementarereigniss.
+
+\begin{definition}{$\sigma$-Algebra}
+	Subset $\F \subseteq \powset (\Omega)$. Erfüllt
+	\begin{properties}
+		\item $\Omega \in \F$
+		\item $A \in \F \Rightarrow A^c \in \F$
+		\item $A_1 , A_2 , \ldots \in \F \Rightarrow \bigcup_{i=1}^\infty A_i \in \F$
+		\item $\emptyset \in \F$
+		\item $A_1 , A_2 , \ldots \in \F \Rightarrow \bigcap_{i=1}^\infty A_i \in \F$
+		\item $A,B \in \F \Rightarrow A \cup B \in \F$
+		\item $A,B \in \F \Rightarrow A \cap B \in \F$
+	\end{properties}
+\end{definition}
+\begin{definition}{Wahrsch. Mass}
+	Sei $\Omega$ ein Grundraum und $\F$ eine $\sigma$-Algebra. Ein \emph{Wahrsch. Mass} auf $(\Omega, \F)$ ist eine
+	Abbildung 
+	\begin{align*}
+		\pr: \F & \rightarrow [0,1]\\
+		A & \mapsto \pr[A]
+	\end{align*}
+	welche die folgenden Bedingungen erfüllt:
+	\begin{properties}
+		\item $\pr [\Omega] = 1$
+		\item (Zählbare Additivität) $\pr [A] = \sum^{n}_{i=1} \pr[A_i]$ falls $A = \bigcup_{i=1}^\infty A_i$ (disjunkt)
+		\item $\pr [\emptyset] = 0$
+		\item (Additivität) $\pr [A_1 \cup \ldots \cup A_k] = \pr [A_1] + \ldots + \pr [A_k]$ falls $A_i \cap A_j =
+			\emptyset$ für $i \neq j$
+		\item $\pr [A^c] = 1 - \pr [A]$
+		\item $\pr [A \cup B] = \pr [A] + \pr [B] - \pr [A \cap B]$
+	\end{properties}
+\end{definition}
+\begin{definition}{Wahrscheinlichkeitsraum} 
+	$(\Omega, \F, \pr)$
+\end{definition}
+\begin{tprop}{De Morgan}
+	Sei $(A_i)_{i \geq 1}$ eine Folge von beliebigen Mengen
+	\begin{equation*}
+		\left( \bigcup_{i=1}^\infty A_i \right)^c = \bigcap_{i=1}^\infty (A_i)^c
+	\end{equation*}
+	Gilt auch für endliche Folgen.
+\end{tprop}
+Das Laplace-Modell ist definiert durch:
+\begin{itemize}
+	\item $F = \powset (\Omega)$
+	\item $\pr: \F \rightarrow [0,1]$ definiert durch $\forall A \in \F ~ \pr [A] = \frac{|A|}{|\Omega|}$
+\end{itemize}
+
+\subsubsection{Wichtige Ungleichungen}%
+\label{ssub:wichtige_ungleichungen}
+
+\begin{tprop}{Monotonie}
+	Sei $A,B \in \F$ dann $A \subset B \Rightarrow \pr [A] \leq \pr [B]$
+\end{tprop}
+\begin{tprop}{Unoin Bound}
+	Seien $A_1 , A_2 , \ldots$ eine Folge von Ereignissen, dann:
+	\begin{equation*}
+		\pr \left[ \bigcup_{i=1}^\infty A_i \right] \leq \sum^{\infty}_{i=1} \pr [A_i]
+	\end{equation*}
+	Unoin Bound gilt auch für endliche Folgen.
+\end{tprop}
+
+
+\subsection{Bedingte Wahrscheinlichkeit}%
+\label{sub:bedingte_wahrscheinlichkeit}
+
+\begin{tprop}{Bedingte Wahrsch.}
+	Sei $(\Omega, \F , \pr)$. Seien $A,B$ zwei Ereignisse mit $\pr [B] > 0$. $A$ gegeben $B$: 
+	\begin{equation*}
+		\pr [A | B] = \frac{\pr [A \cap B]}{\pr [B]} 
+	\end{equation*}
+	$\pr [B|B] = 1$
+\end{tprop}
+Partition: $\Omega = A_1 \cup \ldots \cup A_n$ (paarweise disjunkt)
+\begin{tprop}{Totale Wahrsch.}
+	Sei $B_1 , \ldots B_n$ eine Partition von $\Omega$ mit $\pr [B_i] > 0$ für jedes $1 \leq i \leq n$:
+	\begin{equation*}
+		\forall A \in \F \quad \pr [A] = \sum_{i=1}^{n} \pr [A | B_i] \pr [B_i]
+	\end{equation*}
+\end{tprop}
+\begin{tprop}{Bayes}
+	Sei $B_1, \ldots , B_n \in \F$ eine Partition von $\Omega$ mit $\pr [B_i] > 0$ für jedes $i$. Für jedes Ereigniss $A$
+	mit $\pr [A]> 0$ gilt:
+	\begin{equation*}
+		\forall i = 1, \ldots , n \quad \pr [B_i | A] = \frac{\pr [A | B_i] \pr [B_i]}{\sum_{j=1}^{n} \pr [A | B_j] \pr
+		[B_j]} 
+	\end{equation*}
+\end{tprop}
+
+
+\subsection{Unabhängigkeit}%
+\label{sub:unabhangigkeit}
+
+\begin{definition}{Unabhängigkeit zweier Ereignisse}
+	Sei $(\Omega, \F , \pr)$. Zwei Ereignisse sind \emph{unabhängig}, falls 
+	\begin{equation*}
+		\pr [A \cap B] = \pr [A] \cdot \pr[B]
+	\end{equation*}
+\end{definition}
+Sei $A,B \in \F$ zwei Ereignisse mit $\pr [A], \pr [B] > 0$. Dann sind die folgenden äquivalent:
+\begin{enumerate*}
+	\item $\pr [A \cap B] = \pr [A] \cdot \pr [B]$
+	\item $\pr [A | B] = \pr [A]$
+	\item $\pr [B | A] = \pr [B]$
+\end{enumerate*}
+\begin{definition}{Unabhängigkeit}
+	Eine Menge von Ereignisse $(A_i)_{i \in I}$ sind unabhängig falls:
+	\begin{equation*}
+		\forall J \subset I ~\text{endlich}\quad \pr \left[ \bigcup_{j \in J} A_j \right] = \prod_{j \in J} \pr [A_j]
+	\end{equation*}
+\end{definition}
+Falls $A,B,C$ alle unabhängig sind gelten \textbf{alle} 4 Gleichungen:
+\begin{align*}
+	\pr [A \cap B] &= \pr [A] \cdot \pr [B]\\
+	\pr [A \cap C] &= \pr [A] \cdot \pr [C]\\
+	\pr [B \cap C] &= \pr [B] \cdot \pr [C]\\
+	\pr [A \cap B \cap C] &= \pr [A] \cdot \pr [B] \cdot \pr [C]
+\end{align*}

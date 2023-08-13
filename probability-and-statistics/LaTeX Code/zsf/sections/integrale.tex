@@ -1,0 +1,52 @@
+\section{Integrale}%
+\label{sec:integrale}
+
+\begin{theorem}{Partielle Integration}
+    Seien $a < b$ reelle Zahlen und\\$f,g:[a,b] \to \R$ stetig differenzierbar. Dann gilt
+    \begin{equation*}
+        \int_a^b f(x) g'(x) \dif x = f(b) g(b) - f(a) g(a) - \int_a^b f'(x)g(x) \dif x
+    \end{equation*}
+\end{theorem}
+Für die partielle Integration $f(x)$ nach folgender Priorität auswählen:
+\begin{enumerate*}
+	\item $\log_e, \log_a$
+	\item $\arcsin, \arccos$
+	\item $x^2, 5x^3$
+	\item $\sin, \cos, \tan$
+	\item $e^x, 5a^x$
+\end{enumerate*}
+\begin{theorem}{Substitution}
+    Sei $a < b$, $\phi:[a,b] \to \R$ stetig differenzierbar, $I \subseteq \R$ ein Intervall mit $\phi ([a,b]) \subseteq I$ und $f:I \to \R$ eine stetige Funktion. Dann gilt:
+    \begin{equation*}
+        \int_{\phi (b)}^{\phi (a)} f(x) \dif x = \int_{a}^b f(\phi (t)) \phi'(t) \dif t
+    \end{equation*}
+\end{theorem}
+% \vfill \null
+% \columnbreak
+\begin{center}
+	\renewcommand{\arraystretch}{1.8}
+		\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Funktion} $f(x)$ & \textbf{Stammfunktion} $F(x)$ \\
+		\hline
+		$\int x^n \dif x$ & $\frac{1}{n+1}x^{n+1}$ \\
+		$\int \frac{f'}{f}\dif x$ & $\ln \left\lvert f \right\rvert$ \\
+		$\int \frac{1}{x} \dif x$ & $\ln \left\lvert x \right\rvert$ \\
+		$\int \frac{\dif x}{x+a}$ & $\ln \left\lvert x+a \right\rvert$ \\
+		$\int \frac{\dif x}{(x+a)^2}$ & $-\frac{1}{x+a}$ \\
+		$\int \tan(x) \dif x$ & $-\ln \left\lvert \cos(x) \right\rvert$ \\
+		$\int \ln(x) \dif x$ & $x \ln(x) - x$ \\
+		$\int a^x \dif x$ & $\frac{a^x}{\ln(a)}$ \\
+		$\int \sin(ax)\dif x$ & $- \frac{1}{a} \cos(a x)$ \\
+		$\int \sin^2(ax)\dif x$ & $\frac{x}{2} - \frac{1}{4a} \sin(2 a x)$ \\
+		$\int \cos(ax)\dif x$ & $\frac{1}{a} \sin(a x)$ \\
+		$\int \cos^2(ax)\dif x$ & $\frac{x}{2} + \frac{1}{4a} \sin(2 a x)$ \\
+		$\int \frac{1}{\sqrt{1-x^2}}\dif x$ & $\arcsin(x)$ \\
+		$\int -\frac{1}{\sqrt{1-x^2}}\dif x$ & $\arccos(x)$ \\
+		$\int \frac{1}{1+x^2}\dif x$ & $\arctan(x)$ \\
+		$\int \frac{1}{\sqrt{x}}\dif x$ & $2 \sqrt{x}$ \\
+		$\int e^{ax} \dif x$ & $\frac{1}{a} e^{ax}$ \\
+		$\int |x| \dif x$ & $\text{sgn}(x) \frac{1}{2} x^2$\\
+		\hline
+	\end{tabular}
+\end{center}

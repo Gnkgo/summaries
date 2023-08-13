@@ -29,8 +29,24 @@
 \usepackage{booktabs}
 \renewcommand*{\arraystretch}{2}
 
-\def\BoxStart{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]}
-    \def\BoxEnd{\end{tcolorbox}}
+\newcommand{\BoxStart}{%
+    \begin{tcolorbox}[
+        colback=definitioncolor!10, % Adjust the percentage to control the lightness
+        colframe=definitioncolor,
+        coltext=black % Ensure the text is black for visibility
+    ]%
+}\def\BoxEnd{\end{tcolorbox}}
+
+\definecolor{definitioncolor}{RGB}{0,180,139}
+
+\newtcolorbox{definition}[2][]{
+	colback = white,
+	colframe = definitioncolor,
+	coltitle = black,
+	title = #2,
+	#1
+}
+
 
 % image directory
 \graphicspath{ {./assets/} }
@@ -44,10 +60,7 @@
 % for color coding
 \usetikzlibrary{backgrounds}
 
-% for light font +C
-\usepackage{color}
-\definecolor{light}{rgb}{0.5, 0.5, 0.5}
-\def\light#1{{\color{light}#1}}
+
 
 % for multicolumn
 \usepackage{multicol}
@@ -119,8 +132,11 @@
 \linespread{0.7}
 \allowdisplaybreaks{}
 
-\titleformat*{\section}{\fontsize{10}{10}\bfseries\color{blue}}
-\titleformat*{\subsection}{\fontsize{10}{10}\bfseries\color{purple}}
+\definecolor{darkgreen}{RGB}{0,100,0}
+\definecolor{mediumdarkgreen}{RGB}{0,150,0}
+
+\titleformat*{\section}{\fontsize{10}{10}\bfseries\color{darkgreen}}
+\titleformat*{\subsection}{\fontsize{10}{10}\bfseries\color{mediumdarkgreen}}
 % define box
 \begin{document}
 \setlength{\columnseprule}{0.4pt}

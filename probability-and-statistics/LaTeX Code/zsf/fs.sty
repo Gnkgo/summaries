@@ -1,0 +1,391 @@
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=5mm, right=5mm, bottom=5mm, top=5mm]{geometry}
+\usepackage{lastpage}
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+\usepackage{bm}
+
+\usepackage[hidelinks,pdftex]{hyperref}
+\hypersetup{
+	pdfinfo={
+		Author={Andrej Scheuer},
+		Title={Zsf WuS},
+		Subject={Wahrscheinlichkeit und Statistik},
+		Keywords={ETH, Zusammenfassung, Summary, Wahrscheinlichkeit und Statistik, Probability and Statistics}
+	}
+}
+\usepackage{graphicx}
+
+\usepackage[l3]{csvsimple}
+
+\usepackage{titling}
+\usepackage{calc}
+\usepackage{fancyhdr}
+\usepackage[table,cmyk]{xcolor}
+\usepackage[inline]{enumitem}
+\setlist{nolistsep, leftmargin = 4mm}
+% \setlist[enumerate]{label=(\roman*)}
+\setenumerate[2]{label*=\arabic*}
+\newlist{enumerateroman}{enumerate}{1}
+\setlist[enumerateroman]{label=(\roman*)}
+\newlist{properties}{enumerate}{1}
+\setlist[properties]{label=E\arabic*}
+
+\usepackage{pdfpages}
+
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{csvsimple}
+\usepackage{colortbl}
+
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amssymb}    % \cdots
+\usepackage{commath}
+\usepackage{cancel}     % strike-through terms
+\usepackage{gensymb}
+\usepackage{empheq}
+\usepackage{aligned-overset}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{dsfont}
+
+\usepackage[vlined]{algorithm2e}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\usepackage{eso-pic}
+\usepackage{transparent}
+
+\usepackage{wrapfig}
+\usepackage[most]{tcolorbox}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{positioning, calc, fit, matrix, decorations, angles, quotes, babel, 3d, arrows.meta, shadings,
+shapes.geometric, fadings}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{fillbetween}
+% pgfplot layers
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{l1}
+\pgfdeclarelayer{l2}
+\pgfdeclarelayer{l3}
+\pgfdeclarelayer{tl1}
+\pgfdeclarelayer{tl2}
+\pgfdeclarelayer{tl3}
+\pgfsetlayers{bg,l3,l2,l1,main,tl1,tl2,tl3}
+
+\pgfplotsset{
+	incmark/.style={only marks, mark=*, every mark/.append style={scale=0.5}},
+	exmark/.style={fill=white,only marks, mark=*, every mark/.append style={scale=0.5}},
+}
+
+% adds page number as watermark
+\newcommand\AtTextUpperRight[1]{\AtTextUpperLeft{%
+ 	\makebox[\textwidth][r]{#1}}}
+\AddToShipoutPictureFG{%
+	\AtTextUpperRight{% 
+		\raisebox{-\height}{%
+			\scalebox{8}{% 
+				\color{red}% 
+				\transparent{0.4}%
+				\thepage%
+			}%
+		}%
+	}%
+}%
+
+% custom colors
+\definecolor{darkgreen}{HTML}{008E00}
+\definecolor{darkred}{HTML}{990000}
+\definecolor{mred}{HTML}{e60000}
+\definecolor{burntorange}{HTML}{ff9a00}
+\definecolor{darkblue}{HTML}{000099}
+\definecolor{lightblue}{cmyk}{1,0,0,0}
+\definecolor{lightgray}{HTML}{A9A9A9}
+\definecolor{darkyellow}{HTML}{FED600}
+\definecolor{limegreen}{HTML}{3ae32b}
+\definecolor{pastelmoss}{HTML}{A0C1B8}
+\definecolor{pastelaqua}{HTML}{709FB0}
+\definecolor{pastelviolet}{HTML}{726a95}
+
+\definecolor{primaryheader}{cmyk}{0.1,0.2,0.2,1}
+\definecolor{secondaryheader}{cmyk}{0,0.2,0.2,0.95}
+\definecolor{thirdheader}{cmyk}{0,0.2,0.2,0.95}
+\definecolor{nprimaryheader}{cmyk}{0.87,0.15,0.77,0.69}
+\definecolor{nsecondaryheader}{cmyk}{1,0.2,0.9,0.3}
+
+\definecolor{definitioncolor}{cmyk}{0.6,1,0.8,0}
+\definecolor{lemmacolor}{cmyk}{1,0.7,0,0}
+\definecolor{overlaycolor}{cmyk}{0,0.5,0.5,0}
+% ACDB95
+
+\definecolor{mathHighlightColor}{cmyk}{0,0.3,1,0}
+
+\renewcommand{\title}[1]{\newcommand{\themaintitle}{#1}}
+% \newcommand{\subtitle}[1]{\newcommand{\thesubtitle}{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\DeclareMathSymbol{\mlq}{\mathrel}{operators}{``}
+\DeclareMathSymbol{\mrq}{\mathrel}{operators}{`'}
+\DeclareMathSymbol{\mlqq}{\mathrel}{operators}{"5C}
+\DeclareMathSymbol{\mrqq}{\mathrel}{operators}{`"}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\mse}{MSE}
+\DeclareMathOperator{\Var}{Var}
+
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\powset}{\mathcal{P}}
+
+\newcommand{\bern}{\text{Ber}}
+\newcommand{\bin}{\text{Bin}}
+\newcommand{\geom}{\text{Geom}}
+\newcommand{\pois}{\text{Poisson}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\normd}{\mathcal{N}}
+\newcommand{\expd}{\text{Exp}}
+
+\newcommand{\iid}{i.i.d.\ }
+
+\newcommand{\indf}[1][A]{\mathds{1}_{#1}}
+\newcommand{\indv}[0]{\mathds{1}}
+
+\DeclareTextFontCommand{\emph}{\bfseries\boldmath}
+\newcommand{\impemph}[1]{\textcolor{mred}{\bfseries\boldmath #1}}
+\newcommand{\cemph}[2]{\textcolor{#1}{\bfseries\boldmath #2}}
+
+\newcommand{\light}[1]{\textcolor{gray}{#1}}
+\tikzset{>=stealth,
+	overlaynote/.style={font = \footnotesize, fill = overlaycolor, draw = overlaycolor, rounded corners = 3pt},
+	overlayarrow/.style={thick, gray, ->},
+}
+
+\tcbset{
+	before=\par\noindent, 
+	after=\par,
+	important/.style={
+		boxrule=1.5pt,
+		colframe = red
+	},
+	basicbox/.style = {
+		enhanced,
+		top=0.5mm,
+		bottom=0.5mm,
+		left=1mm,
+		right=1mm,
+		colback=white,
+		boxrule=0pt,
+		leftrule=1mm,
+		arc=1mm
+	},
+	headerdef/.style={
+		fonttitle=\sffamily\bfseries\boldmath,
+		detach title,
+		before upper={\tcbtitle\quad},
+	},
+	lemmacore/.style={
+		basicbox,
+		colframe = lemmacolor
+	}
+}
+
+\newtcbox{\mathhighlight}[1][]{%
+    nobeforeafter, 
+    math upper, 
+    tcbox raise base,
+    enhanced, 
+    colback=mathHighlightColor!60, 
+    boxrule=0pt,
+    left=1mm,
+    right=1mm,
+    top=0.5mm,
+    bottom=0.5mm,
+    #1}
+
+\newtcbox{\inlineieq}[1][]{%
+    nobeforeafter, 
+    math upper, 
+    tcbox raise base,
+    enhanced,  
+    colback=mathHighlightColor!60, 
+    boxrule=0pt,
+    arc=3pt, 
+    left=0mm,
+    right=0mm,
+    top=0mm,
+    bottom=0mm,
+    #1}
+
+
+\newenvironment{iequation}[1][equation*]{%
+    \empheq[box={\mathhighlight}]{#1}}{\endempheq}
+
+
+\newtcolorbox{definition}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title =#2,
+	coltitle = definitioncolor,
+	colframe = definitioncolor,
+	subtitle style={
+	  boxrule=0pt,
+	  colback=white,
+	  colframe = white,
+	  coltitle = black,
+	},
+	#1
+}
+% 	overlay = {
+% 		\path[draw=definitioncolor, line width=1.5pt, path fading=east] ($(frame.north west) + (0.1,-0.026)$) --++ (3, 0);
+% 		\path[draw=definitioncolor, line width=1.5pt, path fading=east] ($(frame.south west) + (0.1,0.026)$) --++ (3, 0);
+% 	},
+
+\newtcolorbox{theorem}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title = #2,
+	coltitle = lemmacolor,
+	colframe = lemmacolor,
+	#1
+}
+
+\newtcolorbox{prop}[1][]{
+	basicbox,
+	headerdef,
+	adjusted title = Prop.,
+	coltitle = lemmacolor,
+	colframe = lemmacolor,
+	#1
+}
+\newtcolorbox{tprop}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title = #2,
+	coltitle = lemmacolor,
+	colframe = lemmacolor,
+	#1
+}
+
+\newtcolorbox{lemma}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title = #2,
+	coltitle = lemmacolor,
+	colframe = lemmacolor,
+	#1
+}
+\newtcolorbox{corollary}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title = #2,
+	coltitle = lemmacolor,
+	colframe = lemmacolor,
+	#1
+}
+
+\newtcolorbox{recipe}[2][]{
+	basicbox,
+	headerdef,
+	adjusted title = Rezept #2,
+	coltitle = green,
+	colframe = green,
+	#1
+}
+
+\newtcolorbox{highlight}[1]{
+	basicbox,
+	headerdef,
+	adjusted title = #1,
+	breakable,
+	colback=mathHighlightColor!60,
+	boxrule=0pt,
+	subtitle style={
+	  boxrule=0pt,
+	  colback=mathHighlightColor!40,
+	  colframe = mathHighlightColor!60
+	}
+}
+
+\newtcolorbox{example}[1][]{
+	basicbox,
+	colframe= gray,
+	breakable,
+	% watermark text = Example,
+	fontupper = \small,
+	fontlower = \small,
+	#1
+}
+
+\newcommand{\createtitlepagestyle}{
+    \fancypagestyle{TitlePageStyle}{
+%        \thispagestyle{empty}
+    }
+}
+
+\newcommand{\createmainpagestyle}{
+    \fancypagestyle{main}{
+        \fancyhf{}
+        % \rfoot{Seite \thepage \protect{ }von \pageref{LastPage}}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{0pt}
+    }
+}
+
+\newcommand{\overrideplainstyle}{
+    \fancypagestyle{plain}{
+        \fancyhf{}
+        \rfoot{Seite \thepage \protect{ }von \pageref{LastPage}}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{0pt}
+    }
+}
+
+\renewcommand{\maketitle}{
+    \begin{center}
+        % Alternative small title
+        \sffamily
+        \begin{tabular}{l C{35mm} r}
+            Prof. V. Tassion & \multirow{2}{*}{\LARGE \textbf{\themaintitle}} & \theauthor\\
+            \today & & ascheuer@student.ethz.ch
+        \end{tabular}
+    \end{center}
+}
+
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{black!20!white}}
+
+\newcommand{\raisedrulefill}[2][0ex]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill}
+
+\titleformat{\section}{\sffamily\bfseries\boldmath\large}{}{0pt}{\colorbox{primaryheader}{\parbox[c][3mm]{\linewidth - 6pt}{\textcolor{white}{#1}}}}
+\titleformat{\subsection}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{secondaryheader}{\textcolor{white}{#1}}}
+\titleformat{\subsubsection}{\sffamily\bfseries\boldmath}{}{0pt}{\textcolor{thirdheader}{#1 \raisedrulefill[0.4ex]{0.5pt}}}
+\titleformat{\paragraph}[runin]{\sffamily\bfseries\boldmath}{}{0pt}{\uline{#1}}
+
+\titleformat{name = \section, numberless}{\sffamily\bfseries\boldmath\large}{}{0pt}{\colorbox{nprimaryheader}{\parbox[c][3mm]{\linewidth - 6pt}{\textcolor{white}{#1}}}}
+\titleformat{name = \subsection, numberless}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{nsecondaryheader}{\textcolor{white}{#1}}}
+\titleformat{name = \subsubsection, numberless}{\sffamily\bfseries\boldmath}{}{0pt}{\textcolor{nsecondaryheader}{#1 \raisedrulefill[0.4ex]{0.5pt}}}
+
+\newcommand{\ssubend}{\rule{\linewidth}{0.5pt}}
+\newcommand{\staredssubend}{{\color{nsecondaryheader}\rule{\linewidth}{0.5pt}}}
+
+\setlength\parindent{0pt}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+% \setlength{\jot}{0pt}

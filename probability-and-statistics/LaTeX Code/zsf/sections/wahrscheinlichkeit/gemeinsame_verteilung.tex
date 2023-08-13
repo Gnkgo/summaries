@@ -1,0 +1,160 @@
+\section{Gemeinsame Verteilung}%
+\label{sec:gemeinsame_verteilung}
+
+\subsection{Diskrete gemeinsame Verteilungen}%
+\label{sub:diskrete_gemeinsame_verteilungen}
+
+\begin{definition}{Gemeinsame Verteilung}
+	Seien $X_1 , \ldots X_n$ $n$ diskrete ZV mit $X_i \in W_i$ fast sicher, für beliebige $W_i$ endlich/abzählbar. Die
+	gemeinsame Verteilung von $(X_1 , \ldots X_n)$ ist die Menge $p = \big( p(x_1 , \ldots , x_n)\big)_{x_1 \in W_1 ,
+	\ldots , x_n \in W_n}$ ist definiert durch
+	\begin{equation*}
+		p (x_1 , \ldots , x_n) = \pr [X_1 = x_1 , \ldots , X_n = x_n]
+	\end{equation*}
+\end{definition}
+\begin{center}
+	\begin{minipage}{0.6\linewidth}
+		Seien $X \sim \bern (1/2)$ und $Y \sim \bern (1/2)$ unabhängig.
+		Die Verteilung von $(X,Y)$ ist gegeben durch 
+		\begin{equation*}
+			\forall x,y \in \{0,1\} ~ p(x,y) = \frac{1}{4} 
+		\end{equation*}
+		Die Verteilung von $(X,X)$ ist gleich
+		\begin{equation*}
+			\forall x,y \in \{0,1\} ~ p(x,y) = 
+			\begin{cases}
+				\frac{1}{2} & x = y\\
+				0 & x \neq y
+			\end{cases}
+		\end{equation*}
+	\end{minipage}
+	\hfill\vline\hfill
+	\begin{minipage}{0.35\linewidth}
+		Die Verteilung von \\
+		$(X, X + Y)$ ist
+		\begin{equation*}
+			\begin{array}{c|c|c}
+				x & y & p(x,y)\\
+				\hline
+				0 & 0 & 1/4\\
+				0 & 1 & 1/4\\
+				0 & 2 & 0\\
+				1 & 0 & 1/4\\
+				1 & 1 & 1/4\\
+				1 & 2 & 0
+			\end{array}
+		\end{equation*}
+	\end{minipage}
+\end{center}
+\begin{prop}
+	Die gemeinsame Verteilung für beliebige ZV $X_1, \ldots , X_n$ erfüllt 
+	\begin{equation*}
+		\sum_{x_1 \in W_1 , \ldots , x_n \in W_n} p (x_1 , \ldots , x_n) = 1
+	\end{equation*}
+\end{prop}
+\begin{prop}
+	Sei $n \geq 1$ und $\phi : \R^n \rightarrow \R$ eine beliebige Funktion. Seien $X_1 , \ldots , X_n$ $n$ diskrete ZV
+	auf $(\Omega, \F , \pr)$ mit Werten in endlichen/abzählbaren Mengen $W_1 , \ldots , W_n$ fast sicher. Dann ist $Z =
+	\phi (X_1 , \ldots , X_n)$ eine diskrete ZV mit Werten in $W = \phi (W_1 \times \ldots \times W_n)$ fast sicher und
+	eine Verteilung 
+	\begin{equation*}
+		\forall z \in W ~ \pr [Z = z] = \sum_{\substack{x_1 \in W_1, \ldots , x_n \in W_n \\ \phi(x_1 , \ldots , x_n) =
+		z}} \pr [X_1 = x_1 , \ldots , X_n = x_n]
+	\end{equation*}
+\end{prop}
+Seien $X \sim \bern (1/2)$ und $Y \sim \bern (1/2)$ unabhängig und $X \coloneqq X + Y$. Durch Anwendung auf $\phi (x,y)
+= x+y$ ergibt sich:
+\begin{align*}
+	\pr [Z = 0] &= \sum_{\substack{x,y \in \{0,1\}\\ x + y = 0}} \pr [X = x, Y = y] = \pr [X = 0, Y = 0] = \frac{1}{4} \\
+	\pr [Z = 1] &= \sum_{\substack{x,y \in \{0,1\}\\ x + y = 1}} \pr [X = x, Y = y] = \pr [X = 0, Y = 1] + \pr [X = 1, Y
+	= 0] \\
+					&= \frac{1}{2} \\
+	\pr [Z = 2] &= \sum_{\substack{x,y \in \{0,1\}\\ x + y = 2}} \pr [X = x, Y = y] = \pr [X = 1, Y = 1] = \frac{1}{4}
+\end{align*}
+\begin{tprop}{Randverteilung}
+	Seien $X_1 , \ldots , X_n$ $n$ diskrete ZV mit gemeinsame Verteilung $p = \big( p(x_1 , \ldots , x_n)\big)_{x_1 \in W_1 ,
+	\ldots , x_n \in W_n}$. Für jedes $i$ gilt
+	\begin{equation*}
+		\forall z \in W_i ~\pr [X_i = z] = \sum_{x_1 , \ldots x_{i-1} , x_{i +1} , \ldots , x_n} p(x_1 , \ldots x_{i-1} ,
+		z, x_{i +1} , \ldots , x_n)
+	\end{equation*}
+\end{tprop}
+\begin{tprop}{Erwartungswert der Abbildung}
+	Seien $X_1 , \ldots , X_n$ $n$ diskrete ZV mit gemeinsame Verteilung $p = \big( p(x_1 , \ldots , x_n)\big)_{x_1 \in W_1 ,
+	\ldots , x_n \in W_n}$. Sei $\phi : \R^n \rightarrow \R$, dann
+	\begin{equation*}
+		\E \big[\phi (X_1 , \ldots , X_n)\big] = \sum_{x_1 , \ldots , x_n} \phi (x_1 , \ldots , x_n) p(x_1 , \ldots , x_n)
+	\end{equation*}
+	wenn die Summe wohldefiniert ist.
+\end{tprop}
+\begin{tprop}{Unabhängigkeit}
+	Seien $X_1 , \ldots , X_n$ $n$ diskrete ZV mit gemeinsame Verteilung $p = \big( p(x_1 , \ldots , x_n)\big)_{x_1 \in W_1 ,
+	\ldots , x_n \in W_n}$. Die folgenden Aussagen sind äquivalent:
+	\begin{itemize}
+		\item $X_1 , \ldots , X_n$ sind unabhängig.
+		\item $p (x_1 , \ldots , x_n) = \pr [X_1 = x_1] \cdot \ldots \cdot \pr[X_n = x_n]$ \\ für jedes $x_1 \in W_1 , \ldots
+			, x_n \in W_n$
+	\end{itemize}
+\end{tprop}
+
+
+\subsection{Stetige gemeinsame Verteilung}%
+\label{sub:stetige_gemeinsame_verteilung}
+
+\begin{definition}{Stetige gemeinsame Verteilung}
+	Sei $n \geq 1$ für ZVs $X_1 , \ldots , X_n : \Omega \rightarrow \R$ haben eine \emph{gemeinsame, stetige Verteilung
+} falls eine Funktionen f $f : \R^n \rightarrow \R_+$ existiert, sodass
+	\begin{equation*}
+		\pr [X_1 \leq a_1, \ldots , X_n \leq a_n] = \int_{-\infty}^{a} \ldots \int_{- \infty}^{b} f(x_1 ,\ldots , x_n)
+		\dif x_1 \ldots \dif x_n
+	\end{equation*}
+	für jedes $a_1 , \ldots , a_n \in \R$. Eine solche Funktion $f$ heisst \emph{gemeinsame Dichte} von $(X_1 , \ldots ,
+	X_n)$.
+\end{definition}
+\begin{prop}
+	Sei $f$ eine gemeinsame Dichte von $(X_1, \ldots , X_n)$. Dann gilt
+	\begin{equation*}
+		\int_{-\infty}^{\infty} \ldots \int_{-\infty}^{\infty} f(x_1, \ldots x_n) \dif x_n \ldots \dif x_1 = 1
+	\end{equation*}
+\end{prop}
+\begin{tprop}{Erwartungswert der Abbildung}
+	Sei $\phi : \R^2 \rightarrow \R$. Falls $X_1, \ldots , X_n$ eine gemeinsame Dichte haben, dann kann der der Erwartungswert der ZV $Z =
+	\phi (X_1 , \ldots , X_n)$ mit
+	\begin{equation*}
+		\E [\phi (X_1, \ldots , X_n)] = \int_{-\infty}^{\infty} \ldots \int_{-\infty}^{\infty} \phi(x_1, \ldots x_n) \cdot
+		f(x_1, \ldots , x_n) \dif x_n \ldots \dif x_1
+	\end{equation*}
+	berechnet werden. (Integral muss Wohldefiniert sein.)
+\end{tprop}
+\begin{prop}
+	Seien $X_1 , \ldots , X_n$ $n$ ZV mit einer gemeinsamen Dichte $f = f_{X_1 , \ldots , X_n}$. Dann für jedes $i$, ist
+	$X_i$ eine stetige ZV mit Dichte $f_i$, definiert durch
+	\begin{gather*}
+		f_i(z) = \int_{(x_1 , \ldots , x_{i-1}, x_{i+1}, \ldots , x_n) \in \R^{n-1}} f (x_1 , \ldots , x_{i-1}, z,
+		x_{i+1}, \ldots , x_n)\\
+		\dif x_1 \ldots \dif x_{i-1} \dif x_{i+1} \dif x_n 
+	\end{gather*}
+	für jedes $z \in \R$
+\end{prop}
+Falls $X,Y$ eine gemeinsame Dichte haben, gilt 
+\begin{equation*}
+	\pr [X \leq a] = \pr \big[ X \in [-\infty,a], Y \in [-\infty,\infty]\big] = \int_{-\infty}^{a} \left(
+	\int_{-\infty}^{\infty} f(x,y) \dif y \right) \dif x
+\end{equation*}
+\begin{tcolorbox}[lemmacore]
+	Falls $X,Y$ eine gemeinsame Dichte $f_{X,Y}$ haben, gilt für $X$ resp. $Y$
+	\begin{equation*}
+		f_X (x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dif y
+		\qquad
+		f_Y (y) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \dif x
+	\end{equation*}
+\end{tcolorbox}
+\begin{theorem}{Unabhängigkeit stetiger ZV}
+	Seien $X_1, \ldots X_n$ $n$ stetige ZV mit den jeweiligen Dichten  $f_1 , \ldots , f_n$. Die folgenden Aussagen sind äquivalent:
+	\begin{enumerate}
+		\item $X_1 , \ldots , X_n$ sind unabhängig.
+		\item $X_1 , \ldots , X_n$ sind gemeinsam stetig mit gemeinsamer Dichte\\ $f(x_1 , \ldots, x_n) = f_1 (x_1) \cdot
+			\ldots \cdot f_n (x_n)$
+	\end{enumerate}
+\end{theorem}
+Zwei unabhängige, stetige ZV sind automatisch gemeinsam stetig.

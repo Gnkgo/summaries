@@ -1,0 +1,122 @@
+\section{Asymptotische Resultate}%
+\label{sec:asymptotische_resultate}
+
+In diesem Kapitel ist $(\Omega, \F , \pr)$ und eine unendliche Folge von \iid ZV $X_1, X_2, \ldots$ fixiert.
+Also gegeben ein ZV $X_i : \Omega \rightarrow \R$ sodass
+\begin{equation*}
+	\begin{matrix}
+		\forall i_1 < \ldots < i_k\\
+		\forall x_1 , \ldots , x_k \in \R
+	\end{matrix}
+	\quad \pr [X_{i_1} \leq x_1, \ldots , X_{x_k} \leq x_k] = F(x_1) \cdot \ldots \cdot F(x_k)
+\end{equation*}
+Der \emph{Empirische Durchschnitt} ist definiert durch
+\begin{equation*}
+	\frac{S_n}{n} = \frac{X_1 + \ldots + X_n}{n} 
+\end{equation*}
+
+
+\subsection{Gesetz der grossen Zahlen}%
+\label{sub:gesetz_der_grossen_zahlen}
+
+\begin{tcolorbox}[lemmacore]
+	Sei $\E [|X_1|] < \infty$. Falls wir $m = \E [X_1]$ definieren folgt
+	\begin{equation*}
+		\lim_{n \rightarrow \infty} \frac{X_1 + \ldots  + X_n}{n} = m \quad\text{fast sicher}
+	\end{equation*}
+	Da die ZV \iid macht es keinen Unterschied, dass das Theorem nur durch $X_1$ definiert ist.
+\end{tcolorbox}
+\begin{itemize}
+	\item Falls $X_1 , X_2, \ldots$ \iid $\bern (p)$ 
+		\begin{equation*}
+			\lim_{n \rightarrow \infty} \frac{X_1 + \ldots  + X_n}{n} = p \quad\text{fast sicher}
+		\end{equation*}
+	\item Falls $T_1 , T_2, \ldots$ \iid $\expd (\lambda)$ 
+		\begin{equation*}
+			\lim_{n \rightarrow \infty} \frac{T_1 + \ldots  + T_n}{n} = \lambda \quad\text{fast sicher}
+		\end{equation*}
+\end{itemize}
+\begin{tcolorbox}[lemmacore]
+	Sei $X_1 , X_2 , \ldots$ eine Folge von \iid ZV mit $\E[|X_1|] < \infty$. Dann
+	\begin{equation*}
+		\lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i=1}^{n} X_i = \E[X_1]
+	\end{equation*}
+	fast sicher.
+\end{tcolorbox}
+
+
+\subsection{Anwendung: Monte-Carlo Integration}%
+\label{sub:anwendung_monte_carlo_integration}
+
+
+
+Das Gesetz der grossen Zahlen kann verwendet werden, um komplizierte Integrale zu approximieren.\\
+Sei $g : [0,1] \rightarrow \R$ sodass $\int_{0}^{1} |g(x)| \dif x < \infty$. Das Ziel ist es $I = \int_{0}^{1} g(x) \dif
+x$ zu berechnen.\\
+Um $I$ zu approximieren, interpretiere es als Erwartungswert. Sei $U$ eine normalverteilte ZV in $[0,1]$. Dann ist
+\begin{equation*}
+	\E [g(U)] = \int_{0}^{1} g(x) \dif x = I
+\end{equation*}
+Sei $X_1 , X_2 , \ldots$ \iid sodass $\forall n ~ X_n = g(U_n)$ wobei $U_1 , U2 , \ldots$ eine Folge von \iid
+normalverteilten ZV in $[0,1]$ ist. Dann ist
+\begin{equation*}
+	\E [|X_1|] = \int_{0}^{1} |g(x)| \dif x < \infty
+\end{equation*}
+und $\E [X_1] = I$. Mit dem Gesetz der grossen Zahlen folgt
+\begin{equation*}
+	\lim_{n \rightarrow \infty} \frac{g(U_1) + \ldots + g (U_n)}{n} = I
+\end{equation*}
+
+
+\subsection{Konvergenz der Verteilung}%
+\label{sub:konvergenz_der_verteilung}
+
+Zwei ZV $X$ und $Y$ haben ähnliche wahrscheinlichkeitstechnische Eigenschaften wenn ihre Verteilungsfunktionen $F_X$ und
+$F_Y$ nahe beieinander sind.
+\begin{definition}{Konvergenz der Verteilung}
+	Seien $(X_n)_{n \in \N}$ und $X$ ZVs. 
+	\begin{equation*}
+		X_n \overset{\text{Approx}}{\approx} X ~\text{wenn} ~ n \rightarrow \infty
+	\end{equation*}
+	falls für jedes $x \in \R$
+	\begin{equation*}
+		\lim_{n \rightarrow \infty} \pr [X_n \leq x] = \pr [X \leq x]
+	\end{equation*}
+\end{definition}
+\subsection{Grenzwertsätze}%
+\label{sub:grenzwertsaetze}
+
+\begin{center}
+	Wie weit ist $\frac{X_1 + \ldots + X_n}{n}$ typischerweise von $m$ entfernt?
+\end{center}
+
+\subsubsection{Fluktuation von Normalverteilten ZV}%
+\label{ssub:fluktuation_von_normalverteilten_zv}
+ 
+Sei $Z = \frac{X_1 + \ldots + X_n}{n} -m$ eine ZV. $Z \sim \normd \left( \overline{m} = 0, \overline{\sigma}^2 =
+\frac{1}{n} \sigma^2 \right)$. Die Standardabweichung $\overline{\sigma} =
+\frac{1}{\sqrt{n}} \sigma$ repräsentiert die typischen Abweichungen von $Z$.\\
+Grob gesagt ist die Abweichung zwischen $\frac{X_1 + \ldots + X_n}{n}$ und $m$ von Ordnung $\frac{\sigma}{\sqrt{n}}$.\\
+Um Abweichungen der Ordnung $1$ zu bekommen, skalieren wir $Z$ um einen Faktor $\frac{\sqrt{n}}{\sigma}$ (immer noch
+normalverteilt) $S_n = \sum_{i=1}^{n} X_i$
+\begin{equation*}
+	\frac{\sqrt{n}}{\sigma} Z = \frac{X_1 + \ldots + X_n - n \cdot m}{\sqrt{\sigma^2 n}} = \frac{S_n - n \cdot
+	m}{\sqrt{\sigma^2 n}} 
+\end{equation*}
+\hrule
+
+\begin{definition}{Zentraler Grenzwertsatz}
+	Sei $\E [X_1^2]$ wohldefiniert und endlich. Für \\$m = \E [X_1]$ und $\sigma^2 = \Var (X_1)$ folgt
+	\begin{equation*}
+		\pr \left[ \frac{S_n - n \cdot m}{\sqrt{\sigma^2 n}} \leq a \right] \xrightarrow[n \rightarrow \infty]{} \Phi (a) =
+		\frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{a} e^{-x^2/2} \dif x 
+	\end{equation*}
+	für jedes $a \in \R$ $\Phi (-a) = 1- \Phi(a)$.
+\end{definition}
+\begin{tcolorbox}[lemmacore]
+	Für grosse $n$ sieht die Verteilung von 
+	\begin{equation*}
+		Z_n = \frac{S_n - n \cdot m}{\sqrt{\sigma^2 n}}
+	\end{equation*}
+	wie $\normd (0,1)$ aus. Mit $Z_n \approx Z$ für $n \rightarrow \infty$ ist $Z \sim \normd (0,1)$.
+\end{tcolorbox}

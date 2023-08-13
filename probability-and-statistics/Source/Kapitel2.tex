@@ -73,7 +73,7 @@ Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y = g
 \begin{align*}
   E[Y] = E[g (X)] = \sum_{x_k \in \W (X)} g (x_k) \cdot p_X (x_k)
 \end{align*}
-\subsection*{Varianz}
+\begin{definition}{Varianz}
 Sei $X$ eine diskrete Zufallsvariable. Ist $E[X^2] < \infty$, so heisst:
 \begin{align*}
   Var[X] & := E[ {X - E[X]}^2]                                     \\
@@ -87,6 +87,7 @@ die Varianz von $X$. Es gilt weiter:
   \item $Var[X - Y] = Var[X] +  {-1}^2 \cdot Var[Y]$
   \item $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
 \end{itemize}
+\end{definition}
 \subsection*{Standardabweichung}
 \[
   \sigma (X) = \sqrt{Var[X]}

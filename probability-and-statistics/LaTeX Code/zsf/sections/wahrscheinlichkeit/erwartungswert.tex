@@ -1,0 +1,328 @@
+\section{Erwartungswert}%
+\label{sec:erwartungswert}
+
+
+\begin{iequation}
+	\begin{array}{lcc}
+		X \sim & \E [X] & \text{Var}(X)\\\hline
+		\bern (p) & p & p(1-p)\\
+		\bin (n,p) & np & np(1-p)\\
+		\pois (\lambda) & \lambda & \lambda\\
+		\geom (p) & \frac{1}{p} & \frac{1-p}{p^2}\\[10pt]
+		\unif ([a,b]) & \frac{a+b}{2} & \frac{1}{12} (b-a)^2\\[2pt]
+		\expd (\lambda) & \frac{1}{\lambda} & \frac{1}{\lambda^2}\\
+		\normd \left( m, \sigma^2 \right) & m & \sigma^2
+	\end{array}
+\end{iequation}
+
+
+\subsection{Erwartungswert generelle ZV}%
+\label{sub:erwartungswert_generelle_zv}
+
+\begin{definition}{Erwartungswert}
+	Sei $X: \Omega \rightarrow \R_+$ eine ZV mit nicht-negativen Werten. Der Erwartungswert von $X$ ist:
+	\begin{equation*}
+		\E [X] = \int_{0}^{\infty} (1- F_X(x)) \dif x
+	\end{equation*}
+\end{definition}
+Der Erwartungswert kann endlich oder unendlich sein.
+\begin{prop}
+	Sei $X$ eine nicht-negative ZV. Dann ist $\E [X] \geq 0$, mit $\E [X] = 0$ gdw. $X = 0$ fast sicher.
+\end{prop}
+\begin{definition}{Erwartungswert 2}
+	Sei $X$ eine ZV. Falls $\E [|X|] < \infty$, dann ist der Erwartungswert von $X$ definiert durch $\E[X] = \E [X_+] -
+	\E [X_-]$.
+\end{definition}
+\begin{equation*}
+	X_+ (\omega) = 
+	\begin{cases}
+		X(\omega) & \text{falls} ~ X (\omega) \geq 0\\
+		0 & \text{falls} ~ X (\omega) < 0
+	\end{cases}
+	\quad
+	X_- (\omega) = 
+	\begin{cases}
+		-X(\omega) & \text{falls} ~ X (\omega) \leq 0\\
+		0 & \text{falls} ~ X (\omega) > 0
+	\end{cases}
+\end{equation*}
+
+
+\subsection{Erwartungswert diskreter Zufallsvariablen}%
+\label{sub:erwartungswert_diskreter_zufallsvariablen}
+
+\begin{prop}
+	Sei $X : \Omega \rightarrow \R$ eine diskrete ZV mit Werten in $W$ (endlich oder abzählbar), wobei $W$ fast sicher
+	ist.
+	\begin{equation*}
+		\E [X] = \sum_{x \in W} x \cdot \pr [X = x]
+	\end{equation*}
+	gegeben, dass die Summe wohldefiniert ist.
+\end{prop}
+\begin{prop}
+	Sei $X : \Omega \rightarrow \R$ eine diskrete ZV mit Werten in $W$ (endlich oder abzählbar), wobei $W$ fast sicher
+	ist. Für jedes $\phi : \R \rightarrow \R$ gilt
+	\begin{equation*}
+		\E [\phi (X)] = \sum_{x \in W} \phi (x) \cdot \pr [X = x]
+	\end{equation*}
+	gegeben, dass die Summe wohldefiniert ist.
+\end{prop}
+
+\subsubsection{Indikatorvariable}%
+\label{ssub:indikatorvariable}
+
+Sei $A \in \F$ ein Ereignis. Die \emph{Indikatorfunktion} $\indf$ von $A$ ist definiert durch
+\begin{equation*}
+	\forall \omega \in \Omega \quad \indf (\omega) = 
+	\begin{cases}
+		0 & \text{falls} ~ \omega \notin A\\
+		1 & \text{falls} ~ \omega \in A
+	\end{cases}
+\end{equation*}
+Dann ist $\indf$ eine ZV.
+\begin{equation*}
+	\{\indf \leq a \} = 
+	\begin{cases}
+		\emptyset & \text{falls}~a < 0\\
+		A^c & \text{falls}~ 0 \leq a < 1\\
+		\omega & \text{falls}~ a \geq 1
+	\end{cases}
+\end{equation*}
+$\emptyset$, $A^c$ und $\Omega$ sind Elemente von $\F$. Weiterhin, wobei $X = 1_A$ gilt
+\begin{equation*}
+	\pr [X = 0] = 1 - \pr [A] \quad \text{und} \quad \pr [X = 1] = \pr [A]
+\end{equation*}
+Demnach ist $\indf$ eine Bernoulli ZV mit Parameter $\pr [A]$. $\E [\indf] = \pr [A]$.
+\ssubend
+
+
+\subsection{Erwartungswert stetiger Zufallsvariablen}%
+\label{sub:erwartungswert_stetiger_zufallsvariablen}
+
+\begin{prop}
+	Sei $X$ eine stetige ZV mit Dichte $f$. Dann ist
+	\begin{equation*}
+		\E [X] = \int_{- \infty}^{\infty} x \cdot f(x) \dif x
+	\end{equation*}
+	gegeben, dass das Integral wohldefiniert ist.
+\end{prop}
+Für die Normalverteilung: Falls $X \sim \normd \left(m, \sigma^2\right)$, hat $X$ die gleiche Verteilung wie $m + \sigma
+\cdot Y$, wobei $Y$ die standard normalverteilte ZV ist.
+\begin{equation*}
+	\E [X] = \E[m + \sigma Y] = m + \sigma \E [X] = m + \sigma \cdot \int_{- \infty}^{\infty} x \cdot f_{0,1} (x) \dif x
+	= m + \sigma \cdot 0 = m
+\end{equation*}
+
+\begin{prop}
+	Sei $X$ eine stetige ZV mit Dichte $f$. Sei $\phi : \R \rightarrow \R$ sodass $\phi (X)$ eine ZV ist. Dann folgt
+	\begin{equation*}
+		\E [\phi (X)] = \int_{- \infty}^{\infty} \phi (x) f(x) \dif x
+	\end{equation*}
+	gegeben, dass das Integral wohldefiniert ist.
+\end{prop}
+
+
+
+\subsection{Calculus}%
+\label{sub:calculus}
+
+\begin{theorem}{Linearität des Erwartungswert}
+	Seien $X, Y : \Omega \rightarrow \R$ zwei ZV, sei $ \lambda \in \R$. Gegeben, dass der Erwartungswert wohldefiniert
+	ist, gilt:
+	\begin{enumerate}
+		\item $\E [\lambda \cdot X] = \lambda \cdot \E [X]$
+		\item $\E [X + Y] = \E [X] + \E [Y]$
+	\end{enumerate}
+	Wobei $X$ und $Y$ \underline{nicht} unabhängig sein müssen.
+\end{theorem}
+Durch Induktion ergibt sich für jedes $n \in \N, n \geq 1$
+\begin{equation*}
+	\E [\lambda_1 X_1 + \lambda_2 X_2 + \ldots + \lambda_n X_n] = \lambda_1 \E [X_1] + \lambda_2 \E[X_2] + \ldots +
+	\lambda_n \E [X_n]
+\end{equation*}
+für beliebige $X_i$ und $\lambda_i$.
+
+\begin{theorem}{$\E$ unabhängig}
+	Seien $X,Y$ zwei \underline{unabhängige} ZV, dann
+	\begin{equation*}
+		\E [X \cdot Y] = \E [X] \cdot \E [Y]
+	\end{equation*}
+\end{theorem}
+
+
+\subsection{Tailsum Formeln}%
+\label{sub:tailsum_formeln}
+
+\begin{tprop}{Tailsum für nichtneg. ZV}
+	Sei $X$ eine ZV, sodass $X \geq 0$ fast sicher.
+	\begin{equation*}
+		\E [X] = \int_{0}^{\infty} \pr [X > x] \dif x
+	\end{equation*}
+\end{tprop}
+\begin{tprop}{Tailsum für diskrete ZV}
+	Sei $X$ ein diskrete ZV, die Werte in $\N = \{0,1,2,\ldots\}$ nimmt. Dann
+	\begin{equation*}
+		\E [X] = \sum_{n=1}^{\infty} \pr [X \geq n]
+	\end{equation*}
+\end{tprop}
+
+
+\subsection{Charakterisierung via Erwartungswert}%
+\label{sub:charakterisierung_via_erwartungswert}
+
+\begin{tprop}{Dichte}
+	Sei $X$ eine ZV. Sei $f : \R \rightarrow \R_+$ sodass $\int_{-\infty}^{+\infty} f(x) \dif x = 1$. Dann sind die
+	folgenden Punkte äquivalent:
+	\begin{enumerate}
+		\item $X$ ist stetig mit Dichte $f$.
+		\item Für jede messbare\footnote{Bedingung, die sicherstellt, dass $\phi (X)$ auch eine ZV ist.},
+			beschränkte\footnote{Für jedes $x \in \R$ existiert ein $C > 0$ sodass $|\phi (x) | \leq C$ ist.} Funktion $\phi : \R \rightarrow \R$
+			\begin{equation*}
+				\E [\phi (X)] = \int_{- \infty}^{\infty} \phi(x) f(x) \dif x
+			\end{equation*}
+	\end{enumerate}
+\end{tprop}
+
+\begin{theorem}{Unabhängigkeit}
+	Seien $X,Y$ zwei diskrete ZV. Die folgenden Punkte sind äquivalent:
+	\begin{enumerate}
+		\item $X,Y$ sind unabhängig.
+		\item Für jedes messbare, beschränkte $\phi: \R \rightarrow \R$, $\psi : \R \rightarrow \R$
+			\begin{equation*}
+				\E [\phi (X) \cdot \psi (Y)] = \E [\phi (X)] \cdot \E [\psi (Y)]
+			\end{equation*}
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}{Unabhängigkeit 2}
+	Seien $X_1 , \ldots , X_n$ $n$ ZV. Dann sind die folgenden Punkte äquivalent:
+	\begin{enumerate}
+		\item $X_1 , \ldots , X_n$ sind unabhängig.
+		\item Für jedes messbare, beschränkte $\phi_1 :\R \rightarrow \R, \ldots , \phi_n : \R \rightarrow \R$
+			\begin{equation*}
+				\E [\phi_1 (X_1) \cdot \ldots \cdot \phi_n (X_n)] = \E [\phi_1 (X_1)] \cdot \ldots \cdot \E [\phi_n (X_n)]
+			\end{equation*}
+	\end{enumerate}
+\end{theorem}
+
+\begin{recipe}{Dichte}
+	\begin{enumerate}
+		\item Fixiere $\phi$ mit $\phi: \R \rightarrow \R$ messbar, beschränkt (und unbekannt). $\phi (y) = \phi (h(x))
+			\overset{\sigma = \phi \circ h}{=} \sigma(x)$
+			\item \begin{align*}
+					\E [ \phi (Y) ] =  \E [ \sigma (X) ] &= \int_{- \infty}^{\infty} \sigma(x) \cdot f_X (x)
+					\dif x \\
+					& = \int_{- \infty}^{\infty} \phi (h(x)) \cdot f_X (x) \dif x = \textcolor{lightblue}{(*)}
+			\end{align*}
+		\item Variablenwechsel $z = h(x)$, $\od{z}{x} = h'(x) \Leftrightarrow \dif x = \frac{1}{h'(x)} \dif z$
+			\item \begin{equation*}
+					\textcolor{lightblue}{(*)} = \int_{-\infty}^{\infty} \phi(z) \tilde{f} (z) \dif z \Longrightarrow
+					\tilde{f} = f_Y
+			\end{equation*}
+	\end{enumerate}
+\end{recipe}
+\begin{example}
+	$U \sim \unif([0,1])$, $U' = a + (b-a) U = h(u)$
+	\begin{enumerate}
+		\item Fixiere $\phi$ (messbar, beschränkt). $\phi(U') = \phi(h(U)) = \sigma (U)$
+		\item 
+			\begin{gather*}
+				f_U (x) = \indf[{[0,1]}]\\
+				\E [\phi(U')] = \E [\sigma(U)] = \int_{-\infty}^{\infty} \sigma(y) \cdot f_U (y) \dif y = \int_{0}^{1} \phi
+				(h(y)) f_U (y) \dif y
+			\end{gather*}
+		\item $z = h(y) = a + (b -a ) y$, $\od{z}{y} = b - a \Rightarrow \dif y = \frac{1}{b-a} \dif z$
+		\item \begin{equation*}
+				\int_{a}^{b} \phi(z) \frac{1}{b-a} \dif z = \int_{- \infty}^{\infty} \phi(z) \underbrace{\frac{1}{b-a}
+				\indf[{[a,b]}] (z)}_{= \tilde{f} (z)} \dif z
+		\end{equation*}
+		$ \tilde{f}(z) = f_{U'}(z)$, $U' \sim \unif [a,b]$
+	\end{enumerate}
+\end{example}
+\begin{example}
+	Seien $X,Y$ zwei unabhängige ZV mit Dichte $f_X$ bzw. $f_Y$. Bestimme die Dichte von $Z = \frac{X}{Y}$.
+	\tcblower
+	\begin{gather*}
+		\E [\phi(Z)] = \E [\phi (X/Y)] = \iint_{-\infty}^{\infty} \phi(x/y) f_X(x) f_Y (y) \dd{x}\dd{y} = \\
+		\int_{-\infty}^{0} \left( \int_{-\infty}^{\infty} \phi(x/y) f_X(x) \dd{x} \right) f_Y(y) \dd{y} + 
+		\int_{0}^{\infty} \left( \int_{-\infty}^{\infty} \phi(x/y) f_X(x) \dd{x} \right) f_Y(y) \dd{y}
+	\end{gather*}
+	Integriere $y$ einmal im negativen und einmal im positiven Bereich.\\
+	Var.wechsel: $z = x/y, \dd{x} = y \dd{z}$.
+	\begin{gather*}
+		\E[\phi(Z)] = \int_{-\infty}^{0} \left( - \int_{-\infty}^{\infty} \phi(z) f_X(yz) y \dd{z} \right) f_Y(y) \dd{y}
+		+\\
+		\int_{-\infty}^{0} \left(\int_{-\infty}^{\infty} \phi(z) f_X(yz) y \dd{z} \right) f_Y(y) \dd{y}\\
+		= \int_{-\infty}^{\infty} \left( \int_{-\infty}^{\infty} \phi (z) f_x(yz) |y| \dd{z} \right) f_Y(y)\dd{y} \\
+		= \int_{-\infty}^{\infty} \phi(z) \left( \int_{-\infty}^{\infty} f_X (yz) f_Y (y) |y| \dd{y} \right) \dd{z}
+	\end{gather*}
+	$Z$ hat somit die Dichte: $\int_{-\infty}^{\infty} f_X (yz) f_Y (y) |y| \dd{y}$.
+\end{example}
+
+
+\subsection{Ungleichungen}%
+\label{sub:ungleichungen}
+
+\begin{prop}
+	Seien $X,Y$ zwei ZV sodass $X \leq Y$. Dann $\E [X] \leq \E [Y]$. (Gegeben $X,Y$ sind wohldefiniert)
+\end{prop}
+\begin{theorem}{Markov Ungleichung}
+	Sei $X$ eine \textbf{nicht-negative} ZV. Dann gilt für jedes $a > 0$:
+	\begin{equation*}
+		\pr [X \geq a] \leq \frac{\E [X]}{a} 
+	\end{equation*}
+\end{theorem}
+\begin{theorem}{Jensens Ungleichung}
+	Sei $X$ eine ZV. Sei $\phi : \R \rightarrow \R$ eine konvexe Funktion. Falls $\E [\phi (X)]$ und $\E [X]$
+	wohldefiniert sind, dann
+	\begin{equation*}
+		\phi \big(\E [X]\big) \leq \E \big[ \phi (X)\big]
+	\end{equation*}
+\end{theorem}
+\begin{theorem}{Cauchy-Schwarz Ungleichung}
+	Seien $X,Y$ zwei ZV sodass $\E \left[ X^2 \right], \E \left[ Y^2 \right] < \infty$, dann gilt
+	\begin{equation*}
+		\E [XY] \leq \sqrt{\E \left[ X^2 \right]} \cdot \sqrt{\E \left[ Y^2 \right]}
+	\end{equation*}
+\end{theorem}
+\begin{theorem}{Chebyshev Ungleichung}
+	Sei $X$ eine ZV sodass $\E \left[ X^2 \right] < \infty$. Dann gilt für jedes $a \geq 0$
+	\begin{equation*}
+		\pr \left[ |X - \E [X] | \geq a \right] \leq \frac{\sigma_X^2}{a^2} 
+	\end{equation*}
+\end{theorem}
+
+\subsection{Varianz}%
+\label{sub:varianz}
+
+\begin{definition}{Varianz}
+	Sei $X$ eine ZV sodass $\E \left[ X^2 \right] < \infty$. Die \emph{Varianz von $X$} ist definiert durch
+	\begin{iequation}
+		\sigma_X^2 = \E \left[ (X - \E[X])^2 \right] = \E \left[ X^2 \right] - \E [X]^2 \qquad \sigma_X^2 > 0
+	\end{iequation}
+	$\sigma_X$ heisst die \emph{Standardabweichung von $X$}.
+\end{definition}
+\begin{tcolorbox}[lemmacore]
+	\begin{enumerate}
+		\item Sei $X$ eine ZV mit $\E \left[ X^2 \right] < \infty$. Dann $ \sigma_X^2 = \E \left[ X^2 \right] - \E [X]^2$.
+		\item Seien $X_1 , \ldots , X_n$ $n$ (paarweise) unabhängige ZV und $S = X_1 + \ldots + X_n$. Dann $\sigma_S^2 =
+				\sigma_{X_1}^2 + \ldots + \sigma_{X_n}^2$
+		\item \inlineieq{\Var [a \cdot X + b] = a^2 \cdot \Var[X]}
+	\end{enumerate}
+\end{tcolorbox}
+
+
+\subsection{Kovarianz}%
+\label{sub:kovarianz}
+
+\begin{definition}{Kovarianz} 
+	Seien $X,Y$ zwei ZV. Sei $\E \left[ X^2 \right] < \infty$ und $\E \left[ Y^2 \right] < \infty$ (endliches zweites
+	Moment). Die \emph{Kovarianz zwischen $X$ und $Y$} ist definiert durch
+	\begin{equation*}
+		\cov (X,Y) = \E [XY] - \E [X] \E[Y]
+	\end{equation*}
+	\begin{itemize}
+		\item $X,Y$ unabhängig $ \Longrightarrow \cov (X,Y) = 0$
+	\item $X,Y$ unabhängig $ \Longleftrightarrow$ $\forall \phi \psi$ stückweise stetig, beschränkt. $\cov (\phi(X),
+			\psi (Y)) = 0$
+	\end{itemize}
+\end{definition}
