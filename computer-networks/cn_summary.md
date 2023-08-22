@@ -10,8 +10,19 @@
         - Time-to-live
         - IP checksum
 - DSL (digital subscriber line): broadband residential access
+    - downstream data channel: tens to few hundred Mbps
+    - upstream data channel: few Mbps to few tens Mbps
 - FDM (Frequency-division multiplexing): link dedicates a frequency band on the band to a communication for the duration of connection. The width of this band is called bandwidth.
 - TDM (time-division multiplexing): time is divided into frames of fixes size, and each frame is split into a fixed amount of slots. These slots are dedicated to one connection
+
+## Packet, circuit switching
+- Packet switching relies on buffers to account for unexpected bursts
+- Circuit switching is better applicable when the peak-to-average utilization ratio is low.
+- large Peak / Average -> On-demand
+- small peak /average -> circuit
+
+
+
 
 ## Delays
 - **nodal processing delay:** 
@@ -88,7 +99,6 @@
 ## IP
 - kind of like a phone number
 - opens up communication
-- 
 
 ## DNS servers
 ![Alt text](assets/DNS_hierarchy.png)
@@ -173,10 +183,11 @@ Built up by:
 
 - A socket is a software abstraction by which an application process exchanges network messages with the (transport layer in the) operating system
 
-- Transmission delay per segment: $\frac{packet_size}{bandwidth}$
+- Transmission delay per segment: $\frac{packetSize}{bandwidth}$
 
 ## Go-back-N
 - You have a window size with segments. When you send a packet, the ACK is sent after the propagation delay + transmission delay. If the packet gets lost, the ACK always sends the last valid ACK. E.G. packet 2 is lost and packets 0, 1, 3, 4 are successfully sent and received, you only get ACK for packet 0, 1. 1 is the highest number to receive 
+- TCP uses Cumulative ACK and Go-back-N
 
 ### ACK
 - With individual ACKs, missing packets (gaps) are implicitly inferred rather than explicitly conveyed by the receiver
@@ -199,7 +210,21 @@ There are more transitions in the 4B5B-encoded signal. This allows for clock rec
     a. NRZ Signal of Bits
     b. Amplitude Key Shifting
     c. Frequency Key Shifting
-    d. Phase Key Shifting
+    d. Phase Key Shifting$
+
+NRZ (Non-Return-to-Zero), Manchester, and Differential Manchester are three different line coding schemes used in digital communication to encode binary data for transmission over a communication channel. Each scheme has its own characteristics and advantages.
+
+- NRZ (Non-Return-to-Zero):
+    - In NRZ encoding, a '0' is represented by one signal level (e.g., low voltage), and a '1' is represented by the opposite signal level (e.g., high voltage).
+    - There is no transition in the middle of a bit time, making it simple to implement.
+    - However, a potential issue with NRZ is the possibility of long runs of the same signal level, which can lead to synchronization problems and baseline wander.
+    - NRZ can be further divided into NRZ-L (NRZ-Level) and NRZ-I (NRZ-Inverted), where NRZ-I introduces a transition at the beginning of a '1' bit.
+
+- Manchester:
+    - In Manchester encoding, each bit is divided into two halves: the first half represents the high-to-low transition, and the second half represents the low-to-high transition.
+    - A '0' is represented by a high-to-low transition in the middle of the bit time, and a '1' is represented by a low-to-high transition in the middle.
+    - This encoding guarantees frequent transitions, making it well-suited for clock recovery and synchronization.
+    - However, it requires twice the bandwidth compared to NRZ since transitions occur at the center of each bit.
 
 ## Timeout-Value
 - Exponential averaging of RTT
@@ -252,6 +277,7 @@ How to deploy publicly accessible services wih NAT?
 ## TCP
 - in-sequence delivery
 - a connection-oriented service
+- Full-duplex (simplex: data may only flow one way, half-duplex: data may flow both ways, but not simultaneously, full-duplex: data may flow both ways simultaneously)
 
 ## TCP Congestion Control
 - slow start threshold (ssthresh):
@@ -303,14 +329,14 @@ Timeout:
 - track specific information about network flows
     - instead of deploying a filter on a NIC, the filter can be installed on a switch that connects multiple cache servers. Thus, the same effect can be achieved as in the previous example, just at te switch, which further improves the latency.
 - after insertion of $n$ independent elements, what is the probability that a particular bit is 1
-    - $$(1 - \frac{1}{m})^{kn}$$
+    $$\left(1 - \frac{1}{m}\right)^{kn}$$
 
 ### Answers a Bloom filter gives
 - Surely not present or possibly present
     - Could give false positive
     - Never give false negative
 ### False Positive
-$$P[FP] = (1 - (1- \frac{1}{m})^{nk})^k$$
+$$P[FP] = \left(1 - \left(1- \frac{1}{m}\right)^{nk}\right)^k$$
 
 ## Wireless sending
 Assume A wants to send to B. Those terminals that are invisible to A but not to B: hidden. Those terminals that are exposed to A but not B: exposed
@@ -391,15 +417,16 @@ Each client is served the same HTML with URLs for CDN-hosted objects already rew
     - Depending on the device, there might be different requirements in terms of the so called Quality of Experience (e.g. HDTV users might need a higher video quality in comparison to mobile users for the same QoE)
 
 #### Available bit rate (ABR)
-- Bitrate switching: ABR divides video content into multiple bitrate representations with varying quality levels. During playback, teh client device switches between different representations to match the available network bandwidth.
+- Bitrate switching: ABR divides video content into multiple bitrate representations with varying quality levels. During playback, the client device switches between different representations to match the available network bandwidth.
 - two videos encoded at the same resolution, do not have in general the same bitrate, in regard of the video content¨
 - Goals:
 
-|Maximize|Minimise|
-|-|-|
-|Downloaded video quality|Rebuffering|
-|Stream stability|Startup delay|
-||bandwidth wastage|
+
+    |Maximize|Minimise|
+    |-|-|
+    |Downloaded video quality|Rebuffering|
+    |Stream stability|Startup delay|
+    ||bandwidth wastage|
 
 #### Buffer-based algorithm
 - the higher the buffer health, the higher (typically) the quality downloaded
@@ -491,7 +518,7 @@ Long:
 
 ## Hamming Distance
 For data of length *n*, the length of the Hamming code is given by
-$$n + k = 2^k - 1$$
+$$n \leq 2^k - k - 1$$
 where *k* is the number of check bits to detect and correct an error in one bit (minimum Hamming distance of 3).
 
 ## Cyclic Redundancy Check (CRC)
@@ -507,6 +534,25 @@ where *k* is the number of check bits to detect and correct an error in one bit 
 1. Divide and check for zero remainder
 ### Path Lookup
 ![Alt text](assets/internet.png)
+
+
+## Recipe to get IP addressing:
+
+
+| Column Name| Explanation|
+|-|-|
+| Prefix| The prefix notation (also known as CIDR notation) that represents the subnet's network size. It consists of the IP address followed by a slash and the number of significant bits in the subnet mask.|
+| # of hosts           | The maximum number of usable hosts in the subnet. It's calculated as 2^(32 - prefix length) - 2, where the two subtracted values account for the network address and the broadcast address.                            |
+| Prefix mask          | The subnet mask represented in dotted-decimal notation. Each segment of the subnet mask represents 8 bits in binary form. Look what the prefix is e.g. x.y.z.u/12 and look what number it is if you have 12 1's.|
+| Network Address      | The network address is obtained by performing a bitwise AND operation between the IP address and the subnet mask. This results in the network portion of the IP address.                                         |
+| Broadcast Address    | The broadcast address is the highest address in the subnet and is used to send a message to all hosts within that subnet. It's obtained by flipping all the host bits (those not covered by the subnet mask) to 1s in the network address. |
+| Last Host Address    | The last host address is the highest usable IP address in the subnet. It's obtained by setting all the host bits to 1s in the network address, except for the last bit.                                        |
+
+
+## Mac vs IP-Address
+
+A huge thanks goes to 
+![Alt text](assets/MAC_vs_IP-ARP+Routing.drawio.png)
 
 ## Quiz
 - **The Maximum Segment Size(MSS) of TCP is equal to:**
@@ -533,6 +579,7 @@ return. Why is this?
 - Root server does not support recursive resolution
     - If we request the domain from a root server, we don't get back a result because of the hierarchical structure of the DNS system. The root server just refers us to the next lower level DNS server, the one for the ch TLD. Note that the "dig @server name" command just sends a query to this single stated server while the "dig name" command issues multiple requests down in the DNS hierarchy in order to iteratively resolve the domain name. This would be the first step of an iterative resolution.
     ![alt text](assets/DNS_hierarchy.png "DNS_hierarchy")
+- The minimum information one needs to resolve any DNS hostname is the IP address of a DNS root server
 
 ## Quic
 - Operate in Application and Transport layer
