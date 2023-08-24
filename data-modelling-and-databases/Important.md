@@ -117,7 +117,7 @@ Merge
 
 A -> D
 B -> C, D
-d -> E
+D -> E
 
 Create a relation
 
@@ -529,7 +529,7 @@ Executes a relational algebra
 
 ### Avoids Cascading Aborts (ACA)
 
-- If $T_i$ reads $X$ from $T_j$ and commits then $c_j < ri[x]$
+- If $T_i$ reads $X$ from $T_j$ and commits then $c_j < r_i[x]$
 - $ri[X]$ is the time $T_i$ reads $X$
 - avoids cascading rollback if transactions may read only values written by committed transactions.
     - Aborting a transaction does not cause aborting others
@@ -538,7 +538,7 @@ Executes a relational algebra
 
 
 ### Strict (ST)
-- If $T_i$ reads from or overwrites a value written by $T_j$, then $(c_j < ri[X]$ AND $c_j < w_i[X])$ or $(a_j < r_i[X]$ AND $a_j < w_i[X])$
+- If $T_i$ reads from or overwrites a value written by $T_j$, then $(c_j < r_i[X]$ AND $c_j < w_i[X])$ or $(a_j < r_i[X]$ AND $a_j < w_i[X])$
 - $a_j$ is the abort time of $T_j$
 - transaction must not release any exclusive locks until the transaction has either committed or aborted, and the commit or abort log record has been flushed to disk.
     - a schedule of transactions that follow the strict-locking rule is called a strict schedule
