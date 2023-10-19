@@ -21,4 +21,48 @@
     - distribution
     - inclusion that are caused by them
 - different view on pain tolerance (experience of disease symptoms is unique)
+- multiplicity as key concept
 
+### Precobs
+- check which house is getting robbed (data):
+    - police reports
+    - analyzed algorithmically on a daily basis
+
+- focuses on residential burglary prediction
+
+## Lecture 3
+- classification evolves over time and in accordance with what society considers relevant and acceptable
+
+### Classification system
+- How to build boxes:
+    - Important: classification systems are not obvious or self-evident
+        - there are choices involved in how to build boxes
+    - two ideal-typical ways:
+        - Aristotelian classification
+        - prototype classification
+
+### Aristotelian Approach
+- empirical
+- top-down approach
+- logic: binary characteristics that the object being classified either presents or does not present
+
+### Prototype Approach
+- not as used as often
+- discursive approach
+- comes from concepts that have already been established
+- common sense category
+
+### Conclusion
+- Classification as compromise
+
+## Lecture 4
+- data infrastructures are digital means for storing information
+    - key of individual and collective life
+        - information exchange
+        - communication
+        - governance
+        - economy
+- increasing emergence of data infrastructures as business model themselves
+    - webhosting, database service
+    - platform economy
+    - entertainment on demand

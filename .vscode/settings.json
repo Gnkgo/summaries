@@ -4,12 +4,14 @@
         "Binomialtabelle",
         "mathjax",
         "mispredicted",
+        "Precobs",
         "serializability",
         "superkey",
         "Teststatistikwerte",
         "uncurry",
         "Verwerfungsbereich",
-        "Verwerfungsbereiche"
+        "Verwerfungsbereiche",
+        "webhosting"
     ],
     "cSpell.language": "en,ge-R,de-DE"
 }
