@@ -66,3 +66,6 @@
     - webhosting, database service
     - platform economy
     - entertainment on demand
+
+## Lecture 5
+
