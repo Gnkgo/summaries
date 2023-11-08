@@ -1,0 +1,577 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[margin=3cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+
+% Define code listing style
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    commentstyle=\color{green!40!black},
+    keywordstyle=\color{blue},
+    language=Java,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    showspaces=false,
+    showstringspaces=false,
+    stringstyle=\color{red},
+    tabsize=4,
+}
+
+\lstdefinestyle{java}{
+    language=Java,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    breaklines=true,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{PProg: Important things to know}
+\author{Gnkgo}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\section{Creating a Thread}
+
+\begin{lstlisting}
+public class Useless extends Thread {
+    int i;
+    Useless(int i) {
+        this.i = i;
+    }
+    public void run() {
+        System.out.println("Thread says hi" + i);
+        System.out.println("Thread says bye" + i);
+    }
+}
+
+public class M {
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++) {
+            Thread t = new Useless(i + 1);
+            t.start(); // Important: you cannot use t.run() --> t.run doesn't create a new Thread
+        }
+    }
+}
+\end{lstlisting}
+
+Important: You can only create a Thread when you use \texttt{start()}. The \texttt{run} method has no return value and no argument.
+
+\section{Joining threads}
+
+\begin{lstlisting}
+public class Useless extends Thread {
+    int i;
+    Useless(int i) {
+        this.i = i;
+    }
+    public void run() {
+        System.out.println("Thread says hi" + i);
+        System.out.println("Thread says bye" + i);
+    }
+}
+
+public class M {
+    public static void main(String[] args) {
+        Thread[] threads = new Thread[20];
+        for (int i = 0; i < 20; i++) {
+            Thread t = new Useless(i + 1);
+            t.start();
+            threads[i] = t;
+        }
+        for (int i = 0; i < 20; i++) {
+            try { // need catch block around join
+                threads[i].join();
+            } catch (InterruptedException e) {
+                // Some catch block
+            }
+        }
+        System.out.println("All done.");
+    }
+}
+\end{lstlisting}
+
+With "join," you wait until every thread is done.
+
+\section{Thread states}
+
+If we want to be able to talk about the effects of different thread operations, we need some notion of thread states. In short, a Java thread typically goes through the following states:
+
+\begin{itemize}
+    \item \textbf{Non-Existing:} Before the thread is created, this is where it is. We don't know too much about this place, as it's not actually on our plane of reality, but it's somewhere out there.
+    \item \textbf{New:} Once the Thread object is created, the thread enters the new state.
+    \item \textbf{Runnable:} Once we call \texttt{start()} on the new thread object, it becomes eligible for execution, and the system can start scheduling the thread as it wishes.
+    \item \textbf{Blocked:} When the thread attempts to acquire a lock, it goes into a blocked state until it has obtained the lock, upon which it returns to a runnable state. In addition, calling the \texttt{join()} method will also transfer a thread into a blocked state.
+    \item \textbf{Waiting:} The thread can call \texttt{wait()} to go into a waiting state. It'll return to a runnable state once another thread calls \texttt{notify()} or \texttt{notifyAll()} and the thread is removed from the waiting queue.
+    \item \textbf{Terminated:} At any point during execution, we can use \texttt{interrupt()} to signal the thread to stop its execution. It will then transfer to a terminated state. Note that when the thread is in a runnable state, it needs to check whether its interrupted flag is set itself; it won't transfer to the terminated state automatically. Of course, exiting the run method is equivalent to entering a terminated state. Once the garbage collector realizes that the thread has been terminated and is no longer reachable, it will garbage collect the thread and return it to a non-existing state, completing the cycle.
+\end{itemize}
+
+\section{Data Races}
+
+A data race is a specific kind of race condition that is better described as a simultaneous access error, although nobody uses that term. There are two kinds of data races:
+
+\begin{itemize}
+    \item When one thread might read an object field at the same moment that another thread writes the same field.
+    \item When one thread might write an object field at the same moment that another thread also writes the same field.
+\end{itemize}
+
+\begin{lstlisting}
+class C {
+    private int x = 0;
+    private int y = 0;
+
+    void f() {
+        x = 1; //line A
+        y = 1; //line B
+    }
+    void g() {
+        int a = y; //line C
+        int b = x; //line D
+        assert (b >= a);
+    }
+}
+\end{lstlisting}
+
+The code has data races, but it doesn't occur, which can be proven by contradiction.
+
+\section{Important to Remember}
+
+\subsection{Speedup}
+
+\[S_p := \frac{T_1}{T_P}\]
+
+Where \(T_1\) is the sequential time (Time with one processor) and \(T_P\) with the time with \(P\) processors.
+
+Reasons why the program is nevertheless slower:
+
+Additional overheads caused by inter-thread dependencies, creating threads, communicating between them, and memory-hierarchy issues can greatly limit the speedup we gain from adding more processors.
+
+\subsection{Amdahl}
+
+\begin{itemize}
+    \item Fixed workload and upper bound on the speedup achievable when increasing the number of processors at our disposal.
+    \item Let \(f\) denote the non-parallelizable, serial fraction of the total work done in a program, and \(P\) the number of processors at our disposal. Then, the following inequality holds:
+    \[S_P \leq \frac{1}{f + \frac{1 - f}{P}}\]
+    \item If \(P\) is infinity, then:
+    \[S_\infty \leq \frac{1}{f}\]
+\end{itemize}
+
+How to derive it:
+
+\[T = T_s + T_p\]
+
+Where \(T\) is the total time, \(T_s\) is the sequential time, and \(T_p\) is the parallel time. \(T_p = \frac{T_s}{p}\) If you have more than one processor, you can rewrite the function to:
+
+\[T = T_s + \frac{T_p}{p}\]
+
+\[S_p = \frac{W_{\text{seq}} + W_{\text{par}}}{W_{\text{seq}} + \frac{W_{\text{par}}}{p}}\]
+
+We know that \(W_{\text{seq}} + W_{\text{par}} = 1\). So we can rewrite the function to:
+
+\[\frac{1}{W_{\text{seq}} + \frac{W_{\text{par}}}{p}} = \frac{1}{f + \frac{1-f}{p}}\]
+
+\subsection{Gustafson}
+
+\begin{itemize}
+    \item We increase the problem size as we improve the resources at our disposal. We consider the time interval to be fixed and look at the problem size.
+    \item Let \(f\) denote the non-parallelizable, serial fraction of the total work done in the program, and \(P\) the number of processors at our disposal. Then, we get:
+    \[S_P = f + P(1 - f) = P - f(P - 1)\]
+\end{itemize}
+
+\subsection{Workspan}
+
+\[T_x \leq T_\infty + \frac{T_1 - T_\infty}{x}\]
+
+In a graph:
+
+\begin{itemize}
+    \item Work: all jobs summed up
+    \item Span: Longest critical path
+\end{itemize}
+
+\subsection{Divide and Conquer with ExecutorService}
+
+```Java
+class MaxTask implements Callable  {
+    int l;
+    int h;
+    int[] arr;
+    ExecutorService ex;
+
+    public MaxTask(ExecutorService ex, int lo, int hi, int[] arr) {
+       // ...
+    }
+    public Integer call() throws Exception {
+        // Check base case
+        int size = h - l;
+        if (size == 1) {
+            return arr[l];
+        }
+        // Split work
+        int mid = size / 2;
+        MaxTask m1 = new MaxTask(ex, l, l + mid, arr);
+        MaxTask m2 = new MaxTask(ex, l + mid, h, arr);
+        // Start subtasks
+        Future<Integer> f1 = ex.submit(m1);
+        Future<Integer> f2 = ex.submit(m2);
+        // Combine results
+        try {
+            return Math.max(f1.get(), f2.get());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+}
+
+public static void main(String[] args) {
+    int[] arr = new int[] {15, 7, 9, 8, 4, 22, 42, 13};
+    ExecutorService ex = Executors.newFixedThreadPool(8); // Attention, has to be a minimum number of threads that are needed --> otherwise you have an endless loop
+    MaxTask top = new MaxTask(ex, 0, arr.length, arr);
+    Future<Integer> max = ex.submit(top);
+    try {
+        System.out.println(max.get());
+    } catch (Exception e) {
+        // something
+    }
+    ex.shutdown();
+}
+
+
+\section{Using Recursive Task in Java}
+To avoid "knowing" how many threads you need, you can use Recursive Task:
+
+\begin{lstlisting}[style=java]
+class MaxForkJoin extends RecursiveTask<Integer>  {
+    int l;
+    int h;
+    int[] arr;
+
+    public MaxForkJoin(int lo, int hi, int[] arr) {
+        this...
+    }
+
+    public Integer compute() {
+        //Check base case
+        int size = h - l;
+        if (size == 1) {
+            return arr[l];
+        } //split work
+        int mid = size / 2;
+        MaxForkJoin m1 = new MaxForkJoin(l, l + mid, arr);
+        MaxForkJoin m2 = new MaxForkJoin(l + mid, h, arr);
+        //Run subtasks
+        m1.fork();
+        int max2 = m2.compute();
+        int max1 = m1.join();
+        //Combine results
+        return Math.max(f1.get(), f2.get());
+    }
+}
+
+public static void main(String[] args) {
+    int[] arr = new int[] {15, 7, 9, 8, 4, 22, 42, 13};
+    MaxForkJoin top = new MaxTask(0, arr.length, arr);
+    ForkJoinPool jfp = new ForkJoinPool();
+    int res = fjp.invoke(tp);
+    System.out.println(res);
+}
+\end{lstlisting}
+
+Note the following similarities:
+\begin{itemize}
+    \item Instead of extending Thread, we extend RecursiveTask<T> (with return value) or RecursiveAction (without return value).
+    \item Instead of overriding run, we override compute.
+    \item Instead of calling start, we call fork.
+    \item Instead of a topmost call to run, we create a ForkJoinPool and call invoke.
+\end{itemize}
+Also, note that in the case of RecursiveTask<T>, join now returns a result.
+
+\section{Throughput}
+\begin{equation}
+    \text{Throughput} \approx \frac{1}{\max(\text{computationtime(stages)})}
+\end{equation}
+
+\section{Latency}
+Time to perform a single computation, including wait time resulting from resource dependencies. A pipeline is \textbf{balanced} if the latency remains constant over time.
+
+\section{MPI}
+\subsection{Synchronous, asynchronous, blocking, non-blocking}
+\begin{itemize}
+    \item Synchronous + blocking: try to call somebody until he answers.
+    \item Synchronous + non-blocking: try to call, if the other person does not pick up, I do something else.
+    \item Asynchronous + blocking: wait until your crush texts you back.
+    \item Asynchronous + non-blocking: send an E-Mail and continue working until you get a response.
+\end{itemize}
+In the actor model, messages are sent in an \textbf{asynchronous, non-blocking fashion}. The sender places the message into the buffer of the receiver and continues execution. In contrast, when the sender sends \textbf{synchronous messages}, it blocks until the message has been received.
+
+MPI collects processes into groups, where each group can have multiple \textbf{colors}. A group paired with its color uniquely identifies a communicator. Initially, all processes are collected in the same group and communicator MPI\_COMM\_WORLD. Within each communicator, a process is assigned a unique identifier, called the \textbf{rank}.
+
+\begin{lstlisting}[style=java]
+public void Send(
+    Object buf, //Ptr to data to be sent
+    int offset,
+    int count, //number of items to be sent
+    Datatype datatype, //datatype of items
+    int dest, //destination process id
+    int tag //data id tag
+);
+
+public void Recv(
+    Object buf,
+    int offset,
+    int count, // Number of items to be received
+    Datatype datatype, // Datatype of items
+    int dest, // Source process id
+    int tag //Data id tag
+);
+\end{lstlisting}
+
+\section{Transactional Memory}
+Definition 3.7.1 (Transactional Memory): Transactional Memory is a programming model whereby loads and stores on a particular thread can be grouped into transactions. The read set and write set of a transaction are the set of addresses read from and written to, respectively, during the transaction. A data conflict occurs in a transaction if another processor reads or writes a value from the transaction's write set or writes to an address in the transaction's read set. Data conflicts cause the transaction to abort, and all instructions executed since the start of the transaction (and all changes to the write set) to be discarded.
+
+Transactions run in \textit{isolation}: while a transaction is running, effects from other transactions are not observed. A good analogy is the one of a snapshot: transactional memory works as if a transaction takes a snapshot of the global state when it begins and then operates on that snapshot.
+
+\section{Important Code}
+
+\subsection{Barrier}
+\begin{lstlisting}[style=java]
+public class Barrier {
+  private Semaphore mutex;
+  private Semaphore barrier1;
+  private Semaphore barrier2;
+
+  private volatile int count = 0;
+  private final int n;
+ 
+  Barrier(int n) {
+    mutex = new Semaphore(1);
+    barrier1 = new Semaphore(0);
+    barrier2 = new Semaphore(1);
+        
+    this.count = 0;
+    this.n = n;
+  }
+
+  void await() throws InterruptedException {
+    mutex.acquire();
+    ++count;
+    if (count == n) {
+      barrier2.acquire();
+      barrier1.release();
+    }
+    mutex.release();
+        
+    barrier1.acquire();
+    barrier1.release();
+        
+    mutex.acquire();
+    --count;
+    if (count == 0) {
+      barrier1.acquire();
+      barrier2.release();
+    }
+    mutex.release();
+        
+    barrier2.acquire();
+    barrier2.release();
+  }
+}
+\end{lstlisting}
+
+\subsection{Semaphore}
+\begin{lstlisting}[style=java]
+public class Semaphore {
+  private volatile int count;
+  private Object monitor = new Object();
+
+  public Semaphore(int count) {
+    this.count = count;
+  }
+  
+  public void acquire() throws InterruptedException {
+    synchronized(monitor) {
+      while (count <= 0)
+        monitor.wait();
+      --count;
+    }
+  }
+
+  public void release() {
+    synchronized(monitor) {
+      ++count;
+      monitor.notify();
+    }
+  }
+}
+\end{lstlisting}
+
+\subsection{PetersonLock}
+\begin{lstlisting}[style=java]
+class PetersonLock {
+    volatile boolean flag[] = new boolean[2];
+    volatile int victim;
+
+    public void Acquire(int id) {
+        flag[id] = true;
+        victim = id;
+        while (flag[1-id] && victim == id);
+    }
+
+    public void Release(int id) {
+        flag[id] = false;
+    }
+}
+\end{lstlisting}
+
+\subsection{Filterlock}
+\begin{lstlisting}[style=java]
+int[] level(#threads), int[] victim(#threads)
+
+lock(me) {
+    for (int i=1; i<n; ++i) {
+        level[me] = i;
+        victim[i] = me;
+        while (exists(k != me): level[k] >= i && victim[i] == m){};
+    }
+}
+
+unlock(me) {
+    level[me] = 0;
+}
+\end{lstlisting}
+
+Filterlock is not fair.
+
+\subsection{BakeryLock}
+\begin{lstlisting}[style=java]
+class BakeryLock {
+    AtomicIntegerArray flag;
+    AtomicIntegerArray label;
+    final int n;
+
+    BakeryLock(int n) {
+        this.n = n;
+        flag = new AtomicIntegerArray(n);
+        label = new AtomicIntegerArray(n);
+    }
+
+    int MaxLabel() {
+        int max = label.get(0);
+        for (int i = 1; i < n; ++i)
+            max = Math.max(max, label.get(i));
+        return max;
+    }
+
+    boolean Conflict(int me) {
+        for (int i = 0; i < n; ++i)
+            if (i != me && flag.get(i) != 0) {
+                int diff = label.get(i) - label.get(me);
+                if (diff < 0 || diff == 0 && i < me)
+                    return true;
+            }
+        return false;
+    }
+
+    public void Acquire(int me) {
+        flag.set(me, 1);
+        label.set(me, MaxLabel() + 1);
+        while (Conflict(me));
+    }
+
+    public void Release(int me) {
+        flag.set(me, 0);
+    }
+}
+\end{lstlisting}
+
+\subsection{TAS}
+\begin{lstlisting}[style=java]
+boolean TAS(memref s) {
+    if (mem[s] == 0) {
+        mem[s] = 1;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+Init(lock) {
+    lock = 0;
+    Acquire(lock) {
+        while (!TAS(lock)); //wait
+    }    
+    Release(lock) {
+        lock = 0;
+    }
+}
+\end{lstlisting}
+
+\subsection{CAS}
+\begin{lstlisting}[style=java]
+int CAS(memref a, int old, int newValue) {
+    oldVal = mem[a];
+    if (old == oldVal) {
+        mem[a] = newValue
+    }
+    return oldVal;
+}
+
+Init (lock) {
+    lock = 0;
+    Acquire (lock) {
+        while (CAS(lock, 0, 1) != 0); //wait
+    }
+    Release(lock) {
+        CAS(lock, 1, 0); //ignore result
+    }
+}
+\end{lstlisting}
+
+\subsection{TASLock}
+\begin{lstlisting}[style=java]
+public class TASLock implements Lock {
+    AtomicBoolean state = new AtomicBoolean(false);
+
+    public void lock() {
+        while (state.getAndSet(true)){}
+    }
+
+    public void unlock() {
+        state.set(false);
+    }
+}
+\end{lstlisting}
+
+\subsection{TATASLock}
+\begin{lstlisting}[style=java]
+public class TATASLock implements Lock {
+    AtomicBoolean state = new AtomicBoolean(false);
+
+    public void lock() {
+        do {
+            while(state.get()) {}
+        } while (!state.compareAndSet(false, true))
+    }
+}
+\end{lstlisting}
+\end{document}
+

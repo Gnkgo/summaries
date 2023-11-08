@@ -285,5 +285,3 @@ $\{N \geq 0 \land D > 0 \land d = D \land r = N \land q = 0\}$
 - Something bad is never allowed to happen (and can't be fixed)
 - safety properties are violated in finite time and cannot be repaired
 
-
-
