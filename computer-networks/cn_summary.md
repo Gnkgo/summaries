@@ -1,3 +1,67 @@
+- [Internet](#internet)
+- [Packet, circuit switching](#packet-circuit-switching)
+- [Delays](#delays)
+- [Layers](#layers)
+- [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
+- [Ethernet](#ethernet)
+- [ICMP](#icmp)
+- [MAC](#mac)
+- [IP](#ip)
+- [DNS servers](#dns-servers)
+  - [Resource Records (RRs)](#resource-records-rrs)
+- [Congestion signals](#congestion-signals)
+- [Reliable transport protocol:](#reliable-transport-protocol)
+  - [Undesirable effects when sending packets:](#undesirable-effects-when-sending-packets)
+  - [Goals of reliable transfer](#goals-of-reliable-transfer)
+  - [Advantages of using unreliable transport protocol?](#advantages-of-using-unreliable-transport-protocol)
+- [IPv4](#ipv4)
+- [Link State Routing](#link-state-routing)
+- [Distance Vector Routing](#distance-vector-routing)
+- [Go-back-N](#go-back-n)
+  - [ACK](#ack)
+- [Modulation](#modulation)
+  - [Baseband modulation](#baseband-modulation)
+  - [Passband modulation](#passband-modulation)
+  - [Why is it beneficial to use 4B5B encoding?](#why-is-it-beneficial-to-use-4b5b-encoding)
+- [Timeout-Value](#timeout-value)
+- [NAT](#nat)
+- [TCP](#tcp)
+- [TCP Congestion Control](#tcp-congestion-control)
+  - [Slow Start](#slow-start)
+  - [Congestion avoidance - additive increase](#congestion-avoidance---additive-increase)
+  - [Fast retransmission and fast recovery](#fast-retransmission-and-fast-recovery)
+  - [AIMD](#aimd)
+- [Bloom Filter](#bloom-filter)
+  - [Potential applications for Bloom filters on small platforms](#potential-applications-for-bloom-filters-on-small-platforms)
+  - [Answers a Bloom filter gives](#answers-a-bloom-filter-gives)
+  - [False Positive](#false-positive)
+- [Wireless sending](#wireless-sending)
+- [CDN](#cdn)
+  - [Why distribute content](#why-distribute-content)
+- [Anycast-based CDN](#anycast-based-cdn)
+- [DNS-based CDN](#dns-based-cdn)
+  - [Different ways to direct clients to the closest server](#different-ways-to-direct-clients-to-the-closest-server)
+  - [Video streaming](#video-streaming)
+    - [Available bit rate (ABR)](#available-bit-rate-abr)
+    - [Buffer-based algorithm](#buffer-based-algorithm)
+    - [Bit-rate algorithm](#bit-rate-algorithm)
+    - [Differences](#differences)
+  - [Video-On-Demand (VOD)](#video-on-demand-vod)
+- [HTTP](#http)
+- [Linear Programming](#linear-programming)
+- [Byte Stuffing](#byte-stuffing)
+- [Bit Stuffing](#bit-stuffing)
+- [Hamming Distance](#hamming-distance)
+- [Cyclic Redundancy Check (CRC)](#cyclic-redundancy-check-crc)
+  - [Send Procedure](#send-procedure)
+  - [Receive Procedure](#receive-procedure)
+  - [Path Lookup](#path-lookup)
+- [Recipe to get IP addressing:](#recipe-to-get-ip-addressing)
+- [Mac vs IP-Address](#mac-vs-ip-address)
+- [Quiz](#quiz)
+- [Quic](#quic)
+
+
 ## Internet
 
 - Internet connects End Systems/ Hosts by a system of communications links and package switches
@@ -21,9 +85,6 @@
 - large Peak / Average -> On-demand
 - small peak /average -> circuit
 
-
-
-
 ## Delays
 - **nodal processing delay:** 
     - Time used to decode the header, determine which output needs to be used, bit level checking etc.
@@ -39,7 +100,6 @@
 - **propagation delay:** 
     - Time, the package takes to propagate through the physical medium (e.g. at light speed with radio waves), i.e. it takes on the way from router A to B
     - if possible, use data replication to shorten the client-server distance. Improving routing or physical transmission media also helps
-
 
 ## Layers
 |Layers|

@@ -1,3 +1,24 @@
+- [Convexity](#convexity)
+- [Gradient Descent](#gradient-descent)
+- [Discriminative vs Generative Models](#discriminative-vs-generative-models)
+  - [Gaussian Bayes Classifier (GBC)](#gaussian-bayes-classifier-gbc)
+  - [Convolutional neural network (CNN)](#convolutional-neural-network-cnn)
+  - [Ridge Regression](#ridge-regression)
+  - [Lasso Regression](#lasso-regression)
+  - [Ordinary Least Squares](#ordinary-least-squares)
+  - [SVM](#svm)
+  - [EM algorithm](#em-algorithm)
+  - [Gaussian Mixture Model](#gaussian-mixture-model)
+  - [Bootstrap](#bootstrap)
+    - [Advantage of using bootstrap parameter estimates in comparison with distribution-dependent parameter estimates](#advantage-of-using-bootstrap-parameter-estimates-in-comparison-with-distribution-dependent-parameter-estimates)
+  - [Generative Adversarial Networks](#generative-adversarial-networks)
+  - [Naive Bayes classifiers](#naive-bayes-classifiers)
+  - [Error](#error)
+  - [Asymmetric 0-1 loss with abstention](#asymmetric-0-1-loss-with-abstention)
+  - [Classification](#classification)
+  - [Quiz](#quiz)
+
+
 # Convexity
 - If $f$ is differentiable convex function and $\nabla f(w) = 0$ then $w$ is global minimum of $f$
 ![Alt text](assets/convex.png)
