@@ -1,5 +1,35 @@
+- [Important Things to Remember](#important-things-to-remember)
+  - [Haskell](#haskell)
+    - [Input/Output](#inputoutput)
+  - [How to convert to Haskell?](#how-to-convert-to-haskell)
+  - [Syntax for IO type:](#syntax-for-io-type)
+  - [Syntax Tree](#syntax-tree)
+  - [Foldr/Foldl](#foldrfoldl)
+    - [Foldr:](#foldr)
+  - [Currying, uncurrying](#currying-uncurrying)
+  - [CYP](#cyp)
+  - [$\\eta$-conversion](#eta-conversion)
+    - [General procedure of foldr, foldl](#general-procedure-of-foldr-foldl)
+  - [IMP](#imp)
+    - [Proof Structure](#proof-structure)
+      - [Free Variables /Arithmetic Expression](#free-variables-arithmetic-expression)
+      - [Boolean Expression](#boolean-expression)
+      - [Trees](#trees)
+  - [Find invariants](#find-invariants)
+    - [Min, Max](#min-max)
+    - [Swap](#swap)
+    - [$A^{2^N}$](#a2n)
+    - [Remainder](#remainder)
+    - [$N^K$](#nk)
+    - [$N = q \\times D + r$](#n--q-times-d--r)
+  - [Liveness](#liveness)
+  - [Safety](#safety)
+
+
 # Important Things to Remember
 ## Haskell
+
+
 ### Input/Output
 
 ````Java

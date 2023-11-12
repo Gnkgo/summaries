@@ -1,4 +1,33 @@
 
+
+- [PProg: Important things to know](#pprog-important-things-to-know)
+  - [Creating a Thread](#creating-a-thread)
+  - [Joining threads:](#joining-threads)
+  - [Thread states](#thread-states)
+  - [Data Races:](#data-races)
+  - [Important to remember:](#important-to-remember)
+    - [Speedup:](#speedup)
+  - [Amdahl:](#amdahl)
+  - [Gustafson](#gustafson)
+  - [Workspan](#workspan)
+  - [In a graph:](#in-a-graph)
+  - [Divide and Conquer with ExecutorService](#divide-and-conquer-with-executorservice)
+  - [Throughput](#throughput)
+  - [Latency](#latency)
+  - [MPI](#mpi)
+    - [Synchronous, asynchronous, blocking, non-blocking](#synchronous-asynchronous-blocking-non-blocking)
+  - [Transactional Memory](#transactional-memory)
+- [Important Code](#important-code)
+  - [Barrier](#barrier)
+  - [Semaphore](#semaphore)
+  - [PetersonLock](#petersonlock)
+  - [Filterlock](#filterlock)
+  - [BakeryLock](#bakerylock)
+  - [TAS](#tas)
+  - [CAS](#cas)
+  - [TASLock](#taslock)
+  - [TATASLock](#tataslock)
+
 # PProg: Important things to know
 
 ## Creating a Thread
