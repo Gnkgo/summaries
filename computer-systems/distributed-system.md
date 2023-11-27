@@ -145,6 +145,83 @@ Easy cases:
 Otherwise:
 - Choose a **random** value locally $\rightarrow$ Expected time $O(2^n)$ until all agree (once)
 
+## Lecture 4
+### Quorum
+When ever you do a request you ask server for a lock for a quorum
+![Alt text](assets/quorumBasic.png)
+
+Majority QS:
+
+$$S = \{X \subseteq \{v_1 ... v_m\} | |x| > \frac{m}{n}\}$$
+$$S = \{\{v_n\}\}$$
+
+Paxos: ask all of them for a lock
+Better Strategy: ask subset for a lock and work with them. Minimize load and work with probability choosing
+![Alt text](assets/exampleQuorum.png)
+$$L_Z(A) =P_r(\text{A is part of the chosen quorum}) $$
+$$ P_{Q~Z}(A \in Q) = \frac{1}{2} + \frac{1}{6}$$
+$$L_Z(s) = max L_Z(v) = L_Z(B) = 1 - \frac{1}{6} = \frac{5}{6}$$
+
+### Fault-Tolerance
+- f-resilient if and only if for any nodes that fail there exists a quorum that survives (worst-case)
+- Failure probability: Assume P that is the probability that one node survives s
+  - $F_P(S) = P(\text{all quorums contains a failure node})$
+  - asymptotic $m \rightarrow \infty F_P(S) \rightarrow ?$
+
+
+## Lecture 6
+### Sequential execution $S$:
+$$\forall f, g \in S: \text{ either } f < g \text{ or } g < f$$
+
+![Alt text](assets/sequential.png)
+
+$E$ is semantically equivalent to $E'$ if:
+- $E$ and $E'$ have *the same operation*
+- every $f$ needs to have the same "effect" in $E$ and $E'$
+![Alt text](assets/equalitySequential.png)
+
+$E$ is linearizable if:
+- $\exist S$ sequential execution that
+  - is semantically equivalent to $t$
+  - is correct
+  - if $f < g$ in $E \rightarrow f < g$ in $S$
+
+$E$ is sequentially consistent if:
+- $\exist S$ sequential execution s.t.
+  - $S$ is sem. equivalent to $E$
+  - $S$ is correct
+  - if $f, g$ are on the same node and $f < g \text{ in } E \rightarrow f < g \text{ in } S$
+
+$E$ is quiescent consistent if:
+  - $\exist S$ seq exe that
+    - is sem equivalent to $E$
+    - is correct
+    - $forall$ quisecent parent t:
+      - if $f_t < t$ and $g_* > t$
+      - $f < g$ in $S$
+
+#### Logical clock
+$$ C _u : \text{operations} \rightarrow \text{ "points in time" }$$
+"happened before"?
+- if $f < g$ on the same node: $f \rightarrow g$
+- if $f$ is a send operation (by u) and $g$ is the corresponding receive operation (on v) $\rightarrow f \rightarrow g$
+- $f \rightarrow g, g \rightarrow h \implies f \rightarrow h$
+
+"happened-before consistent:"
+- $\exist S$ ...
+- $f \rightarrow g$ in $E \implies f < g$ in $S$
+- $f !\rightarrow$ and $g !\rightarrow f$ then $f \approx g$
+
+#### Lampot clock
+$$c_u := 0$$
+upon local op:
+$$C_ := c_u + 1$$
+upon sending
+$$c_u := c_u + 1$$
+send $j, c_u$  
+upon receiving
+$$c_u := c_u + 1$$
+$$c_u = max (c_u, c_v) + 1$$
 ## Quiz
 **How does a node in Paxos know if a majority answered with ok?**
 
