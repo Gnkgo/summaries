@@ -255,3 +255,11 @@ False (definition)
 1 (definition)
 
 
+**Does a quorum system exist which can tolerate that all nodes of a specific quorum fail?**
+No, every two quorums intervene
+
+**Consider the *nearly all* quorum system, which is made up of n different quorums, each containing n - 1 servers. What is the resilience?**
+$f = 1$, assume $f = 2$ then every quorum has a failed server
+
+**Can you think of a quorum system that contains as many quorums as possible? Note: does not have to be minimal.**
+
