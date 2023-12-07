@@ -222,6 +222,12 @@ send $j, c_u$
 upon receiving
 $$c_u := c_u + 1$$
 $$c_u = max (c_u, c_v) + 1$$
+
+## Lecture 7
+### Time
+Second $\rightarrow$ International Atomic Time (TAI) $\rightarrow$Coordinated Universal Time (UTC) $\rightarrow$ Time
+
+Physical time | logic
 ## Quiz
 **How does a node in Paxos know if a majority answered with ok?**
 
