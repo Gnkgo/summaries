@@ -1,11 +1,40 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage[margin=3cm]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage[a4paper, hmargin = 1.5cm, head = 4cm, bottom = 2cm]{geometry}
+
+\pagestyle{fancy}
+\lhead{\includegraphics[width=0.27\textwidth]{assets/eth_logo.pdf}}
+\rhead{Parallel Programming}
+\lfoot{Spring Semester 2021}
+\rfoot{\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+\begin{titlepage}
+    \thispagestyle{fancy}
+    \renewcommand{\headrulewidth}{1pt}
+
+    \center
+    \vspace*{1.0cm}
+    \Large Parallel Programming \\[.5 cm]
+    \large
+    \normalsize
+    Gnkgo, Informatik B. Sc. 2. Semester \\
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage % Start content on a new page
+
 
 % Define code listing style
 \lstdefinestyle{mystyle}{
@@ -36,19 +65,7 @@
 
 \lstset{style=mystyle}
 
-\title{PProg: Important things to know}
-\author{Gnkgo}
-\date{\today}
 
-\begin{document}
-
-\maketitle
-
-\clearpage
-
-\tableofcontents
-
-\clearpage
 
 \section{Creating a Thread}
 
