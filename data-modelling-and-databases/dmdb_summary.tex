@@ -1,26 +1,40 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage[margin=3cm]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage[a4paper, hmargin = 1.5cm, head = 4cm, bottom = 2cm]{geometry}
 
-\usepackage{graphicx}
-
-\title{Data Modelling and Databases}
-\date{2023-06-21T11:21:37+02:00}
-\author{Gnkgo}
+\pagestyle{fancy}
+\lhead{\includegraphics[width=0.27\textwidth]{assets/eth_logo.pdf}}
+\rhead{Data Modelling and Databases}
+\lfoot{Spring Semester 2023}
+\rfoot{\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{1pt}
 
 \begin{document}
-\maketitle
 
-\clearpage
+\begin{titlepage}
+    \thispagestyle{fancy}
+    \renewcommand{\headrulewidth}{1pt}
 
+    \center
+    \vspace*{1.0cm}
+    \Large Data Modelling and Databases \\[.5 cm]
+    \large
+    \normalsize
+    Gnkgo, Informatik B. Sc. 4. Semester \\
+    \vfill
+\end{titlepage}
+
+% Table of Contents
 \tableofcontents
+\newpage % Start content on a new page
 
-\clearpage
 
 \section{Normal Forms}
 

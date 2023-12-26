@@ -113,6 +113,8 @@ Two-Phase Protocol - ask for locks, execute once acquired all locks
 - Breaks down if we even have ust one node failure
 - How to avoid deadlocks?
 
+## Eventual Consistency & Bitcoins
+
 ### Paxos - Main Ideas
 1. Tickets
    - "weak lock"
