@@ -13,5 +13,9 @@
         "Verwerfungsbereiche",
         "webhosting"
     ],
-    "cSpell.language": "en,ge-R,de-DE"
+    "cSpell.language": "en,ge-R,de-DE",
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "plaintext"
+    ]
 }
