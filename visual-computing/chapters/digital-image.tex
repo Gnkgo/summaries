@@ -1,22 +1,23 @@
+
 \section*{The Digital Image}
-\textbf{Problems:} Transmission interference, compression artifacts, spilling, scratches, sensor noise, bad contrast and resolution, motion blur \\
-\textbf{Pixel:} Discrete samples of an continuous image function.
-\subsection*{Charge Coupled Device (CCD)}
-Has an array of photosites (a bucket of electrical charge) that charge proportional to the incident light intensity during exposure. ADC happens line by line. \\
-\textbf{Bloooming:} oversaturation of finite capacity photosites causes the vertical channels to "flood" (bright vertical line)\\
-\textbf{Bleeding/Smearing:} While shifting down, the pixels above get some photons on bright spot with electronic shutters.\\
-\textbf{Dark Current:} CCDs produce thermally generated charge they give non-zero output even in darkness (fluctuates randomly) due to spontaneous generation of electrons due to heat $\rightarrow$ cooling.\\ can be avoided by cooling, worse with age.
+\greenbf{Problems:} Transmission interference, compression artifacts, spilling, scratches, sensor noise, bad contrast and resolution, motion blur \\
+\greenbf{Pixel:} Discrete samples of an continuous image function.
+\subsection*{Charge Coupled Device \graytext{(CCD)}}
+Has an array of photosites \graytext{(a bucket of electrical charge)} that charge proportional to the incident light intensity during exposure. ADC happens line by line. \\
+\greenbf{Bloooming:} oversaturation of finite capacity photosites causes the vertical channels to "flood" \graytext{(bright vertical line)}\\
+\greenbf{Bleeding/Smearing:} While shifting down, the pixels above get some photons on bright spot with electronic shutters.\\
+\greenbf{Dark Current:} CCDs produce thermally generated charge they give non-zero output even in darkness \graytext{(fluctuates randomly)} due to spontaneous generation of electrons due to heat $\rightarrow$ cooling.\\ can be avoided by cooling, worse with age.
 \subsection*{CMOS:}
 Same sensor elements as CCD, but each sensor has its own amplifier $\rightarrow$ faster readout, less power consumption, cheaper, more noise.\\ more noise, lower sensitivity\\
-\textbf{vs CCD} cheaper, lower power, less sensitive, per pixel amplification random pixel access, no blooming, on chip integration
+\greenbf{vs CCD} cheaper, lower power, less sensitive, per pixel amplification random pixel access, no blooming, on chip integration
 \subsection*{Sampling methods}
-Cartesian (grid), hexagonal, non-uniform\\
-\textbf{Quantization:} Real valued function will get digital values (integers). A lossy process (original cannot be reconstructed). Simple version: equally spaced $2^b = \#bits$ levels\\
-\textbf{Bilinear Interpolation:} TODO\\
-\textbf{Resolution:} Image resolution (cropping), geometric resolution (\#pixels per area), radiometric resolution (\#bits per pixel, color)\\
-\textbf{Image noise:} commonly modeled by additive Gaussian noise: $I(x, y) = f(x, y) + c$, poisson noise (shot noise for low light, depends on signal \& apature time), multiplicative noise: $I = f + f * c$, quantization errors, salt-and-pepper noise SNR or peak SNR is used as an index of image quality $c \sim N(0, \sigma^2), p(c) = \frac{1}{\sigma \sqrt{2\pi}} * e^{\frac{(c - \mu)^{2}}{2 * \sigma^{2}}}, SNR: S = \frac{F}{\sigma}$ where $F = \frac{1}{XY}\sum_{x = 1}^x \sum_{y = 1}^{y} f(x, y)$
+Cartesian \graytext{(grid)}, hexagonal, non-uniform\\
+\greenbf{Quantization:} Real valued function will get digital values \graytext{(integers)}. A lossy process \graytext{(original cannot be reconstructed)}. Simple version: equally spaced $2^b = \#bits$ levels\\
+\greenbf{Bilinear Interpolation:} TODO\\
+\greenbf{Resolution:} Image resolution \graytext{(cropping)}, geometric resolution \graytext{(\#pixels per area)}, radiometric resolution \graytext{(\#bits per pixel, color)}\\
+\greenbf{Image noise:} commonly modeled by additive Gaussian noise: $I(x, y) = f(x, y) + c$, poisson noise \graytext{(shot noise for low light, depends on signal \& aperture time)}, multiplicative noise: $I = f + f \cdot c$, quantization errors, salt-and-pepper noise. SNR or peak SNR is used as an index of image quality $c \sim N(0, \sigma^2)$, $p(c) = \frac{1}{\sigma \sqrt{2\pi}} \cdot \exp\left(-\frac{(c - \mu)^2}{2\sigma^2}\right)$, SNR: $S = \frac{F}{\sigma}$ where $F = \frac{1}{XY}\sum_{x = 1}^X \sum_{y = 1}^{Y} f(x, y)$.
 \subsection*{Color cameras:}
-\textbf{Prism} need 3 sensors and good alignment\\
-\textbf{Filter mosaic} coat directly on sensor \\
-\textbf{Wheel} multiple filters in front of same sensor\\
-\textbf{New CMOS sensor} layers that absorb color at different depths $\rightarrow$ better quality
+\greenbf{Prism} need 3 sensors and good alignment\\
+\greenbf{Filter mosaic} coat directly on sensor \\
+\greenbf{Wheel} multiple filters in front of same sensor\\
+\greenbf{New CMOS sensor} layers that absorb color at different depths $\rightarrow$ better quality

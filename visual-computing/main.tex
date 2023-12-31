@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath} 
 \usepackage{amssymb}
+\usepackage{blindtext} % this can be removed later on
 
 \usepackage[dvipsnames]{xcolor}
 \usepackage{mathptmx}
@@ -42,9 +43,15 @@
 
 \newcommand*{\myfont}{\fontfamily{phv}\selectfont}
 
+\newcommand{\greenbf}[1]{\textcolor{definitionColor}{\textbf{#1}}}
+\newcommand{\bluebf}[1]{\textcolor{darkblue}{\textbf{#1}}}
+\newcommand{\graytext}[1]{\textcolor{gray}{\footnotesize #1}}
+
+
 % Define custom colors
 \definecolor{darkblue}{RGB}{0, 0, 139}  % Adjust RGB values as needed
 \definecolor{darkgreen}{RGB}{0, 100, 0}  % Adjust RGB values as needed
+\definecolor{definitionColor}{rgb}{0,0.5,0}
 
 
 \titleformat*{\section}{\fontsize{11}{11}\selectfont\myfont\bfseries\color{darkblue}}
@@ -69,7 +76,22 @@
 \input{chapters/image-segmentation.tex}
 \input{chapters/image-filtering.tex}
 \input{chapters/features.tex}
-\input{chapters/fourier-transform.tex}
+\input{chapters/fourier-transform}
+\input{chapters/optical-flow}
+\input{chapters/video-compression}
+\input{chapters/unitary-transforms}
+\input{chapters/pyramids-and-wavelets}
+\input{chapters/textures}
+\input{chapters/augmented-reality}
+\input{chapters/drawing-triangles}
+\input{chapters/transforms}
+\input{chapters/transform-geometry-and-textures}
+\input{chapters/graphics-pipeline}
+\input{chapters/rendering-equation}
+\input{chapters/rigging-fk-and-ik}
+\input{chapters/physically-based-animation}
+\input{chapters/partial-differential-equations}
+\input{chapters/animation}
 \end{multicols*}
 \end{document}
 

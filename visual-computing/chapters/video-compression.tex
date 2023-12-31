@@ -1,0 +1,42 @@
+\section{Video Compression}
+\greenbf{Interlaced video format:} 2 temporally shifted half images \\
+\graytext{$\rightarrow$ increase frequency, decrease spatial resolution} $\rightarrow$ not progressive\\
+\greenbf{Lossy video compression:} take advantage of redundancy spatial correlation between pixels, temporal correlation between frames \\
+\graytext{$\rightarrow$ basically drop perceptually unimportant details}\\
+\greenbf{with optical flow:} Encode optical flow based on previous frame can cause blocking artifacts, does not work well for lots of movemen, fast movement and scene changes.\\
+\graytext{If temporal redundancy fails $\rightarrow$ use motion-compensated prediction}\\
+\greenbf{Types of coded frames:}\\
+\bluebf{I-Frame:} Intra-coded frame, coded independently of all others\\
+\bluebf{P-Frame:} Predictively coded frame, based on previously coded frame\\
+\bluebf{B-Frame:} Bi-directionally coded frame, based on previous \& future
+\subsection*{Block-Matching Motion Estimation:}
+Is a type of temporal redundancy reduction\\
+\greenbf{Motion Estimation Algorithm \graytext{ME}}
+\begin{compactenum}
+    \item Partition frame into blocks (e.g. $16 \times 16$ pixels)
+    \item For each block, find the best matching block in reference frame
+\end{compactenum}
+Metrics for best match: \graytext{sum of differences or squared sum of diff.}\\
+Candidate blocks: \graytext{All blocks in e.g. $32 \times 32$ pixel area}\\
+Search strategies: \graytext{Full search, partial (fast) search}\\
+\greenbf{Motion Compensation Algorithm \graytext{MC}}
+Use the best matching of reference frame as prediction of blocks in current frame\\
+\graytext{$\rightarrow$ gives motion vectors \& MC prediciotn error or residual (encode with conventionl image coder)}\\
+\greenbf{Motion Vector:} relative horizontal \& vertical offsets of a given block from one frame to another\\
+\graytext{Not limited to integer-pixel offsets, can use half-pixel ME to capture sub-pixel motion.}\\
+\greenbf{Half-pixel ME (coarse-fine) algorithm:}
+\begin{compactenum}
+    \item Coarse step: find best integer move
+    \item Fine step: refine by spatial interpolation and best-matching
+\end{compactenum}
+\greenbf{Advantages and disadvanages}\\
++ good, robust performance, one MV per block $\rightarrow$ useful for compression, simple periodic structure \graytext{(GoP)}\\
+- assumes translational motion (fails for complex motion)\\
+\graytext{$\rightarrow$ codes these frames/blocks without prediction} produces blocking artifacts\\
+\greenbf{MPEG-GoP} IBBPBBPBBI dependencies between frames
+\subsection*{Scalable Video Coding:}
+Decompose video into multiple layers of prioritized importance: e.g. \\
+temporal scalability: \graytext{Include B-frames or not}\\
+spatial scalability: \graytext{Base resolution + upsampling difference}\\
+SNR scalability: \graytext{Base with coarse quatizer + fine quantizer}\\
+\greenbf{Benefits:} Adapting to different bandwidths, facilitates error resiliency by identifying more and less important bits.
