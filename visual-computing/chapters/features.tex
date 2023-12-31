@@ -1,0 +1,88 @@
+\section*{Features}
+\subsection*{Edge Detection}
+How to tell if there is an edge? Local maxima of the first derivative and the zero crossing of the second derivative.\\
+\textbf{Edge detection filters:}\\
+\textbf{Sobel:}\\
+$K_x = \begin{bmatrix}
+-1 & 0 & 1\\
+-2 & 0 & 2\\
+-1 & 0 & 1
+\end{bmatrix}, K_y = \begin{bmatrix}
+-1 & -2 & -1\\
+0 & 0 & 0\\
+1 & 2 & 1
+\end{bmatrix}$\\
+\textbf{Prewitt:}\\
+$K_x = \begin{bmatrix}
+-1 & 0 & 1\\
+-1 & 0 & 1\\
+-1 & 0 & 1
+\end{bmatrix}, K_y = \begin{bmatrix}
+-1 & -1 & -1\\
+0 & 0 & 0\\
+1 & 1 & 1
+\end{bmatrix}$\\
+\textbf{Roberts:}\\
+$K_x = \begin{bmatrix}
+1 & 0\\
+0 & -1
+\end{bmatrix}, K_y = \begin{bmatrix}
+0 & 1\\
+-1 & 0
+\end{bmatrix}$\\
+
+\textbf{Gradient Magnitude:}\\
+$M(x, y) = \sqrt{(\frac{\partial f}{\partial x})^{2} + (\frac{\partial f}{\partial y})^{2}}$\\
+\textbf{Gradient Angle:} \\
+$\alpha(x, y) = \tan^{-1}(\frac{\partial f}{\partial y} / \frac{\partial f}{\partial x})$\\
+
+\subsection*{Laplacian operator}
+detect discontinuities by considering second derivative\\ TODO
+$\begin{bmatrix}
+0 & 1 & 0\\
+1 & -4 & 1\\
+0 & 1 & 0
+\end{bmatrix}$ or 
+$\begin{bmatrix}
+1 & 1 & 1\\
+1 & -8 & 1\\
+1 & 1 & 1
+\end{bmatrix}$\\
+are discrete space approximations. Is isotropic(rotationally invariant), zero crossings make edge locations. Sensitive to fine details and noise ($\rightarrow$ smoothing before applying).\\ blur image first (LoG)\\
+\textbf{Laplacian of Gaussian (LoG):} convolve gaussian blurring and laplacian operator in LoG operator (cheaper) $LoG(x, y) = -\frac{1}{\pi \sigma^{4}} (1 - \frac{x^{2} + y^{2}}{2\sigma^{2}}) e^{-\frac{x^{2} + y^{2}}{2\sigma^{2}}}$\\
+\subsection*{Canny Edge Detector: 5 Steps}
+\begin{enumerate}
+    \item smooth image with a Gaussian filter
+    \item compute gradient magnitude and angle
+    \item apply non-maximum suppression to gradient magnitude image (Quantize edge normal to one of four directions: horizontal, +45°, vertical, -45°. If $M(x, y)$ smaller thn either of its neighbors in edge normal direction suppress, else keep)
+    \item Double thresholding to detect strong and weak edge pixels
+    \item Reject weak edge pixels not connected to strong edge pixels
+\end{enumerate}
+\subsection*{Hough Transform}
+Fitting a straight line to a set of edge TODO\\
+\textbf{Fr circles:} if r known: calculate circles with radius r around edge pixels $\rightarrow$ intersection of circles gives center.\\ where lots of them meet is the center of a circle. else: use 3D hough transform with parameters $(x_0, y_0, r)$\\
+\subsection*{Corner Detection}
+Edges are only well localized in one direction $\rightarrow$ detect corners.\\
+Desirable properties: Accute localization, invariance against shift, rotation, scale, brightness change, robust against noise, high repeatability\\
+\textbf{Linear approximation for small $\Delta x \Delta y$:} (Taylor) $f(x + \Delta x, y + \Delta y) \approx f(x, y) + f_x(x, y) \Delta x + f_y(x, y)\Delta y$\\
+\subsection*{Local displacement sensitivity (Harris corners)}
+$S (\Delta x, \Delta y) = (\Delta x \Delta y) (\sum_{x, y \in window })
+\begin{bmatrix} 
+    f_x^{2} & f_x f_y \\ 
+    f_x  f_y & f_y^{2} 
+\end{bmatrix} 
+\begin{bmatrix} 
+    \Delta x \\ 
+    \Delta y
+\end{bmatrix}\\
+\approx SSD$\\
+Find points where $\min \Delta^T M \Delta$ is large for $||\Delta || = 1$ i. e. maximize the eigenvalues of $M$\\
+$C(c, y) = \det(M) - k * trace(M)^{2} = \lambda_1 * \lambda_2 + k * (\lambda_1 + \lambda_2)$ Harris cornerness: Measure of cornerness\\
+\textbf{Robustness of Harris corner detector:} Invariant to brightness offset, invariant to shift and rotation but not to scaling!
+$\lambda_1 >> \lambda_2 \rightarrow$ edge, $\lambda_1$ and $ \lambda_2$ large $\rightarrow$ corner, else $\rightarrow$ flat region.\\
+not scale invariant: TODO\\
+\textbf{Overcome issues:} look for strong DoG response or consider local maxima in position and scale space, Gaussian weighing.
+\subsection*{Lowe's SIFT features}
+Look for strong responses of difference of Gaussians (DoG) filter, only look at local maxima in both position and scale.\\
+\textbf{DoG:} $DoG(x, y) = \frac{1}{k}* e^{-\frac{x^{2} + y^{2}}{(k\sigma)^{2}}} - e^{-\frac{x^{2} + y^{2}}{\sigma^{2}}}$ e.g. $k = \sqrt{2}$\\
+Orientation: create histogram of local gradient directions computed at selected scale, assign canonical orientation at peak of smoothed histogram. Get a SIFT descriptor (threshold image gradients are sampled over $16\times 16$ array of locations in scale space) and do matching with these. Invariant to scale, rotation, illumination and viewpoint.

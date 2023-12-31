@@ -1,0 +1,15 @@
+\section*{Fourier Transform}
+\textbf{Aliasing:} Happens when undersampling e.g. taking every second pixel, else characteristic errors appear: typically small phenomena look bigger, fast phenomena look slower. (e.g. wagon wheels backwards in movies, checkerboards misrepresented)
+\subsection*{Fourier Transform}
+Represent function on a new basis with basis elements $e^{i 2 \pi (ux + vy)} = \cos(2 \pi (ux + vy)) + i \sin(2 \pi (ux + vy))$\\
+$F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \textbf{2D:} $F(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-2\pi i (ux, vy)}dx dy$\\
+\textbf{For images:} transformed image $\rightarrow$ $F = U * f$ $\leftarrow$ vectorized image, U: Fourier matrix\\
+\textbf{For discrete:} $F(u, v) = \sum_{x=0}^{N-1} \sum_{y=0}^{M-1} f(x, y) e^{-2\pi i (\frac{ux}{N}, \frac{vy}{M})}$\\
+\textbf{1D-periodic function:} $f(t) = \sum_{n = -\infty}^{\infty} c_n e^{\frac{i 2 \pi n t}{T}}$, $c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{\frac{-i 2 \pi n t}{T}} dt$\\
+\subsection*{Properties of Fourier transform}
+\textbf{Linearity:} $F(ax(t) + by(t)) = aX(t) + bY(t)$\\
+\textbf{Time Shift:} $F(x(t \pm t_0)) = X(t) e^{\pm i 2 \pi f t_0}$\\
+\textbf{Frequency Shift:} $F(e^{i 2 \pi f_0 t} x(t)) = X(f - f_0)$\\
+\textbf{Scaling:} $F(x(at)) = \frac{1}{|a|}X\left(\frac{f}{a}\right)$\\
+\textbf{Convolution:} $F(x(t) * y(t)) = X(f) \cdot Y(f)$\\
+\textbf{Duality:} $F(X(t)) \longleftrightarrow x(-f)$
