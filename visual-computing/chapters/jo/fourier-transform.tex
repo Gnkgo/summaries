@@ -22,7 +22,7 @@ $F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \greenbf{2D:} $F(u, v)
 A sampling function $s(t)$ which is an impulse train with period $T$ and its Fourier transform $S(f)$:\\
 \color{gray}
 $S(t) = \sum_{n = -\infty}^\infty \delta\left(t - nT\right)$\\
-$ S(f) = \frac{1}{T} \sum_{n = -\infty}^\infty X(f - \frac{n}{T}) \text{ where } \delta(*) \text{  Dirac-delta function}$\\
+$ S(f) = \frac{1}{T} \sum_{n = -\infty}^\infty X(f - \frac{n}{T}) \text{ where } \delta(*) \text{  Dir.-delt. f.}$\\
 \color{black}
 A continuous signal can be sampled by multiplying with $s(t):$ \graytext{$x_s(t) = x(t)s(t)$}To compute the Fourier Transform of $x_s(t)$, we can use the convolution theorem:
 
@@ -58,8 +58,7 @@ $\text{rect}(t) = \begin{cases} 1, & \text{if } |t| \leq \frac{1}{2} \\ 0, & \te
 $\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
 
 \subsection*{Fourier transform of important functions}
-TODO
-
+\includegraphics*[width = \columnwidth]{jo/fourier-transform-important-functions.png}
 \subsection*{Nyquist Sampling theorem}
 The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
 

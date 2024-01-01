@@ -9,7 +9,7 @@ Spatial coherence: \graytext{Points move like their neighbors}\\
 Small motion $\rightarrow$ can linearize with Taylor expansion:\\
 \graytext{$I(x, y, t - 1) \approx I(x, y, t - 1) + \frac{\partial I}{\partial x} u + \frac{\partial I}{\partial y} v + \frac{\partial I}{\partial t} \approx 0$} or shorthand \graytext{$I_x \cdot u + I_y \cdot v + I_t \approx 0$}\\
 move $I-t$ on one side, vectorize unknowns. For LK, sum up over a window of pixes\\
-\greenbf{Apature problem:} 1 equation, 2 unknowns cannot determine exact location, take normal flow. TODO\\
+\greenbf{Apature problem:} 1 equation, 2 unknowns cannot determine exact location, take normal flow. \includegraphics*[width =0.6 \columnwidth]{jo/feature.png}\\
 Add additional smoothness constraint: \\
 \graytext{$e_s = \int \int (u_x^2 + u_y^2 + v_x^2 + v_y^2) dxdy$ $close \approx parallel$}\\
 Besides OF constraint: \\
@@ -64,7 +64,7 @@ Brightness constancy does not hold:\\
 \greenbf{KLT feature tracker:} to find patches where LSE well-behaved $\rightarrow$ LK-flow\\
 \greenbf{Iterative refinement:} Estimate velocity, warp using estimate, refine,...\\
 \greenbf{Coarse-toFine Estimation:} Image Pyramid. Start small, compute OF, rescale, take larger and initialize with last estimate\\
-\greenbf{Applications:} Image stabilization \graytext{(get flow between two frames and warp image using same OF for all pixels s.st. OF close to 0)} frame interpolation, video compression, object tracking, motion segmentation
-\greenbf{Affine motion:} $I_x(a_1 + a_2x + a_3y) + I_y(a_4 + a_5x + a_6y) + I_t \approx 0$ TODO\\
+\greenbf{Applications:} Image stabilization \graytext{(get flow between two frames and warp image using same OF for all pixels s.st. OF close to 0)} frame interpolation, video compression, object tracking, motion segmentation\\
+\greenbf{Affine motion:} $I_x(a_1 + a_2x + a_3y) + I_y(a_4 + a_5x + a_6y) + I_t \approx 0$ \includegraphics*[width = 0.75 \columnwidth]{jo/planes.png}\\
 \greenbf{SSD tracking:} For large displacements: match template against each pixel in small area around, match measure can be (normalized) correlation or SSD choose max. as match \graytext{(sub-pixel also possible)}\\
 \greenbf{Bayesan Optical Flow:} Some low-level motion illusions can be explained by adding an underlying model to LK-tracking e.g. brightness constancy with noise.

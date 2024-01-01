@@ -17,6 +17,8 @@ $I' = K * I, I'(x, y) = \sum_{(i, j) \in \N(i, j)} K(i, j) I (x - i, y - j)$ if 
 Rotationally symmetric, has single lobe, single lobe in frequency domain, simple relationship to $\sigma$ easy to implement efficiently, neighbors decrease monotonically, no corruption from higher frequency. \\
 Subtracting one from central element of low-pass filter gives a high-pass filter with inverted sign, because.\\
 $(f - \delta) * a = f * a - \delta * a = f * a - a = - (a - (f * a))$\\
-\greenbf{Band pass filter:} do LPF and HPF with cutoffs $D_{LP} < D_{HP}$\\
-\greenbf{Band reject filter:} do LPF and HPF with cutoffs $D_{LP} > D_{HP}$\\
+\greenbf{Band pass filter:} \includegraphics*[width = 0.4cm]{jo/band-pass-filter.png}
+do LPF and HPF with cutoffs $D_{LP} < D_{HP}$\\
+\greenbf{Band reject filter:} \includegraphics*[width = 0.4cm]{jo/band-reject-filter.png}
+do LPF and HPF with cutoffs $D_{LP} > D_{HP}$\\
 \greenbf{Image sharpening:} increases high frequency components to enhance edges: $I' = I + \alpha |K * I|$ $K:$ high-pass filter, $\alpha$: scalar $\in [0, 1]$ds

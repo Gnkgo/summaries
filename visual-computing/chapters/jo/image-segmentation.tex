@@ -6,10 +6,11 @@ Finite set of non-overlapping regions that cover the whole image $I = \bigcup_{i
 \subsection*{Receiver Operating Characteristic (ROC) analysis:}
 ROC curve characterizes performance of binary classifier Classification errors: False negative (FN), false positives (FP)\\
 ROC curve plots TP fraction $\frac{TP}{TP + FN}$ vs FP fraction $\frac{FP}{FP + TN}$\\
-TODO
+\greenbf{Operating points:} choose point with gradient
+\includegraphics[width=0.4\columnwidth]{jo/roc.png} \includegraphics[width=0.4\columnwidth]{jo/connection.png}
 \subsection*{Pixel connectivity}
-TODO\\
-\greenbf{Connected component raster scanning:} scanning row by row, if foreground \& label if connected to other label, alse give new label. (second pass to find equivalent labels)\\
+\graytext{also regions if $x$-connected}\\
+\greenbf{Connected component raster scanning:} scanning row by row, if foreground \& label if connected to other label, else give new label. (second pass to find equivalent labels)\\
 \greenbf{Improve:} when region found, follow border, then carry on (contour-based method)
 \subsection*{Region growing}
 Start with seed point or region, add neighboring pixels that satisfy a criteria defining a region until we include no more pixels.\\

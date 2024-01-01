@@ -23,11 +23,19 @@ Differentiating $L$ with respect to $a_j$: $R_{ff} a_j^* = \lambda_i a_j^* \quad
 SSD between images, best match wins \graytext{very expensive, since need to correlate with every image}
 \subsection*{Principle Component analysis \graytext{PCA}}
 \greenbf{Steps:} standardize data, get Eigenvectors and values from covariance matrix or do SVD, sort Eigenvalues and vectors in descending order get $j$ largest components, construct projection matrix from selected $j$ Eigenvectors transform dataset by multiplying with projection matrix.\\
-TODO\\
-\greenbf{Uses of PCA:} lossycompression by keeping only the most important $k$ components. Face recognition \graytext{eigenfaces} and face detection.
+\includegraphics*[width = 0.4\columnwidth]{jo/pca.png}\\
+\greenbf{Uses of PCA:} lossy compression by keeping only the most important $k$ components. Face recognition \graytext{eigenfaces} and face detection.
 \subsection*{Eigenspace matching}
 Do PCA \graytext{with mean subtraction} and get closest rank-$k$ approximation of database images \graytext{(eignfaces)} \\
 For a new query: normalize, subtract mean \graytext{(of database)} project to subspace then do similarity matching with eigenfaces.
 \subsection{Fischerfaces:} 
 Find directions where ratio between / within individual variance is maximized. Linearly project to basis where dimension with good signal: noise ratio is maximized. \\
-$W_{\text{opt}} = \arg\max_W \frac{\det(W R_B W^H)}{\det(W R_W W^H)}, R_b = \sum_{i = 1}^{c} (\mu_i - \mu)(\mu_i - \mu)^T, R_W = \sum_{i = 1}^{c} \sum_{x \in X_i} (x - \mu_i)(x - \mu_i)^T$\\
+$W_{\text{opt}} = \argmax{W} \frac{\det(W R_B W^H)}{\det(W R_W W^H)}, R_b = \sum R_B \sum_{i = 1}{c} N_i (\vec{\mu_i} - \vec{\mu})(\vec{\mu_i} - \vec{\mu})^H, R_W = \sum_{i = 1}^{c} \sum_{\Gamma_l \in Class} (\Gamma_l - \mu_i)(\Gamma_l - \mu_i)^H$\\
+\greenbf{Fischer linear discriminant analysis \graytext{(LDA)}:} maximize between class scatter, while minimizing within less scatter
+\subsection*{JPEG Compression}
+Divide image into $8 \times 8$ block:\\
+\includegraphics*[width = \columnwidth]{jo/jpg.png}\\
+\greenbf{DC:} First coefficient (general intensity)\\
+\greenbf{ZigZag:} \includegraphics*[width = 1.5cm]{jo/zig-zag.png}\\
+\greenbf{Quantization Table:} Divide by this value, round to nearest integer\\
+\greenbf{Why DCT?} Compared to DFT uses only real values, easier to compute
