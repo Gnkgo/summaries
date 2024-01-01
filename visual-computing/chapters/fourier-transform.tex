@@ -1,0 +1,78 @@
+
+
+\section{Fourier Transformation}
+\greenbf{Aliasing:} Happens when undersampling e.g. taking every second pixel, else characteristic errors appear: typically small phenomena look bigger, fast phenomena look slower. (e.g. wagon wheels backwards in movies, checkerboards misrepresented)
+\subsection*{Fourier Transform}
+Represent function on a new basis with basis elements $e^{i 2 \pi (ux + vy)} = \cos(2 \pi (ux + vy)) + i \sin(2 \pi (ux + vy))$\\
+$F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \greenbf{2D:} $F(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-2\pi i (ux, vy)}dx dy$\\
+\greenbf{For images:} transformed image $\rightarrow$ $F = U * f$ $\leftarrow$ vectorized image, U: Fourier matrix\\
+\greenbf{For discrete:} $F(u, v) = \sum_{x=0}^{N-1} \sum_{y=0}^{M-1} f(x, y) e^{-2\pi i (\frac{ux}{N}, \frac{vy}{M})}$\\
+\greenbf{1D-periodic function:} $f(t) = \sum_{n = -\infty}^{\infty} c_n e^{\frac{i 2 \pi n t}{T}}$, $c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{\frac{-i 2 \pi n t}{T}} dt$
+\subsection*{Properties of Fourier transform}
+\greenbf{Linearity:} $F(ax(t) + by(t)) = aX(t) + bY(t)$\\
+\greenbf{Time Shift:} $F(x(t \pm t_0)) = X(t) e^{\pm i 2 \pi f t_0}$\\
+\greenbf{Frequency Shift:} $F(e^{i 2 \pi f_0 t} x(t)) = X(f - f_0)$\\
+\greenbf{Scaling:} $F(x(at)) = \frac{1}{|a|}X\left(\frac{f}{a}\right)$\\
+\greenbf{Convolution:} $F(x(t) * y(t)) = X(f) \cdot Y(f)$\\
+\greenbf{Duality:} $F(X(t)) \longleftrightarrow x(-f)$
+
+\color{definitionColor}
+\greenbf{Sampling:} \color{black}
+
+A sampling function $s(t)$ which is an impulse train with period $T$ and its Fourier transform $S(f)$:\\
+\color{gray}
+$S(t) = \sum_{n = -\infty}^\infty \delta\left(t - nT\right)$\\
+$ S(f) = \frac{1}{T} \sum_{n = -\infty}^\infty X(f - \frac{n}{T}) \text{ where } \delta(*) \text{  Dirac-delta function}$\\
+\color{black}
+A continuous signal can be sampled by multiplying with $s(t):$ \graytext{$x_s(t) = x(t)s(t)$}To compute the Fourier Transform of $x_s(t)$, we can use the convolution theorem:
+
+\graytext{
+$F(x_s(t)) = X(t) * S(t) = \frac{1}{T}\sum_{n = -\infty}^\infty \delta\left(f - \frac{n}{T}\right) * X(t) = \frac{1}{T}\sum_{n = -\infty}^\infty X(f - \frac{n}{T})$
+}
+
+\greenbf{Sampling in 2D:}$sample_{2D} (f(x, y)) = \sum_{i = \infty}^{\infty} \sum_{j = \infty}^{\infty} f(x, y) * \delta(x - i, x - j) = f(x, y) \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)$
+
+\greenbf{DFT:} 
+
+$ F(f(x, y))  (\sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)) F(f(x, y)) * F( \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)) =  \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty} F(u - i, v - j)$
+
+\greenbf{Dirac Delta Function:} 
+
+$\int_{-\infty}^{\infty} \delta(t) \, dt = 1 \quad \text{and} \quad \delta(t) =  \begin{cases} 0 & \text{ for } x \neq 0 \\ und. & \text{ for } x = 0 \end{cases}$
+
+\greenbf{Sifting Property:}
+
+\color{black} 
+$\int_{-\infty}^{\infty} f(t) \cdot \delta(x - a) \, dx = f(a)$
+
+\greenbf{Dirac Comb:} 
+
+$\text{III}_T(x) = \sum_{n=-\infty}^{\infty} \delta(t - nT),\\ \color{gray} \text{sampling = product with this}$
+
+TODO!
+
+\greenbf{Box Filter:}
+$\text{rect}(t) = \begin{cases} 1, & \text{if } |t| \leq \frac{1}{2} \\ 0, & \text{otherwise.} \end{cases}$
+
+\greenbf{Triangle Filter:}
+$\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
+
+\subsection*{Fourier transform of important functions}
+TODO
+
+\subsection*{Nyquist Sampling theorem}
+The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
+
+\greenbf{Why should this hold?} \graytext{Function $f(t)$, sampling function $S_{\Delta t}(t)$ with sampling frequency $w_s$}. Fourier transform of the sampled function can be derived as
+\begin{align*}
+    \tilde{F}(u) &= F(f(t) \cdot S_{\Delta t}(t)) \\
+                 &= F(u) * S_{\Delta t}(w) \\
+                 &= \int_{-\infty}^{\infty} F(\tilde{t}) S_{\Delta t}(w - \tilde{t}) \, d\tilde{t} \\
+                 &= \int_{-\infty}^{\infty} F(\tilde{t}) \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} \delta (w - \tilde{t} - \frac{n}{\Delta T}) \, d\tilde{t} \\
+                 &= \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} F(w - n w_s).
+\end{align*}
+If we want to reconstruct the signal $f(t)$ from $F$ and $S_{\Delta t}$, $F(w)$ cannot overlap with its neighbors $F(w - w_s)$ and $F(w + w_s)$. Thus, $w_s$ should be larger than $w_n$. \graytext{Highest frequency of $f(t)$}.
+\subsection*{Image restoration problem: $f(x) \rightarrow h(x) \rightarrow g(x) \rightarrow \tilde{h}(x) \rightarrow f(x)$}
+The "inverse" kernel $\tilde{h}(x)$ should compensate $h(x)$. May be determined by: $F(\tilde{h})(u, v) \cdot F(h(u, v)) = 1$\\
+\greenbf{Problems:} Convolution with kernel $k$ may cancel out some frequencies \& noise amplification. \\
+\greenbf{Avoid:} Regularization: $F(\tilde{h})(u, v) = \frac{F(h)}{{|F(h)|}^{2} + \epsilon}$ \graytext{avoid singularities}
