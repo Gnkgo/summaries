@@ -271,3 +271,26 @@ $f = 1$, assume $f = 2$ then every quorum has a failed server
 
 **Can you think of a quorum system that contains as many quorums as possible? Note: does not have to be minimal.**
 
+**Addiert man die Werte aller UXTOs auf, so erh¨alt man die Menge der bis dato gemünzten (mined) Bitcoins**
+Falsch: Die Menge der bis dato gemünzten Bitcoins ergibt sich aus der Anzahl der erfolgreich abgeschlossenen neuen Blocks im Bitcoin-Netzwerk und der Belohnung, die den Minern für das Hinzufügen neuer Blöcke in Form von neuen Bitcoins erteilt wird. Die Unspent Transaction Outputs (UXTOs) sind Ausgaben von Transaktionen, die noch nicht in weiteren Transaktionen verwendet wurden. 
+
+**Vergäbe eine neutrale Zentrale fortlaufende Transaktionsnummern, könnte Bitcoin-Doublespends vorgebeugt werden.**
+Richtig: Die Vergabe einer neutralen, fortlaufenden Transaktionsnummer durch eine zentrale Autorität könnte theoretisch dazu beitragen, Double-Spending in einem dezentralen System wie Bitcoin zu verhindern. In einem solchen System würde jede Transaktion eine eindeutige, von der zentralen Autorität vergebene Transaktionsnummer erhalten, und dies könnte es schwieriger machen, dieselbe Menge an Bitcoins mehrmals auszugeben.
+
+Allerdings widerspricht dies dem grundlegenden Prinzip von Bitcoin und anderen Kryptowährungen, die auf dezentralen und verteilten Ledger-Technologien basieren. Das Bitcoin-Netzwerk verwendet stattdessen einen dezentralen Konsensmechanismus, basierend auf Proof-of-Work, um Doppelverwendungen zu verhindern und Transaktionen zu validieren.
+
+**Wenn eine Transaktion nicht in den nächsten Block aufgenommen wird, muss sie neu signiert werden, da sie den Hash des letzten Blocks enthält**
+Falsch: In Bitcoin und vielen anderen Blockchain-Systemen müssen Transaktionen nicht neu signiert werden, wenn sie nicht sofort in den nächsten Block aufgenommen werden. Der Prozess des Signierens einer Transaktion ist unabhängig vom Zeitpunkt ihrer Aufnahme in einen Block.
+
+In einem Blockchain-System wird jede Transaktion mit einem digitalen Signaturen versehen, um die Authentizität und Integrität der Transaktion sicherzustellen. Dieser Signaturprozess beinhaltet normalerweise die Verwendung des privaten Schlüssels des Absenders, um die Transaktion zu signieren, und andere Netzwerkteilnehmer können dann mit dem öffentlichen Schlüssel des Absenders überprüfen, ob die Signatur gültig ist.
+
+Die Aufnahme einer Transaktion in einen Block hängt von verschiedenen Faktoren ab, wie zum Beispiel der Gebühr, die der Absender bereit ist zu zahlen, und dem aktuellen Transaktionsvolumen im Netzwerk. Wenn eine Transaktion nicht sofort in einen Block aufgenommen wird, bleibt sie im sogenannten Mempool (Memory Pool) des Netzwerks, bis ein Miner sie in einen Block aufnimmt.
+
+Das Signieren einer Transaktion erfolgt einmalig und bleibt gültig, solange die Transaktion nicht geändert wird. Daher ist es nicht erforderlich, eine Transaktion erneut zu signieren, wenn sie nicht sofort in einen Block aufgenommen wird.
+
+**Damit ein Angreifer den Zustand des Bitcoin-Netzwerks beliebig manipulieren kann, muss es f ≥ n/2 byzantinische Knoten im Netzwerk geben.**
+
+**In einer DHT mit Consistent Hashing ist immer derselbe Knoten für einen Schlüssel zuständig, auch mit Churn.**
+
+**Byzantine Agreement ist für $f = \frac{n}{3}$ nur mit Hilfe eines byzantinischen Quorumsystems lösbar** Falsch
+**Der King-Algorithmus funktioniert nur, weil man immer mindestens einen nicht-byzantisnischen König hat** Wahr
