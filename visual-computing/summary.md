@@ -21,3 +21,18 @@ Purpose: B-frames can reference frames both before and after them, utilizing bid
 Usage: While efficient, B-frames are resource-intensive for both encoding and decoding. They are strategically placed in the video stream to achieve a balance between reduced file size and maintained quality.
 In summary, I-frames act as independent reference points, P-frames use predictions from previous frames, and B-frames leverage bidirectional predictions for optimal video compression. Together, they form a dynamic framework for achieving efficient video encoding, streaming, and error recovery.
 
+![Alt text](image.png)
+![![Alt text](image.png)](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)
+![Alt text](image.png)

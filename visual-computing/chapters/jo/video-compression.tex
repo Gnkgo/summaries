@@ -3,7 +3,7 @@
 \graytext{$\rightarrow$ increase frequency, decrease spatial resolution} $\rightarrow$ not progressive\\
 \greenbf{Lossy video compression:} take advantage of redundancy spatial correlation between pixels, temporal correlation between frames \\
 \graytext{$\rightarrow$ basically drop perceptually unimportant details}\\
-\greenbf{with optical flow:} Encode optical flow based on previous frame can cause blocking artifacts, does not work well for lots of movemen, fast movement and scene changes.\\
+\greenbf{with optical flow:} Encode optical flow based on previous frame can cause blocking artifacts (if OF of 2 pixels point to same coordinate, there will be a hole somewhere), does not work well for lots of movement, fast movement and scene changes.\\
 \graytext{If temporal redundancy fails $\rightarrow$ use motion-compensated prediction}\\
 \greenbf{Types of coded frames:}\\
 \bluebf{I-Frame:} Intra-coded frame, coded independently of all others\\

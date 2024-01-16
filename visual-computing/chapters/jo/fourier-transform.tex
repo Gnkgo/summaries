@@ -3,6 +3,8 @@
 \section{Fourier Transformation}
 \greenbf{Aliasing:} Happens when undersampling e.g. taking every second pixel, else characteristic errors appear: typically small phenomena look bigger, fast phenomena look slower. (e.g. wagon wheels backwards in movies, checkerboards misrepresented)
 \subsection*{Fourier Transform}
+$\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$\\
+$\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$\\
 Represent function on a new basis with basis elements $e^{i 2 \pi (ux + vy)} = \cos(2 \pi (ux + vy)) + i \sin(2 \pi (ux + vy))$\\
 $F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \greenbf{2D:} $F(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-2\pi i (ux, vy)}dx dy$\\
 \greenbf{For images:} transformed image $\rightarrow$ $F = U * f$ $\leftarrow$ vectorized image, U: Fourier matrix\\
@@ -13,7 +15,10 @@ $F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \greenbf{2D:} $F(u, v)
 \greenbf{Time Shift:} $F(x(t \pm t_0)) = X(t) e^{\pm i 2 \pi f t_0}$\\
 \greenbf{Frequency Shift:} $F(e^{i 2 \pi f_0 t} x(t)) = X(f - f_0)$\\
 \greenbf{Scaling:} $F(x(at)) = \frac{1}{|a|}X\left(\frac{f}{a}\right)$\\
-\greenbf{Convolution:} $F(x(t) * y(t)) = X(f) \cdot Y(f)$\\
+\greenbf{Convolution, Filtering:} The Fourier transfomr of the convolution of two functions is the product of their Fourier transform:\\
+$F \cdot G = U(f ** g)$\\
+\greenbf{Convolution, Sampling:} The Fourier transfomr of the product of two functions is the convolution of the Fourier transform.\\
+$F ** G = U(f \cdot g)$\\
 \greenbf{Duality:} $F(X(t)) \longleftrightarrow x(-f)$
 
 \color{definitionColor}
@@ -30,13 +35,15 @@ A continuous signal can be sampled by multiplying with $s(t):$ \graytext{$x_s(t)
 $F(x_s(t)) = X(t) * S(t) = \frac{1}{T}\sum_{n = -\infty}^\infty \delta\left(f - \frac{n}{T}\right) * X(t) = \frac{1}{T}\sum_{n = -\infty}^\infty X(f - \frac{n}{T})$
 }
 
-\greenbf{Sampling in 2D:}$sample_{2D} (f(x, y)) = \sum_{i = \infty}^{\infty} \sum_{j = \infty}^{\infty} f(x, y) * \delta(x - i, x - j) = f(x, y) \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)$
+\greenbf{Sampling in 2D:} $sample_{2D} (f(x, y)) = \sum_{i = \infty}^{\infty} \sum_{j = \infty}^{\infty} f(x, y) * \delta(x - i, x - j) = f(x, y) \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)$
 
 \greenbf{DFT:} 
-
+The 2D DFT of an image \( I(x, y) \) is given by:
+$F(u, v) = \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} I(x, y) \cdot e^{-j2\pi\left(\frac{ux}{N} + \frac{vy}{N}\right)} $
 $ F(f(x, y))  (\sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)) F(f(x, y)) * F( \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty}\delta(x - i, x - j)) =  \sum_{i = \infty}^{\infty}\sum_{j = \infty}^{\infty} F(u - i, v - j)$
 
-\greenbf{Dirac Delta Function:} 
+\greenbf{Dirac Delta Function:} \\
+$\delta (K - k) =  \int_{-\infty}^{\infty}e^{2 \pi i(K - k)x} dx$
 
 $\int_{-\infty}^{\infty} \delta(t) \, dt = 1 \quad \text{and} \quad \delta(t) =  \begin{cases} 0 & \text{ for } x \neq 0 \\ und. & \text{ for } x = 0 \end{cases}$
 
@@ -58,7 +65,11 @@ $\text{rect}(t) = \begin{cases} 1, & \text{if } |t| \leq \frac{1}{2} \\ 0, & \te
 $\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
 
 \subsection*{Fourier transform of important functions}
-\includegraphics*[width = \columnwidth]{jo/fourier-transform-important-functions.png}
+\includegraphics*[width = \columnwidth]{jo/ft3.png}
+\includegraphics*[width = \columnwidth]{jo/ft4.png}
+\includegraphics*[width = \columnwidth]{jo/ft1.png}
+\includegraphics*[width = \columnwidth]{jo/ft2.png}
+
 \subsection*{Nyquist Sampling theorem}
 The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
 

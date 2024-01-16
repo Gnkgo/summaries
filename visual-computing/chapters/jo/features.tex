@@ -1,4 +1,5 @@
-\section*{Features}
+\section{Features}
+\greenbf{Desirable properties:} shift, rotation, scale, brightness invariant
 \subsection*{Edge Detection}
 How to tell if there is an edge? Local maxima of the first derivative and the zero crossing of the second derivative.\\
 \greenbf{Edge detection filters:}
@@ -75,38 +76,41 @@ are discrete space approximations. Is isotropic\graytext{(rotationally invariant
 \subsection*{Canny Edge Detector: 5 Steps}
 \begin{compactenum}
     \item smooth image with a Gaussian filter
-    \item compute gradient magnitude and angle
-    \item apply non-maximum suppression to gradient magnitude image \graytext{(Quantize edge normal to one of four directions: horizontal, +45°, vertical, -45°. If $M(x, y))$ smaller thn either of its neighbors in edge normal direction suppress, else keep}
-    \item Double thresholding to detect strong and weak edge pixels
+    \item compute gradient magnitude and angle using Sobel/Prewitt/...
+    \item apply non-maximum suppression to gradient magnitude image \graytext{(Quantize edge normal to one of four directions: horizontal, +45°, vertical, -45°. If $M(x, y))$ smaller than either of its neighbors in edge normal direction suppress, else keep}
+    \item Double thresholding for intensity to detect strong and weak edge pixels
     \item Reject weak edge pixels not connected to strong edge pixels
 \end{compactenum}
 \subsection*{Hough Transform}
-Fitting a straight line to a set of edge\\
+Fitting a straight line to a set of edge pixels\\
 \includegraphics*[width = \columnwidth]{jo/slope.png}\\
-\greenbf{Alternative parameterization:} $x \cos(\theta) + y \sin(\theta) = p$\\
-\greenbf{Alternative parameterization:} $x \cos(\theta) + y \sin(\theta) = p$\\
-\greenbf{For circles:} if r known: calculate circles with radius r around edge pixels $\rightarrow$ intersection of circles gives center.\\ where lots of them meet is the center of a circle. else: use 3D hough transform with parameters $(x_0, y_0, r)$
-\subsection*{Corner Detection}
+\greenbf{Alternative parameterization:}\\
+$x \cos(\theta) + y \sin(\theta) = p$ \\
+$(x - a)^{2} + (y - a)^{2} = r^{2}$
+\greenbf{For circles:} if r known: calculate circles with radius r around edge pixels $\rightarrow$ intersection (local maxima) of circles gives center.\\ Where lots of them meet is the center of a circle. else: use 3D hough transform with parameters $(x_0, y_0, r)$
+\subsection*{Corner Detection}\includegraphics[width = 2cm]{jo/corner.png}\\
 Edges are only well localized in one direction $\rightarrow$ detect corners.\\
-Desirable properties: Accute localization, invariance against shift, rotation, scale, brightness change, robust against noise, high repeatability\\
+Desirable properties: Acute localization, invariance against shift, rotation, scale, brightness change, robust against noise, high repeatability\\
 \greenbf{Linear approximation for small $\Delta x \Delta y$:} (Taylor) $f(x + \Delta x, y + \Delta y) \approx f(x, y) + f_x(x, y) \Delta x + f_y(x, y)\Delta y$
 \subsection*{Local displacement sensitivity \graytext{(Harris corners)}}
-$S (\Delta x, \Delta y) = (\Delta x \Delta y) \sum_{x, y \in \text{window}}
+$S (\Delta x, \Delta y) = (\Delta x \Delta y) \left( \sum_{x, y \in \text{window}}
 \begin{bmatrix}
     \begin{smallmatrix} 
         f_x^{2} & f_x f_y \\ 
         f_x f_y & f_y^{2} 
     \end{smallmatrix} 
 \end{bmatrix}
+\right)
 \begin{bmatrix}
     \begin{smallmatrix} 
         \Delta x \\ 
         \Delta y
     \end{smallmatrix} 
-\end{bmatrix} 
-\approx \text{SSD}$
+\end{bmatrix}  \\
+\approx \text{SSD}$.
 Find points where $\min \Delta^T M \Delta$ is large for $||\Delta || = 1$ i. e. maximize the eigenvalues of $M$\\
-$C(c, y) = \det(M) - k * trace(M)^{2} = \lambda_1 * \lambda_2 + k * (\lambda_1 + \lambda_2)$ Harris cornerness: Measure of cornerness\\
+\greenbf{Harris cornerness:} Measure of cornerness\\
+$C(c, y) = \det(M) - k * trace(M)^{2} = \lambda_1\lambda_2 + k(\lambda_1 + \lambda_2)$ \\
 \greenbf{Robustness of Harris corner detector:} Invariant to brightness offset, invariant to shift and rotation but not to scaling!
 $\lambda_1 >> \lambda_2 \rightarrow$ edge, $\lambda_1$ and $ \lambda_2$ large $\rightarrow$ corner, else $\rightarrow$ flat region.\\
 not scale invariant: \includegraphics*[width = 4cm]{jo/corner-edge.png}\\

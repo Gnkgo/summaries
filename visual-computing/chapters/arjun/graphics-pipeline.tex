@@ -1,0 +1,25 @@
+\section{Graphics Pipeline}
+
+\begin{compactenum}
+        \item Modelling Transform (Object to World Space)
+        \item Viewing Transform (World to Camera Space)
+        \item Primitive Processing (Output primitives from transformed vertices)
+        \item 3D-Clipping (Remove primitives outside the frustum)
+        \item Screen-Space Projection (Project from 3D to 2D screen space)
+        \item Scan Conversion (Discretize continuous primitives)
+        \item Lighting, Shading, Texturing
+        \item Occlusion Handling (Update Color using Z-buffer)
+        \item Display
+\end{compactenum}
+\greenbf{Programmer's View:} \\
+%\includegraphics*[width = \columnwidth]{arjun/pipeline-programmer.png} \\
+\includegraphics*[width = \columnwidth]{jo/rasterization.png} \\
+\greenbf{Vertex Processing:} Per-vertex operations e.g Transforms and Lighting flow control. This is done with the Vertex Shader.  Input: uniforms and per-vertex attributes. Output: Varying per vertex\\
+\greenbf{Fragment Processing:} Per-fragment operations e.g. Shading and Texturing Blending. This is done with the Fragment Shader. Input: Uniform and varying per-fragment attributes. Output: Per-fragment color\\
+\greenbf{Inputs/Outputs:}
+\begin{compactitem}
+    \item Uniforms: (V/F) global constant inputs e.g. light position, texture map etc.
+    \item Varying: (V/F) value passed from vertex to fragment shader by being interpolated across primitives first. e.g interp. pixel color
+\end{compactitem}
+
+

@@ -1,5 +1,6 @@
 
-\section*{The Digital Image}
+
+\section{The Digital Image}
 \greenbf{Problems:} Transmission interference, compression artifacts, spilling, scratches, sensor noise, bad contrast and resolution, motion blur \\
 \greenbf{Pixel:} Discrete samples of an continuous image function.
 \subsection*{Charge Coupled Device \graytext{(CCD)}}
@@ -13,8 +14,10 @@ Same sensor elements as CCD, but each sensor has its own amplifier $\rightarrow$
 \subsection*{Sampling methods}
 Cartesian \graytext{(grid)}, hexagonal, non-uniform\\
 \greenbf{Quantization:} Real valued function will get digital values \graytext{(integers)}. A lossy process \graytext{(original cannot be reconstructed)}. Simple version: equally spaced $2^b = \#bits$ levels\\
-\greenbf{Bilinear Interpolation:}     
-\includegraphics[width=0.4\columnwidth]{jo/linear-interpolation.png} \\ 
+\greenbf{Liner Interpolation}: \\
+$p(t) = p_0 + (t - t_0)\frac{p_1 - p_0}{t_1 - t_0} \text{ with } t \in [t_0, t_1]$ \\
+\greenbf{Bilinear Interpolation:}     \\
+\includegraphics[width=\columnwidth]{jo/linear-interpolation.png} \\ 
 \greenbf{Resolution:} Image resolution \graytext{(cropping)}, geometric resolution \graytext{(\#pixels per area)}, radiometric resolution \graytext{(\#bits per pixel, color)}\\
 \greenbf{Image noise:} commonly modeled by additive Gaussian noise: $I(x, y) = f(x, y) + c$, poisson noise \graytext{(shot noise for low light, depends on signal \& aperture time)}, multiplicative noise: $I = f + f \cdot c$, quantization errors, salt-and-pepper noise. SNR or peak SNR is used as an index of image quality $c \sim N(0, \sigma^2)$, $p(c) = \frac{1}{\sigma \sqrt{2\pi}} \cdot \exp\left(-\frac{(c - \mu)^2}{2\sigma^2}\right)$, SNR: $S = \frac{F}{\sigma}$ where $F = \frac{1}{XY}\sum_{x = 1}^X \sum_{y = 1}^{Y} f(x, y)$.
 \subsection*{Color cameras}

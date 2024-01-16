@@ -1,33 +1,51 @@
 \documentclass[10pt, landscape, a4paper]{article}
-\usepackage{geometry}[landscape]
+\usepackage[margin=0.1in,  footskip=7pt, includefoot]{geometry}
 \usepackage{multicol}
-\usepackage{graphicx}
-\usepackage{amsmath} 
-\usepackage{amssymb}
 \usepackage{blindtext} % this can be removed later on
-
-\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
 \usepackage{mathptmx}
-\usepackage[compact]{titlesec}
-\usepackage{paralist}
-
+\usepackage{paralist} 
+\usepackage{wrapfig}
+\usepackage{fancyhdr}  % Add this package for page numbers
 \usepackage{tabularx}
-\usepackage{ctable}
 
-% Set page margins
-\geometry{top=0.2cm, left=0.2cm, right=0.2cm, bottom=0.2cm}
+\usepackage{ulem}  % For underlining
+
+
+\graphicspath{{assets/}}
+
+
+% Reduce spacing before and after sections
+\titlespacing{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
+\setlength{\columnseprule}{1pt} % Add lines between columns
 
 % Set indentation
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.1cm}
+\setlength{\parskip}{0cm}
 
-% Set path for assets
-\graphicspath{{assets/}}
+\titlespacing{\section}{0pt}{0.5ex}{0ex}
+\titlespacing{\subsection}{0pt}{0.5ex}{0ex}
+%\linespread{0.9}
 
-\setlength{\columnsep}{5pt}
-\raggedcolumns
+\newcommand*{\myfont}{\fontfamily{phv}\selectfont}
 
-% _____ CUSTOM COMMANDS __________________________________________
+
+% Define custom colors
+\definecolor{darkblue}{RGB}{0, 0, 139}  % Adjust RGB values as needed
+\definecolor{darkgreen}{RGB}{0, 100, 0}  % Adjust RGB values as needed
+\definecolor{definitionColor}{RGB}{150, 0, 150}
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+\newcommand{\greenbf}[1]{\textcolor{definitionColor}{\textbf{#1}}}
+\newcommand{\bluebf}[1]{\textcolor{darkblue}{\textbf{#1}}}
+\newcommand{\graytext}[1]{\textcolor{lightgray}{\footnotesize #1}}
+
+
+
 \newcommand{\E}[0]{\mathbb{E}}
 \newcommand{\N}[0]{\mathbb{N}}
 \newcommand{\R}[0]{\mathbb{R}}
@@ -37,65 +55,62 @@
 \newcommand{\argmin}[1]{\underset{#1}{\text{argmin}}}
 \newcommand{\argmax}[1]{\underset{#1}{\text{argmax}}}
 
+
+
 \titlespacing{\section}{0pt}{0.5ex}{0ex}
 \titlespacing{\subsection}{0pt}{0.5ex}{0ex}
 %\linespread{0.9}
 
-\newcommand*{\myfont}{\fontfamily{phv}\selectfont}
+% NEED TO ADD:
+% SHADING
+\pagestyle{fancy}
+\fancyhf{}  % Clear existing headers and footers
+\rfoot{\thepage}  % Page number at the bottom-right corner
 
-\newcommand{\greenbf}[1]{\textcolor{definitionColor}{\textbf{#1}}}
-\newcommand{\bluebf}[1]{\textcolor{darkblue}{\textbf{#1}}}
-\newcommand{\graytext}[1]{\textcolor{gray}{\footnotesize #1}}
-
-
-% Define custom colors
-\definecolor{darkblue}{RGB}{0, 0, 139}  % Adjust RGB values as needed
-\definecolor{darkgreen}{RGB}{0, 100, 0}  % Adjust RGB values as needed
-\definecolor{definitionColor}{rgb}{0,0.5,0}
-
-
-\titleformat*{\section}{\fontsize{11}{11}\selectfont\myfont\bfseries\color{darkblue}}
-\titleformat*{\subsection}{\fontsize{10}{10}\selectfont\myfont\bfseries\color{darkgreen}}
 \begin{document}
-\begin{multicols*}{4}
 
-%\setlength{\abovedisplayskip}{0pt}
-%\setlength{\belowdisplayskip}{0pt}
-%\setlength{\abovedisplayshortskip}{0pt}
-%\setlength{\belowdisplayshortskip}{0pt}
 
-% _____ CONTENT __________________________________________________
+\begin{multicols}{4}
 
-% main heading
-%\begin{center}
-%	\Large{\te xtbf{Introduction to ML}} \\
-%    \small{by dcamenisch}
-%\end{center}
+% Your content goes here
+
+% \section{Introduction}
+% \blindtext
+% \section{Body}
 
 \input{chapters/jo/digital-image.tex}
 \input{chapters/jo/image-segmentation.tex}
 \input{chapters/jo/image-filtering.tex}
 \input{chapters/jo/features.tex}
 \input{chapters/jo/fourier-transform}
-\input{chapters/jo/optical-flow}
-\input{chapters/jo/video-compression}
 \input{chapters/jo/unitary-transforms}
 \input{chapters/pyramids-and-wavelets}
-\input{chapters/textures}
-\input{chapters/augmented-reality}
-\input{chapters/drawing-triangles}
-\input{chapters/transforms}
-\input{chapters/transform-geometry-and-textures}
-\input{chapters/graphics-pipeline}
-\input{chapters/rendering-equation}
-\input{chapters/rigging-fk-and-ik}
-\input{chapters/physically-based-animation}
-\input{chapters/partial-differential-equations}
-\input{chapters/animation}
-\end{multicols*}
-\end{document}
+\input{chapters/jo/optical-flow}
+\input{chapters/jo/video-compression}
+\input{chapters/jo/cnn}
+\input{chapters/arjun/graphics-pipeline}
+\input{chapters/arjun/color-light}
+\input{chapters/arjun/transformations}
+\input{chapters/arjun/shading-lighting}
+\input{chapters/arjun/geometry-texture}
+\input{chapters/arjun/signal-processing}
+%\input{chapters/drawing-triangles}
+%\input{chapters/transform-geometry-and-textures}
 
-% ____ FOOTER ______________________________________________________
-% Content and Template: 
-% original by Danny Camenisch (dcamenisch@inf.ethz.ch), 2022
-% based on different summaries from many helpful people
+\input{chapters/alex/scan-conversion}
+\input{chapters/alex/bezier-curves}
+\input{chapters/alex/b-spline-curves}
+\input{chapters/alex/tensor-product-surfaces}
+\input{chapters/alex/subdivision-surfaces}
+\input{chapters/alex/visibility-and-shadows}
+\input{chapters/alex/ray-tracing}
+
+%\input{chapters/rendering-equation}
+%\input{chapters/rigging-fk-and-ik}
+%\input{chapters/partial-differential-equations}
+%\input{chapters/animation}
+\input{chapters/openGL}
+\input{chapters/jo/radon}
+\end{multicols}
+
+\end{document}

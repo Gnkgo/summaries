@@ -13,18 +13,79 @@
 \greenbf{Image collection (IC):} $F = [f_1, f_2... f_n]$\\
 \greenbf{Autocorrelation matrix} $Rff = \frac{F \cdot F^H}{N}$ its Eigenvector with largest Eigenvalue is direction of largest variance among pictures.\\
 \greenbf{Unitary transform:} for transform $A$ iff $A^H = A^{-1}$ \graytext{if real-valued $\rightarrow$ orthonormal}\graytext{every unitary transform is a rotation + sign flip, length conserved}\\
-\greenbf{Energy conservation:} $||\vec{C}||^{2} = \vec{C}^{H}C = \vec{f}^{H}A^{H}Af = ||\vec{f}||^{2}$ \\
+\greenbf{Energy conservation:} $||\vec{C}||^{2} = \vec{C}^{H}C = \vec{f}^{H}A^{H}Af = ||\vec{f}||^{2}$ 
+
 \subsection*{Karhunen-Loeve Transform \graytext{Same as PCA. Order by decreasing eigenvalues}}
 \greenbf{Energy concentration property:} no other unitary transform packs as much energy in the first $J$ coefficients \graytext{(for arbitrary $J$)} and mean squared approximation error by choosing only first $J$ coefficients is minimized.\\
-\greenbf{Optimal energy concentratioin of KLT} consider truncated coefficient vector $\vec{b} = I_J \vec{c}$ \graytext{($I_J$: identity matrix with first J columns)} Energy in first $J$ coefficients for an arbitrary transform $A : E = Tr(R_{bb}) = Tr(I_J R_{cc} I_{J}) = Tr(I_J A R_{ff} A^H I_J) = \sum_{k = 0}{J = 1} a_k^T R_{ff} a_k^*$ where $a_k^T$ is $k-th$ row of $A$. Lagrangian cost function to enforce unit-length basis vectors: 
+\greenbf{Optimal energy concentration of KLT} consider truncated coefficient vector $\vec{b} = I_J \vec{c}$ \graytext{($I_J$: identity matrix with first J columns)} Energy in first $J$ coefficients for an arbitrary transform $A : E = Tr(R_{bb}) = Tr(I_J R_{cc} I_{J}) = Tr(I_J A R_{ff} A^H I_J) = \sum_{k = 0}{J = 1} a_k^T R_{ff} a_k^*$ where $a_k^T$ is $k-th$ row of $A$. Lagrangian cost function to enforce unit-length basis vectors: 
 $L = E + \sum_{k = 0}^{J - 1} \lambda_k (1 - a_k^T a_k^*) = \sum_{k = 0}^{J - 1} a_k^T R_{ff} a_k^* + \sum_{k = 0}^{J - 1} \lambda_k (1 - a_k^T a_k^*)$\\ 
 Differentiating $L$ with respect to $a_j$: $R_{ff} a_j^* = \lambda_i a_j^* \quad \forall_j < J$ \graytext{necessary condition}
 \subsection*{Simple recognition}
 SSD between images, best match wins \graytext{very expensive, since need to correlate with every image}
 \subsection*{Principle Component analysis \graytext{PCA}}
-\greenbf{Steps:} standardize data, get Eigenvectors and values from covariance matrix or do SVD, sort Eigenvalues and vectors in descending order get $j$ largest components, construct projection matrix from selected $j$ Eigenvectors transform dataset by multiplying with projection matrix.\\
+
+\greenbf{Linear dimension reduction method}
+
+\greenbf{Optimization goal:}
+
+$\argmin{||w||_2 = 1, z} \sum_{i=1}^n ||x_i - z_i w||_2^2$
+
+The optimal solution is given by \\
+$z_i = w^\top x_i$.  
+
+Substituting gives us:\\
+\qquad \qquad $\hat{w} = \text{argmax}_{||w||_2=1} \; w^\top \Sigma w$
+
+Where $\Sigma = \frac{1}{n} \sum_{i=1}^n x_i x_i^\top$ is the empirical covariance. Closed form solution given by the principal eigenvector of $\Sigma$, i.e. $w = v_1$ for $\lambda_1 \geq \cdots \geq \lambda_d \geq 0$:
+$\Sigma = \sum_{i=1}^d \lambda_i v_i v_i^\top$
+
+For $k > 1$ we have to change the normalization to $W^\top W = I$ then we just take the first $k$ principal eigenvectors so that $W = [v_1, \ldots, v_k]$.
+
+\greenbf{Steps:} 
+
+\begin{compactitem}
+    \item Center image
+    \item Normalize data and subtract mean \graytext{necessary to ensure first principal component describes direction of maximum variance. Otherwise, first principal component would correspond to mean}
+    \item Get Eigenvectors and values from covariance matrix or do SVD
+    \item Sort Eigenvalues and vectors in descending order
+    \item Get $j$ largest components
+    \item Construct projection matrix from selected $j$ Eigenvectors ($U_j$)
+    \item Transform dataset by multiplying with projection matrix
+\end{compactitem}
+
+\greenbf{PCA through SVD}
+\begin{compactitem}
+	\item The first $k$ col of $V$ where $X = U S V^\top$.
+	\item first principal component eigenvector of data covariance matrix with largest eigenvalue
+	\item covariance matrix is symmetric $\rightarrow$ all principal components are mutually orthogonal
+\end{compactitem}	
+
+
+\subsection*{Kernel PCA}
+
+$\Sigma = \frac{1}{n} \sum_{i=1}^n x_i x_i^\top = X^\top X \Rightarrow$  kernel trick:
+
+\qquad \qquad $\hat{\alpha} = \text{argmax}_\alpha \; \frac{\alpha^\top K^\top K \alpha}{\alpha^\top K \alpha}$
+
+Closed form solution:
+
+$\alpha^{(i)} = \frac{1}{\sqrt{\lambda_i}}v_i \quad K = \sum_{i = 1}^n \lambda_i v_i v_i^\top, \lambda_1 \geq \cdots \geq 0$
+
+A point $x$ is projected as:
+$z_i = \sum_{j=1}^n \alpha_j^{(i)} k(x_j, x)$
+
 \includegraphics*[width = 0.4\columnwidth]{jo/pca.png}\\
-\greenbf{Uses of PCA:} lossy compression by keeping only the most important $k$ components. Face recognition \graytext{eigenfaces} and face detection.
+\greenbf{Uses of PCA:} lossy compression by keeping only the most important $k$ components.
+\begin{compactitem}
+\item take the original image
+\item apply PCA on the original image
+\item decide of much variance you want to retain and from that build your compressed data
+\item apply the inverse PCA 
+transformation from point 2. on the compressed data to get the reconstructed image
+
+\end{compactitem}
+PCA is just a linear transformation from one coordinate system to another, which can easily be "undone" in a lossless manner by reversing the transformation. The dimensionality reduction aspect comes when you start dropping the last principal components, which are the dimensions which capture the least variance.\\
+Face recognition \graytext{eigenfaces} and face detection.
 \subsection*{Eigenspace matching}
 Do PCA \graytext{with mean subtraction} and get closest rank-$k$ approximation of database images \graytext{(eignfaces)} \\
 For a new query: normalize, subtract mean \graytext{(of database)} project to subspace then do similarity matching with eigenfaces.
@@ -35,7 +96,7 @@ $W_{\text{opt}} = \argmax{W} \frac{\det(W R_B W^H)}{\det(W R_W W^H)}, R_b = \sum
 \subsection*{JPEG Compression}
 Divide image into $8 \times 8$ block:\\
 \includegraphics*[width = \columnwidth]{jo/jpg.png}\\
+\greenbf{Discrete cosine transform (DCT):} uses only real values and is easier to compute than a Fourier transform.\\
 \greenbf{DC:} First coefficient (general intensity)\\
 \greenbf{ZigZag:} \includegraphics*[width = 1.5cm]{jo/zig-zag.png}\\
-\greenbf{Quantization Table:} Divide by this value, round to nearest integer\\
-\greenbf{Why DCT?} Compared to DFT uses only real values, easier to compute
+\greenbf{Quantization Table:} Divide by this value, round to nearest integer, lossy

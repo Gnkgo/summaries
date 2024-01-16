@@ -1,0 +1,54 @@
+\section{Geometry \& Textures}
+\greenbf{Challenges, texture:} Noisy captured images, visual redundancy over space, callibration inaccuracies, reconstruction inaccuracies, occlusions, visual redundancy over time geometric noise \graytext{(reconstruction noise \& callibrating noise)}\\
+\greenbf{Ways to encode geometry:} \\
+Explicit: Vertex positions are given explicitly $\rightarrow$ good for sampling, bad for testing whether inside or outside object.\\
+Implicit: Vertex positions fulfil some equation. $\rightarrow$ good to test inside/outside object, compact description, tough to model complex shapes, finding all points is expensive.\\
+\greenbf{Geometry representations}
+\begin{compactitem}
+    \item Parametric surfaces (imp): surfaces that are defined by a
+parameter space. 
+    \item Subdivision surfaces (exp): surfaces that are piecewise linear.
+    \item Point set (exp): collection of points that can be
+combined to surfaces.
+    \item Polygonal Meshes (exp): store the boundary of objects and the connectivity and other attributes (color, normal)
+\end{compactitem}
+
+\subsection*{Mesh Datastructure}
+
+\greenbf{Triangle List:} List containing ($v_1, v_2, v_3$) where $v_i$ is the coordinates $\Rightarrow$ easy query, but redundant.\\
+\greenbf{Indexed Face Set:} List containing vertex ids and another list of vertices with their coordinates $\Rightarrow$ less storage space.
+
+\subsection*{Texture Mapping}
+Enhance details without increasing geometric complexity. Desirable properties: low distortion, bijective mapping, efficiency. \\
+\greenbf{Parametrization:} Map $(u,v)$ coordinates of texture to 3D vertex coordinates. E.g. for spheres
+$\begin{bmatrix}
+    \begin{smallmatrix}
+        u \\ v
+    \end{smallmatrix}    
+\end{bmatrix} \mapsto 
+\begin{bmatrix}
+    \begin{smallmatrix}
+        sin(u)sin(v) \\
+        cos(v)\\
+        cos(u)sin(v)
+    \end{smallmatrix}
+\end{bmatrix}$\\
+\greenbf{Texture Filtering:} To prevent aliasing, we should apply low pass filter to the texture. \\
+\greenbf{Maps:}
+\begin{compactitem}
+    \item Light map: simulates effect of a local light source
+    \item Environment map: render reflective object efficiently
+    \item Bump mapping
+    \item Normal mapping
+    \item Mipmapping
+\end{compactitem}
+\greenbf{Bump Mapping:}
+Perturbs surface normal. Encodes height difference (grayscale) from mesh. Illusion of geometry, but (self-)shadows and silhouette unchanged. \\
+\greenbf{Normal mapping:}
+Very similar to bump mapping but now stored as $(r,g,b)$ color $\Rightarrow$ directional perturbations. More detailed \\
+\greenbf{Mipmapping:}
+Store down-sampled versions of a texture using Gaussian Pyramid. Choose resolution based on projected size of triangle. Use linear interpolation between resolutions. Prevents aliasing!\\
+\greenbf{Magnification:}
+Pixel in texture image maps to area larger than one pixel $\rightarrow$ Jaggies. Can be solved by bilinear interpolation. \\
+\greenbf{Minification:}
+Pixel in texture image maps to area smaller than one pixel $\rightarrow$ moiré patterns. Solution: mipmapping.
