@@ -2,7 +2,8 @@
 
 \section{The Digital Image}
 \greenbf{Problems:} Transmission interference, compression artifacts, spilling, scratches, sensor noise, bad contrast and resolution, motion blur \\
-\greenbf{Pixel:} Discrete samples of an continuous image function.
+\greenbf{Pixel:} Discrete samples of an continuous image function.\\
+\greenbf{Rolling Shutter} effect produced by sequential readout of pixels while a digital camera is moving. Result is pixels read at different times are sequentially misaligned, causing image-level distortions dependent on camera (or object) movement.
 \subsection*{Charge Coupled Device \graytext{(CCD)}}
 Has an array of photosites \graytext{(a bucket of electrical charge)} that charge proportional to the incident light intensity during exposure. ADC happens line by line. \\
 \greenbf{Bloooming:} oversaturation of finite capacity photosites causes the vertical channels to "flood" \graytext{(bright vertical line)}\\
@@ -14,8 +15,9 @@ Same sensor elements as CCD, but each sensor has its own amplifier $\rightarrow$
 \subsection*{Sampling methods}
 Cartesian \graytext{(grid)}, hexagonal, non-uniform\\
 \greenbf{Quantization:} Real valued function will get digital values \graytext{(integers)}. A lossy process \graytext{(original cannot be reconstructed)}. Simple version: equally spaced $2^b = \#bits$ levels\\
-\greenbf{Liner Interpolation}: \\
+\greenbf{Linear Interpolation}: \\
 $p(t) = p_0 + (t - t_0)\frac{p_1 - p_0}{t_1 - t_0} \text{ with } t \in [t_0, t_1]$ \\
+
 \greenbf{Bilinear Interpolation:}     \\
 \includegraphics[width=\columnwidth]{jo/linear-interpolation.png} \\ 
 \greenbf{Resolution:} Image resolution \graytext{(cropping)}, geometric resolution \graytext{(\#pixels per area)}, radiometric resolution \graytext{(\#bits per pixel, color)}\\
