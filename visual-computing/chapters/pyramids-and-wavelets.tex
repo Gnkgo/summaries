@@ -2,11 +2,4 @@
 \subsection*{Scale-space representations}
 From an original signal $f(x)$ generate a parametric family of signals $f^+(x)$ where fine-scale information is successively suppressed \graytext{e.g. successive smoothing or image pyramids (smooth \& downsample)} \\
 \greenbf{Applications:} Search for correspondence \graytext{(look at coarse scale, then refine with finer scale)} edge tracking \graytext{coarse to fine estimation} control of detail and computational cost \graytext{(e.g. textures)}\\
-\greenbf{Example:} CMU face detection: need different scales for template to match.\\
-\greenbf{Gaussian Pyramid:} Image pyramid with Gaussian for smoothing\\
-\greenbf{Laplacian Pyramid:} Preserve difference between upsampled Gaussian pyramid level and Gaussian pyramid level. Like a band-pass filter - each level represents spatial frequencies that are largely unrepresented at other layers \graytext{Compression}.
-\greenbf{Haar transform:} has two major sub-operations:
-\begin{compactenum}
-    \item scaling captures info at different frequencies
-    \item translation captures info at different locations
-\end{compactenum}
+\greenbf{Example:} CMU face detection: need different scales for template to match.

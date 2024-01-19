@@ -1,16 +1,6 @@
 \section{Graphics Pipeline}
 
-\begin{compactenum}
-        \item Modelling Transform (Object to World Space)
-        \item Viewing Transform (World to Camera Space)
-        \item Primitive Processing (Output primitives from transformed vertices)
-        \item 3D-Clipping (Remove primitives outside the frustum)
-        \item Screen-Space Projection (Project from 3D to 2D screen space)
-        \item Scan Conversion (Discretize continuous primitives)
-        \item Lighting, Shading, Texturing
-        \item Occlusion Handling (Update Color using Z-buffer)
-        \item Display
-\end{compactenum}
+Modelling Transform (Object to World Space) $ \rightarrow $ Viewing Transform (World to Camera Space) $ \rightarrow $ Primitive Processing (Output primitives from transformed vertices) $ \rightarrow $ 3D-Clipping (Remove primitives outside the frustum) $ \rightarrow $ Screen-Space Projection (Project from 3D to 2D screen space) $ \rightarrow $ Scan Conversion (Discretize continuous primitives) $ \rightarrow $ Lighting, Shading, Texturing $ \rightarrow $ Occlusion Handling (Update Color using Z-buffer) $ \rightarrow $ Display. \\
 \greenbf{Programmer's View:} \\
 %\includegraphics*[width = \columnwidth]{arjun/pipeline-programmer.png} \\
 \includegraphics*[width = \columnwidth]{jo/rasterization.png} \\
