@@ -36,7 +36,7 @@ $z_i = w^\top x_i$.
 Substituting gives us:\\
 \qquad \qquad $\hat{w} = \text{argmax}_{||w||_2=1} \; w^\top \Sigma w$
 
-Where $\Sigma = \frac{1}{n} \sum_{i=1}^n x_i x_i^\top$ is the empirical covariance. Closed form solution given by the principal eigenvector of $\Sigma$, i.e. $w = v_1$ for $\lambda_1 \geq \cdots \geq \lambda_d \geq 0$:
+Where $\Sigma = \frac{1}{n-1} \sum_{i=1}^n x_i x_i^\top$ is the empirical covariance. Closed form solution given by the principal eigenvector of $\Sigma$, i.e. $w = v_1$ for $\lambda_1 \geq \cdots \geq \lambda_d \geq 0$:
 $\Sigma = \sum_{i=1}^d \lambda_i v_i v_i^\top$
 
 For $k > 1$ we have to change the normalization to $W^\top W = I$ then we just take the first $k$ principal eigenvectors so that $W = [v_1, \ldots, v_k]$.
@@ -46,7 +46,7 @@ For $k > 1$ we have to change the normalization to $W^\top W = I$ then we just t
 \begin{compactitem}
     \item Center image
     \item Normalize data and subtract mean \graytext{necessary to ensure first principal component describes direction of maximum variance. Otherwise, first principal component would correspond to mean}
-    \item Get Eigenvectors and values from covariance matrix or do SVD
+    \item Get Eigenvectors and values from covariance matrix or do SVD (Number of EV $\leq min(\# pixels, \# datasamples)$  )
     \item Sort Eigenvalues and vectors in descending order
     \item Get $j$ largest components
     \item Construct projection matrix from selected $j$ Eigenvectors ($U_j$)
@@ -77,23 +77,16 @@ $z_i = \sum_{j=1}^n \alpha_j^{(i)} k(x_j, x)$
 \includegraphics*[width = 0.4\columnwidth]{jo/pca.png}\\
 \greenbf{Uses of PCA:} lossy compression by keeping only the most important $k$ components.
 \begin{compactitem}
-    \item take the original image I
-    \item apply PCA on the original image, if you do not have a PCA already.
-    % \item decide of much variance you want to retain and from that build your compressed data
-    \item Compress the image by projecting the image into the PCA subspace. $(I - \mu)U_k$ where $U_k$ is the matrix of the k Principal components.
-    \item apply the inverse PCA 
-    transformation from point 2. on the compressed data to get the reconstructed image. $I \cdot U_k^T + \mu$
+\item take the original image I
+\item apply PCA on the original image, if you do not have a PCA already.
+% \item decide of much variance you want to retain and from that build your compressed data
+\item Compress the image by projecting the image into the PCA subspace. $(I - \mu)U_k$ where $U_k$ is the matrix of the k Principal components.
+\item apply the inverse PCA 
+transformation from point 2. on the compressed data to get the reconstructed image. $I \cdot U_k^T + \mu$
+
 \end{compactitem}
-\greenbf{Calculate units of PCA}\\
-Assume dataset of 1000 images, with size $50 \times 50$
-\begin{compactenum}
-    \item dataset mean = $50 \times 50 = 2500$
-    \item Truncated eigenmatrix $2500 \times K$
-    \item Compressed images $1000 \times K$
-    \item $I_K = (I - \bar{I})\Phi$
-    \item $\hat{I} = I_K \Phi^T + \bar{I}$
-\end{compactenum}
 PCA is just a linear transformation from one coordinate system to another, which can easily be "undone" in a lossless manner by reversing the transformation. The dimensionality reduction aspect comes when you start dropping the last principal components, which are the dimensions which capture the least variance.\\
+
 Face recognition \graytext{eigenfaces} and face detection.
 \subsection*{Eigenspace matching}
 Do PCA \graytext{with mean subtraction} and get closest rank-$k$ approximation of database images \graytext{(eignfaces)} \\
