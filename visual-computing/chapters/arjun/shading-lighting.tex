@@ -11,9 +11,8 @@ Bidirectional Reflectance Distribution Function encodes behavior of light that b
 \textit{\textbf{TODO: Add equations }}
 
 \greenbf{Types of reflections:}\\
-\includegraphics*[width = \columnwidth]{jo/phong.png}
+\includegraphics*[width = \columnwidth]{arjun/light-reflections.png}
 Additionally there is also retro-reflective, which reflects the light back to the source in a way similar to glossy. 
-
 \subsection*{Phong Illumination Model}
 Light shines into the surface but is viewed as an outgoing vertex in the model.\\
 \greenbf{Ambient:} Light that shines independent of viewpoint \& angle. (Imagine it is object glowing) \\
@@ -49,7 +48,7 @@ Problems: Perspective Distortion. Orientation Dependence due to interpolation. S
     \item Evaluate illumination model per fragment in triangle
 \end{compactenum}
 \begin{center}
-    \includegraphics*[width = 0.5\columnwidth]{jo/phong-shading.png}
+    \includegraphics*[width = 0.5\columnwidth]{arjun/phong-shading.png}
 \end{center}
 
 $ n_x = \lambda_an_a + \lambda_bn_b + \lambda_cn_c  \quad \lambda_a = \frac{\color{blue} \Delta xbc}{\delta abc} \quad \lambda_b = \frac{\color{red} \Delta xac}{\delta abc} \quad \lambda_c = 1 - \lambda_a - \lambda_b$ 

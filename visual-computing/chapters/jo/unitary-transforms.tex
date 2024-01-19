@@ -77,13 +77,22 @@ $z_i = \sum_{j=1}^n \alpha_j^{(i)} k(x_j, x)$
 \includegraphics*[width = 0.4\columnwidth]{jo/pca.png}\\
 \greenbf{Uses of PCA:} lossy compression by keeping only the most important $k$ components.
 \begin{compactitem}
-\item take the original image
-\item apply PCA on the original image
-\item decide of much variance you want to retain and from that build your compressed data
-\item apply the inverse PCA 
-transformation from point 2. on the compressed data to get the reconstructed image
-
+    \item take the original image I
+    \item apply PCA on the original image, if you do not have a PCA already.
+    % \item decide of much variance you want to retain and from that build your compressed data
+    \item Compress the image by projecting the image into the PCA subspace. $(I - \mu)U_k$ where $U_k$ is the matrix of the k Principal components.
+    \item apply the inverse PCA 
+    transformation from point 2. on the compressed data to get the reconstructed image. $I \cdot U_k^T + \mu$
 \end{compactitem}
+\greenbf{Calculate units of PCA}\\
+Assume dataset of 1000 images, with size $50 \times 50$
+\begin{compactenum}
+    \item dataset mean = $50 \times 50 = 2500$
+    \item Truncated eigenmatrix $2500 \times K$
+    \item Compressed images $1000 \times K$
+    \item $I_K = (I - \bar{I})\Phi$
+    \item $\hat{I} = I_K \Phi^T + \bar{I}$
+\end{compactenum}
 PCA is just a linear transformation from one coordinate system to another, which can easily be "undone" in a lossless manner by reversing the transformation. The dimensionality reduction aspect comes when you start dropping the last principal components, which are the dimensions which capture the least variance.\\
 Face recognition \graytext{eigenfaces} and face detection.
 \subsection*{Eigenspace matching}

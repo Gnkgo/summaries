@@ -36,3 +36,4 @@ In summary, I-frames act as independent reference points, P-frames use predictio
 ![Alt text](image.png)
 ![Alt text](image.png)
 ![Alt text](image.png)
+![Alt text](image.png)
