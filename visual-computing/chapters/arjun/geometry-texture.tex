@@ -1,21 +1,30 @@
 \section{Geometry \& Textures}
+\greenbf{Challenges, texture:} Noisy captured images, visual redundancy over space, callibration inaccuracies, reconstruction inaccuracies, occlusions, visual redundancy over time geometric noise \graytext{(reconstruction noise \& callibrating noise)}\\
 \greenbf{Ways to encode geometry:} \\
-Explicit: Vertex positions are given explicitly $\rightarrow$ good for sampling, bad for testing whether inside or outside object. \\
-Implicit: Vertex positions fulfil some equation. $\rightarrow$ good to test inside/outside object, compact description, tough to model complex shapes, finding/sampling all points is expensive.\\
-\greenbf{Geometry representations}
+Explicit: Vertex positions are given explicitly $\rightarrow$ good for sampling, bad for testing whether inside or outside object.\\
+Implicit: Vertex positions fulfil some equation. $\rightarrow$ good to test inside/outside object, compact description, tough to model complex shapes, finding all points is expensive.\\
+\greenbf{Geometry representations implicit}
 \begin{compactitem}
-    \item Parametric surfaces (imp): surfaces that are defined by a
-parameter space. 
-    \item Subdivision surfaces (exp): surfaces that are piecewise linear.
-    \item Point set (exp): collection of points that can be
-combined to surfaces.
-    \item Polygonal Meshes (exp): store the boundary of objects and the connectivity and other attributes (color, normal)
+    \item Algebraic surfaces: \graytext{surface is zero set of polynomial in $x, y, z$}
+    \item Constructive solid geometry: \graytext{build complicated shapes via Boolean operations}
+    \item Blobby surfaces: \graytext{gradually blend surfaces together (levels of sum of gaussians)}
+    \item Blending distance functions: \graytext{a distance function gives distance to closest point on object}
+    \item Level set methods: \graytext{store a grid of values approximating function}
+    \item Fractals and L-systems: \graytext{no precise definition, structures that exhibit self-similarity, details at all scales, self-similarity, details at all scales}
 \end{compactitem}
+\greenbf{Geometry representations explicit}
+\begin{compactitem}
+    \item Point cloud: \graytext{list of points $(x, y, z)$, often augmented with normals can represent any gemetry, need large dataset, hard to do processing/simulation, hard to draw if undersampled}
+    \item Polygonal mesh: \graytext{Store vertices and polygons, easier processing simulation, more cimplicated DS, most common}
+    \item Triangle mesh: \graytext{store vertices as triplets $(x, y, z)$ triangles as triples of indices $(i, j, k)$}
+    \item Subdivision surfaces: \graytext{smooth out a control curve, insert new vertex at each edge midpoint and update vertex positions according to fixed rule}
+ \end{compactitem}
 
 \subsection*{Mesh Datastructure}
-
 \greenbf{Triangle List:} List containing ($v_1, v_2, v_3$) where $v_i$ is the coordinates $\Rightarrow$ easy query, but redundant.\\
 \greenbf{Indexed Face Set:} List containing vertex ids and another list of vertices with their coordinates $\Rightarrow$ less storage space.
+\subsection*{Polygonal Mesh} Set of connected polygons where every edge belongs to at least one polygon and the intersection of two polygons either empty, a vertex or and edge.\\
+\greenbf{Manifolds:} surface homeomorphic to a disk, closed manifolds divides space into two.
 
 \subsection*{Texture Mapping}
 Enhance details without increasing geometric complexity. Desirable properties: low distortion, bijective mapping, efficiency. \\
