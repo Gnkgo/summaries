@@ -18,7 +18,7 @@ Start with seed point or region, add neighboring pixels that satisfy a criteria 
 \greenbf{Inclusion criteria:} greylevel thresholding, greylevel distribution model (include if ($I(x, y) - \mu^{2})^{2} < (n \sigma)^{2}$ and update $\mu$ and $\sigma$ after each iteration) color or texture information\\
 \greenbf{Snakes:} active contour, a polygon and each point moves away from seed while criteria is met (can have smoothness constraint) Iteratively minimize enery function $E = E_{tension} + E_{stiffness} + E_{image}$
 \subsection*{Background subtraction}
-simple: $I_\alpha = |I - I_{bg}| < T$ better: $I_\alpha = \sqrt{(I - I_{bg})^T \Sigma^{-1} (I - I_{bg})}$ where $\Sigma$ is the background pixel appearance covariance matrix, computed seperately for each pixel. (Mahalanobis Distance uses mean instead of $I_{bg}$)
+simple: $I_\alpha = |I - I_{bg}| < T$ better: $I_\alpha = \sqrt{(I - I_{bg})^T \Sigma^{-1} (I - I_{bg})}$ where $\Sigma$ is the background pixel appearance covariance matrix, computed seperately for each pixel. (Mahalanobis Distance)
 \subsection*{Morphological operators}
 Logical transformations based on comparison of neighboring pixels. Inputs: Binary image, structuring element $S$. \\
 \greenbf{Erode: } $E = \{x:x+s \in I, $for every $ s \in S\}$\\

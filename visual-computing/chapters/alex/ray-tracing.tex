@@ -6,7 +6,7 @@
 
 \greenbf{Ray generation:} pinhole camera???, Supersampling: multiple rays per pixel, prevents aliasing.
 
-\greenbf{Ray-Surface Intersections:} For origin $o$ and direction $d$ ray: $r(t) = o + td$. For sphere with center $c$ and radius $r$ solve $\|r(t) - c\|^2 - r^2 = 0$ for t. For triangle with corners $p_1, p_2, p_3$ use barycentric coordinates $x = s_1p_1 + s_2p_2 + s_3p_3$, Intersect ray with triangle plane: $t = -\frac{(o-p_1)n}{dn}$ where $n = (p_2 - p_1) \times (p_3 - p_1)$, Compute $s_i$, test $s_1 + s_2 + s_3 = 1$ and $0 \leq s_i \leq 1$. To check if the intersection is in shadow, check if vector from intersection to light source is blocked by an object.
+\greenbf{Ray-Surface Intersections:} For origin $o$ and direction $d$ ray: $r(t) = o + td$. For sphere with center $c$ and radius $r$ solve $\|r(t) - c\|^2 - r^2 = 0$ for t. For triangle with corners $p_1, p_2, p_3$ use barycentric coordinates $x = s_1p_1 + s_2p_2 + s_3p_3$, Intersect ray with triangle plane: $t = -\frac{(o-p_1)n}{dn}$ where $n = (p_2 - p_1) \times (p_3 - p_1)$, Compute $s_i$, test $s_1 + s_2 + s_3 = 1$ and $0 \leq s_i \leq 1$
 
 \greenbf{Shading:} physically correct too costly, instead assume surface reflectance (diffuse, specular, ambient, transparent), use shadow rays for shadows. Extensions: model refraction,  multiple light sources, area light for soft shadows, sample and intersect in time for motion blur, depth of field.
 

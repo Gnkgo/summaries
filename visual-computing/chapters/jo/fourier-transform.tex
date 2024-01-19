@@ -3,25 +3,22 @@
 \section{Fourier Transformation}
 \greenbf{Aliasing:} Happens when undersampling e.g. taking every second pixel, else characteristic errors appear: typically small phenomena look bigger, fast phenomena look slower. (e.g. wagon wheels backwards in movies, checkerboards misrepresented)
 \subsection*{Fourier Transform}
-\greenbf{Convolution, Filtering:} The Fourier transform of the convolution of two functions is the product of their Fourier transform:\\
-$F \cdot G = U(f ** g)$\\
-\greenbf{Convolution, Sampling:} The Fourier transform of the product of two functions is the convolution of the Fourier transform.\\
-$F ** G = U(f \cdot g)$\\
 $\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$\\
 $\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$\\
 Represent function on a new basis with basis elements $e^{i 2 \pi (ux + vy)} = \cos(2 \pi (ux + vy)) + i \sin(2 \pi (ux + vy))$\\
-$F(f(x))(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi ux} dx$, \\
-\greenbf{Inverse Fourier:} $f(x) = \int_{\infty}^{\infty} F(u)e^{i2\pi ux} du$ Similar for 2D \\
-\greenbf{2D:} $F(f(x,y))(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-2\pi i (ux + vy)}dx dy$\\
+$F(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi fx} dx$, \greenbf{2D:} $F(u, v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-2\pi i (ux, vy)}dx dy$\\
 \greenbf{For images:} transformed image $\rightarrow$ $F = U * f$ $\leftarrow$ vectorized image, U: Fourier matrix\\
-\greenbf{For discrete:} \\$F(u, v) = \frac{1}{NM}\sum_{x=0}^{N-1} \sum_{y=0}^{M-1} f(x, y) e^{-2\pi i (\frac{ux}{N}, \frac{vy}{M})}$\\ % source: Processing Signals Slide 15
+\greenbf{For discrete:} $F(u, v) = \sum_{x=0}^{N-1} \sum_{y=0}^{M-1} f(x, y) e^{-2\pi i (\frac{ux}{N}, \frac{vy}{M})}$\\
 \greenbf{1D-periodic function:} $f(t) = \sum_{n = -\infty}^{\infty} c_n e^{\frac{i 2 \pi n t}{T}}$, $c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{\frac{-i 2 \pi n t}{T}} dt$
 \subsection*{Properties of Fourier transform}
 \greenbf{Linearity:} $F(ax(t) + by(t)) = aX(t) + bY(t)$\\
 \greenbf{Time Shift:} $F(x(t \pm t_0)) = X(t) e^{\pm i 2 \pi f t_0}$\\
 \greenbf{Frequency Shift:} $F(e^{i 2 \pi f_0 t} x(t)) = X(f - f_0)$\\
 \greenbf{Scaling:} $F(x(at)) = \frac{1}{|a|}X\left(\frac{f}{a}\right)$\\
-\greenbf{Convolution:} $F(x(t) * y(t)) = X(f) \cdot Y(f)$\\
+\greenbf{Convolution, Filtering:} The Fourier transfomr of the convolution of two functions is the product of their Fourier transform:\\
+$F \cdot G = U(f ** g)$\\
+\greenbf{Convolution, Sampling:} The Fourier transfomr of the product of two functions is the convolution of the Fourier transform.\\
+$F ** G = U(f \cdot g)$\\
 \greenbf{Duality:} $F(X(t)) \longleftrightarrow x(-f)$
 
 \color{definitionColor}
@@ -29,7 +26,7 @@ $F(f(x))(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi ux} dx$, \\
 
 A sampling function $s(t)$ which is an impulse train with period $T$ and its Fourier transform $S(f)$:\\
 \color{gray}
-$s(t) = \sum_{n = -\infty}^\infty \delta\left(t - nT\right)$\\
+$S(t) = \sum_{n = -\infty}^\infty \delta\left(t - nT\right)$\\
 $ S(f) = \frac{1}{T} \sum_{n = -\infty}^\infty X(f - \frac{n}{T}) \text{ where } \delta(*) \text{  Dir.-delt. f.}$\\
 \color{black}
 A continuous signal can be sampled by multiplying with $s(t):$ \graytext{$x_s(t) = x(t)s(t)$}To compute the Fourier Transform of $x_s(t)$, we can use the convolution theorem:
@@ -68,7 +65,11 @@ $\text{rect}(t) = \begin{cases} 1, & \text{if } |t| \leq \frac{1}{2} \\ 0, & \te
 $\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
 
 \subsection*{Fourier transform of important functions}
-\includegraphics*[width = \columnwidth]{jo/fourier-transform-important-functions.png}
+\includegraphics*[width = \columnwidth]{jo/ft3.png}
+\includegraphics*[width = \columnwidth]{jo/ft4.png}
+\includegraphics*[width = \columnwidth]{jo/ft1.png}
+\includegraphics*[width = \columnwidth]{jo/ft2.png}
+
 \subsection*{Nyquist Sampling theorem}
 The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
 

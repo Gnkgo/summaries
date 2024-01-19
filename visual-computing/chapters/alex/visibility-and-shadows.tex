@@ -7,7 +7,30 @@
 \greenbf{Z-Buffering:} Store depth to the nearest object for each pixel. 1.Initially all $\infty$. 2. For each Polygon, if the z value of a pixel for this polygon is smaller than the stored z value, replace the stored z value. Problems: limited resolution (only finite number of z values), non-linear (higher resolution for near objects, lower for far objects), setting near plane far from camera exacerbates resolution problem.
 
 \greenbf{Shadows:} Important for perception of depth, realism, indicating light position and type (point light or area light).
-\includegraphics*[width = \columnwidth]{alex/shadowTechniqueProperties.png}
+
+\includegraphics*[width=\linewidth]{alex/shadowTechniqueProperties.png}
+%\begin{center}
+%    \tiny
+%    \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
+%        \hline
+%    \textbf{Feat/Limits} & \textbf{Plan. Fake Shad.} & \textbf{Proj. Texture Shad.}& \textbf{Shad. Maps} & \textbf{Shad. Vol.} \\
+%        \hline
+%        \textbf{Allows objects to cast shadows
+%        on themselves (self-shadowing)} & $\times$ & $\times$ & \checkmark & \checkmark \\
+%        \hline
+%        \textbf{Permits shadows on arbitrary
+%        surfaces (i.e. curved)} & $\times$ & \checkmark & \checkmark & \checkmark \\
+%        \hline
+%        \textbf{Generates extra geometric
+%        primitives} & $\times$ & $\times$ & $\times$ & \checkmark \\
+%        \hline
+%        \textbf{Limited resolution of
+%        intermediate representation can
+%        result in jaggy shadow artifacts} & $\times$ & \checkmark & \checkmark & $\times$ \\
+%        \hline
+%    \end{tabularx}
+%    \end{center}
+    
 \greenbf{Planar Shadows:} Draw projection of object on ground.
 
 \greenbf{Projective texture shadows:} Separate obstacle (shadow caster) and receiver. Compute b/w image of the obstacle. Use image as projective texture map.

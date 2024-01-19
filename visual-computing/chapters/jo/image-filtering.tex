@@ -1,10 +1,7 @@
 \section{Image Filtering}
-\greenbf{Local Filter:} A filter is local if it modifies pixels based on neighborhood.\\
 Modify the pixels of an image based on some function of the local neighborhood of the pixels- If sum greater 1 get brighter, if smaller darker.\\
 \greenbf{shift invariant:} Doing the same thing, applying the same function over all pixels (in the formula below if $K$ does not depend on $x, y$)\\
-\greenbf{Linear Filtering}\\
-$L$ is linear operation if $L[\alpha I_1 + \beta I_2] = \alpha [I_1] + \beta L[I_2]$\\
-\greenbf{Linear:} linear combination of neighbors can be written as: \\
+\greenbf{linear:} linear combination of neighbors can be written as: \\
 $\sum_{\begin{subarray}{c}
     (i, j) \in \underbrace{\mathbb{N}(x, y)}_{\text{neighborhood}}
 \end{subarray}}
@@ -60,12 +57,10 @@ $$
     %\end{smallmatrix}
 \end{bmatrix} 
 $
-\includegraphics[width = 0.3 \columnwidth]{assets/jo/Types_of_Filters.png}
+\includegraphics[width = 0.3 \columnwidth]{assets/jo/types-of-filters.png}
 
 \greenbf{Low Pass Filter:}
-blurs (detects "smooth" regions) Gaussian Filter is a low pass filter, proof: Convolution theorem: Fourier transform H of h is equal to $F \cdot G$
-If $g$ is Gaussian, its Fourier Transform $G$ is also Gaussian.
-Pointwise multiplication of $F$ with $G$ will keep the low frequencies of F unchanged, while the high frequencies will be multiplied by a low number, and therefore, they will be removed.  \\
+blurs (detects "smooth" regions) Gaussian Filter is a low pass filter \\
 \greenbf{Conversion:} Subtracting one from central element of low-pass filter gives a high-pass filter with inverted sign, because.\\
 $(f - \delta) * a = f * a - \delta * a = f * a - a = - (a - (f * a))$ Normalize the low-pass kernel and then subtract one from central element. Normalize low-pass filter, then subtract the kernel from central element matrix. To get the high pass filter, you do not need to normalize.\\
 \greenbf{Band pass filter:} 
@@ -74,4 +69,4 @@ do LPF and HPF with cutoffs $f_{LP} < f_{HP} \quad f = \text{ cut of frequencies
 Filter image with high-pass and low-pass filter to get band pass filter. \graytext{Only works when you have an overlap in frequencies. If no overlap: $I *_{convolution} (\delta - f_{LP - f_{HP}}) \rightarrow $ gap between is band filter.}\\
 \greenbf{Band reject filter:} \includegraphics*[width = 0.4cm]{jo/band-reject-filter.png}
 do LPF and HPF with cutoffs $f_{LP} > f_{HP}$\\
-\greenbf{Image sharpening:} increases high frequency components to enhance edges: $I' = I + \alpha |K * I|$ $K:$ high-pass filter, $\alpha$: scalar $\in [0, 1]$
+\greenbf{Image sharpening:} increases high frequency components to enhance edges: $I' = I + \alpha |K * I|$ $K:$ high-pass filter, $\alpha$: scalar $\in [0, 1]$ds
