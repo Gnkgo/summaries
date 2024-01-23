@@ -127,4 +127,32 @@ $i^2 = j^2 = k^2 = -1 \quad ijk = -1 \\ ij = k \quad ki = j \quad jk = i \\ ji =
     \item Compute $q = cos(\frac{\theta}{2}) + sin(\frac{\theta}{2})\frac{u}{\lVert u \rVert}$ and $q^{-1} = \overline{q}$
     \item $p' = qpq^{-1}$
 \end{compactenum}
-    
+
+\subsection*{Projections}
+\greenbf{Perspective Projection:}\\
+\includegraphics[width = 0.6\columnwidth]{assets/arjun/perspective projection.png}\\
+You can imagine the projection plane to be the screen space and the origin the camera.\\
+$x_p = dx/z \quad y_p = dy/z \quad z = d$
+
+$ M_{per} = 
+\begin{bmatrix}
+    \begin{smallmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 1/d & 0
+    \end{smallmatrix}
+\end{bmatrix}$\\
+\includegraphics[width = 0.6\columnwidth]{assets/arjun/perspective projection y axis.png}\\
+Triangle rule: $x_p/d = x/z$ \\
+\greenbf{Parallel Projection:} Set the coordinate of the orthogonal of the plane to 0. Assuming the projection plane is x,y, we set z to 0: \\
+$ M_{ort} = 
+\begin{bmatrix}
+    \begin{smallmatrix}
+        1 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1
+    \end{smallmatrix}
+\end{bmatrix}$\\
+

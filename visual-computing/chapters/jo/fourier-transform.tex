@@ -1,3 +1,5 @@
+
+
 \section{Fourier Transformation}
 \greenbf{Aliasing:} Happens when undersampling e.g. taking every second pixel, else characteristic errors appear: typically small phenomena look bigger, fast phenomena look slower. (e.g. wagon wheels backwards in movies, checkerboards misrepresented)
 \subsection*{Fourier Transform}
@@ -5,8 +7,8 @@
 $F \cdot G = U(f ** g)$\\
 \greenbf{Convolution, Sampling:} The Fourier transform of the product of two functions is the convolution of the Fourier transform.\\
 $F ** G = U(f \cdot g)$\\
-$\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$\\
-$\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$\\
+%$\sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$\\
+%$\cos(x) = \frac{e^{ix} + e^{-ix}}{2}$\\
 Represent function on a new basis with basis elements $e^{i 2 \pi (ux + vy)} = \cos(2 \pi (ux + vy)) + i \sin(2 \pi (ux + vy))$\\
 $F(f(x))(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi ux} dx$, \\
 \greenbf{Inverse Fourier:} $f(x) = \int_{\infty}^{\infty} F(u)e^{i2\pi ux} du$ Similar for 2D \\
@@ -22,7 +24,8 @@ $F(f(x))(u) = \int_{-\infty}^{\infty} f(x) e^{-i 2 \pi ux} dx$, \\
 \greenbf{Convolution:} $F(x(t) * y(t)) = X(f) \cdot Y(f)$\\
 \greenbf{Duality:} $F(X(t)) \longleftrightarrow x(-f)$
 
-\greenbf{Sampling:} 
+\color{definitionColor}
+\greenbf{Sampling:} \color{black}
 
 A sampling function $s(t)$ which is an impulse train with period $T$ and its Fourier transform $S(f)$:\\
 \color{gray}
@@ -54,33 +57,30 @@ $\int_{-\infty}^{\infty} f(t) \cdot \delta(x - a) \, dx = f(a)$
 
 \greenbf{Dirac Comb:} 
 
-$\text{III}_T(x) = \sum_{n=-\infty}^{\infty} \delta(t - nT),\\ \color{gray} \text{sampling = product with this}$
-
-TODO!
+$\text{III}_T(x) = \sum_{n=-\infty}^{\infty} \delta(t - nT)$\graytext{sampling = product with this}
 
 \greenbf{Box Filter:}
-$\text{rect}(t) = \begin{cases} 1, & \text{if } |t| \leq \frac{1}{2} \\ 0, & \text{otherwise.} \end{cases}$
+$h(x) = \begin{cases} 
+\frac{1}{T}, & \text{if } |x| \leq \frac{T}{2} \\ 0, & \text{otherwise.} \end{cases}$
 
+$f_{recon} = (h*g)(x) =\\
+T \int_{-\infty}^{\infty} h(y) \sum_{i = -\infty}^{\infty} f(iT) \delta(x-y-iT)dy$\\
 \greenbf{Triangle Filter:}
 $\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
 
-\subsection*{Fourier transform}
-\includegraphics*[width = 0.5 \columnwidth]{jo/ft3.png}
-\includegraphics*[width = 0.5\columnwidth]{jo/ft4.png}
-\includegraphics*[width = 0.5\columnwidth]{jo/ft1.png}
-\includegraphics*[width = 0.5\columnwidth]{jo/ft2.png}
-
+\subsection*{Fourier transform of important functions}
+\includegraphics*[width = \columnwidth]{jo/fourier-transform-important-functions.png}
 \subsection*{Nyquist Sampling theorem}
 The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
 
 \greenbf{Why should this hold?} \graytext{Function $f(t)$, sampling function $S_{\Delta t}(t)$ with sampling frequency $w_s$}. Fourier transform of the sampled function can be derived as
-\begin{align*}
-    \tilde{F}(u) &= F(f(t) \cdot S_{\Delta t}(t)) \\
-                 &= F(u) * S_{\Delta t}(w) \\
-                 &= \int_{-\infty}^{\infty} F(\tilde{t}) S_{\Delta t}(w - \tilde{t}) \, d\tilde{t} \\
-                 &= \int_{-\infty}^{\infty} F(\tilde{t}) \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} \delta (w - \tilde{t} - \frac{n}{\Delta T}) \, d\tilde{t} \\
-                 &= \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} F(w - n w_s).
-\end{align*}
+$
+\tilde{F}(u) = F(f(t) \cdot S_{\Delta t}(t)) \\
+            = F(u) * S_{\Delta t}(w) \\
+            = \int_{-\infty}^{\infty} F(\tilde{t}) S_{\Delta t}(w - \tilde{t}) \, d\tilde{t} \\
+            = \int_{-\infty}^{\infty} F(\tilde{t}) \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} \delta (w - \tilde{t} - \frac{n}{\Delta T}) \, d\tilde{t} \\
+            = \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} F(w - n w_s).
+$\\
 If we want to reconstruct the signal $f(t)$ from $F$ and $S_{\Delta t}$, $F(w)$ cannot overlap with its neighbors $F(w - w_s)$ and $F(w + w_s)$. Thus, $w_s$ should be larger than $w_n$. \graytext{Highest frequency of $f(t)$}.
 \subsection*{Image restoration problem: $f(x) \rightarrow h(x) \rightarrow g(x) \rightarrow \tilde{h}(x) \rightarrow f(x)$}
 The "inverse" kernel $\tilde{h}(x)$ should compensate $h(x)$. May be determined by: $F(\tilde{h})(u, v) \cdot F(h(u, v)) = 1$\\

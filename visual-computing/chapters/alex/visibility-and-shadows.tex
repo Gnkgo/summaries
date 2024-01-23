@@ -6,8 +6,8 @@
 
 \greenbf{Z-Buffering:} Store depth to the nearest object for each pixel. 1.Initially all $\infty$. 2. For each Polygon, if the z value of a pixel for this polygon is smaller than the stored z value, replace the stored z value. Problems: limited resolution (only finite number of z values), non-linear (higher resolution for near objects, lower for far objects), setting near plane far from camera exacerbates resolution problem.
 
-\greenbf{Shadows:} Important for perception of depth, realism, indicating light position and type (point light or area light).
-\includegraphics*[width = \columnwidth]{alex/shadowTechniqueProperties.png}
+\greenbf{Shadows:} Important for perception of depth, realism, indicating light position and type (point light or area light).\\
+\includegraphics*[width = \columnwidth]{alex/shadowTechniqueProperties.png}\\
 \greenbf{Planar Shadows:} Draw projection of object on ground.
 
 \greenbf{Projective texture shadows:} Separate obstacle (shadow caster) and receiver. Compute b/w image of the obstacle. Use image as projective texture map.

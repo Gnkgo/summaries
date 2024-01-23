@@ -1,22 +1,31 @@
-\documentclass[10pt, landscape, a4paper]{article}
-\usepackage[margin=0.1in,  footskip=7pt, includefoot]{geometry}
+\documentclass[8pt, landscape, a4paper]{extarticle}
+\usepackage[margin=0.1in, footskip=7pt, includefoot]{geometry}
 \usepackage{multicol}
 \usepackage{blindtext} % this can be removed later on
-\usepackage{titlesec}
-\usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{mathptmx}
-\usepackage{paralist} 
+\usepackage{paralist}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}  % Add this package for page numbers
-\usepackage{tabularx}
-\usepackage{pgfplots}
-\usepackage{booktabs} % For better table formatting
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[explicit]{titlesec}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\definecolor{primaryheader}{RGB}{75,0,130} % Dark Purple
+\definecolor{secondaryheader}{RGB}{106,90,205} % Less Dark Purple
 
 
-\usepackage{ulem}  % For underlining
+\titleformat{\section}{\sffamily\bfseries\boldmath\large}{}{0pt}{\colorbox{primaryheader}{\textcolor{white}{#1}}}
+\titleformat{\subsection}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{secondaryheader}{\textcolor{white}{#1}}}
+
+\newcommand{\raisedrulefill}[2][0ex]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill}
+
 
 
 \graphicspath{{assets/}}
@@ -36,18 +45,14 @@
 
 \newcommand*{\myfont}{\fontfamily{phv}\selectfont}
 
+\newcommand{\greenbf}[1]{\textcolor{definitionColor}{\textbf{#1}}}
+\newcommand{\bluebf}[1]{\textcolor{darkblue}{\textbf{#1}}}
+\newcommand{\graytext}[1]{\textcolor{gray}{\footnotesize #1}}
 
 % Define custom colors
 \definecolor{darkblue}{RGB}{0, 0, 139}  % Adjust RGB values as needed
 \definecolor{darkgreen}{RGB}{0, 100, 0}  % Adjust RGB values as needed
-\definecolor{definitionColor}{RGB}{150, 0, 150}
-\definecolor{lightgray}{RGB}{200, 200, 200}
-
-\newcommand{\greenbf}[1]{\textcolor{definitionColor}{\textbf{#1}}}
-\newcommand{\bluebf}[1]{\textcolor{darkblue}{\textbf{#1}}}
-\newcommand{\graytext}[1]{\textcolor{lightgray}{\footnotesize #1}}
-
-
+\definecolor{definitionColor}{RGB}{96,80,195}
 
 \newcommand{\E}[0]{\mathbb{E}}
 \newcommand{\N}[0]{\mathbb{N}}
@@ -114,7 +119,7 @@
 \input{chapters/jo/animation}
 \input{chapters/openGL}
 \input{chapters/jo/radon}
-\input{chapters/jo/computing}
+\input{chapters/arjun/math-formulae}
 \end{multicols}
 
 \end{document}

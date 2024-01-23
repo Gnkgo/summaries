@@ -15,8 +15,4 @@ Convex hull property.
 
 \greenbf{deBoor Algortihm:} We want to evaluate the B spline curve s(u) at point $u=t$. For given $t \in [u_I, u_{I+1}]$ all $N_i^n(u)$ vanish except for $i \in \{I-n, ...,I\}$. Point $s(t)$ computed by successive linear interpolation. Control point in $k$-th step: $d_i^k = (1 - a_i^k)d_{i-1}^{k-1} + a_i^k d_i^{k-1} $ where $ a_i^k = \frac{t - u_i}{u_{i+n+1-k} - u_i} $, $d_i^0 = d_i$, $d_n^n = s(t)$. Special case: If $0 = u_0 = ... = u_n < u_{n+1} = ... = u_{2n+1}$ with $u_{n+k} = 1$ for $k \in [1, ...,n+1]$ we get $d_i^k(u)=ud_i^{k-1}(u)+(1-u)d_{i+1}^{k-1}(u)$ (deCasteljau)
 
-
-\greenbf{End conditions:} TODO
-
-
-\greenbf{Interpolating B-Splines:} TODO
+\greenbf{End Conditions:} How curve behaves at end points. For closed loop periodic deBoor points and knot vector: $d_0=d_{k++}, u_0=u_{k+1}$

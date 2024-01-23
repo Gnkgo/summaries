@@ -25,14 +25,19 @@ Additionally there is also retro-reflective, which reflects the light back to th
 
 \subsection*{Phong Illumination Model}
 This is a local illumination model: does not consider indirect light bouncing of from others objects that are hitting the object, unlike the global illumination model. It is approximated by ambient lighting.
-Light shines into the surface but is viewed as an outgoing vector in the model.
+Light shines into the surface but is viewed as an outgoing vector in the model.\\
 \greenbf{Ambient:} Light that shines independent of viewpoint \& angle. (Imagine it as object glowing) \\
 \greenbf{Diffuse:} General direction of the light which is reflected regardless of viewer's position.\\
 \greenbf{Specular:} Shiny light reflection
 $$I = \underbrace{I_ak_a }_\text{Ambient} + I_p \bigl( \underbrace{k_d(N \cdot L)}_\text{Diffusion} + \underbrace{k_s(R \cdot V)^n}_\text{Specular} \bigr)$$
-The material parameters are $k_a, k_d, k_s, n$. $I_a, I_p$ are light intensities, $N$ normal surface, $L$ the light ray, $R$ the reflection ray, and $V$ the viewing ray. $R, V, L, N$ are all normalised. \\
+The material parameters are $k_a, k_d, k_s, n$. $I_a, I_p$ are light intensities, $N$ normal surface, $L$ the light ray, $R$ the reflection ray, and $V$ the viewing ray. $R, V, L, N$ are all normalised. 
+\begin{wrapfigure}[]{r}{0.4\columnwidth}
+    \includegraphics[width = 0.4\columnwidth]{assets/arjun/phong-illumination.png}
+\end{wrapfigure}
+
 $R = \frac{2(N \cdot L)N - L}{\lVert R \rVert} $ \\
 $V = \frac{Eye position - Object position}{\lVert V \rVert} $
+
 \subsection*{Shading}
 \greenbf{Flat:} 1 color per primitive \\
 \greenbf{Gouraud:} Linearly interpolate vertex intensities

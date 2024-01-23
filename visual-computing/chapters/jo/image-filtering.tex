@@ -45,22 +45,23 @@ high pass filter detects edges
 High Pass Filter Laplacian Operator \\
 $
 \begin{bmatrix}
-   % \begin{smallmatrix}
+   \begin{smallmatrix}
         -1 & -1 & -1 \\
         -1 & 8 & -1 \\
         -1 & -1 & -1 \\
-    %\end{smallmatrix}
+    \end{smallmatrix}
 \end{bmatrix} 
 $$
 \begin{bmatrix}
-    %\begin{smallmatrix}
+    \begin{smallmatrix}
         0 & 1 & 0 \\
         1 & -4 & 1 \\
         0 & 1 & 0 \\
-    %\end{smallmatrix}
+    \end{smallmatrix}
 \end{bmatrix} 
 $
-\includegraphics[width = 0.3 \columnwidth]{assets/jo/Types_of_Filters.png}
+\\
+\includegraphics[width = 0.4\columnwidth]{assets/jo/Types_of_Filters.png}\\
 
 \greenbf{Low Pass Filter:}
 blurs (detects "smooth" regions) Gaussian Filter is a low pass filter, proof: Convolution theorem: Fourier transform H of h is equal to $F \cdot G$

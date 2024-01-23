@@ -1,50 +1,135 @@
 \section{CNN}
-$\varphi(W * v^{(l)})$ 
-For each channel there is a separate filter.
+ \subsection*{Gradient Descent}
+ Converges only for convex case. $\mathcal{O}(n * k * d)$
+ $$
+ 	w^{t+1} = w^t - \eta_t \cdot \nabla \ell(w^t)
+ $$
+ For linear regression:
+ $$
+ 	||w^t - w^*||_2 \leq ||I - \eta X^\top X||_{op}^t ||w^0 - w^*||_2
+ $$
+ $\rho = ||I - \eta X^\top X||_{op}^t$ conv. speed for const. $\eta$. Opt. fixed $\eta = \frac{2}{\lambda_{\text{min}} + \lambda_{\text{max}}}$ and max. $\eta \leq \frac{2}{\lambda_{\text{max}}}$. 
+ \textbf{Momentum}: $w^{t+1} = w^t + \gamma \Delta w^{t-1} - \eta_t \nabla \ell(w^t)$
+ Learning rate $\eta_t$ guarantees convergence if $\sum_t \eta_t = \infty$ and $\sum_t \eta_t^2 < \infty$
+\greenbf{Data-Driven Approach}
+  $argmin_\theta \mathcal{L}(y, f(x, \theta))$ with
+  $x$ input, $\theta$ kernel weights, $f(x, \theta)$ prediction, $y$ target, $\mathcal{L}$ loss function.
 
-\subsection*{Convolution}
-    $C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
-    $stride = S$ \\
-$ \text{Output size l} = \frac{I + 2P - K}{S} + 1$\\
-    $\text{Output dimension} = l \times l \times m $\\
-    $\text{Inputs} = W * H * D * C * N $\\
-    $\text{Trainable parameters} = F * F * C * \# filters$
-\section*{Neural Networks, d.o.i}
-$w$ are the weights and $\varphi: \R \mapsto \R$ is a nonlinear \textbf{activation function}: $\phi(x, w) = \varphi(w^\top x)$
+\greenbf{Softmax Classifier}
+  \textit{scores} = unnormalized log probabilities of different classes. Maximize correct probability:
+
+  \(P(Y = k \mid X = x_i) = \frac{e^{f_k(x_i, \theta)}}{\sum_j e^{f_j(x_i, \theta)}}\) through the softmax loss:
+  
+  \(\mathcal{L}(y, f(x, \theta)) = - \sum_{i=1}^N \log P(Y = y_i \mid X = x_i)\). Thus minimize negative log likelihood of correct class.
+
+\greenbf{Logistic Classifier}
+  Softmax with only two classes \(y_i \in \{0, 1\}\)
+  \begin{center}
+    \(\mathcal{L}(y, f(x, \theta)) = \frac{1}{N}y_i \log \frac{e^{f(x_i, \theta)}}{1 + e^{f(x_i, \theta)}} + (1 - y_i) \log \frac{1}{1 + e^{f(x_i, \theta)}}\)
+  \end{center}
+
+\subsection*{Activation Functions}
+\greenbf{Activation Functions}
+  Introduce non-linearity.
 
 
-$\textbf{ReLU: } \max (0,z), \; \textbf{Tanh: } \frac{\exp(z) - \exp(-z)}{\exp(z) + \exp(-z)}$ \\[-3pt]
-$\textbf{Sigmoid: } \frac{1}{1 + \exp(-z)}$
+\greenbf{Sigmoid}
+  \(\frac{1}{1 + e^{-x}}\), saturated neurons kill the gradient, outputs not zero-centered, compute expensive
+
+\greenbf{tanh}
+  \(\tanh(x)\), zero centered, still kills gradients
 
 
-\textbf{Universal Approximation Theorem}: We can approximate any arbitrary smooth target function, with 1+ layer with sufficient width.
-
-\subsection*{Forward Propagation}
-
-Input: $v^{(0)} = [x; 1]$ \quad Output: $f = W^{(L)} v^{(L-1)}$
-Hidden: $z^{(l)} = W^{(l)} v^{(l-1)}, v^{(l)} = [\varphi(z^{(l)}); 1]$
+\greenbf{ReLU}
+  \(\max(0, x)\), does not saturate, very computationally efficient, converges much faster in practice, actually more biologically plausible, not zero-centered output, not differentiable
 
 
-\subsection*{Backpropagation}
+\begin{itemize}
+  \item \textbf{Leaky ReLU}: \(\max(0.1x, x)\)
+  \item \textbf{ELU}: \(\begin{cases}
+    x & x \geq 0 \\
+    a(e^x - 1) & x < 0
+  \end{cases}\) \\
+  \item \textbf{Maxout}: \(\max(w_1^\top x + b_1, w_2^\top x + b_2)\)
+\end{itemize}
 
-Non-convex optimization problem: 
+\subsection*{Multilayer Perceptron (MLP)}
+Stack several linear classifiers with activation function between layers to get \textit{universal approximator}.
 
-\includegraphics[width=\columnwidth]{jo/backpropagation.png} \\[-10pt]
+\greenbf{Gradient Descent}
+  \(\theta_{t+1} = \theta_t + \lambda \nabla \mathcal{L}_\theta\) with \(\lambda\) as learning rate.
 
-Only compute \textbf{the gradient}. Rand. init. weights by distr. assumption for $\varphi$. ( $2 / n_{in}$ for ReLu and $1/n_{in}$ or $ 1/ (n_{in} + n_{out})$ for Tanh)
 
-\subsection*{Gradient Descent, i.o.i}
-Converges only for convex case. $\mathcal{O}(n * k * d)$
-$$
-	w^{t+1} = w^t - \eta_t \cdot \nabla \ell(w^t)
-$$
+\greenbf{SGD}
+  Approximate loss sum by considering only a batch.
 
-For linear regression:
-$$
-	||w^t - w^*||_2 \leq ||I - \eta X^\top X||_{op}^t ||w^0 - w^*||_2
-$$
 
-$\rho = ||I - \eta X^\top X||_{op}^t$ conv. speed for const. $\eta$. Opt. fixed $\eta = \frac{2}{\lambda_{\text{min}} + \lambda_{\text{max}}}$ and max. $\eta \leq \frac{2}{\lambda_{\text{max}}}$. 
+\greenbf{Forwardpropagation}
+  \(W \in \R^{out \times in}\)
+  \textit{Input layer}: \(v^{(0)} = [x; 1]\)
+  \textit{Output layer}: \(f = W^{(L)}v^{(L-1)}\)
+  \textit{Hidden layer}: \(z^{(l)} = W^{(l)}v^{(l-1)}\) \& output with activation and bias \(v^{(l)} = [\varphi(z^{(l)}); 1]\).
 
-\textbf{Momentum}: $w^{t+1} = w^t + \gamma \Delta w^{t-1} - \eta_t \nabla \ell(w^t)$
-Learning rate $\eta_t$ guarantees convergence if $\sum_t \eta_t = \infty$ and $\sum_t \eta_t^2 < \infty$
+
+  \definecolor{H1}{RGB}{255,0,0}    % Red
+  \definecolor{H2}{RGB}{0,128,0}    % Green
+  \definecolor{H3}{RGB}{0,0,255}    % Blue\greenbf{Backpropagation}
+  
+  \textcolor{H1}{Given from L+1}, \textcolor{H2}{compute}, \textcolor{H3}{given from FP}.
+  \begin{align*}
+    (\nabla_{W^{(L)}}l)^\top &=\textcolor{H2}{\frac{\partial l}{\partial f}}\textcolor{H3}{\frac{\partial f}{\partial W^{(L)}}} = \textcolor{H2}{\frac{\partial l}{\partial f}}\textcolor{H3}{v^{(L-1)}} \\
+    (\nabla_{W^{(L-1)}}l)^\top &= \textcolor{H1}{\frac{\partial l}{\partial f}} \textcolor{H2}{\frac{\partial f}{\partial z^{(L-1)}}}\textcolor{H3}{\frac{\partial z^{(L-1)}}{\partial W^{(L-1)}}} = \textcolor{H1}{\cdots} \textcolor{H2}{\cdots}\textcolor{H3}{v^{(L-2)}}\\
+    (\nabla_{W^{(L-2)}}l)^\top &= \textcolor{H1}{\frac{\partial l}{\partial f} \frac{\partial f}{\partial z^{(L-1)}}} \textcolor{H2}{\frac{\partial z^{(L-1)}}{\partial z^{(L-2)}}}\textcolor{H3}{\frac{\partial z^{(L-2)}}{\partial W^{(L-2)}}}
+  \end{align*}
+  Where error \(\delta^{(l)} = \varphi(z^{(l)}) \odot (W^{(l+1)\top} \delta^{(l_1)})\) and \\ \(\nabla_{W^{(l)}}l = \delta^{(l)}v^{(l-1)\top}\) to calculate the gradient.
+
+
+\subsection{CNN}
+
+\greenbf{Motivation}
+  \begin{compactenum}
+    \item Sparse interactions
+    \item Parameter sharing
+    \item Equivariant representations (change the position of an object should not change the classification of it).
+    \item Hierarchical perception (low-level features to high-level concepts)
+  \end{compactenum}
+
+
+\greenbf{CNN-Formulas}$C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
+$stride = S$
+  \begin{itemize}
+    \item $\text{Output size l} = \frac{I + 2P - K}{S} + 1$
+    \item $\text{Output dimension} = l \times l \times m $
+    \item  $\text{Inputs} = W * H * D * C * N $
+    \item $\text{Trainable parameters} = F * F * C * \# filters$
+    \item Dimensions: \(f(W) \times f(H) \times m, f(i) = \frac{i + 2P - K_i}{S} + 1\)
+    \item Params: \(p = (K_W \cdot K_H \cdot C \textcolor{H3}{+ 1}) \cdot m\), \(\textcolor{H3}{+ 1} \hat{=}\) Bias
+  \end{itemize}
+
+
+\greenbf{Pooling Layers}
+  Pool units to decrease width of output layer. Introduces translation invariance and helps to extract dominant features.
+
+
+\greenbf{ResNet}
+  \(v^{(l + 1)} = v^{(l)} + r(v^{(l)})\) with skip connections to rely less on depth.
+
+
+\greenbf{Classification}
+  \(f(x_i, \theta)\) as the score. Take the class with larger score and use softmax as loss.
+
+
+\greenbf{Regression}
+  \(f(x_i, \theta)\) as the value. Can be used for classification by comparing value. Loss could be MSE. Can be used for \textit{depth estimation}.
+
+
+\greenbf{Pixel Loss, semantic segmentation}
+  \(\mathcal{L} =- \sum_i \sum_c y_{ic} \log(p_{ic})\)
+
+
+\greenbf{Optical Flow Loss}
+  \(\mathcal{L} =\sum_i ((u_i -\hat{u}_i)^2 + (v_i - \hat{v}_i)^2)\)
+
+
+\greenbf{GAN}
+  Generate data through randomized input.
