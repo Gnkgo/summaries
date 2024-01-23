@@ -7,13 +7,17 @@ $\implies$ impossible to have all at once
 Cubic polynomials, interpolate + 1st derivate is given tangent. Interpolates, not $C^2$-continuous, local
 \greenbf{Maps:} $\mathbb{R}^1 \to \mathbb{R}^3$ : $x(u) = (x(u), y(u), z(u))^T$, $\mathbb{R}^2 \to \mathbb{R}^3$ : $x(u,v) = (x(u,v), y(u,v), z(u,v))^T$
 \greenbf{Bezier Curves:}
+
+\greenbf{Maps:} $\mathbb{R}^1 \to \mathbb{R}^3$ : $x(u) = (x(u), y(u), z(u))^T$, $\mathbb{R}^2 \to \mathbb{R}^3$ : $x(u,v) = (x(u,v), y(u,v), z(u,v))^T$
+\greenbf{Bezier Curves:}
+Special cases of B-Spline Curves. \\
 ${x}(t) = b_0 B_0^n(t) + \dots + b_n B_n^n(t)$ where $b_0 ...b_n$ are the control points. 
 \\
 $n = 3 $ : ${x}(t) = b_0(1-t)^3 + 3b_1t(1-t)^2 + 3b_2t^2(1-t) + b_3t^3$. 
 \\
 \textbf{Derivative:} $\frac{d}{dt} b^n(t) = n \sum_{i=0}^{n} \left( B_{i-1}^{n-1}(t) - B_i^{n-1}(t) \right) b_i$, which is a Bezier curve with degree $n - 1$\\
 \textbf{Properties:} design property: control points give rough sketch, endpoint interpolation, variation diminishing property: intersection of straight line with curve $<=$ \# control points.\\
-\textbf{Disadvantages:} global support of basis functions (changing one control point changes entire curve), inserting control points expensive, lack of continuity between different segments\\
+\textbf{Disadvantages:} global support of basis functions (changing one control point changes entire curve), inserting control points expensive, lack of continuity between different segments, adding new points increases the degree.\\
 \greenbf{Bernstein Polynomial of degree n:}
 $B_i^n(t) = \binom{n}{i} t^i (1 - t)^{n-i} \text{ for } 0 \leq i \leq n$ zero else. 
 \\
