@@ -1,10 +1,18 @@
 \section{Ray Tracing}
+\subsection*{Rasterization vs Raycasting}
+\greenbf{Rasterization:} Proceed in triangle order, most processing based on 2D primitives (3D that was projected. Store depth buffer).\\
+\greenbf{Raytracing:} Proceeds in screen sample order, never have to store depth buffer (just current ray), natural order for rendering transparent surfaces. Must store entire scene.\\
+\greenbf{Shadow mapping:} Render scene (depth buffer only) from location of light. Everything "seen" (depth test success) from this PoV is directly lit, if depth test fail $\rightarrow$ shadow.\\
+\greenbf{Shadows ray tracing:} shoot "shadow" rays towards light source from points where camera rays intersect scene. If nothing in the way $\rightarrow$ lighted, else $\rightarrow$ shadow.\\
+\greenbf{Environment mapping:} approximate appearance of reflective surface by placing a ray origin at location of reflective object, render six views (for a cube). Use camera ray reflected about surface normal to determine which texel in cube is "hit".\\
+\greenbf{Reflections: ray tracing:} recursive ray tracing, compute a secondary ray from surface in reflection direction.
 
 \greenbf{Forward Ray Tracing:} light source $\to$ object $\to$ eye.
 
 \greenbf{Backward Ray Tracing:} eye $\to$ object (secondary rays may be generated) $\to$ light source (in order to compute shadows). Basic pipeline: Ray-generation, Intersection, Shading, Repeat.
 
-\greenbf{Ray generation:} pinhole camera???, Supersampling: multiple rays per pixel, prevents aliasing.
+\greenbf{Ray generation:} pinhole camera???,\\
+\greenbf{Supersampling:} multiple rays per pixel, prevents aliasing.
 
 \greenbf{Ray-Surface Intersections:} For origin $o$ and direction $d$ ray: $r(t) = o + td$. For sphere with center $c$ and radius $r$ solve $\|r(t) - c\|^2 - r^2 = 0$ for t. For triangle with corners $p_1, p_2, p_3$ use barycentric coordinates $x = s_1p_1 + s_2p_2 + s_3p_3$, Intersect ray with triangle plane: $t = -\frac{(o-p_1)n}{dn}$ where $n = (p_2 - p_1) \times (p_3 - p_1)$, Compute $s_i$, test $s_1 + s_2 + s_3 = 1$ and $0 \leq s_i \leq 1$. To check if the intersection is in shadow, check if vector from intersection to light source is blocked by an object.
 

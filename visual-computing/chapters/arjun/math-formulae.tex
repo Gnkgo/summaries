@@ -2,14 +2,41 @@
 \subsection*{Trigonometry}
 $sin(x) = \frac{e^{ix} - e^{-ix}}{2i} \quad cos(x) = \frac{e^{ix} + e^{-ix}}{2}$ \\
 $sin(2x) = 2sin(x)cos(x) \\ cos(2x) = cos^2(x) - sin^2(x) \\ sin(x+y) = sin(x)cos(y) + cos(x)sin(y) \\ cos(x+y) = cos(x)cos(y) + sin(x)cos(y) \\ sin^2(x) + cos^2(x) = 1$ \\
-\begin{tabular}{|c|c|c|c|c|c|c|}
-  \hline
-  & $0$ & $\pi/6$ & $\pi/4$ & $\pi/3$ & $\pi/2$ & $\pi$ \\
-  \hline
-  \textbf{Sine} & $0$ & $\frac{1}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & $1$ & $0$ \\
-  \hline
-  \textbf{Cosine} & $1$ & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{1}{2}$ & $0$ & $-1$ \\
-  \hline
-\end{tabular}
+%\begin{tabular}{|c|c|c|c|c|c|c|}
+%  \hline
+%  & $0$ & $\pi/6$ & $\pi/4$ & $\pi/3$ & $\pi/2$ & $\pi$ \\
+%  \hline
+%  \textbf{Sine} & $0$ & $\frac{1}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & $1$ & $0$ \\
+%  \hline
+%  \textbf{Cosine} & $1$ & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{1}{2}$ & $0$ & $-1$ \\
+%  \hline
+%\end{tabular}
 \includegraphics*[width = \columnwidth]{jo/sincostantable.png}
 \includegraphics*[width = \columnwidth]{jo/sincostan.png}
+\greenbf{Distance between two points:} $(a_1, a_2) and (b_1, b_2) \rightarrow (a_1 - b_1) + (a_2 - b_2)$ \\
+\greenbf{Closest point on a 2d line:} 2D line: $N^Tx = c$ plug in $N^T(p + tN) = c$ and compute $p + tN = p + (c - N^Tp)N$\\
+\greenbf{Closest point line segment:} find closest point on line, then check if between endpoints $(a + t(b - a)$ check if $t \in [0, 1]$) else closest endpoint\\
+\greenbf{Point-line intersection}: plug point in line equation.\\
+\greenbf{Line-line intersection:} $ax = b, cx = d \rightarrow 
+\begin{matrix}
+  \begin{smallmatrix}
+    a1 & a2 \\
+    c1 & c2
+  \end{smallmatrix}
+\end{matrix}
+\begin{matrix}
+  \begin{smallmatrix}
+    x1 \\
+    x2
+  \end{smallmatrix}
+\end{matrix}
+=
+\begin{matrix}
+  \begin{smallmatrix}
+    b \\
+    d
+  \end{smallmatrix}
+\end{matrix}$ \\
+\greenbf{Intersecting ray with implicit surface:} All points s.t. $f(x) = 0$ and ray $r(t) = o + td \implies$ solve $f(r(t)) = 0$ for $t$\\
+\greenbf{Ray-plane intersection:} Given plane $N^Tx=c$, ray $r(t) = o + td$, replace $x$ with ray equation, solve for $t \implies$ point = $o + \frac{c - N^T o}{N^Td}d$\\
+\greenbf{Ray-triangle intersection:} Parameterize triangle given by vertices $p_0, p_1, p_2$ (barycent.coords) $f(u, v) = (1- u - v)p_0 + u p_1 + p_2$ solve for $u, v, t: [p_1 - p_0, p_2 - p_0 - d][u v t]^T = o - p_0$\\
