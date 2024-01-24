@@ -8,20 +8,54 @@
 
 \greenbf{Shadows:} Important for perception of depth, realism, indicating light position and type (point light or area light).\\
 \includegraphics*[width = \columnwidth]{alex/shadowTechniqueProperties.png}\\
-\greenbf{Planar Shadows:} Draw projection of object on ground.
 
-\greenbf{Projective texture shadows:} Separate obstacle (shadow caster) and receiver. Compute b/w image of the obstacle. Use image as projective texture map.
-
-\greenbf{Shadow Maps:} Compute the depths from the light source and from the camera. Shadow map stores depths for light source. For each pixel on the camera plane compute the point $x$ in world coordinates consider its distance $z_L$ to the light source and $d(x_L)$ which is the depth in the direction: light source-x. If $d(x_L) < z_L$, x is in shadow. In order to prevent self-shadowing add bias: $d(x_L) < z_L + bias$, too small bias causes self shadows and to large bias removes too much shadow. In order to include points which are outside the FOV for the shadow map one can use cubical shadow maps. To prevent undersampling/aliasing take weighted average of "$d(x_L) + bias < z_L$" tests instead of filtering depth directly. Bigger filters give fake soft shadows, bias tricky
-
-
-\greenbf{Shadow Volumes:} Explicitly represents the volume of space in shadow. If polygon is inside the volume, it is in shadow. Similar to clipping. Naive implementation: O(\#polygons * \#lights)\\
-\textbf{Algorithm:}: 
-\begin{compactitem}
-    \item Shoot ray from eye.
-    \item Incre-/decrement counter every time boundary of a shadow volume is intersected.
-    \item If counter = 0 not in shadow.
-\end{compactitem}
-\textbf{Optimisation:} use silhouette edges only (where back-facing and front-facing polygon meet).\\
-\textbf{Limitations:} introduces a lot of new geometry, expensive to rasterize long skinny triangles, objects must be watertight for silhouette optimisation, rasterization of polygons sharing and edge must not overlap or have gap.
-
+\greenbf{Planar Shadows}
+    Draw projection on the ground.
+  
+    \textit{Limitations}:
+    No self shadows or on other objects.
+    Problems with curved surfaces.
+  
+  
+  \greenbf{Projective texture shadows}
+    Separate obstacle and receiver. Compute b/w image from light and use as projective texture.
+  
+    \textit{Limitations}:
+    Need to specify obstacle \& receiver.
+    No self-shadows.
+  
+  
+    \greenbf{Shadow Maps}
+  \begin{compactenum}
+    \item Compute depths from light \(d(x_L)\) and camera.
+    \item For each pixel in camera plane:
+    \begin{compactenum}
+      \item Compute point in world coordinates
+      \item Project onto light plane \(z_L\)
+      \item If \(d(x_L) < z_L\), then \(x\) is in shadow.
+    \end{compactenum}
+    \item Add bias for stability (\(d(x_L) + b < z_L\)).
+    \item A point to shadow can be outside the FoV of shadow map, thus use cubical shadow map or spot lights.
+    \item Should \textbf{not} filter depth, but take weighted average.
+  \end{compactenum}
+  
+  \greenbf{Shadow Volumes}
+  \begin{compactenum}
+    \item Explicitly represent the volume of space in shadow. If polygon in volume, it is in shadow.
+    \begin{compactenum}
+      \item Shoot a ray from the camera
+      \item ++/-- counter each time volume is intersected.
+      \item if counter \(> 0\), then primitive is in shadow
+    \end{compactenum}
+  
+    \item Use silhouette edges only!
+  
+    \item \textit{Limitations}:
+    \begin{compactenum}
+        \item Lots of geometry
+        \item Expensive to rasterize long skinny triangles
+        \item Object must be watertight
+        \item Rasterization of polygons sharing an edge must not overlap and not have gap.
+    \end{compactenum}
+\end{compactenum}
+   

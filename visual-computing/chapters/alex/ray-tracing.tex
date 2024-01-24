@@ -7,17 +7,21 @@
 \greenbf{Environment mapping:} approximate appearance of reflective surface by placing a ray origin at location of reflective object, render six views (for a cube). Use camera ray reflected about surface normal to determine which texel in cube is "hit".\\
 \greenbf{Reflections: ray tracing:} recursive ray tracing, compute a secondary ray from surface in reflection direction.
 
-\greenbf{Forward Ray Tracing:} light source $\to$ object $\to$ eye.
-
-\greenbf{Backward Ray Tracing:} eye $\to$ object (secondary rays may be generated) $\to$ light source (in order to compute shadows). Basic pipeline: Ray-generation, Intersection, Shading, Repeat.
-
-\greenbf{Ray generation:} pinhole camera???,\\
-\greenbf{Supersampling:} multiple rays per pixel, prevents aliasing.
-
-\greenbf{Ray-Surface Intersections:} For origin $o$ and direction $d$ ray: $r(t) = o + td$. For sphere with center $c$ and radius $r$ solve $\|r(t) - c\|^2 - r^2 = 0$ for t. For triangle with corners $p_1, p_2, p_3$ use barycentric coordinates $x = s_1p_1 + s_2p_2 + s_3p_3$, Intersect ray with triangle plane: $t = -\frac{(o-p_1)n}{dn}$ where $n = (p_2 - p_1) \times (p_3 - p_1)$, Compute $s_i$, test $s_1 + s_2 + s_3 = 1$ and $0 \leq s_i \leq 1$. To check if the intersection is in shadow, check if vector from intersection to light source is blocked by an object.
-
-\greenbf{Shading:} physically correct too costly, instead assume surface reflectance (diffuse, specular, ambient, transparent), use shadow rays for shadows. Extensions: model refraction,  multiple light sources, area light for soft shadows, sample and intersect in time for motion blur, depth of field.
-
+\greenbf{Ray Casting}
+    Shoot ray through from the camera through the pixels and in first intersection, evaluate the illumination model.\\
+  \greenbf{Forward Raytracing}
+    Rays from light source (not efficient).\\
+  \greenbf{Backward Raytracing}
+    Shoot rays from the camera.\\
+  \greenbf{The Pipeline}
+    \begin{compactenum}
+      \item \textit{Ray Generation}: Shoot ray from origin.
+      \item \textit{Intersection}: Calculate first intersection. Calculate illumination at that point by recursion (either reflect or refract).
+      \item \textit{Shading}: Shoot ray from intersection to directly to light source. Intersection \(\implies\) Point in shadow.
+    \end{compactenum}
+  \greenbf{Supersampling} Shoot multiple rays to remove aliasing.\\
+%\greenbf{Ray-Surface Intersections:} For origin $o$ and direction $d$ ray: $r(t) = o + td$. For sphere with center $c$ and radius $r$ solve $\|r(t) - c\|^2 - r^2 = 0$ for t. For triangle with corners $p_1, p_2, p_3$ use barycentric coordinates with parameters $s_1, s_2, s_3$: $x = s_1p_1 + s_2p_2 + s_3p_3$, if all $s_i \geq 0$ and $s_1 + s_2 + s_3 = 1$ point $x$ is on triangle. Intersect ray with triangle plane: $t = -\frac{(o-p_1)n}{dn}$ where $n = (p_2 - p_1) \times (p_3 - p_1)$, Compute $s_i$, test $s_1 + s_2 + s_3 = 1$ and $s_i \geq 0$. If successful ray intersects triangle. To check if the intersection is in shadow, check if vector from intersection to light source is blocked by an object.
+\greenbf{Shading:} physically correct too costly, instead assume surface reflectance (diffuse, specular, ambient, transparent), use shadow rays for shadows. Extensions: model refraction,  multiple light sources, area light for soft shadows, sample and intersect in time for motion blur, depth of field.\\
 \greenbf{Acceleration:} Cost for ray tracing O(\#rays * \#objects). \\
 \textbf{Uniform grids}:
 \begin{compactitem}

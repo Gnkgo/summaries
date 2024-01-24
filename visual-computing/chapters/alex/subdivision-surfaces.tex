@@ -4,8 +4,9 @@
 \includegraphics*[width = \columnwidth]{alex/cornerCutting.png}
 
 \greenbf{Subdivision surfaces:} Generalisation of spline curves/surfaces, arbitrary control meshes, successive refinement, converges to smooth limit surface, connection between splines and meshes. In a sense similar to deCasteljau (corner cutting). No regular structure like curves (arbitrary number of edge neighbours, different subdivision rules for each valence). \\
-\textbf{Classification:} Primal: faces are split into sub-faces. Dual: Vertices are split into multiple vertices. Approximating: Control points not interpolated. Interpolating: Control points interpolated.\\
-\includegraphics*[width = \columnwidth]{alex/subdivisionClassification.png}\\
+\textbf{Classification:} Primal: faces are split into sub-faces. Dual: Vertices are split into multiple vertices. Approximating: Control points not interpolated. Interpolating: Control points interpolated.
+\includegraphics*[width = \columnwidth]{alex/subdivisionClassification.png}
+\greenbf{Geometric continuity:}  Weaker form of continuity focusing on the visual appearance, e.g. $G^n$ curve might be $C^{n-1}$ for a finite set of points and $C^n$ everywhere else.\\
 \greenbf{Doo-Sabin:} 
 \raisebox{-1ex}{\includegraphics[height= 3ex]{assets/arjun/doo-sabin-icon.png}}
 generalisation of bi-quadratic B-Splines, for polygonal meshes, generates $G^1$ continuous surfaces.\\

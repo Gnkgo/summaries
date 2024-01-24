@@ -1,6 +1,6 @@
 \section{B-Spline Curves}
-not interpolating, $C^2$-continuous, local
-How many knots does a knot vector need to have?: $k + n + 2$ where $k = $ degrees of freedom\\
+not interpolating, $C^2$-continuous, local\\
+How many knots does a knot vector need to have?: $k + n + 2$ where $k = $ degrees of freedom and $n = $ polynomial degree\\
 \greenbf{B-Spline:} $s(u) = \sum_{i=0}^kd_iN_i^n(u)$ with deBoor points $d_i$ and knot vector $u = [u_0, ..., u_{k+n+1}]$ (k is degree of freedom and n polynomial degree).\\ 
 \textbf{Recurrence:} Recurrence relation: $N_i^n(u) = \frac{(u - u_i)}{u_{i+n} - u_i} N_i^{n-1}(u) + \frac{(u_{i+n+1} - u)}{u_{i+n+1} - u_{i+1}} N_{i+1}^{n-1}(u)$, where $N_i^0(u) = \begin{cases} 1, & u \in [u_i, u_{i+1}) \\ 0, & \text{else} \end{cases}$. B-Spline bases of degree has support over $n+1$ intervals of the knot vector.\\
 \textbf{B-Spline filters:} Widely used in signal processing. Cardinal B-Splines over uniform knot sequences can be computed using the convolution operator: \( N_i^n = N^{n-1} * N^0 = \int_{0}^{x} N^{n-1}(t)N^0(x - t) dt \).\( N^0 \): box-function.\\
@@ -8,11 +8,14 @@ How many knots does a knot vector need to have?: $k + n + 2$ where $k = $ degree
 Partition of Unity: $\sum_i N_i^n(u) = 1$. 
 Positivity: $N_i^n(u) \geq 0$.
 Compact support: $N_i^n(u) = 0$, $\forall u \notin [u_i, u_{i+n+1}]$.
-Continuity: $N_i^n$ is $(n-1)$ times continuously differentiable, if p knots overlap ($u_j = ... = u_{j+p-1})$ only $C^{n-p}$.
+Continuity: $N_i^n$ is $(n-1)$ times continuously differentiable, if p knots overlap ($u_j = ... = u_{j+p-1})$ only $C^{n-p}$, higher continuity leads to smother transitions between different segments and smooth derivative curves.
 Variation diminishing property.
 Convex hull property.
 
 
-\greenbf{deBoor Algortihm:} We want to evaluate the B spline curve s(u) at point $u=t$. For given $t \in [u_I, u_{I+1}]$ all $N_i^n(u)$ vanish except for $i \in \{I-n, ...,I\}$. Point $s(t)$ computed by successive linear interpolation. Control point in $k$-th step: $d_i^k = (1 - a_i^k)d_{i-1}^{k-1} + a_i^k d_i^{k-1} $ where $ a_i^k = \frac{t - u_i}{u_{i+n+1-k} - u_i} $, $d_i^0 = d_i$, $d_n^n = s(t)$. Special case: If $0 = u_0 = ... = u_n < u_{n+1} = ... = u_{2n+1}$ with $u_{n+k} = 1$ for $k \in [1, ...,n+1]$ we get $d_i^k(u)=ud_i^{k-1}(u)+(1-u)d_{i+1}^{k-1}(u)$ (deCasteljau)
+\greenbf{deBoor Algortihm:} We want to evaluate the B spline curve s(u) at point $u=t$. For given $t \in [u_I, u_{I+1}]$ all $N_i^n(u)$ vanish except for $i \in \{I-n, ...,I\}$. Point $s(t)$ computed by successive linear interpolation.\\
+Control point in $k$-th step: \\
+$d_i^k = (1 - a_i^k)d_{i-1}^{k-1} + a_i^k d_i^{k-1} $ where $ a_i^k = \frac{t - u_i}{u_{i+n+1-k} - u_i} $, $d_i^0 = d_i$, $d_n^n = s(t)$. \\
+Special case: If $0 = u_0 = ... = u_n < u_{n+1} = ... = u_{2n+1}$ with $u_{n+k} = 1$ for $k \in [1, ...,n+1]$ we get $d_i^k(u)=ud_i^{k-1}(u)+(1-u)d_{i+1}^{k-1}(u)$ (deCasteljau)
 
 \greenbf{End Conditions:} How curve behaves at end points. For closed loop periodic deBoor points and knot vector: $d_0=d_{k++}, u_0=u_{k+1}$

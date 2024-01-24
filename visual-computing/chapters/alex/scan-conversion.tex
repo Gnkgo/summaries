@@ -1,7 +1,25 @@
 \section{Scan Conversion}
 \greenbf{Scan Conversion / Rasterisation:} Convert vector-based/geometric objects into pixel-based images. Crucial for rendering graphics on computer screens. \\ 
 \greenbf{Bresenham Line:}
-Choose closest point at each intersect with vertical pixel grid lines. Implicit line equation: $f(x,y) = ax + by + c = 0$; Last colored pixel: $p = (x_p, y_p)$; $d = f(m) = f(x_p + 1, y_p + 1/2)$;
-If $d < 0$ select lower pixel E else if $d > 0$ select upper pixel NE. For next pixel, Case E: $d_{new} = f(x_p + 2, y_p + 1/2) = a + d = d + \delta{y}$; Case NE: $d_{new} = f(x_p + 2, y_p + 3/2) = a + b + d = d + \Delta{y} - \Delta{x}$
+Choose closest point at each intersect with vertical pixel grid lines. \\
+\textbf{Implicit line equation:} $f(x,y) = ax + by + c = 0$;\\
+\textbf{Last colored pixel:} \\
+$p = (x_p, y_p)$; $d = f(m) = f(x_p + 1, y_p + 1/2)$;\\
+If $d < 0$ select lower pixel E else if $d > 0$ select upper pixel NE. \\
+For next pixel, \\
+\textbf{Case E:} $d_{new} = f(x_p + 2, y_p + 1/2) = a + d = d + \delta{y}$; \\
+\textbf{Case NE:} \\
+$d_{new} = f(x_p + 2, y_p + 3/2) = a + b + d = d + \Delta{y} - \Delta{x}$
 
-\greenbf{Scan Conversion for Polygons:} Most important graphics primitive; CPU can process up to 50 mil triangles/s; Straightforward approach: inside test for every pixel but instead process scan-line after scan-line; Algorithm: 1. Calculate all intersections on a scan-line, 2. sort intersections by ascending x-coordinates, 3. Fill all spans in between two consecutive intersection points if parity is odd.
+\greenbf{Scan Conversion for Polygons:} 
+\begin{compactitem}
+    \item Most important graphics primitive
+    \item CPU can process up to 50 mil triangles/s
+    \item Straightforward approach: inside test for every pixel but instead process scan-line after scan-line
+\end{compactitem}
+\greenbf{Algorithm}
+\begin{compactenum}
+    \item Calculate all intersections on a scan-line
+    \item Sort intersections by ascending x-coordinates
+    \item Fill all spans in between two consecutive intersection points if parity is odd
+\end{compactenum}

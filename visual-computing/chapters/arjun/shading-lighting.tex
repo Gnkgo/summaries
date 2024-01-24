@@ -39,7 +39,18 @@ $V = \frac{Eye position - Object position}{\lVert V \rVert} $
 \begin{minipage}{0.4\columnwidth}
     \includegraphics[width = \linewidth]{arjun/phong-illumination.png}
 \end{minipage}
-
+\greenbf{Attenuation}
+    Quadratic due to spatial radiation. \(f_{att} = (d_L^2)^{-1}\) or often used in OpenGL:
+    \(f_{att} = \min((c_1 + c_2d_L + c_3d_L^2)^{-1}, 1)\)
+  
+  
+  \greenbf{Cook-Torrence}
+    For metal objects which replaces the specular term. Has self-shadowing effects.
+  
+  
+  \greenbf{Ashikhmin}
+    Anisotropic lighting model.
+  
 \subsection*{Shading}
 \greenbf{Flat:} 1 color per primitive, per triangle \\
 \greenbf{Gouraud:} Linearly interpolate vertex intensities
@@ -59,7 +70,7 @@ $
 
 Problems: Perspective Distortion. Orientation Dependence due to interpolation. Shared Vertices.
 
-\greenbf{Phong Shading:} Linearly interpolate normals, color per pixel
+\greenbf{Phong Shading:} Linearly interpolate normals, color per pixel, problem: normal not defined/representative
 \begin{compactenum}
     \item Calculate vertex normal by averaging face normals.
     \item Interpolate the normal barycentric

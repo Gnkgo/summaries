@@ -19,6 +19,9 @@
 \usepackage{tabularx}
 \usepackage{listings}
 \usepackage{tcolorbox}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
 
 
 
@@ -26,11 +29,16 @@
 \definecolor{H2}{HTML}{f2d3ab}
 \definecolor{H3}{HTML}{494d7e}
 
-\definecolor{primaryheader}{RGB}{75,0,130} % Dark Purple
+\definecolor{primaryheader}{RGB}{50,0,100} % Dark Purple
 \definecolor{secondaryheader}{RGB}{106,90,205} % Less Dark Purple
 
 
-\titleformat{\section}{\sffamily\bfseries\boldmath\large}{}{0pt}{\colorbox{primaryheader}{\textcolor{white}{#1}}}
+\titleformat{\section}
+  {\sffamily\bfseries\boldmath\large}
+  {}
+  {0pt}
+  {\colorbox{primaryheader}{\textcolor{white}{\thesection\quad#1}}}
+
 \titleformat{\subsection}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{secondaryheader}{\textcolor{white}{#1}}}
 
 \newcommand{\raisedrulefill}[2][0ex]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill}
