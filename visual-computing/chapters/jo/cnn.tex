@@ -71,10 +71,6 @@ Stack several linear classifiers with activation function between layers to get 
   \textit{Hidden layer}: \(z^{(l)} = W^{(l)}v^{(l-1)}\) \& output with activation and bias \(v^{(l)} = [\varphi(z^{(l)}); 1]\).
 
 
-  \definecolor{H1}{RGB}{255,0,0}    % Red
-  \definecolor{H2}{RGB}{0,128,0}    % Green
-  \definecolor{H3}{RGB}{0,0,255}    % Blue\greenbf{Backpropagation}
-  
   \textcolor{H1}{Given from L+1}, \textcolor{H2}{compute}, \textcolor{H3}{given from FP}.
   \begin{align*}
     (\nabla_{W^{(L)}}l)^\top &=\textcolor{H2}{\frac{\partial l}{\partial f}}\textcolor{H3}{\frac{\partial f}{\partial W^{(L)}}} = \textcolor{H2}{\frac{\partial l}{\partial f}}\textcolor{H3}{v^{(L-1)}} \\
@@ -97,14 +93,14 @@ Stack several linear classifiers with activation function between layers to get 
 
 \greenbf{CNN-Formulas}$C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
 $stride = S$
-  \begin{itemize}
+  \begin{compactitem}
     \item $\text{Output size l} = \frac{I + 2P - K}{S} + 1$
     \item $\text{Output dimension} = l \times l \times m $
     \item  $\text{Inputs} = W * H * D * C * N $
     \item $\text{Trainable parameters} = F * F * C * \# filters$
     \item Dimensions: \(f(W) \times f(H) \times m, f(i) = \frac{i + 2P - K_i}{S} + 1\)
     \item Params: \(p = (K_W \cdot K_H \cdot C \textcolor{H3}{+ 1}) \cdot m\), \(\textcolor{H3}{+ 1} \hat{=}\) Bias
-  \end{itemize}
+  \end{compactitem}
 
 
 \greenbf{Pooling Layers}

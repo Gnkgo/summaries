@@ -1,8 +1,92 @@
 \section{OpenGL}
-$\text{Resulting Col} = \\
-\text{Src. Col.} \times \text{Src. Fac.} + \text{Dest. Col.} \times \text{Dest. Fac}$
+\subsection{OpenGL Transformations}
 
-projectionMatrix transforms points from camera space to screen space.
 
-modelviewMatrix transforms points from object space to camera space.
+\begin{tikzpicture}[
+	node distance = 1cm,
+	mvertex/.style = {draw, rectangle, align=center, draw=H2, color=white, fill=H3, thick},
+	vertex/.style = {draw, rectangle, align=center, draw=H1, thick},
+  every edge/.style={draw, ->, auto, semithick}
+]
+  % Define vertices
+  \node[mvertex] at (0, 0) (vertex) {Vertex \\ \((x, y, z, 1)^\top\)};
+  \node[mvertex] at (1.4, 0) (ec) {Eye \\ Coords.};
+  \node[mvertex] at (2.7, 0) (cc) {Clip \\ Coords.};
+  \node[mvertex] at (4.2, 0) (ndc) {Normalized \\ Device \\ Coords.};
+  \node[mvertex] at (5.6, 0) (wsc) {Window \\ (Screen) \\ Coords.};
+  \node[vertex] at (0, -1) (mvt) {ModelView \\ Transform};
+  \node[vertex] at (1.4, -1) (proj) {Proj.};
+  \node[vertex] at (2.7, -1) (pd) {Perspective \\ Division};
+  \node[vertex] at (4.2, -1) (vt) {Viewport \\ Transform};
 
+  % Edges
+  \draw (vertex) edge (mvt);
+  \draw (mvt) edge (ec);
+  \draw (ec) edge (proj);
+  \draw (proj) edge (cc);
+  \draw (cc) edge (pd);
+  \draw (pd) edge (ndc);
+  \draw (ndc) edge (vt);
+  \draw (vt) edge (wsc);
+\end{tikzpicture}
+
+\greenbf{Model View Transform}
+  First model to world coordinates:
+    \(\begin{bmatrix}
+      r_1 & r_2 & r_3 & t \\ 0 & 0 & 0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      \rotatebox{90}{model } \\ 1
+    \end{bmatrix}  = \begin{bmatrix}
+      \rotatebox{90}{world } \\ 1
+    \end{bmatrix}\)
+  Then world to camera:
+
+    \(\begin{bmatrix}
+      \text{left} & \text{up} & \text{-dir} & \text{eye} \\ 0 & 0 & 0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      \rotatebox{90}{cam } \\ 1
+    \end{bmatrix} = \begin{bmatrix}
+      \rotatebox{90}{world } \\ 1
+    \end{bmatrix}\)
+
+\greenbf{Projection}
+  \ \\
+  Either parallel:\\
+  \(\begin{bmatrix}
+    \frac{2}{r -l} & 0 & 0 & - \frac{r + l}{r - l} \\
+    0 & \frac{2}{t - b} & 0 & - \frac{t + b}{t - b} \\
+    0 & 0 & - \frac{2}{n - f} & - \frac{f + n}{f - n} \\
+    0 & 0 & 0 & 1
+  \end{bmatrix} \begin{bmatrix}
+    c \\ 1
+  \end{bmatrix} = \begin{bmatrix}
+    c' \\ 1
+  \end{bmatrix}\)
+
+  Or perspective:\\
+  \
+  \(\begin{bmatrix}
+    \frac{2n}{r - l} & 0 & \frac{r + l}{r - l} & 0 \\
+    0 & \frac{2n}{t - b} & \frac{t + b}{t - b} & 0 \\
+    0 & 0 & - \frac{f + n}{f - n} & - \frac{2 f n}{f - n} \\
+    0 & 0 & -1 & 0
+  \end{bmatrix} \begin{bmatrix}
+    c \\ 1
+  \end{bmatrix} = \begin{bmatrix}
+    c' \\ -c_z
+  \end{bmatrix}\)
+
+
+\greenbf{Perspective Divison}
+  \(\frac{1}{- c_z}c' = \begin{bmatrix}
+      d_x & d_y & d_z
+  \end{bmatrix}^\top\)
+  which are the normalized device coordinates. \(d_x, d_y\) position and \(d_z\) depth.
+
+
+\greenbf{Viewport Transform}
+  \(\text{screen cord.} = \begin{bmatrix}
+    \frac{w}{2}d_x + (o_x  + \frac{w}{2}) \\
+    \frac{h}{2}d_y + (o_y + \frac{h}{2}) \\
+    \frac{f - n}{2}d_z + \frac{f + n}{2}
+  \end{bmatrix}\)

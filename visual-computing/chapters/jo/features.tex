@@ -6,48 +6,48 @@ How to tell if there is an edge? Local maxima of the first derivative and the ze
 
 \greenbf{Sobel:}\\
 $K_x = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         -1 & 0 & 1\\
         -2 & 0 & 2\\
         -1 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$,
 $K_y = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         -1 & -2 & -1\\
         0 & 0 & 0\\
         1 & 2 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$
 
 \greenbf{Prewitt:}\\
 $K_x = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         -1 & 0 & 1\\
         -1 & 0 & 1\\
         -1 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$,
 $K_y = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         -1 & -1 & -1\\
         0 & 0 & 0\\
         1 & 1 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$
 
 \greenbf{Roberts:}\\
 $K_x = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 0\\
         0 & -1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$,
 $K_y = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         0 & 1\\
         -1 & 0
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$
 
 \greenbf{Gradient Magnitude:}\\
@@ -57,19 +57,19 @@ $\alpha(x, y) = \tan^{-1}(\frac{\partial f}{\partial y} / \frac{\partial f}{\par
 \subsection*{Laplacian operator}
 detect discontinuities by considering second derivative
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         0 & 1 & 0\\
         1 & -4 & 1\\
         0 & 1 & 0
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 \quad \text{or} \quad
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 1 & 1\\
         1 & -8 & 1\\
         1 & 1 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$
 are discrete space approximations. Is isotropic\graytext{(rotationally invariant)}, zero crossings make edge locations. Sensitive to fine details and noise \graytext{($\rightarrow$ smoothing before applying)}.\\ blur image first \graytext{(LoG)}\\
 \greenbf{Laplacian of Gaussian \graytext{(LoG)}:} convolve gaussian blurring and laplacian operator in LoG operator \graytext{(cheaper)} $LoG(x, y) = -\frac{1}{\pi \sigma^{4}} (1 - \frac{x^{2} + y^{2}}{2\sigma^{2}}) e^{-\frac{x^{2} + y^{2}}{2\sigma^{2}}}$
@@ -120,3 +120,10 @@ not scale invariant: \includegraphics*[width = 4cm]{jo/corner-edge.png}\\
 Look for strong responses of difference of Gaussians \graytext{(DoG)} filter, only look at local maxima in both position and scale.\\
 \greenbf{DoG:} $DoG(x, y) = \frac{1}{k}* e^{-\frac{x^{2} + y^{2}}{(k\sigma)^{2}}} - e^{-\frac{x^{2} + y^{2}}{\sigma^{2}}}$ e.g. $k = \sqrt{2}$\\
 Orientation: create histogram of local gradient directions computed at selected scale, assign canonical orientation at peak of smoothed histogram. Get a SIFT descriptor \graytext{(threshold image gradients are sampled over $16\times 16$ array of locations in scale space)} and do matching with these. Invariant to scale, rotation, illumination and viewpoint.
+\greenbf{Limits local gradient}
+\begin{compactenum}
+    \item fails when intensity structure within window is poor
+    \item fails when displacement is large (typical operating range is motion of 1 pixel per iteration!)
+    \item also brightness is not strictly constant in images
+\end{compactenum}
+\textbf{Solution:} Pyramid, coarse to fine

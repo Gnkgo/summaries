@@ -31,12 +31,14 @@ Light shines into the surface but is viewed as an outgoing vector in the model.\
 \greenbf{Specular:} Shiny light reflection
 $$I = \underbrace{I_ak_a }_\text{Ambient} + I_p \bigl( \underbrace{k_d(N \cdot L)}_\text{Diffusion} + \underbrace{k_s(R \cdot V)^n}_\text{Specular} \bigr)$$
 The material parameters are $k_a, k_d, k_s, n$. $I_a, I_p$ are light intensities, $N$ normal surface, $L$ the light ray, $R$ the reflection ray, and $V$ the viewing ray. $R, V, L, N$ are all normalised. 
-\begin{wrapfigure}[]{r}{0.4\columnwidth}
-    \includegraphics[width = 0.4\columnwidth]{assets/arjun/phong-illumination.png}
-\end{wrapfigure}
 
-$R = \frac{2(N \cdot L)N - L}{\lVert R \rVert} $ \\
+\begin{minipage}{0.6\columnwidth}
+    $R = \frac{2(N \cdot L)N - L}{\lVert R \rVert} $ \\
 $V = \frac{Eye position - Object position}{\lVert V \rVert} $
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+    \includegraphics[width = \linewidth]{arjun/phong-illumination.png}
+\end{minipage}
 
 \subsection*{Shading}
 \greenbf{Flat:} 1 color per primitive \\

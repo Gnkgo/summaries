@@ -6,14 +6,14 @@ $f(ax + by) = af(x) + bf(y)$
 \begin{center}
 $
 \begin{pmatrix}
-    \begin{smallmatrix} 
+    %\begin{smallmatrix} 
         x & y 
-    \end{smallmatrix} 
+    %\end{smallmatrix} 
 \end{pmatrix}^T \leftrightarrow 
 \begin{pmatrix}
-    \begin{smallmatrix} 
+    %\begin{smallmatrix} 
         xw & yw & w 
-    \end{smallmatrix} 
+    %\end{smallmatrix} 
 \end{pmatrix}^T
 w \in \mathbb{R}\backslash\{0\}
 $
@@ -21,78 +21,78 @@ $
 This allows non-linear transformations to still be denoted as matrices. \\
 \greenbf{Translation:}
     $\begin{bmatrix}
-        \begin{smallmatrix}
+        %\begin{smallmatrix}
             1 & 0 & t_x \\
             0 & 1 & t_y \\
             0 & 0 & 1
-        \end{smallmatrix}
+        %\end{smallmatrix}
     \end{bmatrix}$
 \greenbf{Scale:}
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         s_x & 0 & 0 \\
         0 & s_y & 0 \\
         0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$ \\
 \greenbf{Rotations:}
 Not commutative. $R^{-1} = R^T$. \\
 3D-rotate(x):
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 0 & 0 & 0 \\
         0 & cos(\theta) & -sin(\theta) & 0 \\
         0 & sin(\theta) & cos(\theta) & 0\\
         0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 3D-rotate(y):
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         cos(\theta) & 0 & sin(\theta) & 0 \\
         0 & 1 & 0 & 0 \\
         -sin(\theta) & 0 & cos(\theta) & 0\\
         0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 3D-rotate(z):
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         cos(\theta) & -sin(\theta) & 0 & 0 \\
         sin(\theta) & cos(\theta) & 0 & 0 \\
         0 & 0 & 1 & 0\\
         0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 To rotate around arbitrary axes, see Quaternions. 
 
 \greenbf{Shear:}\\
 $
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
     1 & 0 & sh_x & 0 \\
     0 & 1 & sh_y & 0 \\
     0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 $$
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
     1 & sh_x & 0 & 0 \\
     0 & 1 & 0 & 0 \\
     0 & sh_z & 1 & 0 \\
     0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 $$
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
     1 & 0 & 0 & 0 \\
     sh_y & 1 & 0 & 0 \\
     sh_z & 0 & 1 & 0 \\
     0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 $\\
 \greenbf{Rigid Transformation:} 
@@ -136,23 +136,23 @@ $x_p = dx/z \quad y_p = dy/z \quad z = d$
 
 $ M_{per} = 
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 0 & 0 & 0\\
         0 & 1 & 0 & 0\\
         0 & 0 & 1 & 0\\
         0 & 0 & 1/d & 0
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 \includegraphics[width = 0.6\columnwidth]{assets/arjun/perspective projection y axis.png}\\
 Triangle rule: $x_p/d = x/z$ \\
 \greenbf{Parallel Projection:} Set the coordinate of the orthogonal of the plane to 0. Assuming the projection plane is x,y, we set z to 0: \\
 $ M_{ort} = 
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 0 & 0 & 0\\
         0 & 1 & 0 & 0\\
         0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 1
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 

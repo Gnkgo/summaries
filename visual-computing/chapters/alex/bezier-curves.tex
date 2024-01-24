@@ -59,29 +59,29 @@ $\frac{ds(u)}{du} = \frac{ds_i(t)}{dt}\frac{dt}{du} = \frac{1}{\Delta_i}\frac{ds
 \greenbf{Matrix form:} $x(t) = \sum_{i=0}^nc_iC_i(t)$. Basis transform into monomial representation with $M=\{m_{ij}\}$:
 $
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         
 C_0(t) \\
 \vdots \\
 C_n(t)
-\end{smallmatrix}
+%\end{smallmatrix}
 
 \end{bmatrix}
 =
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         m_{00} & \cdots & m_{0n} \\
 \vdots & \ddots & \vdots \\
 m_{n0} & \cdots & m_{nn}
-\end{smallmatrix}
+%\end{smallmatrix}
 \end{bmatrix}
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         
 t^0 \\
 \vdots \\
 t^n   
- \end{smallmatrix}
+ %\end{smallmatrix}
 \end{bmatrix}
 $
 \\
@@ -90,31 +90,31 @@ For Bernstein: $m_{ij} = (-1)^{j-i} \binom{n}{j} \binom{j}{i}$
 \greenbf{Spline interpolation:} Interpolate a set of points $p_0, ..., p_n$ using basis functions. For monomials as basis: $p_i = x(t_i) = \sum_{j=0}^{n} a_j(t_i)^j, \quad i \in [0,n]$. Resulting in Vandermonde matrix (ill-conditioned): 
 $
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         
 1 & t_0 & \cdots & t_0^n \\
 \vdots & \vdots & \ddots & \vdots \\
 1 & t_n & \cdots & t_n^n
-\end{smallmatrix}
+%\end{smallmatrix}
 
 \end{bmatrix}
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         
 a_0 \\
 \vdots \\
 a_n
-\end{smallmatrix}
+%\end{smallmatrix}
 
 \end{bmatrix}
 =
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         
 p_0 \\
 \vdots \\
 p_n
-\end{smallmatrix}
+%\end{smallmatrix}
 \end{bmatrix}
 $
 

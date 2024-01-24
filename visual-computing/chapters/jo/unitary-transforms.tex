@@ -1,13 +1,13 @@
 \section{Unitary Transforms}
 \greenbf{Vectorization:} interpret image as vector row-by-ow: \graytext{$I = \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 2 & 3\\
         4 & 5 & 6
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix} \rightarrow \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         1 & 2 & 3 & 4 & 5 & 6
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$}\\
 \greenbf{linear image processing:} can be written as $\vec{g} = H\vec{f}$\\
 \greenbf{Image collection (IC):} $F = [f_1, f_2... f_n]$\\
@@ -15,7 +15,8 @@
 \greenbf{Unitary transform:} for transform $A$ iff $A^H = A^{-1}$ \graytext{if real-valued $\rightarrow$ orthonormal}\graytext{every unitary transform is a rotation + sign flip, length conserved}\\
 \greenbf{Energy conservation:} $||\vec{C}||^{2} = \vec{C}^{H}C = \vec{f}^{H}A^{H}Af = ||\vec{f}||^{2}$ 
 
-\subsection*{Karhunen-Loeve Transform \graytext{Same as PCA. Order by decreasing eigenvalues}}
+\subsection*{Karhunen-Loeve Transform}
+\graytext{Same as PCA. Order by decreasing eigenvalues}\\
 \greenbf{Energy concentration property:} no other unitary transform packs as much energy in the first $J$ coefficients \graytext{(for arbitrary $J$)} and mean squared approximation error by choosing only first $J$ coefficients is minimized.\\
 \greenbf{Optimal energy concentration of KLT} consider truncated coefficient vector $\vec{b} = I_J \vec{c}$ \graytext{($I_J$: identity matrix with first J columns)} Energy in first $J$ coefficients for an arbitrary transform $A : E = Tr(R_{bb}) = Tr(I_J R_{cc} I_{J}) = Tr(I_J A R_{ff} A^H I_J) = \sum_{k = 0}{J = 1} a_k^T R_{ff} a_k^*$ where $a_k^T$ is $k-th$ row of $A$. Lagrangian cost function to enforce unit-length basis vectors: 
 $L = E + \sum_{k = 0}^{J - 1} \lambda_k (1 - a_k^T a_k^*) = \sum_{k = 0}^{J - 1} a_k^T R_{ff} a_k^* + \sum_{k = 0}^{J - 1} \lambda_k (1 - a_k^T a_k^*)$\\ 

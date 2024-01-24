@@ -69,7 +69,11 @@ T \int_{-\infty}^{\infty} h(y) \sum_{i = -\infty}^{\infty} f(iT) \delta(x-y-iT)d
 $\text{tri}(t) = \begin{cases} 1 - |t|, & \text{if } |t| \leq 1 \\ 0, & \text{otherwise.} \end{cases}$
 
 \subsection*{Fourier transform of important functions}
-\includegraphics*[width = \columnwidth]{jo/fourier-transform-important-functions.png}
+\includegraphics*[width = \columnwidth]{jo/ft1.png}
+\includegraphics*[width = \columnwidth]{jo/ft2.png}
+\includegraphics*[width = \columnwidth]{jo/ft3.png}
+\includegraphics*[width = \columnwidth]{jo/ft4.png}
+
 \subsection*{Nyquist Sampling theorem}
 The sampling frequency must be at least twice the highest frequency $w_s \geq 2 w$ \graytext{If not the case: band limit before with low-pass filter. Perfect reconstruction: $sinc(x) = \frac{sin(\pi x)}{\pi x}$}
 
@@ -82,7 +86,8 @@ $
             = \frac{1}{\Delta T} \sum_{n = -\infty}^{\infty} F(w - n w_s).
 $\\
 If we want to reconstruct the signal $f(t)$ from $F$ and $S_{\Delta t}$, $F(w)$ cannot overlap with its neighbors $F(w - w_s)$ and $F(w + w_s)$. Thus, $w_s$ should be larger than $w_n$. \graytext{Highest frequency of $f(t)$}.
-\subsection*{Image restoration problem: $f(x) \rightarrow h(x) \rightarrow g(x) \rightarrow \tilde{h}(x) \rightarrow f(x)$}
-The "inverse" kernel $\tilde{h}(x)$ should compensate $h(x)$. May be determined by: $F(\tilde{h})(u, v) \cdot F(h(u, v)) = 1$\\
+\subsection*{Image restoration problem:}
+$f(x) \rightarrow h(x) \rightarrow g(x) \rightarrow \tilde{h}(x) \rightarrow f(x)$\\
+The inverse kernel $\tilde{h}(x)$ should compensate $h(x)$. May be determined by: $F(\tilde{h})(u, v) \cdot F(h(u, v)) = 1$\\
 \greenbf{Problems:} Convolution with kernel $k$ may cancel out some frequencies \& noise amplification. \\
 \greenbf{Avoid:} Regularization: $F(\tilde{h})(u, v) = \frac{F(h)}{{|F(h)|}^{2} + \epsilon}$ \graytext{avoid singularities}

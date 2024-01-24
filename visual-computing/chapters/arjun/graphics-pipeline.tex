@@ -13,7 +13,33 @@
 \end{compactenum}
 \greenbf{Programmer's View:} \\
 %\includegraphics*[width = \columnwidth]{arjun/pipeline-programmer.png} \\
+
 \includegraphics*[width = \columnwidth]{jo/rasterization.png} \\
+\begin{tikzpicture}[
+    node distance = 1cm,
+    mvertex/.style = {draw, rectangle, align=center, draw=H2, color=white, fill=H3, thick},
+    vertex/.style = {draw, rectangle, align=center, draw=H1, thick},
+    every edge/.style={draw, ->, auto, semithick}
+]
+  % Define vertices
+  \node[vertex] at (0, 0) (attr) {Attributes};
+  \node[mvertex] at (1, -0.6) (vs) {Vertex Shader};
+  \node[vertex] at (1.5, 0.2) (vvar) {Varying \\ (per vertex)};
+  \node[mvertex] at (2.8, -0.6) (inter) {Interpolation};
+  \node[vertex] at (3.3, 0.2) (fvar) {Varying \\ (per fragment)};
+  \node[mvertex] at (4.8, -0.6) (fs) {Fragment Shader};
+  \node[vertex] at (5.3, 0) (fc) {Fragment Color};
+  \node[vertex] at (2.8, -1.2) (unif) {Uniforms (constants)};
+
+  \draw (unif) edge (vs);
+  \draw (unif) edge (fs);
+  \draw (attr) edge (vs);
+  \draw (vs) edge (vvar);
+  \draw (vvar) edge (inter);
+  \draw (inter) edge (fvar);
+  \draw (fvar) edge (fs);
+  \draw (fs) edge (fc);
+\end{tikzpicture}
 \greenbf{Vertex Processing:} Per-vertex operations e.g Transforms and Lighting flow control. This is done with the Vertex Shader.  Input: uniforms and per-vertex attributes. Output: Varying per vertex\\
 \greenbf{Fragment Processing:} Per-fragment operations e.g. Shading and Texturing Blending. This is done with the Fragment Shader. Input: Uniform and varying per-fragment attributes. Output: Per-fragment color\\
 \greenbf{Inputs/Outputs:}

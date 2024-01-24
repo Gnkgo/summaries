@@ -3,23 +3,22 @@
 \greenbf{Ways to encode geometry:} \\
 Explicit: Vertex positions are given explicitly $\rightarrow$ good for sampling, bad for testing whether inside or outside object.\\
 Implicit: Vertex positions fulfil some equation. $\rightarrow$ good to test inside/outside object, compact description, tough to model complex shapes, finding all points is expensive.\\
-\greenbf{Geometry representations implicit}\\
-%\begin{compactitem}
-    Parametric surfaces: \graytext{surfaces defined by parameter space}\\
-    Algebraic surfaces: \graytext{surface is zero set of pol.}\\
-    Constructive solid geometry: \graytext{compl. shapes}\\
-    Blobby surfaces: \graytext{blend surfaces toget.}\\
-    Blending distance func.: \graytext{distance to closest p. on object}\\
-    Level set methods: \graytext{grid of values approx. func.}\\
-    Fractals and L-systems: \graytext{self-similar}\\
-%\end{compactitem}
-\greenbf{Geometry representations explicit}\\
-%\begin{compactitem}
-    Point set: \graytext{collection of p. can be combined to surf.}\\
-    Point cloud: \graytext{list of points $(x, y, z)$}\\
-    Polygonal mesh: \graytext{easier processing simulation, common}\\
-    Triangle mesh, Subdivision surfaces: \graytext{smooth out a control curve, insert new vertex at each edge midpoint and update vertex positions according to fixed rule}
- %\end{compactitem}
+\greenbf{Geometry representations implicit}
+\begin{compactitem}
+    \item Algebraic surfaces: \graytext{surface is zero set of polynomial in $x, y, z$}
+    \item Constructive solid geometry: \graytext{build complicated shapes via Boolean operations}
+    \item Blobby surfaces: \graytext{gradually blend surfaces together (levels of sum of gaussians)}
+    \item Blending distance functions: \graytext{a distance function gives distance to closest point on object}
+    \item Level set methods: \graytext{store a grid of values approximating function}
+    \item Fractals and L-systems: \graytext{no precise definition, structures that exhibit self-similarity, details at all scales, self-similarity, details at all scales}
+\end{compactitem}
+\greenbf{Geometry representations explicit}
+\begin{compactitem}
+    \item Point cloud: \graytext{list of points $(x, y, z)$, often augmented with normals can represent any gemetry, need large dataset, hard to do processing/simulation, hard to draw if undersampled}
+    \item Polygonal mesh: \graytext{Store vertices and polygons, easier processing simulation, more cimplicated DS, most common}
+    \item Triangle mesh: \graytext{store vertices as triplets $(x, y, z)$ triangles as triples of indices $(i, j, k)$}
+    \item Subdivision surfaces: \graytext{smooth out a control curve, insert new vertex at each edge midpoint and update vertex positions according to fixed rule}
+ \end{compactitem}
 
 \subsection*{Mesh Datastructure}
 \greenbf{Triangle List:} List containing ($v_1, v_2, v_3$) where $v_i$ is the coordinates $\Rightarrow$ easy query, but redundant.\\
@@ -31,16 +30,16 @@ Implicit: Vertex positions fulfil some equation. $\rightarrow$ good to test insi
 Enhance details without increasing geometric complexity. Desirable properties: low distortion, bijective mapping, efficiency. \\
 \greenbf{Parametrization:} Map $(u,v)$ coordinates of texture to 3D vertex coordinates. E.g. for spheres
 $\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         u \\ v
-    \end{smallmatrix}    
+    %\end{smallmatrix}    
 \end{bmatrix} \mapsto 
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         sin(u)sin(v) \\
         cos(v)\\
         cos(u)sin(v)
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$\\
 \greenbf{Texture Filtering:} To prevent aliasing, we should apply low pass filter to the texture. \\
 \greenbf{Maps:}

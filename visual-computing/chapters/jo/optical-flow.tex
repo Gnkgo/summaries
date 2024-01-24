@@ -12,6 +12,36 @@ Small motion $\rightarrow$ can linearize with Taylor expansion:\\
 \graytext{$I(x+u, y + v, t + 1) = I(x,y,t) + I_x u + I_y v + I_t$} \\
 \graytext{$ \frac{dI}{dt} = \frac{\partial I}{\partial x} \frac{dx}{dt} + \frac{\partial I}{\partial y} \frac{dy}{dt} + \frac{\partial I}{\partial t} \approx 0$} or shorthand \graytext{$I_x \cdot u + I_y \cdot v + I_t \approx 0$}\\
 move $I-t$ on one side, vectorize unknowns. For LK, sum up over a window of pixes\\
+\greenbf{Derivation:}
+We assume small displacement and use Taylor-Expansion to get:
+
+$ I(x + \frac{dx}{dt}\delta t, y + \frac{dy}{dt}\delta t, t + \delta t) \approx I(x,y,t) + \frac{\partial I}{\partial x}(\frac{dx}{dt}\delta t) + \frac{\partial I}{\partial y}(\frac{dy}{dt}\delta t) + \frac{\partial I}{\partial t}(\delta t) $.
+
+Subtracting the given equation from this equation, we get:
+
+$0 = \frac{\partial I}{\partial x}(\frac{dx}{dt}\delta t) + \frac{\partial I}{\partial y}(\frac{dy}{dt}\delta t) + \frac{\partial I}{\partial t}(\delta t)$,
+
+which can be written as:
+
+$0 = I_x(\frac{dx}{dt}\delta t) + I_y(\frac{dy}{dt}\delta t) + I_t(\delta t)$
+
+Finally, we divide by $\delta t$, and get:
+
+$0 = I_xu + I_yv + I_t$,
+
+as desired.
+
+\greenbf{Sample Exercise:}\\
+You have captured a video at 25 frames per second of a car moving at 18 kilometers
+per hour. The side of the car is parallel to the image plane and the car is moving
+straight. The car is 2.4 meters long, but in your video it is 192 pixels long. Assume
+that your optical flow algorithm breaks down for pixel displacements that are larger
+than 1 pixel.\\
+\graytext{Start with a coarse image $\rightarrow$ compute flow $\rightarrow$ rescale $\rightarrow$ initialize with the last estimate $\rightarrow$ repeat.\\
+18 km/h equals 5 meters per second, which equals 20 cm per frame, i.e. $\frac{1}{12}$ of the
+length of the car. $\frac{1}{12}$ of 192 pixels is 16 pixels. Going from 16 to 8 to 4 to 2 to 1
+leads to 5 levels.}
+ 
 \greenbf{Aperture problem:} The aperture problem refers to the fact that when flow is computed for a point that lies along a linear feature, it is not possible to determine the exact location of the corresponding point in the second image. Thus, it is only possible to determine the flow that is normal to the linear feature. 1 equation, 2 unknowns cannot determine exact location, take normal flow. \includegraphics*[width =0.6 \columnwidth]{jo/feature.png}\\
 \subsection*{Horn-Schunck}
 Add additional smoothness constraint: \\
@@ -22,40 +52,40 @@ Besides OF constraint: \\
 Works well for textured area, corners. Not for homogeneous areas, edges since $M$ is singular when all gradient vectors point in the same direction.\\
 Assume spatial coherence: same displacement for neighbourhood ($N \times M$ window) $\rightarrow$ linear least squares problem:
 \graytext{$\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         I_x(x_1, y_1) & I_y(x_1, y_1)\\ ... & ... \\
         I_x(x_{NM}, y_{NM}) & I_y(x_{NM}, y_{NM})
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         u\\
         v
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 = -\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         I_t(x_1, y_1)\\ ...\\
         I_t(x_{NM}, y_{NM})
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix} \implies 
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         \sum I_x I_x & \sum I_x I_y\\
         \sum I_y I_x & \sum I_y I_y
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 \begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         u\\
         v
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}
 = -\begin{bmatrix}
-    \begin{smallmatrix}
+    %\begin{smallmatrix}
         \sum I_x I_t\\
         \sum I_y I_t
-    \end{smallmatrix}
+    %\end{smallmatrix}
 \end{bmatrix}$}\\
 \greenbf{When solvable?} $A^TA$ invertible, eigenvalues $\lambda_1, \lambda_2$ large, $\frac{\lambda_1}{\lambda_2}$ small\\
 \greenbf{Errors:} motion is large\graytext{(r than a pixel) \\

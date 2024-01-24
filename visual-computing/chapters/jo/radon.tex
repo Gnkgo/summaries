@@ -3,8 +3,41 @@ The Radon transform $Rf(\theta, s)$ of a function $f(x, y)$ is defined as:\\
 $
 Rf(\theta, s) =\\
 \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \delta(x\cos(\theta) + y\sin(\theta) - s) \,dx\,dy$
-\begin{align*}
-& \theta \quad \text{is the angle of the projection,} \\
-& s \quad \text{is the distance parameter,} \\
-& \delta(\cdot) \quad \text{represents the Dirac delta function.}
-\end{align*}
+
+ $\theta$ is the angle of the projection, $ s $ is the distance parameter,
+ $ \delta(\cdot) $ represents the Dirac delta function.
+
+
+\greenbf{Properties}
+\begin{compactitem}
+    \item Linear
+    \item Shifting only changes the \(\rho\) coordinate
+    \item Rotation of the coordinate system also rotates the Radon transformation
+    \item The Radon transform of a 2D convolution is a 1D convolution of the Radon transformed function with respect to \(\rho\)
+\end{compactitem}
+
+\greenbf{Reconstructing Image}
+
+  Assume: attenuation of material in each px constant and \(\propto\) area of the px illuminated by the beam.
+  \(k_{ij} = \frac{\text{are of pixel} \ j \ \text{illuminated by ray} \ i}{\text{total area of pixel} \ j}\) for \(i \in [l], j \in [nm]\). Thus the model reads:
+  \(Kf = g\) with \(f\) BW plane/volumetric image to be retrieved, \(g\) attenuation measurement from the CT system. Can be solved with normal equations. Big system! \\
+
+
+\textbf{Central Slice Theorem}
+  \(G(q, 0) = F(q \cos 0, q \sin 0)\). 1D Fourier transformation of the measurement \(g = Rf\) (for fixed \(\theta\)) is equal to 2D Fourier trans. of \(f(x, y)\) at a particular point. 
+\greenbf{Filtered backprojection}
+\begin{compactenum}
+    \item Measure attenuation (projection) data
+    \item 1D-FT of projection data
+    \item High-Pass filter in Fourier domain \((2 \pi |w| / K)\)
+    \item 2D-Inverse FT
+    \item Sum over all images
+\end{compactenum}
+
+\textit{Issues without HPF}:
+  \begin{compactitem}
+    \item Requires many precise attenuation measurements
+    \item Sensitive to noise
+    \item Unstable \& hard to implement accurately
+    \item blurring the final image
+  \end{compactitem}
