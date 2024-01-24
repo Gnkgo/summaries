@@ -18,7 +18,7 @@
 \usepackage{tikz}
 \usepackage{tabularx}
 \usepackage{listings}
-
+\usepackage{tcolorbox}
 
 
 
@@ -73,6 +73,14 @@
 \newcommand{\argmax}[1]{\underset{#1}{\text{argmax}}}
 
 
+\newcommand{\BoxStart}{%
+    \begin{tcolorbox}[
+        colback=definitionColor!10, % Adjust the percentage to control the lightness
+        colframe=definitionColor,
+        coltext=black % Ensure the text is black for visibility
+    ]%
+}\def\BoxEnd{\end{tcolorbox}}
+
 
 \titlespacing{\section}{0pt}{0.5ex}{0ex}
 \titlespacing{\subsection}{0pt}{0.5ex}{0ex}
@@ -125,7 +133,7 @@
 %\input{chapters/rendering-equation}
 %\input{chapters/rigging-fk-and-ik}
 %\input{chapters/partial-differential-equations}
-\input{chapters/jo/animation}
+%\input{chapters/jo/animation}
 \input{chapters/openGL}
 \input{chapters/jo/radon}
 \input{chapters/arjun/math-formulae}

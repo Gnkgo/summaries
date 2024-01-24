@@ -11,7 +11,8 @@ $I(x + \frac{dx}{dt}\delta t, y + \frac{dy}{dt} \delta t, t + \delta t) = I(x, y
 Small motion $\rightarrow$ can linearize with Taylor expansion:\\
 \graytext{$I(x+u, y + v, t + 1) = I(x,y,t) + I_x u + I_y v + I_t$} \\
 \graytext{$ \frac{dI}{dt} = \frac{\partial I}{\partial x} \frac{dx}{dt} + \frac{\partial I}{\partial y} \frac{dy}{dt} + \frac{\partial I}{\partial t} \approx 0$} or shorthand \graytext{$I_x \cdot u + I_y \cdot v + I_t \approx 0$}\\
-move $I-t$ on one side, vectorize unknowns. For LK, sum up over a window of pixes\\
+move $I-t$ on one side, vectorize unknowns. For LK, sum up over a window of pixes
+\BoxStart
 \greenbf{Derivation:}
 We assume small displacement and use Taylor-Expansion to get:
 
@@ -30,18 +31,20 @@ Finally, we divide by $\delta t$, and get:
 $0 = I_xu + I_yv + I_t$,
 
 as desired.
+\BoxEnd
 
+\BoxStart
 \greenbf{Sample Exercise:}\\
 You have captured a video at 25 frames per second of a car moving at 18 kilometers
 per hour. The side of the car is parallel to the image plane and the car is moving
 straight. The car is 2.4 meters long, but in your video it is 192 pixels long. Assume
 that your optical flow algorithm breaks down for pixel displacements that are larger
 than 1 pixel.\\
-\graytext{Start with a coarse image $\rightarrow$ compute flow $\rightarrow$ rescale $\rightarrow$ initialize with the last estimate $\rightarrow$ repeat.\\
+Start with a coarse image $\rightarrow$ compute flow $\rightarrow$ rescale $\rightarrow$ initialize with the last estimate $\rightarrow$ repeat.\\
 18 km/h equals 5 meters per second, which equals 20 cm per frame, i.e. $\frac{1}{12}$ of the
 length of the car. $\frac{1}{12}$ of 192 pixels is 16 pixels. Going from 16 to 8 to 4 to 2 to 1
-leads to 5 levels.}
- 
+leads to 5 levels.
+\BoxEnd
 \greenbf{Aperture problem:} The aperture problem refers to the fact that when flow is computed for a point that lies along a linear feature, it is not possible to determine the exact location of the corresponding point in the second image. Thus, it is only possible to determine the flow that is normal to the linear feature. 1 equation, 2 unknowns cannot determine exact location, take normal flow. \includegraphics*[width =0.6 \columnwidth]{jo/feature.png}\\
 \subsection*{Horn-Schunck}
 Add additional smoothness constraint: \\
@@ -50,7 +53,7 @@ Besides OF constraint: \\
 \graytext{$e_c = \int \int (I_x u + I_y v + I_t)^2 dxdy$} Minimize $e_s + \lambda e_c$
 \subsection*{Lukas-Kanade}
 Works well for textured area, corners. Not for homogeneous areas, edges since $M$ is singular when all gradient vectors point in the same direction.\\
-Assume spatial coherence: same displacement for neighbourhood ($N \times M$ window) $\rightarrow$ linear least squares problem:
+Assume spatial coherence: same displacement for neighborhood ($N \times M$ window) $\rightarrow$ linear least squares problem:\\
 \graytext{$\begin{bmatrix}
     %\begin{smallmatrix}
         I_x(x_1, y_1) & I_y(x_1, y_1)\\ ... & ... \\
@@ -105,3 +108,8 @@ They offer more constrained solutions than smoothness (Horn-Schunck) and cover l
 \greenbf{Affine motion:} $I_x(a_1 + a_2x + a_3y) + I_y(a_4 + a_5x + a_6y) + I_t \approx 0$ \\ \includegraphics*[width =\columnwidth]{jo/planes.png}\\
 \greenbf{SSD tracking:} For large displacements: match template against each pixel in small area around, match measure can be (normalized) correlation or SSD choose max. as match \graytext{(sub-pixel also possible)}\\
 \greenbf{Bayesan Optical Flow:} Some low-level motion illusions can be explained by adding an underlying model to LK-tracking e.g. brightness constancy with noise.
+\greenbf{Parametric Motion can be better:}
+\begin{compactitem}
+    \item more constrained solutions than smoothness (Horn-Schunck)
+    \item intergration over a larger area than a translation-only model can accmmodate (Lucas-Kanade)
+\end{compactitem}

@@ -87,7 +87,9 @@ transformation from point 2. on the compressed data to get the reconstructed ima
 
 \end{compactitem}
 PCA is just a linear transformation from one coordinate system to another, which can easily be "undone" in a lossless manner by reversing the transformation. The dimensionality reduction aspect comes when you start dropping the last principal components, which are the dimensions which capture the least variance.\\
-\greenbf{Calculate units of PCA}\\
+\greenbf{Calculate units of PCA}
+\BoxStart
+\greenbf{Exercise:} \\
 Assume dataset of 1000 images, with size $50 \times 50$
 \begin{compactenum}
     \item dataset mean = $50 \times 50 = 2500$
@@ -96,6 +98,7 @@ Assume dataset of 1000 images, with size $50 \times 50$
     \item $I_K = (I - \bar{I})\Phi$
     \item $\hat{I} = I_K \Phi^T + \bar{I}$
 \end{compactenum}
+\BoxEnd
 Face recognition \graytext{eigenfaces} and face detection.
 \subsection*{Eigenspace matching}
 Do PCA \graytext{with mean subtraction} and get closest rank-$k$ approximation of database images \graytext{(eignfaces)} \\

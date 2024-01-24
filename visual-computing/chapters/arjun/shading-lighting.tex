@@ -41,7 +41,7 @@ $V = \frac{Eye position - Object position}{\lVert V \rVert} $
 \end{minipage}
 
 \subsection*{Shading}
-\greenbf{Flat:} 1 color per primitive \\
+\greenbf{Flat:} 1 color per primitive, per triangle \\
 \greenbf{Gouraud:} Linearly interpolate vertex intensities
 \begin{compactenum}
     \item Calculate vertex normal by averaging face normals.
@@ -59,7 +59,7 @@ $
 
 Problems: Perspective Distortion. Orientation Dependence due to interpolation. Shared Vertices.
 
-\greenbf{Phong Shading:} Linearly interpolate normals
+\greenbf{Phong Shading:} Linearly interpolate normals, color per pixel
 \begin{compactenum}
     \item Calculate vertex normal by averaging face normals.
     \item Interpolate the normal barycentric

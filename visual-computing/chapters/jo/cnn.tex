@@ -91,7 +91,8 @@ Stack several linear classifiers with activation function between layers to get 
   \end{compactenum}
 
 
-\greenbf{CNN-Formulas}$C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
+\greenbf{CNN-Formulas} \\
+$C = channel$ $F = filterSize$ $inputSize = I$ $padding = P$
 $stride = S$
   \begin{compactitem}
     \item $\text{Output size l} = \frac{I + 2P - K}{S} + 1$
@@ -119,7 +120,7 @@ $stride = S$
   \(f(x_i, \theta)\) as the value. Can be used for classification by comparing value. Loss could be MSE. Can be used for \textit{depth estimation}.
 
 
-\greenbf{Pixel Loss, semantic segmentation}
+\greenbf{Pixel Loss, semantic segmentation}\\
   \(\mathcal{L} =- \sum_i \sum_c y_{ic} \log(p_{ic})\)
 
 
