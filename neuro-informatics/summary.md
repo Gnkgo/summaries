@@ -97,3 +97,13 @@ This is like a big look-up table to compute the answer.
 - Uses a lot of neurons
 - Very flexible, can represent any function in any # dimensions
 - Robust to noise and dropout
+
+# Lecture 1, Synapsis
+## Soup vs Spark
+- is synaptic transmission mediated chemically or by direct electrical transfer of charge
+- NMJ accepted that it was chemical $\rightarrow$ certain aspects too fast to be mediated chemically
+## Frog experiment
+- to support neurotransmitter hypothesis
+- first frogs heartbeat slowed, second frog inhibitory effect of vagus transferred
+- building connection of synapsis not rebuilding brain
+- 
