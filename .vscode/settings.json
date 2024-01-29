@@ -17,5 +17,10 @@
     "spellright.language": [],
     "spellright.documentTypes": [
         "plaintext"
+    ],
+    "cSpell.ignoreWords": [
+        "hopfield",
+        "modulatable",
+        "presynaptic"
     ]
 }
