@@ -1,5 +1,5 @@
 {\section{Statistik}}
-\subsection*{$\X^2$-Verteilung}
+\subsection{$\X^2$-Verteilung}
 Die $\X^2$- Verteilung mit $n$ Freiheitsgraden (bez. $\X^2_n$) gehört zu einer
 stetigen Zufallsvariable $Y$ mit Dichtefunktion:
 \begin{align*}
@@ -9,7 +9,7 @@ wobei dies ein Spezialfall der $Ga (\alpha, \lambda)$ Verteilung ist mit
 $\alpha = \frac{n}{2}$ und $\lambda = \frac{1}{2}$. Sind die Zufallsvariablen
 $\zufallsvariablen$ i.i.d. $\sim \Standardnormalverteilt$, so ist die Summe
 $Y := \Sn X_i^2 \sim \X^2_n$.
-\subsection*{$t$-Verteilung}
+\subsection{$t$-Verteilung}
 Die $t$-Verteilung mit $n$ Freiheitsgraden gehört zu einer stetigen
 Zufallsvariable $Z$ mit Dichtefunktion
 \begin{align*}
@@ -22,7 +22,8 @@ und $Y \sim \X^2_n$, so ist der Quotient:
 \begin{align*}
   Z := \frac{X}{\sqrt{\frac{1}{n} Y}} \sim t_n \text{, also $t$-Verteilt mit $n$ Freiheitsgraden}
 \end{align*}
-\subsection*{Hypothesen}
+\section{Tests}
+\subsection{Hypothesen}
 Es gibt:
 \begin{itemize}
   \item Hypothese $H_0 : \vt \in \varTheta_0$
@@ -30,7 +31,7 @@ Es gibt:
 \end{itemize}
 Man verwirft die Hypothese genau dann, wenn der realisierte Wert im
 Verwerfungsbereich $K$ liegt.
-\subsection*{Fehler}
+\subsection{Fehler}
 Es gibt folgende Fehler:
 \begin{itemize}
   \item 1. Art: Hypothese wird zu unrecht abgelehnt. $P_\vt[T \in K]$ für $\vt \in \varTheta_0$
@@ -55,7 +56,8 @@ Meisst kann man nicht beides minimieren, also geht man wie folgt vor:
 Somit ist es schwieriger eine Hypothese zu verwerfen als zu behalten. In einem
 Test \textbf{verwendet man deshalb immer als Hypothese die Negation der eigentlich gewünschten Aussage.}
 \BoxStart{}
-\subsection*{Beispiel: Was passiert, wenn das Signifikanzniveau $\alpha$ kleiner wird?}
+\subsection{Beispiel:}
+\textbf{Was passiert, wenn das Signifikanzniveau $\alpha$ kleiner wird?}
 Kleineres Signifikanzniveau ($\alpha$)
 \begin{itemize}
   \item Engerer Verwerfungsbereich
@@ -69,7 +71,7 @@ Kleineres Signifikanzniveau ($\alpha$)
 \BoxEnd{}
 
 \BoxStart{}
-\subsection*{Beispiel: Hypothesen-Test}
+\subsection{Beispiel: Hypothesen-Test}
 Wir haben eine Münze mit einer Seite rot und der anderen Seite
 blau gefärbt, und wir vermuten, dass die Münze gezinkt ist und eher auf der
 blauen Seite landet.
@@ -95,7 +97,7 @@ blauen Seite landet.
 
 \end{enumerate}
 \BoxEnd{}
-\subsection*{Hypothesis testing}
+\subsection{Hypothesis testing}
 \begin{enumerate}
   \item \textbf{Left-sided or left-tailed test: } If $H_0 : p = p_0$ is tested against the alternative $H_1 : p < p_0$, the region of rejection has the form $\{0, 1, \ldots, k\}$. The critical value $k$ is the largest value such that $P(X \leq k) \leq \alpha$.
   \item \textbf{Right-sided or right-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p > p_0\), the region of rejection has the form \(\{k, k + 1, \ldots , n\}\). The critical value \(k\) is the smallest value such that \(P(X \geq k) \leq \alpha\).
@@ -103,7 +105,7 @@ blauen Seite landet.
 
 \end{enumerate}
 
-\subsection*{Likelihood Quotient}
+\subsection{Likelihood Quotient}
 Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
   \varTheta_0$ sowie $\vt_A \in \varTheta_A$. Dann definieren wir:
 \begin{align*}
@@ -115,14 +117,14 @@ je grösser der Quotient, desto wahrscheinlicher die Alternative. Es gibt auch:
   \widetilde{R} (x_1, \dots, x_n) & = \frac{ \sup_{\vt \in \varTheta_A \cup \varTheta_0} L (x_1, \dots, x_n; \vt)}{\sup_{\vt \in \varTheta_0} L (x_1, \dots, x_n; \vt)} \\
 \end{align*}
 Wähle Konstante $c_0$ für $K_0 =  (c_0, \infty)$ mithilfe von Signifikanzniveau.
-\subsection*{Neyman-Pearson Lemma}
+\subsection{Neyman-Pearson Lemma}
 Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei $T =
   R (\zufallsvariablen; \vt_0, \vt_A)$ und $K := (c, \infty)$, sowie $\alpha^* :=
   P_{\vt_0}[T \in K] = P_{\vt_0}[T > c]$. Der Likelihood Quotienten Test mit
 Teststatistik $T$ und kritischem Bereich $K$ ist dann in folgendem Sinn
 optimal: Jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat
 eine kleinere Macht (bez. Grössere WS Fehler 2. Art).
-\subsection*{definition}{$p$-Wert}
+\subsection{definition}{$p$-Wert}
 (Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
 so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
 \begin{align*}
@@ -149,7 +151,7 @@ Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
 und es gilt $z_\alpha = - z_{1 - \alpha}$.
 \end{definition}
 \BoxStart{}
-\subsection*{Beispiel Fehler 1. Art berechnen}
+\subsection{Beispiel Fehler 1. Art berechnen}
 Sei $\Theta = [0, 1]$ und seien $X_1, \ldots , X_6$ unabhängig, identisch verteilt unter $P_\theta$
 mit $X_i \sim \text{Ber}(\theta)$. Wir betrachten die Nullhypothese $H_0 : \theta = \frac{1}{2}$ und die Alternativhypothese
 $H_A : \theta = \frac{1}{3}$. Wie hoch ist die Wahrscheinlichkeit eines Fehlers 1. Art für den Test $(T, K)$ mit
@@ -166,7 +168,7 @@ Die Teststatistik $T$ ist die Summe der beobachteten Werte der $X_i$:
 
 \BoxEnd{}
 \BoxStart{}
-\subsection*{Beispiel Fehler 2. Art berechnen}
+\subsection{Beispiel Fehler 2. Art berechnen}
 Nehme an: einseitiger $z$-Test, $T = \frac{\overline{X}_n - \mu_0}{\sigma /
     \sqrt{n}}$, $\mu_0 = 70$.
 \begin{align*}
@@ -202,14 +204,14 @@ Und die Verwerfungsbereiche:
 \end{align*}
 Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
 \end{definition}
-\subsection*{Gepaarter Zweiproben-Test}
+\subsection{Gepaarter Zweiproben-Test}
 Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
 $Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N} (\mu_Y, \sigma^2)$ unter $P_\vt$.
 Insbesondere ist $m = n$ und die Varianz beider Stichproben dieselbe.
 Differenzen $Z_i := X_I - Y_i$ sind unter $P_\vt$ i.i.d. $\mathcal{N} (\mu_X -
   \mu_Y, 2 \sigma^2)$. Dann analog $z$ und $t$-Test. (Setzt natürliche Paarung
 von Daten voraus!)
-\subsection*{Ungepaarter Zweiproben-Test}
+\subsection{Ungepaarter Zweiproben-Test}
 Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
   \mathcal{N} (\mu_X, \sigma^2)$ und $Y_1, \dots, Y_m$ i.i.d. $\sim \mathcal{N}
   (\mu_Y, \sigma^2)$, wobei die Varianz in beiden Fällen dieselbe ist.
@@ -232,7 +234,7 @@ Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
         \end{align*}
         unter jedem $P_\vt$. Dieser Test heisst ungepaarter Zweistichproben-$t$-Test.
 \end{itemize}
-\subsection*{Konfidenzbereich}
+\subsection{Konfidenzbereich}
 Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine Menge $C
   (x_1, \dots, x_n) \subseteq \varTheta$. Damit ist $C (\zufallsvariablen)$ eine
 zufällige Teilmenge von $\varTheta$. Dieses $C$ heisst Konfidenzbereich zum
@@ -241,7 +243,7 @@ Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
   P_\vt [\vt \in C (\zufallsvariablen)] \geq 1 - \alpha
 \end{align*}
 \BoxStart{}
-\subsection*{Beispiel: Konfidenzbereich}
+\subsection{Beispiel: Konfidenzbereich}
 Machen wir den Ansatz:
 \begin{align*}
   C (\zufallsvariablen) = [\overline{X}_n - \dots, \overline{X}_n + \dots]

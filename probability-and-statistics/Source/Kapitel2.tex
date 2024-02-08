@@ -1,4 +1,4 @@
-\subsection*{Diskrete Zufallsvariable}
+\subsection{Diskrete Zufallsvariable}
 Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
   \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch $\W (X) = \{x_1, x_2,
   \dots\}$ endlich oder abzählbar.
@@ -22,7 +22,7 @@ Wobei gilt:
   \item $\mu_X (B) := P[X \in B] = \sum_{x_k \in B} p_X (x_k)$
   \item $\sum_{x_k \in \W (X)} p_X (x_k) = P[X \in \W (X)] = 1$
 \end{itemize}
-\subsection*{Indikatorfunktion}
+\subsection{Indikatorfunktion}
 Für jede Teilmenge $A \subseteq \Omega$ ist die Indikatorfunktion $I_A$ von $A$
 definiert durch:
 \begin{align*}
@@ -32,7 +32,7 @@ definiert durch:
     0 \quad \text{falls } \omega \in A^\complement \\
   \end{cases}
 \end{align*}
-\subsection*{Erwartungswert}
+\subsection{Erwartungswert}
 Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$, dann ist
 der Erwartungswert definiert durch:
 \begin{align*}
@@ -49,7 +49,7 @@ und hat folgende Eigenschaften:
 \end{itemize}
 
 \BoxStart{}
-\subsection*{Beispiel: Erwartungswert gemeinsame Dichte}
+\subsection{Beispiel: Erwartungswert gemeinsame Dichte}
 Seien \(X\) und \(Y\) zwei stetige Zufallsvariablen mit gemeinsamer Dichte \(f(x, y)\):
 
 \[ f(x, y) = \begin{cases}
@@ -67,7 +67,7 @@ Berechne \(E[XY]\)\\[-20pt]
 
 \BoxEnd{}
 
-\subsection*{Erwartungswert von Funktionen}
+\subsection{Erwartungswert von Funktionen}
 Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y = g
   (X)$ für eine Funktion $Y: \R \mapsto \R$. Dann gilt:
 \begin{align*}
@@ -88,11 +88,11 @@ die Varianz von $X$. Es gilt weiter:
   \item $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
 \end{itemize}
 \end{definition}
-\subsection*{Standardabweichung}
+\subsection{Standardabweichung}
 \[
   \sigma (X) = \sqrt{Var[X]}
 \]
-\subsection*{Gemeinsame Verteilung}
+\subsection{Gemeinsame Verteilung}
 Seien $\zufallsvariablen$ beliebige Zufallsvariablen. Die Gemeinsame
 Verteilungsfunktion von $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto
   [0, 1]$, definiert durch:
@@ -105,31 +105,31 @@ Die Gemeinsame Gewichtsfunktion ist:
   p (x_1, \dots, x_n) := P[X_1 = x_1, \dots, X_n = x_n]
 \end{align*}
 
-\subsection*{Unabhängige Zufallsvariablen}
+\subsection{Unabhängige Zufallsvariablen}
 Zufallsvariablen $\zufallsvariablen$ heissen Unabhängig, falls gilt
 (äquivalent):
 \begin{align*}
   F (x_1, \dots, x_n) & = F_{X_1} (x_1) \cdot \hdots \cdot F_{X_n} (x_n) \\
   p (x_1, \dots, x_n) & = p_{X_1} (x_1) \cdot \hdots \cdot p_{X_n} (x_n)
 \end{align*}
-\subsection*{Unabhängige Ereignisse}
+\subsection{Unabhängige Ereignisse}
 Ereignisse $\ereignisse$ heissen Unabhängig, falls für beliebige Teilmengen
 $B_i \subseteq \W (X_i) \quad i = 1, \dots, n$ gilt (äquivalent):
 \begin{align*}
   P[X_1 \in B_1, \dots, X_n \in B_n] = \Pn P[X_i \in B_i]
 \end{align*}
-\subsection*{Funktionen von Zufallsvariablen}
+\subsection{Funktionen von Zufallsvariablen}
 Seien $\zufallsvariablen$ diskrete Unabhängige Zufallsvariablen und $f_i: \R
   \mapsto \R$ irgendwelche Funktionen. Sei weiter $Y_i := f_i (X_i)$. Dann sind
 die Zufallsvariablen $Y_1, \dots, Y_n$ ebenfalls unabhängig.
-\subsection*{Linearität des Erwartungswertes}
+\subsection{Linearität des Erwartungswertes}
 Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
 Erwartungswerten. $E[X_1], \dots, E[X_n]$. Sei $Y = a + \Sn b_i \cdot X_i$ mit
 Konstanten $a, b_1, \dots, b_n$. Dann gilt:
 \begin{align*}
   E[Y] = a + \Sn b_i \cdot E[X_i]
 \end{align*}
-\subsection*{Kovarianz}
+\subsection{Kovarianz}
 Seien $X, Y$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $ (\Omega, \F,
   P)$ mit endlichen Erwartungswerten. Dann ist die Kovarianz definiert als:
 \begin{align*}
@@ -137,7 +137,7 @@ Seien $X, Y$ Zufallsvariablen auf einem Wahrscheinlichkeitsraum $ (\Omega, \F,
              & = E[ (X - E[X])  (Y - E[Y])]
 \end{align*}
 Wobei $Cov (X, X) = Var[X]$.
-\subsection*{Korrelation}
+\subsection{Korrelation}
 Die Korrelation von $X, Y$ ist definiert durch
 \begin{align*}
   \rho (X, Y) := \begin{cases}
@@ -147,13 +147,13 @@ Die Korrelation von $X, Y$ ist definiert durch
 \end{align*}
 und es gilt $\abs{Cov (X, Y)} \leq \sigma (X) \cdot \sigma (Y)$
 beziehungsweise $-1 \leq \rho (X, Y) \leq 1$.
-\subsection*{Summenformel für Varianzen}
+\subsection{Summenformel für Varianzen}
 \begin{align*}
   Var \left[ \Sn X_i \right] = \Sn Var[X_i] + 2 \cdot \sum_{i < j} Cov (X_i, X_j)
 \end{align*}
 ist aber $Cov (X, Y) = 0$  ($X, Y$ paarweise unkorreliert), so wird
 die Summe linear.
-\subsection*{Produkte von Zufallsvariablen}
+\subsection{Produkte von Zufallsvariablen}
 Seien $\zufallsvariablen$ diskrete Zufallsvariablen mit endlichen
 Erwartungswerten. Falls $\zufallsvariablen$ unabhängig sind, so ist:
 \begin{align*}
@@ -164,7 +164,7 @@ Dann sind auch $\zufallsvariablen$ paarweise unkorreliert und:
   Var \left[ \Sn X_i \right] = \Sn Var[X_i]
 \end{align*}
 da Unabhängig $\implies$ paarweise Unabhängig $\implies$ unkorreliert.
-\subsection*{Bedingte Verteilung}
+\subsection{Bedingte Verteilung}
 Seien $X, Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p (x,
   y)$. Die bedingte Gewichtsfunktion von $X$, gegeben dass $Y = y$, ist definiert
 durch:
@@ -173,13 +173,13 @@ durch:
   \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p (x, y)}{p_Y (y)}
 \end{align*}
 für $p_Y (y) > 0$ und $0$ sonst.
-\subsection*{Kriterium für Unabhängigkeit}
+\subsection{Kriterium für Unabhängigkeit}
 $X, Y$ sind genau dann unabhängig, wenn für alle $y$ mit $p_Y (y) > 0$
 gilt:
 \begin{align*}
   p_{X\,|\,Y} (x \; | \; y) = p_X (x) &  & \forall x \in \W (X)
 \end{align*}
-\subsection*{$n$ tief $k$}
+\subsection{$n$ tief $k$}
 \begin{align*}
   \binom{n}{k} = \frac{n!}{k! \cdot  (n - k)!}
 \end{align*}

@@ -2,7 +2,6 @@
 % Article
 % \documentclass[9pt]{extarticle}
 \usepackage[landscape, left=0.10cm, top=0.1cm, right=0.1cm, bottom=0.3cm, footskip=2pt]{geometry}
-\usepackage{background}
 \usepackage{etoolbox}
 \usepackage{graphicx}
 \usepackage{totcount}
@@ -13,13 +12,10 @@
 \usepackage{physics}
 \usepackage{enumerate}
 \usepackage{tikz}
-\usepackage{background}
-
-
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 
-\usepackage[compact]{titlesec}
+\usepackage[explicit, compact]{titlesec}
 \usepackage{paralist}
 
 \usepackage{tabularx}
@@ -30,22 +26,46 @@
 % Tables
 \usepackage{tabularx, multirow}
 \usepackage{booktabs}
+
+% Color definitions
+\definecolor{H1}{HTML}{8b6d9c}
+\definecolor{H2}{HTML}{f2d3ab}
+\definecolor{H3}{HTML}{494d7e}
+\definecolor{primaryheader}{RGB}{20,0,70}
+\definecolor{secondaryheader}{RGB}{106,90,205}
+\definecolor{definitioncolor}{RGB}{160,160,210}
+\definecolor{boxColor}{RGB}{106,90,205}
+
+% Other color definitions...
+
+% Custom title formats
+\titleformat{\section}
+  {\sffamily\bfseries\boldmath\large}
+  {}
+  {0pt}
+  {\colorbox{primaryheader}{\textcolor{white}{\thesection\quad#1}}}
+\titleformat{\subsection}
+  {\sffamily\bfseries\boldmath}
+  {}
+  {0pt}
+  {\colorbox{secondaryheader}{\textcolor{white}{\thesubsection\quad#1}}}
+% Other formatting...
+
+
 \renewcommand*{\arraystretch}{2}
 
 \newcommand{\BoxStart}{%
     \begin{tcolorbox}[
-        colback=definitioncolor!10, % Adjust the percentage to control the lightness
-        colframe=definitioncolor,
+        colback=boxColor!10, % Adjust the percentage to control the lightness
+        colframe=boxColor,
         coltext=black % Ensure the text is black for visibility
     ]%
 }\def\BoxEnd{\end{tcolorbox}}
 
-\definecolor{definitioncolor}{RGB}{0,180,139}
-
 \newtcolorbox{definition}[2][]{
 	colback = white,
 	colframe = definitioncolor,
-	coltitle = black,
+	coltitle = white,
 	title = #2,
 	#1
 }
@@ -62,22 +82,12 @@
 
 \usepackage{amssymb}
 
-% for color coding
-\usetikzlibrary{backgrounds}
-
-
 
 % for multicolumn
 \usepackage{multicol}
 \setlength{\columnseprule}{0.4pt}
 
-% to have access to the total number of subsection*s
-%\regtotcounter{subsection*}
 
-% every subsection* starts on a new page
-%\pretocmd{\subsection*}{\clearpage}{}{}
-
-% auxiliary lengths for the height of the frame and the width of each tab
 \newlength\mylen{}
 \newlength\mylena{}
 
@@ -87,15 +97,6 @@
 
 \def\getnthelement#1{\csname mylist#1\endcsname}
 
-% the main part; as background material we place the border, 
-% the subsection*  (current and other) tabs and the page number
-%\backgroundsetup{
-%  scale=1,
-%  color=black,
-%  angle=0,
-%  opacity=1,
-%  contents={}
-%}
 
 % Set indentation
 \setlength{\parindent}{2pt}
@@ -140,9 +141,7 @@
 \definecolor{darkgreen}{RGB}{0,100,0}
 \definecolor{mediumdarkgreen}{RGB}{0,150,0}
 
-\titleformat*{\section}{\fontsize{10}{10}\bfseries\color{darkgreen}}
-\titleformat*{\subsection}{\fontsize{10}{10}\bfseries\color{mediumdarkgreen}}
-% define box
+
 \begin{document}
 \setlength{\columnseprule}{0.4pt}
 \pagenumbering{arabic}

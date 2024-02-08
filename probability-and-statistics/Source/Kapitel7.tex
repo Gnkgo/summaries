@@ -2,8 +2,8 @@
 % chktex-file 12
 % chktex-file 11
 
-{\section{Schätzer}}
-\subsection*{Schätzer}
+\section{Schätzer}
+\subsection{Schätzer}
 Wir suchen ein Modell für eine Stichprobe $\zufallsvariablen$ und haben einen
 Parameteraum $\vartheta \subseteq \varTheta$ und für jedes $\vt$ einen
 Wahrscheinlichkeitsraum $ (\Omega, \F, P_\vt)$. Wir möchten nun die Parameter
@@ -28,7 +28,7 @@ Verschiedene $T_{\text{ML}}$
 Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl. Sie
 entsteht durch das Einsetzen konkreter Daten in einen Schätzer: $T_j (\omega) =
   t_j (x_1, \dots, x_n)$ und liefert damit einen Wert für genau einen Parameter.
-\subsection*{Eigenschaften von Schätzern}
+\subsection{Eigenschaften von Schätzern}
 Sei $T$ ein Schätzer.
 \begin{itemize}
   \item $T$ ist erwartungstreu, falls $E_\vt[T] = \vt$ gilt. $T$ schätzt
@@ -43,7 +43,7 @@ Sei $T$ ein Schätzer.
         \end{align*}
 \end{itemize}
 \BoxStart{}
-\subsection*{Beispiel: Erwartungstreuer Schätzer}
+\subsection{Beispiel: Erwartungstreuer Schätzer}
 Seien $X_1, \ldots, X_n$ unabhängige, identisch verteilte Zufallsvariablen mit $X_i \sim \mathcal{U}([\theta - 1, \theta]) unter \mathbb{P}_\theta$ 
 wobei $\theta \in \mathbb{R}$. Wir betrachten den Schätzer 
 \[T_1^{(n)} := \frac{1}{n} \cdot \sum_{i = 1}^n X_i + \frac{1}{2}\]
@@ -59,7 +59,7 @@ Sei $\theta \in \mathbb{R}$ fixiert. Aus der Gleichverteilung folgt, dass
 Somit folgt, dass der Schätzer ${T(n)}_1$ erwartungstreu ist.
 
 \BoxEnd{}
-\subsection*{Maximum-Likelihood Methode}
+\subsection{Maximum-Likelihood Methode}
 (Analog im diskreten Fall.) In einem Modell $P_\vt$ sind die Zufallsvariablen
 $\zufallsvariablen$ stetig mit einer gemeinsamen Dichtefunktion
 $f (x_1, \dots, x_n, \vt)$. Oft sind die $X_i$ i.i.d. und man erhält:
@@ -76,7 +76,7 @@ zu Maximieren durch Anpassungen an $\vt$:
 \end{align*}
 letzteres kann bei Produkt zu Summe umwandlung hilfreich sein.
 \BoxStart{}
-\subsection*{Beispiel: Maximum Likelyhood-Funktion}
+\subsection{Beispiel: Maximum Likelyhood-Funktion}
 Sei $\Theta = [0, 1]$. Wir betrachten die Modellfamilie $ {P_\theta}_{\theta \in \Theta}$, wobei $X_1, \ldots, X_n$ unter $\mathbb{P}_\theta$ unabhängig und identisch verteilt sind mit $X_1 \sim \text{Geom} (\theta)$. Was ist die Likelihood-Funktion $L (x_1, \ldots, x_n; \theta)$ für $x_1, \ldots, x_n \in \{1, 2, \ldots\}$?
 \begin{align*}
   L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]            \\
@@ -101,13 +101,13 @@ $0$ und erhalten:
 \end{align*}
 
 \BoxEnd{}
-\subsection*{Empirisches Moment}
+\subsection{Empirisches Moment}
 Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment oder
 Stichprobenmoment $\hat{m}_k$ der Realisierung $ (x_1, \dots, x_n)$:
 \begin{align*}
   \hat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
 \end{align*}
-\subsection*{Momentenmethode}
+\subsection{Momentenmethode}
 Der Momentenmethode liegt zugrunde, dass die Momente einer Zufallsvariable bzw.
 einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden
 können.\\ Sei $\zufallsvariablen$ eine Stichprobe und $\varTheta$ der
@@ -126,7 +126,7 @@ sei $\zufallsvariablen$ i.i.d. unter dem Wahrscheinlichkeitsraum $ (\Omega, \F,
         \end{align*}
   \item Existiert eine Eindeutige Lösung so wird das unsere Schätzung für $\vt$.
 \end{enumerate}
-\subsection*{Momentenschätzer}
+\subsection{Momentenschätzer}
 Der Vektor $\hat{\vt} (X_1, \dots, X_m)$ heisst Momentenschätzer des Parameters
 $\vt$.
 \begin{definition}{Normalverteile Stichprobe}
@@ -143,7 +143,7 @@ so wählen wir für $T_2 = S^2$:
   S^2 = \frac{1}{n-1} \Sn  {(X_i - \overline{X}_n)}^2
 \end{align*}
 \end{definition}
-\subsection*{Normalverteile Stichproben}
+\subsection{Normalverteile Stichproben}
 Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
 \begin{itemize}
   \item $\overline{X}_n \sim \mathcal{N} (\mu, \frac{\sigma^2}{n})$

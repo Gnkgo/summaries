@@ -1,13 +1,13 @@
 % chktex-file 8
-{\section{Wichtige diskrete Verteilungen}}
-\subsection*{Diskrete Gleichverteilung}
+\section{Wichtige diskrete Verteilungen}
+\subsection{Diskrete Gleichverteilung}
 Die diskrete Gleichverteilung auf einer endlichen Menge $\W = \{ x_1, \dots,
   x_n \}$ gehört zu einer Zufallsvariablen $X$ mit Wertebereich $\W$ und
 Gewichtsfunktion:
 \begin{align*}
   p_X (x_k) = P[X = x_k] = \frac{1}{N} &  & k \in \{1, \dots, N\}
 \end{align*}
-\subsection*{Unabhängige 0-1-Experimente}
+\subsection{Unabhängige 0-1-Experimente}
 Es sei $A_i := \{\text{Erfolg beim $i$-ten Experiment}\}$ und:
 \begin{itemize}
   \item Die $A_i$ sind unabhängig
@@ -48,18 +48,19 @@ Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
 Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
 \begin{align*}
   X       & = \inf \{ i \in \N : A_i \text{ tritt ein} \} \\
-  p_X (k) & = P[X = k] = p \cdot  (1-p)^{k-1}
+  p_X (k) & = P[X = k] = p \cdot  (1-p)^{k-1}\\
+  P[X \geq k] &= (1 - p)^{k - 1}
 \end{align*}
 wir schreiben $X \sim Geom (p)$ und es gilt:
 \begin{align*}
-  E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^k \cdot p
+  E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^{k-1} \cdot p
   = \frac{1}{1- (1-p)} = \frac{1}{p}                 \\
   E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}          \\
   Var[X]            & = \frac{1-p}{p^2}
 \end{align*}
 \end{definition}
 \BoxStart{}
-\subsection*{Beispiel: Gedächtsnislosigkeit Geometrische Verteilung}
+\subsection{Beispiel: Gedächtsnislosigkeit Geometrische Verteilung}
 \begin{align*}
   &\exists q \in (0, 1) : Z \sim \text{Geom}(q) \Leftrightarrow \\
   &P[Z > n] = P[Z > n + k | Z > k], \quad n, k \geq 1.

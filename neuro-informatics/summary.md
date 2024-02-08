@@ -335,9 +335,9 @@ Depolarization: Depolarization is when a change occurs inside a cell that causes
 
 6. **Short-Term Plasticity vs Long-Term Potentiation**: Short-term plasticity refers to transient changes in synaptic strength that occur over a short period, such as facilitation or depression due to recent activity. Long-term potentiation (LTP), on the other hand, is a long-lasting increase in synaptic strength following high-frequency stimulation, which is a mechanism underlying learning and memory.
 
-7. **Tuning Curves (Population Codes)**: A tuning curve represents the response of a neuron to a range of stimuli, showing how the firing rate of the neuron changes with different stimulus values. It's an essential concept in understanding population coding, where the combined activity of multiple neurons with different tuning properties can encode complex information, such as sensory inputs.
+7. **Tuning Curves (Population Codes)**: HÄÄ?? A tuning curve represents the response of a neuron to a range of stimuli, showing how the firing rate of the neuron changes with different stimulus values. It's an essential concept in understanding population coding, where the combined activity of multiple neurons with different tuning properties can encode complex information, such as sensory inputs.
 
-8. **Activation Levels from a 2D Stimuli Input**: The question likely refers to interpreting a heatmap or graph showing how a neuron's activation level varies with two-dimensional stimulus input. Areas of highest activation would correspond to the preferred stimulus of the neuron, while areas of lowest activation would correspond to non-preferred stimuli.
+8. **Activation Levels from a 2D Stimuli Input**: HÄÄ? The question likely refers to interpreting a heatmap or graph showing how a neuron's activation level varies with two-dimensional stimulus input. Areas of highest activation would correspond to the preferred stimulus of the neuron, while areas of lowest activation would correspond to non-preferred stimuli.
 
 9. **Action Potential Annihilation Due to Refractory Period**: The refractory period is the time immediately following an action potential during which a neuron is unable to fire another action potential. This refractory period prevents the backward propagation of the action potential and ensures unidirectional travel along an axon.
 
@@ -345,7 +345,7 @@ Depolarization: Depolarization is when a change occurs inside a cell that causes
 
 - **Graph of LTP Changes**: Long-term potentiation (LTP) is typically visualized by plotting the post-synaptic response strength over time. A normal graph of LTP would show a stable baseline of synaptic response followed by a sudden and sustained increase in response following a high-frequency stimulus. A modified graph might show a diminished LTP response, possibly due to pharmacological intervention, genetic modification, or pathology. Analyzing such graphs would involve noting differences in the magnitude, onset, and duration of LTP.
 
-- **Injecting Two Currents at Both Ends**: When injecting two currents into the ends of a neuron, the interaction of the currents will depend on the neuron's properties, such as membrane resistance and capacitance. The currents will spread passively inside the neuron and decay over distance. The actual effect also depends on whether the currents are excitatory or inhibitory and their relative strengths and timings.
+- **Injecting Two Currents at Both Ends**: hÄÄ? When injecting two currents into the ends of a neuron, the interaction of the currents will depend on the neuron's properties, such as membrane resistance and capacitance. The currents will spread passively inside the neuron and decay over distance. The actual effect also depends on whether the currents are excitatory or inhibitory and their relative strengths and timings.
 
 - **Reversal Potential of a Single Ion**: The reversal potential (also known as equilibrium potential) for a single ion can be calculated using the Nernst equation:
 
@@ -373,11 +373,11 @@ Depolarization: Depolarization is when a change occurs inside a cell that causes
 1. The weighting coefficients always lie on a straight line
   - False
 2. If you scale the input by a constant, the output will be scaled by the same constant
-    - True
+  - True
 3. The output of a sum of different inputs is equal to the sum of the outputs of each of the individual inputs
-    - True
+  - True
 4. The filter is a linear function of the input
-    - False
+  - False
   
 **Which of the following inputs might cause a linear system with a positive filter to predict a negative rate?**
 1. An input that slowly varies between a large positive value and a large negative value

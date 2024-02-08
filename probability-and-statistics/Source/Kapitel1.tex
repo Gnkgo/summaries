@@ -2,12 +2,12 @@
 % chktex-file 8
 
 
-{\section{Wahrscheinlichkeiten}}
-\subsection*{Ereignisraum}
+\section{Wahrscheinlichkeiten}
+\subsection{Ereignisraum}
 Die Menge $\Omega \neq \emptyset$ aller möglichen Ergebnisse des betrachteten
 Zufallsexperiments. Die Elemente $\omega \in \Omega$ heissen
 Elementarereignisse.
-\subsection*{Potenzmenge}
+\subsection{Potenzmenge}
 Die Potenzmenge von $\Omega$, bezeichnet mit $\mathcal{P} (\Omega)$ oder
 $2^\Omega$ ist die Menge aller Teilmengen von $\Omega$. Ein Prinzipielles
 Ereignis ist eine Teilmenge $A \subseteq \Omega$, also eine Kollektion von
@@ -26,7 +26,7 @@ Grundraum: Menge $\Omega$. $\omega \in \Omega$ heisst Elementarereigniss.
 \end{itemize}	
 \end{definition}
 
-\subsection*{Wahrscheinlichkeitsmass}
+\subsection{Wahrscheinlichkeitsmass}
 Eine Abbildung $\mathcal{P}: \F \to [0, 1]$ mit folgenden Eigenschaften:
 \begin{enumerate}[label= (\arabic*)]
   \item $\mathcal{P}[A] \geq 0 \text{ für alle Ereignisse } A \in \F$
@@ -41,13 +41,13 @@ Es gelten weiter folgende Rechenregeln:
   \item Für $A \subseteq B$ gilt $\mathcal{P}[A] \leq \mathcal{P}[B]$
   \item $\mathcal{P}[A \cup B] = \mathcal{P}[A] + \mathcal{P}[B] - \mathcal{P}[A \cap B]$
 \end{itemize}
-\subsection*{Diskrete Wahrscheinlichkeitsräume}
+\subsection{Diskrete Wahrscheinlichkeitsräume}
 Impliziert:
 \begin{itemize}
   \item $\Omega$ ist endlich oder abzählbar unendlich
   \item $\F = 2^{\Omega}$
 \end{itemize}
-\subsection*{Laplace Raum}
+\subsection{Laplace Raum}
 Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $\abs*{\Omega} = N$
 und $\F = 2^\Omega$ sowie alle $\omega_i$ gleich wahrscheinlich mit $p_i =
   \frac{1}{n}$, so heisst $\Omega$ ein Laplace Raum und $P$ die diskrete
@@ -70,7 +70,7 @@ Es gilt:
   P[A \cap B] = P[A \;|\; B] \cdot P[B] = P[B \;|\; A] \cdot P[A]
 \end{align*}
 \end{definition}
-\subsection*{Satz der totalen Wahrscheinlichkeit}
+\subsection{Satz der totalen Wahrscheinlichkeit}
 Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte
 Ereignisse, d.h. $\bigcup_{i = 1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset
   \quad \forall i \neq k$. Dann gilt:
@@ -87,7 +87,7 @@ bilden. Damit folgt:
   P[B] = P \left[ \bigcup_{i = 1}^n  (B \cap A_i)\right] \\
   = \Sn P[B \cap A_i] = \sum_{i = 1}^n P[B \; | A_i] \cdot P[A_i]
 \end{align*}
-\subsection*{Satz von Bayes}
+\subsection{Satz von Bayes}
 Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i \in
   \{1, \dots, n\}$. Sei $B$ ein Ereignis mit $P[B > 0]$. Dann gilt für jedes $k$:
 \begin{align*}
@@ -95,7 +95,7 @@ Sei $A_1, \dots, A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i \in
 \end{align*}
 \emph{Beweis.} Verwende Definition Bedingte Wahrscheinlichkeit,
 im Zähler Multiplikationsregel und im Nenner Satz der totalen Wahrscheinlichkeit.
-\subsection*{Unabhängige Ereignisse  (2)}
+\subsection{Unabhängige Ereignisse  (2)}
 Zwei ereignisse heissen (stochastisch) Unabhängig, falls
 \begin{align*}
   P[A \cap B] = P[A] \cdot P[B]
@@ -105,10 +105,10 @@ Für $P[A] \neq 0$ gilt:
 \begin{align*}
   A, B \text{ unabhängig} \Longleftrightarrow \cond{A}{B} = P[A]
 \end{align*}
-\subsection*{Unabhängige Ereignisse  ($\infty$)}
+\subsection{Unabhängige Ereignisse  ($\infty$)}
 Die Ereignisse $\ereignisse$ heissen (stochastisch) unabhängig, wenn für jede
 endliche Teilfamilie der Produktformel gilt, d.h. für $m \in \N$ und $\{k_1,
   \dots, k_m\} \subseteq \{1, \dots, n\}$:
 \begin{align*}
-  P \left[\bigsubsection* A_{k_i} \right] = \Pn P[A_{k_i}]
+  P \left[\bigsubsection A_{k_i} \right] = \Pn P[A_{k_i}]
 \end{align*}

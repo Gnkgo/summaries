@@ -33,15 +33,15 @@
 \definecolor{secondaryheader}{RGB}{106,90,205} % Less Dark Purple
 
 
-\titleformat{\section}
-  {\sffamily\bfseries\boldmath\large}
-  {}
-  {0pt}
-  {\colorbox{primaryheader}{\textcolor{white}{\thesection\quad#1}}}
+  \titleformat{\section}
+    {\sffamily\bfseries\boldmath\large}
+    {}
+    {0pt}
+    {\colorbox{primaryheader}{\textcolor{white}{\thesection\quad#1}}}
 
-\titleformat{\subsection}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{secondaryheader}{\textcolor{white}{#1}}}
+  \titleformat{\subsection}{\sffamily\bfseries\boldmath}{}{0pt}{\colorbox{secondaryheader}{\textcolor{white}{#1}}}
 
-\newcommand{\raisedrulefill}[2][0ex]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill}
+  \newcommand{\raisedrulefill}[2][0ex]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill}
 
 
 

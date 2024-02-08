@@ -1,4 +1,4 @@
-\subsection*{Zufallsvariable}
+\subsection{Zufallsvariable}
 \[
 P[X = x] = 0 \text{für stetige Zufallsvariablen ist die Wahrscheinlichkeit einer einzigen Variable gleich 0} 
 \]
@@ -9,7 +9,7 @@ Wahrscheinlichkeitsmass auf $\F$. Eine (reelwertige) Zufallsvariable auf
 $\Omega$ ist eine messbare Funktion $X : \Omega \mapsto \R$. Das bedeutet, dass
 die Menge $\{X \leq t\} = \{\omega : X (\omega) \leq t\}$ für jedes $t$ ein
 beobachtbares Ereigniss sein muss.
-\subsection*{Verteilungsfunktion}
+\subsection{Verteilungsfunktion}
 Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$:
 \begin{align*}
   t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
@@ -22,7 +22,7 @@ und hat die Eigenschaften:
   \item $\lim_{t \ra - \infty} F_X (t) = 0$ und $\lim_{t \ra + \infty} F_X (t) = 1$
 \end{itemize}
 \BoxStart{}
-\subsection*{Beispiel: Verteilungsfunktion}
+\subsection{Beispiel: Verteilungsfunktion}
 Um zu verhindern, dass ein Gerät infolge eines defekten Halbleiters längere Zeit ausfällt, 
 werden zwei identische, parallel geschaltete Halbleiter zu einem Bauteil zusammengefasst.
 Eine Kontrolllampe leuchtet auf, wenn einer der beiden Halbleiter ausgefallen ist. 
@@ -44,7 +44,7 @@ Die Verteilungsfunktion von \(T\) ist gegeben durch
 d.h. \(T\) ist wieder exponentialverteilt mit Parameter \(2\lambda = \frac{1}{30}\).
 
 \BoxEnd{}
-\subsection*{Dichtefunktion}
+\subsection{Dichtefunktion}
 Das Analogon der Gewichtsfunktion im Diskreten Fall. Eine Zufallsvariable $X$
 mit Verteilungsfunktion $F_X (t) = P[X \leq t]$ heisst (absolut) stetig mit
 Dichte (funktion) $f_X : \R \mapsto [0, \infty)$, falls gilt:
@@ -57,6 +57,7 @@ und hat die Eigenschaften:
   \item $\int_{-\infty}^\infty f_X (s) \; ds = 1$;
         das folgt aus $\lim_{t \ra + \infty} F_X (t) = 1$
 \end{itemize}
+\section{Wichtige stetige Verteilungen}
 \begin{definition}{Gleichverteilung}
   Die Gleichverteilung auf dem Intervall $[a, b]$ ist ein Modell für die
 Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige Zufallsvariable $X$
@@ -113,7 +114,7 @@ Dichtefunktion:
 welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
 \end{definition}
 
-\subsection*{Standard Normalverteilung}
+\subsection{Standard Normalverteilung}
 Wichtige Normalverteilung mit $\Standardnormalverteilt$. Weder für die
 zugehörige Dichte $\vp (t)$ noch Verteilungsfunktion $\Phi (t)$ gibt es
 geschlossene Ausdrücke, aber das Integral
@@ -130,25 +131,25 @@ deshalb genügt es $\Phi$ zu tabellieren.
 \begin{align*}
   \Phi (-z) = 1 - \Phi (z)
 \end{align*}
-\subsection*{Normalapproximation}
+\subsection{Normalapproximation}
 Wenn $S_n \sim Bin (n, p)$ dann
 \begin{align*}
   S_n \sim_{approx} N (np, np (1-p))
 \end{align*}
-\subsection*{Erwartungswert}
+\subsection{Erwartungswert}
 Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
 \begin{align*}
   E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
 \end{align*}
 sofern das Integral absolut konvergiert. Ist das Integral nicht
 absolut konvergent, so existiert der Erwartungswert nicht.
-\subsection*{Erwartungswert einer Funktion}
+\subsection{Erwartungswert einer Funktion}
 Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
 $X$ stetig mit Dichte $f_X$, so ist
 \begin{align*}
   E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
 \end{align*}
-\subsection*{Momente \& Absolute Momente}
+\subsection{Momente \& Absolute Momente}
 Sei $X$ eine Zufallsvariable und $p \in \R^+$. Wir definieren:
 \begin{itemize}
   \item $p$-te absolute Moment von $X$: $M_p := E[\abs{X}^p]$
@@ -163,7 +164,7 @@ Es gilt weiter, dass $M_n < \infty$ für $n \in \N \implies \abs{m_m} \leq M_n$.
   m_n                         & = \int_{-\infty}^\infty x^n f_X (x) \; dx       \\
   p \leq q \land M_q < \infty & \implies M_p < \infty
 \end{align*}
-\subsection*{Gemeinsame Verteilung/Dichte}
+\subsection{Gemeinsame Verteilung/Dichte}
 Die Gemeinsame Verteilungsfunktion von Zufallsvariablen $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto [0, 1]$ mit:
 \begin{align*}
   F (x_1, \dots, x_n) & := P[X_1 \leq x_1, \dots, X_n \leq x_n]                                                 \\
@@ -176,7 +177,7 @@ Eigenschaften hat:
   \item $\int_{-\infty}^\infty \dots \int_{-\infty}^\infty f (t_1, \dots, t_n) \; dt_n \dots t_1 = 1$
   \item $P[ (\zufallsvariablen) \in A] = \int_{ (x_1, \dots, x_n) \in A} f (t_1, \dots, t_n) \; dt_n \dots t_1$ für $A \subseteq \R^n$
 \end{itemize}
-\subsection*{Randverteilung}
+\subsection{Randverteilung}
 Haben $X, Y$ die Gemeinsame Verteilungsfunktion $F$, so ist die Funktion $F_X:
   \R \mapsto [0, 1]$,
 \begin{align*}
@@ -193,7 +194,7 @@ der Randverteilung von $X$ gegeben durch:
   x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
 \end{align*}
 \BoxStart{}
-\subsection*{Beispiel: Dichtefunktion berechnen}
+\subsection{Beispiel: Dichtefunktion berechnen}
 Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
 Parameter $\lambda > 0$. Definiere
 \[
@@ -213,7 +214,7 @@ die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
 
 \BoxEnd{}
 \BoxStart{}
-\subsection*{Beispiel: Randverteilung, gemeinsame Dichte}
+\subsection{Beispiel: Randverteilung, gemeinsame Dichte}
 Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
 \[
   f_{U, V} (u, v) =
@@ -284,7 +285,7 @@ However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5}
 Therefore, U and V are not independent.
 \end{enumerate}
 \BoxEnd{}
-\subsection*{Unabhängigkeit}
+\subsection{Unabhängigkeit}
 Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
 (äquivalent):
 \begin{align*}
@@ -292,21 +293,21 @@ Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
   f (x_1, \dots, x_n) = f_{X_1} (x_1) \cdot \hdots \cdot f_{X_n} (X_n)
 \end{align*}
 für alle $x_1, \dots, x_n$.
-\subsection*{Bedingte Verteilungen}
+\subsection{Bedingte Verteilungen}
 Es gilt:
 \begin{align*}
   f_{X_1 \; | \; X_2} (x_1 \; | \; x_2) & = \frac{f_{X_1,  X_2} (x_1,  x_2)}{f_{X_2} (x_2)}              \\
   \cond{Y > t}{Y < a}                   & = \frac{P[t < Y < a]}{P[Y < a]}                                \\
   E[X_1 \; | \; X_2]                    & = \int x_1 \cdot f_{x_1 \; | \; x_2} (x_1 \; | \; x_2) \; dx_1
 \end{align*}
-\subsection*{Summen von Zufallsvariablen}
+\subsection{Summen von Zufallsvariablen}
 Sei $Z = X + Y$ eine Zufallsvariable mit:
 \begin{align*}
   F_Z (z) & = P[Z \leq z] = P[X + Y \leq z]                                     \\
           & = \int_{-\infty}^\infty \int_{-\infty}^{z - x} f (x, y )\; dy \, dx \\
   f_Z (z) & = \int_{-\infty}^\infty f (z - y, y) \; dy
 \end{align*}
-\subsection*{Transformationen}
+\subsection{Transformationen}
 Sei $X$ eine Zufallsvariable mit Verteilung und Dichte. Sei $g: \R \mapsto \R$
 eine messbare Funktion. Betrachte nun $Y = g (X)$, wir suchen Verteilung und
 Dichte von $Y$:
@@ -315,7 +316,7 @@ Dichte von $Y$:
   A_g     & := \{s \in \R \; | \; g (s) \leq t\}
 \end{align*}
 Wobei man die Dichte durch ableiten der Verteilung erhält.
-\subsection*{Anwendung von Transformationen}
+\subsection{Anwendung von Transformationen}
 Sei $F$ eine stetige und streng monoton wachsende Verteilungsfunktion mit
 Umkehrfunktion $F^{-1}$. Ist $X \sim \mathcal{U} (0, 1)$ und $Y = F^{-1} (X)$,
 so hat $Y$ gerade die Verteilungsfunktion $F$:
@@ -330,7 +331,7 @@ Mit der Substitution
   f_Y(y)  & = f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)| \\
 \end{align*}
 \BoxStart{}
-\subsection*{Beispiel: Transformation}
+\subsection{Beispiel: Transformation}
 Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Was ist die Dichte $f_Y(y), y > 0$ der Zufallsvariable $Y$?
 \begin{align*}
   Y             & = e^X                          \\

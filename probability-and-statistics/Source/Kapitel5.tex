@@ -1,38 +1,18 @@
-\subsection*{Markov Ungleichung}
+\section{Ungleichungen}
+\subsection{Markov Ungleichung}
 Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
 wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
 \begin{align*}
   P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
 \end{align*}
-\subsection*{Chebyshev-Ungleichung}
+\subsection{Chebyshev-Ungleichung}
 Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
 \begin{align*}
   P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
 \end{align*}
-\subsection*{Momenterzeugende Funktion}
-Die Momenterzeugende Funktion einer Zufallsvariable $X$ ist:
-\begin{align*}
-  M_X (t) := E[e^{t \cdot X}] &  & \text{für } t \in \R
-\end{align*}
 
-\BoxStart{}
-\subsection*{Beispiel: momenterzeugende Funktion}
-Sei \(X\) eine exponentialverteilte Zufallsvariable mit Parameter \(\lambda\), d.h. \(X \sim \text{Exp}(\lambda)\). Berechnen Sie die momenterzeugende Funktion \(M_X(t)\).
 
-\begin{align*}
-  M_X(t) &= E[e^{tX}] \\
-         &= \int_{0}^{\infty} e^{tx} \lambda e^{-\lambda x} \, dx \\
-         &= \lambda \int_{0}^{\infty} e^{-(\lambda - t)x} \, dx = -\frac{\lambda}{\lambda - t} e^{-(\lambda - t)x} \bigg|_{0}^{\infty} \\
-         &\begin{aligned}
-           &= \begin{cases}
-                \frac{\lambda}{\lambda - t}, & \text{falls } t < \lambda, \\
-                \infty, & \text{falls } t \geq \lambda.
-              \end{cases}
-           \end{aligned}
-\end{align*}
-\BoxEnd{}
-
-\subsection*{Grosse Summenabweichung}
+\subsection{Grosse Summenabweichung}
 Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
 Momenterzeugende Funktion $M_X (t)$ für alle $t \in \R$ endlich ist. Für jedes
 $b \in \R$ gilt dann:
@@ -40,7 +20,7 @@ $b \in \R$ gilt dann:
   P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
 \end{align*}
 
-\subsection*{Chernoff Schranken}
+\subsection{Chernoff Schranken}
 Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $X = \Sn X_i$.
 Sei $\mu_n := E[X] = \Sn p_i$ und $\delta > 0$. Dann gilt:
 Suppose $0 < \delta$, then
@@ -49,7 +29,7 @@ and
 \[ P(X \leq (1 - \delta)\mu) \leq e^{-\frac{\delta^2\mu}{2}}. \]
 
 \BoxStart{}
-\subsection*{Beispiel: Chernoff Schranke}
+\subsection{Beispiel: Chernoff Schranke}
 Suppose you toss a fair coin 200 times. How likely is it that you see
 at least 120 heads?
 The Chernoff bound says
@@ -60,7 +40,7 @@ The Chernoff bound says
 \end{align*}
 
 \BoxEnd{}
-\subsection*{Schwaches Gesetz der grossen Zahlen}
+\subsection{Schwaches Gesetz der grossen Zahlen}
 Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
 den gleichen Erwartungswert $E[X_i] = \mu$ und die gleiche Varianz $Var[X_i] =
   \sigma^2$ haben. Sei
@@ -74,7 +54,7 @@ stochastisch gegen $\mu = E[X_i]$, d.h.:
    &  & \text{für jedes } \varepsilon > 0
 \end{align*}
 (Statt unabhängig genügt auch $Cov (X_i, X_k) = 0$ für $i \neq k$)
-\subsection*{Starkes Gesetz der grossen Zahlen}
+\subsection{Starkes Gesetz der grossen Zahlen}
 Sei $X_1, X_2, \dots$ eine Folge von unabhängigen Zufallsvariablen, die alle
 dieselbe Verteilung haben, und ihr Erwartungswert $\mu = E[X_i]$ sei endlich.
 Für:
@@ -89,9 +69,9 @@ d.h.:
 \begin{align*}
   P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
 \end{align*}
-\subsection*{i.i.d. / u.i.v.}
+\subsection{i.i.d. / u.i.v.}
 Independent identically distributed
-\subsection*{Zentraler Grenzwertsatz}
+\subsection{Zentraler Grenzwertsatz}
 Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
 und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
 \begin{align*}
