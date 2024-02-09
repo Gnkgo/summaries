@@ -124,13 +124,42 @@ Sei $\varTheta_0 = \{\vt_0\}$ und $\varTheta_A = \{\vt_A\}$. Wie oben sei $T =
 Teststatistik $T$ und kritischem Bereich $K$ ist dann in folgendem Sinn
 optimal: Jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat
 eine kleinere Macht (bez. Grössere WS Fehler 2. Art).
-\subsection{definition}{$p$-Wert}
+\subsection{$p$-Wert}
 (Nach Wikipedia) Der $p$-Wert ist die Wahrscheinlichkeit ein mindestens
 so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
 \begin{align*}
   p (x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
   p (x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
 \end{align*}
+\begin{definition}{Binomialtest}
+  \color{red}Test für den Erfolgswahrscheinlichkeit bei bekannter Anzahl Versuche. \color{black} Hier sind
+  $\zufallsvariablen$ i.i.d. $\sim \text{Ber}(p)$ und wir möchten die
+  Hypothese $H_0 : p = p_0$ testen. Mögliche Alternativen $H_A$ sind $p > p_0$, $p < p_0$ (einseitig) oder $p \neq p_0$ (zweiseitig). Die Teststatistik ist:
+  \begin{align*}
+    T & = \sum_{i=1}^{n} X_i \sim \text{Bin}(n, p_0) &  & \text{unter } P_{p_0}
+  \end{align*}
+\[
+R(x_1, \ldots, x_{10}; \lambda_0, \lambda_A) = \frac{L(x_1, \ldots, x_{10}; \lambda_0)}{L(x_1, \ldots, x_{10}; \lambda_A)}
+\]
+\[
+= \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}
+\]
+\[
+= \left( \frac{p_0(1 - p_A)}{p_A(1 - p_0)} \right)^T \left( \frac{1 - p_0}{1 - p_A} \right)^{10}
+\]
+
+Da $\left( \frac{p_0(1-p_A)}{p_A(1-p_0)} \right) < 1$ wird $R(x_1, \ldots, x_{10}; p_0, p_A)$ klein, genau dann, wenn $\sum_{i=1}^{10} x_i$ groß ist. 
+
+  Und die Verwerfungsbereich:
+  \begin{align*}
+    p < p_0    &  & (0, z_\alpha)                                                      \\
+    p > p_0    &  & (z_{1 - \alpha}, n)                                                 \\
+    p \neq p_0 &  & (0, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, n)
+  \end{align*}
+
+
+  
+\end{definition}
 \begin{definition}{$z$-Test}
 \color{red}Normalverteilung, Test für Erwartungswert bei bekannter Varianz. \color{black} Hier sind
 $\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die

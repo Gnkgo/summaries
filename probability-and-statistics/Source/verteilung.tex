@@ -187,6 +187,8 @@ der Randverteilung von $X$ gegeben durch:
   x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
 \end{align*}
 \BoxStart{}
+\begin{tiny}
+
 \subsection{Beispiel: Dichtefunktion berechnen}
 Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
 Parameter $\lambda > 0$. Definiere
@@ -204,10 +206,12 @@ die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
   &= \lambda \int_0^\infty e^{-\lambda u^-1 x}dx\\ 
   &= u 
 \end{align*}
+\end{tiny}
 
 \BoxEnd{}
 \BoxStart{}
 \subsection{Beispiel: Randverteilung, gemeinsame Dichte}
+\begin{tiny}
 Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
 \[
   f_{U, V} (u, v) =
@@ -277,6 +281,7 @@ However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5}
 
 Therefore, U and V are not independent.
 \end{enumerate}
+\end{tiny}
 \BoxEnd{}
 \subsection{Unabhängigkeit}
 Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
@@ -332,4 +337,5 @@ Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Wa
   \frac{dx}{dy} & = \frac{1}{y}                  \\
   f_Y(y)        & = f_X(\ln y) \cdot \frac{1}{y} \\
 \end{align*}
+
 \BoxEnd{}
