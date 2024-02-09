@@ -107,28 +107,7 @@ Stichprobenmoment $\hat{m}_k$ der Realisierung $ (x_1, \dots, x_n)$:
 \begin{align*}
   \hat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
 \end{align*}
-\subsection{Momentenmethode}
-Der Momentenmethode liegt zugrunde, dass die Momente einer Zufallsvariable bzw.
-einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden
-können.\\ Sei $\zufallsvariablen$ eine Stichprobe und $\varTheta$ der
-Parameterraum. Für jeden Parameter $\vt = (\vt_1, \dots, \vt_m) \in \varTheta$
-sei $\zufallsvariablen$ i.i.d. unter dem Wahrscheinlichkeitsraum $ (\Omega, \F,
-  P_\vt)$. Methode:
-\begin{enumerate}
-  \item Für gegebene Realisierungen $x_1, \dots, x_n$ bestimme für jedes $k \in \{1,
-          \dots, m\}$ das $k$-te empirische Moment
-  \item Stelle ein Gleichungssystem für die Unbekannten Parameter $\vt_1, \dots, \vt_m$
-        auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird,
-        also:
-        \begin{align*}
-          \hat{m}_k (x_1, \dots, x_n) = g_k (\vt_1, \dots, \vt_m)
-           &  & k \in \{1, \dots, m\}
-        \end{align*}
-  \item Existiert eine Eindeutige Lösung so wird das unsere Schätzung für $\vt$.
-\end{enumerate}
-\subsection{Momentenschätzer}
-Der Vektor $\hat{\vt} (X_1, \dots, X_m)$ heisst Momentenschätzer des Parameters
-$\vt$.
+
 \begin{definition}{Normalverteile Stichprobe}
 Sei $\zufallsvariablen$ i.i.d. $\Normalverteilt$-verteilt mit unbekannten
 Parametern $\vt = (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$ max

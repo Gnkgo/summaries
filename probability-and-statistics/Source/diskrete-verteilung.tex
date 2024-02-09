@@ -26,7 +26,8 @@ gegeben durch $p_X (1) = p$, sowie $p_X (0) = 1-p$. Man schreibt kurz $X \sim
   Be (p)$. Es gilt:
 \begin{align*}
   E[X]   & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
-  Var[X] & = E[X^2] - {E[X]}^2 = p \cdot  (1-p)
+  Var[X] & = E[X^2] - {E[X]}^2 = p \cdot  (1-p)\\
+  E[X^2] & = p
 \end{align*}
 \end{definition}
 \begin{definition}{Binomial Verteilung}
@@ -40,7 +41,7 @@ Erfolgsparameter $p$. Also ist die Zufallsvariable respektive Gewichtsfunktion:
 und man schreibt kurz $X \sim Bin (n, p)$. Es gilt weiter:
 \begin{align*}
   E[X]   & = \Sn E[Y_i] = n \cdot p                \\
-  Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot  (1-p)
+  Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot  (1-p)\\
 \end{align*}
 \end{definition}
 \begin{definition}{Geometrische Verteilung}
@@ -56,7 +57,7 @@ wir schreiben $X \sim Geom (p)$ und es gilt:
   E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^{k-1} \cdot p
   = \frac{1}{1- (1-p)} = \frac{1}{p}                 \\
   E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}          \\
-  Var[X]            & = \frac{1-p}{p^2}
+  Var[X]            & = \frac{1-p}{p^2}\\
 \end{align*}
 \end{definition}
 \BoxStart{}
@@ -97,7 +98,7 @@ Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg ($r \in \N$):
 wir schreiben $X \sim NB (r, p)$ und es gilt:
 \begin{align*}
   E[X]   & = \sum_{i = 1}^r E[X_i] = \frac{r}{p}                  \\
-  Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot  (1-p)}{p^2}
+  Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot  (1-p)}{p^2}\\
 \end{align*}
 \end{definition}
 \begin{definition}{Hypergeometrische Verteilung}

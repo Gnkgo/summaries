@@ -1,4 +1,4 @@
-{\section{Statistik}}
+\section{Statistik}
 \subsection{$\X^2$-Verteilung}
 Die $\X^2$- Verteilung mit $n$ Freiheitsgraden (bez. $\X^2_n$) gehört zu einer
 stetigen Zufallsvariable $Y$ mit Dichtefunktion:
@@ -240,8 +240,15 @@ Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine Menge $C
 zufällige Teilmenge von $\varTheta$. Dieses $C$ heisst Konfidenzbereich zum
 Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
 \begin{align*}
-  P_\vt [\vt \in C (\zufallsvariablen)] \geq 1 - \alpha
+  P_\vt [\vt \in C (\zufallsvariablen)] &\geq 1 - \alpha\\
+  KI_{Z-wert} &= \bar{x} \pm z \cdot \frac{s}{\sqrt{n}}\\
+  KI_{T-wert} &= \bar{x} \pm t \cdot \frac{s}{\sqrt{n}}\\
+  \bar{x} &= \text{Mittelwert}\\
+  s &= \text{Standardabweichung}\\
+  n &= \text{Stichprobengrösse}\\
+  z &= \text{Z-Wert}\\
 \end{align*}
+
 \BoxStart{}
 \subsection{Beispiel: Konfidenzbereich}
 Machen wir den Ansatz:

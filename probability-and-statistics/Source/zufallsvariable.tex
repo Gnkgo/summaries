@@ -1,14 +1,16 @@
 \subsection{Diskrete Zufallsvariable}
-Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
+  Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
   \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch $\W (X) = \{x_1, x_2,
   \dots\}$ endlich oder abzählbar.
 \begin{itemize}
   \item Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$,
         definiert durch:
+        \begin{definition}{Verteilungsfunktion von X}
         \begin{align*}
           t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
         \end{align*}
-  \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W
+      \end{definition}
+      \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W
           (X) \mapsto [0, 1]$, definiert durch:
         \begin{align*}
           p_X (X_k) := P[X = x_k] = P[\{\omega : X (\omega) = x_k\}]
@@ -170,7 +172,7 @@ Seien $X, Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p (x,
 durch:
 \begin{align*}
   p_{X \, | \, Y} (x \; | \; y)    & := \cond{X = x}{Y = y}     \\
-  \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p (x, y)}{p_Y (y)}
+  \frac{P[X = x, Y = y]}{P[Y = y]} & = \frac{p (x, y)}{p_Y (y)} \\
 \end{align*}
 für $p_Y (y) > 0$ und $0$ sonst.
 \subsection{Kriterium für Unabhängigkeit}

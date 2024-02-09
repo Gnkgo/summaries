@@ -1,7 +1,6 @@
 \subsection{Zufallsvariable}
-\[
-P[X = x] = 0 \text{für stetige Zufallsvariablen ist die Wahrscheinlichkeit einer einzigen Variable gleich 0} 
-\]
+$P[X = x] = 0$
+für stetige Zufallsvariablen ist die Wahrscheinlichkeit einer einzigen Variable gleich 0\\
 \includegraphics[width=\columnwidth]{diskrete_stetige_verteilung.png}\\
 Sein $ (\Omega, \F, P)$ ein Wahrscheinlichkeitsraum. Also $\Omega$ ein
 Grundraum, $\F \subseteq 2^\Omega$ die beobachtbaren Ereignisse und $P$ ein
@@ -11,9 +10,9 @@ die Menge $\{X \leq t\} = \{\omega : X (\omega) \leq t\}$ für jedes $t$ ein
 beobachtbares Ereigniss sein muss.
 \subsection{Verteilungsfunktion}
 Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$:
-\begin{align*}
-  t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
-\end{align*}
+\begin{definition}{Verteilungsfunktion}
+  $t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]$
+\end{definition}
 und hat die Eigenschaften:
 \begin{itemize}
   \item $F_X$ ist wachsend und rechtsstetig. Das bedeutet,
@@ -112,6 +111,10 @@ Dichtefunktion:
    &  & \text{für } t \in \R
 \end{align*}
 welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
+\begin{align*}
+  E[X] = \mu &  & Var[X] = \sigma^{2}
+\end{align*}
+Wenn $ X \sim \Normalverteilt$ dann $X^2 \sim \N(1, 2)$
 \end{definition}
 
 \subsection{Standard Normalverteilung}
@@ -123,10 +126,12 @@ geschlossene Ausdrücke, aber das Integral
   \frac{1}{\sqrt{2\pi}} \int_{-\infty}^t e^{-\frac{1}{2} s^2} \; ds
 \end{align*}
 ist tabelliert. Ist $X \sim \Normalverteilt$, so ist
-$\frac{X - \mu}{\sigma} \sim \Standardnormalverteilt$, also:
+\begin{definition}{Normalverteilung}
+  $\frac{X - \mu}{\sigma} \sim \Standardnormalverteilt$, also:
 \begin{align*}
   F_X (t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left  ( \frac{t - \mu}{\sigma} \right)
 \end{align*}
+\end{definition}
 deshalb genügt es $\Phi$ zu tabellieren.
 \begin{align*}
   \Phi (-z) = 1 - \Phi (z)
@@ -136,34 +141,22 @@ Wenn $S_n \sim Bin (n, p)$ dann
 \begin{align*}
   S_n \sim_{approx} N (np, np (1-p))
 \end{align*}
-\subsection{Erwartungswert}
+\begin{definition}{Erwartungswert}
 Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
 \begin{align*}
   E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
 \end{align*}
 sofern das Integral absolut konvergiert. Ist das Integral nicht
 absolut konvergent, so existiert der Erwartungswert nicht.
-\subsection{Erwartungswert einer Funktion}
+\end{definition}
+\begin{definition}{Erwartungswert einer Funktion}
 Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
 $X$ stetig mit Dichte $f_X$, so ist
 \begin{align*}
   E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
 \end{align*}
-\subsection{Momente \& Absolute Momente}
-Sei $X$ eine Zufallsvariable und $p \in \R^+$. Wir definieren:
-\begin{itemize}
-  \item $p$-te absolute Moment von $X$: $M_p := E[\abs{X}^p]$
-  \item falls $M_n < \infty$ für ein $n$, dann ist das $n$-te (rohe) Moment von $X$
-        durch $m_n := E[X^n]$ definiert.
-  \item Das $n$-te zentralisierte Moment von $X$ ist durch $\mu_n := E[(X - E[X])^n]$
-        definiert.
-\end{itemize}
-Es gilt weiter, dass $M_n < \infty$ für $n \in \N \implies \abs{m_m} \leq M_n$.
-\begin{align*}
-  M_p                         & = \int_{-\infty}^\infty \abs{x}^p f_X (x) \; dx \\
-  m_n                         & = \int_{-\infty}^\infty x^n f_X (x) \; dx       \\
-  p \leq q \land M_q < \infty & \implies M_p < \infty
-\end{align*}
+\end{definition}
+
 \subsection{Gemeinsame Verteilung/Dichte}
 Die Gemeinsame Verteilungsfunktion von Zufallsvariablen $\zufallsvariablen$ ist die Abbildung $F: \R^n \mapsto [0, 1]$ mit:
 \begin{align*}

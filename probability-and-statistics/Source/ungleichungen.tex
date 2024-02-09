@@ -1,16 +1,25 @@
 \section{Ungleichungen}
-\subsection{Markov Ungleichung}
-Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
+\begin{definition}{Markov Ungleichung}
+  Sei $X$ eine Zufallsvariable und ferner $g : \W (X) \mapsto [0, \infty)$ eine
 wachsende Funktion. Für jedes $c \in \R$ mit $g (c) > 0$ git dann:
 \begin{align*}
   P[X \geq c] \leq \frac{E[g (X)]}{g (c)}
 \end{align*}
-\subsection{Chebyshev-Ungleichung}
+\end{definition}
+\begin{definition}{Chebyshev-Ungleichung}
 Sei $Y$ eine Zufallsvariable mit endlicher Varianz. Für jedes $b > 0$ git dann:
 \begin{align*}
   P[\abs{Y - E[Y]} \geq b] \leq \frac{Var[Y]}{b^2}
 \end{align*}
-
+\end{definition}
+\begin{definition}{Chernoff Schranken}
+Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $X = \Sn X_i$.
+Sei $\mu_n := E[X] = \Sn p_i$ und $\delta > 0$. Dann gilt:
+Suppose $0 < \delta$, then
+\[ P(X \geq (1 + \delta)\mu) \leq e^{-\frac{\delta^2\mu}{2+\delta}}, \]
+and
+\[ P(X \leq (1 - \delta)\mu) \leq e^{-\frac{\delta^2\mu}{2}}. \]
+\end{definition}
 
 \subsection{Grosse Summenabweichung}
 Seien $\zufallsvariablen$ i.i.d. Zufallsvariablen, für welche die
@@ -20,13 +29,6 @@ $b \in \R$ gilt dann:
   P[S_n \geq b] \leq \exp \left( \inf_{t \in \R}  ( n \cdot \log M_X (t) - t \cdot b ) \right)
 \end{align*}
 
-\subsection{Chernoff Schranken}
-Seien $\zufallsvariablen$ unabhängig mit $X_i \sim Be (p)$ und $X = \Sn X_i$.
-Sei $\mu_n := E[X] = \Sn p_i$ und $\delta > 0$. Dann gilt:
-Suppose $0 < \delta$, then
-\[ P(X \geq (1 + \delta)\mu) \leq e^{-\frac{\delta^2\mu}{2+\delta}}, \]
-and
-\[ P(X \leq (1 - \delta)\mu) \leq e^{-\frac{\delta^2\mu}{2}}. \]
 
 \BoxStart{}
 \subsection{Beispiel: Chernoff Schranke}
@@ -69,13 +71,14 @@ d.h.:
 \begin{align*}
   P \left[ \left\{ \omega \in \Omega : \overline{X}_n (\omega) \underset{n \ra \infty}{\longrightarrow} \mu \right\} \right] = 1
 \end{align*}
-\subsection{i.i.d. / u.i.v.}
-Independent identically distributed
-\subsection{Zentraler Grenzwertsatz}
+%\subsection{i.i.d. / u.i.v.}
+%Independent identically distributed
+\begin{definition}{Zentraler Grenzwertsatz}
 Sei $X_1, X_2, \dots$ eine Folge von i.i.d. Zufallsvariablen mit $E[X_i] = \mu$
 und $Var[X_i] = \sigma^2$. Für die Summe $S_n = \Sn X_i$ gilt dann:
 \begin{align*}
-  \lim_{n \ra \infty} P \left[ \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x)
+  \lim_{n \ra \infty} P \left[y \leq \frac{S_n - n \cdot \mu}{\sigma \sqrt{n}} \leq x \right] = \Phi (x) - \Phi (y)
    &  & \text{für alle } x \in \R
 \end{align*}
-wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist.
+wobei $\Phi$ die Verteilungsfunktion von $\Standardnormalverteilt$ ist. $S_n = N(\mu, \frac{\sigma}{\sqrt{n}})$
+\end{definition}
