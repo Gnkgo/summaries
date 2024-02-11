@@ -14,12 +14,12 @@ Schätzfunktion $t_j$.
 Verschiedene $T_{\text{ML}}$
 \begin{equation*}
 	\begin{array}{cc}
-		\textbf{bern} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
-		\textbf{bin} (k,\theta) & \frac{1}{k} \overline{X}_n = \frac{1}{nk} \sum_{i=1}^{n} X_i\\[5pt]
-		\mathcal{P} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
-		\textbf{geom}(\theta) & n / \sum_{i=1}^{n} X_i \\[10pt]
-		\mathcal{U}([a,b]) & \max\{X_1, \ldots , X_n\}\\[5pt]
-		\textbf{exp}(\theta) & \frac{1}{\overline{X}_n} = n / \sum_{i=1}^{n} X_i \\[5pt]
+		\textbf{bern} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i = \overline{X}\\[5pt]
+		\textbf{bin} (k,\theta) & \frac{1}{nk} \sum_{i=1}^{n} X_i = \frac{1}{k} \overline{X} \\[5pt]
+		\mathcal{P} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i = \overline{X}\\[5pt]
+		\textbf{geom}(\theta) & \frac{n}{\sum_{i=1}^{n} X_i} = \frac{1}{\overline{X}} \\[10pt]
+		\mathcal{U}([a,b]) & \hat{a} = \min\{X_1, \ldots , X_n\} \quad \hat{b}= \max\{X_1, \ldots , X_n\}\\[5pt]
+		\textbf{exp}(\theta) &  = \frac{n}{\sum_{i=1}^{n} X_i} \frac{1}{\overline{X}} \\[5pt]
 		\mathcal{N}(\mu, \sigma^2) & \hat{\mu} = \overline{X}_n \quad \hat{\sigma}^2 = S^2
 	\end{array}
 \end{equation*}
