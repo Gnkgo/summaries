@@ -69,6 +69,13 @@ Kleineres Signifikanzniveau ($\alpha$)
   \item Macht wird reduziert
 \end{itemize}
 \BoxEnd{}
+\subsection{Hypothesis testing}
+\begin{enumerate}
+  \item \textbf{Left-sided or left-tailed test: } If $H_0 : p = p_0$ is tested against the alternative $H_1 : p < p_0$, the region of rejection has the form $\{0, 1, \ldots, k\}$. The critical value $k$ is the largest value such that $P(X \leq k) \leq \alpha$.
+  \item \textbf{Right-sided or right-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p > p_0\), the region of rejection has the form \(\{k, k + 1, \ldots , n\}\). The critical value \(k\) is the smallest value such that \(P(X \geq k) \leq \alpha\).
+  \item \textbf{Two-sided or two-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p \neq p_0\), the region of rejection has the form \(K = \{0, 1, \ldots , k_1\} \cup \{k_2, k_2+1, \ldots , n\}\). The critical values \(k_1\) and \(k_2\) are determined as the smallest and largest value, respectively, such that \(P(X \leq k_1) \leq \frac{\alpha}{2}\) and \(P(X \geq k_2) \leq \frac{\alpha}{2}\).
+
+\end{enumerate}
 
 \BoxStart{}
 \subsection{Beispiel: Hypothesen-Test}
@@ -80,31 +87,22 @@ blauen Seite landet.
   \item \textbf{Nullhypothese: }$H_0 : p = p_0 = 0.5$
   \item \textbf{Alternativhypothese: } \(H_A: p = p_A > p_0\).
   \item \textbf{Teststatistik: } \(T = \sum_{i=1}^{10} X_i\), denn
-  \begin{align*}
-    &R(x_1, \ldots , x_{10}; \lambda_0, \lambda_A) \\
-    &= L(x_1, \ldots , x_{10}; \lambda_0) L(x_1, \ldots , x_{10}; \lambda_A)\\ 
-    &= \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}\\
-    &= \left(\frac{p_0(1 - p_A)}{p_A(1 - p_0)}\right)^T \left(\frac{1 - p_0}{1 - p_A}\right)^{10}
-  \end{align*}
-  Da \(\frac{p_0(1-p_A)}{p_A(1-p_0)} < 1\) wird \(R(x_1, \ldots , x_{10}; p_0, p_A)\) klein, genau dann, wenn \(\sum_{i=1}^{10} x_i\) groß ist. Wir wählen als Teststatistik also \(T = \sum_{i=1}^{10} X_i\).
+        \begin{align*}
+           & R(x_1, \ldots , x_{10}; \lambda_0, \lambda_A)                                                \\
+           & = L(x_1, \ldots , x_{10}; \lambda_0) L(x_1, \ldots , x_{10}; \lambda_A)                      \\
+           & = \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}                                      \\
+           & = \left(\frac{p_0(1 - p_A)}{p_A(1 - p_0)}\right)^T \left(\frac{1 - p_0}{1 - p_A}\right)^{10}
+        \end{align*}
+        Da \(\frac{p_0(1-p_A)}{p_A(1-p_0)} < 1\) wird \(R(x_1, \ldots , x_{10}; p_0, p_A)\) klein, genau dann, wenn \(\sum_{i=1}^{10} x_i\) groß ist. Wir wählen als Teststatistik also \(T = \sum_{i=1}^{10} X_i\).
   \item \textbf{Verteilung der Teststatistik unter \(H_0\): } \(T \sim \text{Bin}(10, 1/2)\).
   \item \textbf{Verwerfungsbereich: } Der kritische Bereich "Quotient klein" hat die äquivalente Form "Summe groß", also ist der Verwerfungsbereich von der Form \(K = (k, \infty)\). Um das Signifikanzniveau einzuhalten, muss gelten
-  \[ P_{p_0}[T \in K] = P_{p_0}[T > k] \leq 1\% \Rightarrow P_{p_0}[T \leq k] \geq 99\%. \]
-  Deshalb haben wir als Verwerfungsbereich \(K = (9, \infty)\).
+        \[ P_{p_0}[T \in K] = P_{p_0}[T > k] \leq 1\% \Rightarrow P_{p_0}[T \leq k] \geq 99\%. \]
+        Deshalb haben wir als Verwerfungsbereich \(K = (9, \infty)\).
   \item \textbf{Beobachteter Wert der Testst.: } \(t = T(\omega) = 8\).
   \item \textbf{Testentscheid: } Da 8 nicht im Verwerfungsbereich liegt, wird die Nullhypothese nicht verworfen.
-    
-
 \end{enumerate}
+
 \BoxEnd{}
-\subsection{Hypothesis testing}
-\begin{enumerate}
-  \item \textbf{Left-sided or left-tailed test: } If $H_0 : p = p_0$ is tested against the alternative $H_1 : p < p_0$, the region of rejection has the form $\{0, 1, \ldots, k\}$. The critical value $k$ is the largest value such that $P(X \leq k) \leq \alpha$.
-  \item \textbf{Right-sided or right-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p > p_0\), the region of rejection has the form \(\{k, k + 1, \ldots , n\}\). The critical value \(k\) is the smallest value such that \(P(X \geq k) \leq \alpha\).
-  \item \textbf{Two-sided or two-tailed test: } If \(H_0 : p = p_0\) is tested against the alternative \(H_1 : p \neq p_0\), the region of rejection has the form \(K = \{0, 1, \ldots , k_1\} \cup \{k_2, k_2+1, \ldots , n\}\). The critical values \(k_1\) and \(k_2\) are determined as the smallest and largest value, respectively, such that \(P(X \leq k_1) \leq \frac{\alpha}{2}\) and \(P(X \geq k_2) \leq \frac{\alpha}{2}\).
-
-\end{enumerate}
-
 \subsection{Likelihood Quotient}
 Sei $L (x_1, \dots, x_n; \vt)$ die Likelihood Funktion und $\vt_0 \in
   \varTheta_0$ sowie $\vt_A \in \varTheta_A$. Dann definieren wir:
@@ -138,46 +136,46 @@ so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
   \begin{align*}
     T & = \sum_{i=1}^{n} X_i \sim \text{Bin}(n, p_0) &  & \text{unter } P_{p_0}
   \end{align*}
-\[
-R(x_1, \ldots, x_{10}; \lambda_0, \lambda_A) = \frac{L(x_1, \ldots, x_{10}; \lambda_0)}{L(x_1, \ldots, x_{10}; \lambda_A)}
-\]
-\[
-= \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}
-\]
-\[
-= \left( \frac{p_0(1 - p_A)}{p_A(1 - p_0)} \right)^T \left( \frac{1 - p_0}{1 - p_A} \right)^{10}
-\]
+  \[
+    R(x_1, \ldots, x_{10}; \lambda_0, \lambda_A) = \frac{L(x_1, \ldots, x_{10}; \lambda_0)}{L(x_1, \ldots, x_{10}; \lambda_A)}
+  \]
+  \[
+    = \frac{p_0^T (1 - p_0)^{10-T}}{p_A^T (1 - p_A)^{10-T}}
+  \]
+  \[
+    = \left( \frac{p_0(1 - p_A)}{p_A(1 - p_0)} \right)^T \left( \frac{1 - p_0}{1 - p_A} \right)^{10}
+  \]
 
-Da $\left( \frac{p_0(1-p_A)}{p_A(1-p_0)} \right) < 1$ wird $R(x_1, \ldots, x_{10}; p_0, p_A)$ klein, genau dann, wenn $\sum_{i=1}^{10} x_i$ groß ist. 
+  Da $\left( \frac{p_0(1-p_A)}{p_A(1-p_0)} \right) < 1$ wird $R(x_1, \ldots, x_{10}; p_0, p_A)$ klein, genau dann, wenn $\sum_{i=1}^{10} x_i$ groß ist.
 
   Und die Verwerfungsbereich:
   \begin{align*}
-    p < p_0    &  & (0, z_\alpha)                                                      \\
-    p > p_0    &  & (z_{1 - \alpha}, n)                                                 \\
+    p < p_0    &  & (0, z_\alpha)                                                 \\
+    p > p_0    &  & (z_{1 - \alpha}, n)                                           \\
     p \neq p_0 &  & (0, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, n)
   \end{align*}
 
 
-  
+
 \end{definition}
 \begin{definition}{$z$-Test}
-\color{red}Normalverteilung, Test für Erwartungswert bei bekannter Varianz. \color{black} Hier sind
-$\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die
-Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$ sind $\vt >
-  \vt_0$, $\vt < \vt_0$ (einseitig) oder $\vt \neq \vt_0$ (zweiseitig). Die
-Teststatistik ist:
-\begin{align*}
-  T & = \frac{\overline{X} - \vt_0}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt
-    &                                                                               & \text{unter } P_{\vt_0}
-\end{align*}
-Und die Verwerfungsbereich:
-\begin{align*}
-  \vt < \vt_0    &  & (-\infty, z_\alpha)                                                      \\
-  \vt > \vt_0    &  & (z_{1 - \alpha}, \infty)                                                 \\
-  \vt \neq \vt_0 &  & (-\infty, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, \infty)
-\end{align*}
-Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
-und es gilt $z_\alpha = - z_{1 - \alpha}$.
+  \color{red}Normalverteilung, Test für Erwartungswert bei bekannter Varianz. \color{black} Hier sind
+  $\zufallsvariablen$ i.i.d. $\mathcal{N} (\vt, \sigma^2)$. Wir möchten die
+  Hypothese $H_0 : \vt = \vt_0$ testen. Mögliche Alternativen $H_A$ sind $\vt >
+    \vt_0$, $\vt < \vt_0$ (einseitig) oder $\vt \neq \vt_0$ (zweiseitig). Die
+  Teststatistik ist:
+  \begin{align*}
+    T & = \frac{\overline{X} - \vt_0}{\sigma / \sqrt{n}} \sim \Standardnormalverteilt
+      &                                                                               & \text{unter } P_{\vt_0}
+  \end{align*}
+  Und die Verwerfungsbereich:
+  \begin{align*}
+    \vt < \vt_0    &  & (-\infty, z_\alpha)                                                      \\
+    \vt > \vt_0    &  & (z_{1 - \alpha}, \infty)                                                 \\
+    \vt \neq \vt_0 &  & (-\infty, z_{\frac{\alpha}{2}}) \cup  (z_{1 - \frac{\alpha}{2}}, \infty)
+  \end{align*}
+  Wobei die $z$ Werte in der Tabelle nachgeschaut werden können
+  und es gilt $z_\alpha = - z_{1 - \alpha}$.
 \end{definition}
 \BoxStart{}
 \subsection{Beispiel Fehler 1. Art berechnen}
@@ -188,9 +186,9 @@ $T = \sum_{i=1}^{6} X_i$ und $K = (-\infty, 0]$?
 
 Die Teststatistik $T$ ist die Summe der beobachteten Werte der $X_i$:
 \begin{align*}
-  P(T \in K)  &= P[T \leq 0] = P[T = 0] \\
-              &= P(X_1 = 0) \cdot P(X_2 = 0) \cdot \ldots \cdot P(X_6 = 0)\\
-              &= \left( \frac{1}{2} \right)^6 = \frac{1}{64} 
+  P(T \in K) & = P[T \leq 0] = P[T = 0]                                    \\
+             & = P(X_1 = 0) \cdot P(X_2 = 0) \cdot \ldots \cdot P(X_6 = 0) \\
+             & = \left( \frac{1}{2} \right)^6 = \frac{1}{64}
 \end{align*}
 
 
@@ -211,27 +209,27 @@ nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Stan
    & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_0}{\sigma / \sqrt{n}} > -1.645 \right]                                                \\
    & = P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} > \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right]        \\
    & = 1 - P_{\mu_A} \left[\frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \leq \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} -1.645 \right] \\
-   & = 1 - \Phi \left( \frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645 \right) \\
+   & = 1 - \Phi \left( \frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645 \right)                                                          \\
    & \text{Weil } \sim \Standardnormalverteilt
 \end{align*}
 \BoxEnd{}
 \begin{definition}{$t$-Test}
-\color{red} Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. \color{black} Hier sind
-$\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
-$\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
-Die Teststatistik ist:
-\begin{align*}
-  T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
-      &                                                             & \text{unter } P_{\vt_0} \\
-  S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
-\end{align*}
-Und die Verwerfungsbereiche:
-\begin{align*}
-  c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                     &  & \mu < \mu_0    \\
-  c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                      &  & \mu > \mu_0    \\
-  c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
-\end{align*}
-Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
+  \color{red} Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. \color{black} Hier sind
+  $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
+  $\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
+  Die Teststatistik ist:
+  \begin{align*}
+    T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
+        &                                                             & \text{unter } P_{\vt_0} \\
+    S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
+  \end{align*}
+  Und die Verwerfungsbereiche:
+  \begin{align*}
+    c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                     &  & \mu < \mu_0    \\
+    c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                      &  & \mu > \mu_0    \\
+    c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
+  \end{align*}
+  Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
 \end{definition}
 \subsection{Gepaarter Zweiproben-Test}
 Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
@@ -244,7 +242,7 @@ von Daten voraus!)
 Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
   \mathcal{N} (\mu_X, \sigma^2)$ und $Y_1, \dots, Y_m$ i.i.d. $\sim \mathcal{N}
   (\mu_Y, \sigma^2)$, wobei die Varianz in beiden Fällen dieselbe ist.
-\begin{itemize}
+\begin{compactitem}
   \item Bei bekannter Varianz:
         \begin{align*}
           H_0 & : \mu_X - \mu_Y = \mu_0 \quad  (z.B. \; \mu_0 = 0)                                                                                \\
@@ -262,20 +260,19 @@ Hier sind unter $P_\vt$ die Zufallsvariablen $\zufallsvariablen$ i.i.d. $\sim
           T     & = \frac{\overline{X}_n - \overline{Y}_m -  (\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t_{n+m-2}
         \end{align*}
         unter jedem $P_\vt$. Dieser Test heisst ungepaarter Zweistichproben-$t$-Test.
-\end{itemize}
+\end{compactitem}
 \subsection{Konfidenzbereich}
 Ein Konfidenzbereich für $\vt$ zu Daten $x_1, \dots, x_n$ ist eine Menge $C
   (x_1, \dots, x_n) \subseteq \varTheta$. Damit ist $C (\zufallsvariablen)$ eine
 zufällige Teilmenge von $\varTheta$. Dieses $C$ heisst Konfidenzbereich zum
 Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
 \begin{align*}
-  P_\vt [\vt \in C (\zufallsvariablen)] &\geq 1 - \alpha\\
-  KI_{Z-wert} &= \bar{x} \pm z \cdot \frac{s}{\sqrt{n}}\\
-  KI_{T-wert} &= \bar{x} \pm t \cdot \frac{s}{\sqrt{n}}\\
-  \bar{x} &= \text{Mittelwert}\\
-  s &= \text{Standardabweichung}\\
-  n &= \text{Stichprobengrösse}\\
-  z &= \text{Z-Wert}\\
+  P_\vt [\vt \in C (\zufallsvariablen)] & \geq 1 - \alpha                          \\
+  KI_{Z-wert}                           & = \bar{x} \pm z \cdot \frac{s}{\sqrt{n}} \\
+  KI_{T-wert}                           & = \bar{x} \pm t \cdot \frac{s}{\sqrt{n}} \\
+  \bar{x}                               & = \text{Mittelwert}                      \\
+  s                                     & = \text{Standardabweichung}              \\
+  n                                     & = \text{Stichprobengrösse}               \\
 \end{align*}
 
 \BoxStart{}
