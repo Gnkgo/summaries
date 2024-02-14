@@ -274,6 +274,17 @@ Niveau $1 - \alpha$, falls für alle $\vt \in \varTheta$ gilt:
   s                                     & = \text{Standardabweichung}              \\
   n                                     & = \text{Stichprobengrösse}               \\
 \end{align*}
+Wenn wir einen Schätzer \(T = T_{ML} \sim \mathcal{N}\left(\theta, \text{Var}(X)\right)\) haben, suchen wir ein Konfidenzintervall der Form
+\[I = \left[T-c \sqrt{\text{Var}(X)}, T+c\sqrt{\text{Var}(X)}\right]\]
+Hierbei gilt:
+\begin{align*}
+    P_\theta&\left(T-c\sqrt{\text{Var}(X)} \le \theta \le T+c\sqrt{\text{Var}(X)}\right) \\
+    &= P_\theta\left(-c\le Z \le c\right)\\
+    &= P_{\theta}\left(Z \leq c\right) - P_{\theta}\left(Z < -c\right)\\
+    &= P_{\theta}\left(Z \leq c\right) - \left(1-P_{\theta}\left(Z \leq c\right)\right)\\
+    &= 2\Phi(c)-1
+\end{align*}
+wobei \(Z = \frac{T-\theta}{\sqrt{\text{Var}(X)}} \sim \mathcal{N}(0,1)\) ist.
 
 \BoxStart{}
 \subsection{Beispiel: Konfidenzbereich}

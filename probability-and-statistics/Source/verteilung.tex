@@ -191,29 +191,6 @@ der Randverteilung von $X$ gegeben durch:
   x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
 \end{align*}
 \BoxStart{}
-\begin{tiny}
-
-  \subsection{Beispiel: Dichtefunktion berechnen}
-  Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
-  Parameter $\lambda > 0$. Definiere
-  \[
-    U := \frac{X}{X + Y} und V := X + Y
-  \]
-  Seien $f_U$ und $f_V$ die zu $U$ und $V$ gehörigen Dichtefunktionen. Berechne
-  die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
-  \begin{align*}
-    P[U \leq u] & = f_U(u) = \int_\infty^\infty f(u, v) dy                                                                        \\
-                & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx \\
-                & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx   \\
-                & = \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx       \\
-                & = \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx                                             \\
-                & = \lambda \int_0^\infty e^{-\lambda u^-1 x}dx                                                                   \\
-                & = u
-  \end{align*}
-\end{tiny}
-
-\BoxEnd{}
-\BoxStart{}
 \subsection{Beispiel: Randverteilung, gemeinsame Dichte}
 \begin{tiny}
   Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
@@ -287,6 +264,27 @@ der Randverteilung von $X$ gegeben durch:
   \end{enumerate}
 \end{tiny}
 \BoxEnd{}
+\BoxStart{}
+
+\subsection{Beispiel: Dichtefunktion berechnen}
+Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
+Parameter $\lambda > 0$. Definiere
+\[
+  U := \frac{X}{X + Y} und V := X + Y
+\]
+Seien $f_U$ und $f_V$ die zu $U$ und $V$ gehörigen Dichtefunktionen. Berechne
+die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
+\begin{align*}
+  P[U \leq u] & = f_U(u) = \int_\infty^\infty f(u, v) dy                                                                        \\
+              & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx \\
+              & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx   \\
+              & = \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx       \\
+              & = \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx                                             \\
+              & = \lambda \int_0^\infty e^{-\lambda u^-1 x}dx                                                                   \\
+              & = u
+\end{align*}
+
+\BoxEnd{}
 \subsection{Unabhängigkeit}
 Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
 (äquivalent):
@@ -332,6 +330,13 @@ Mit der Substitution
   X       & = \phi^{-1}(y)                                   \\
   f_Y(y)  & = f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)| \\
 \end{align*}
+Mit linearer Transformationssatz\\
+Sei $Z$ ein $n$-dimensionaler Zufallsvektor und $g: (\R^n, \mathcal{B}^n) \to (\R^m, \mathcal{B}^m)$ eine messbare Abbildung. Dann ist
+$$H(\omega) = g(Z(\omega))$$
+ein $m$-dimensionaler Zufallsvariable und ferner gilt
+$$P(H \in A) = P(Z \in g^{-1}(A)).$$
+Wenn $g$ linear und umkehrbar (i.e. $g(x) = m + Bx$ mit det$(B) \neq 0$) und unter Vorraussetzung, dass die Verteilung von $Z$ absolut stetig ist, dann ist $H$ auch absolut stetig und es gilt:
+$$f_H(x)=\frac{1}{|\text{det}(B)|}f_Z(B^{-1}(x-m)).$$
 \BoxStart{}
 \subsection{Beispiel: Transformation}
 Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Was ist die Dichte $f_Y(y), y > 0$ der Zufallsvariable $Y$?
