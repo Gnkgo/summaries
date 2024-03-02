@@ -11,18 +11,18 @@ $\vt_1, \dots, \vt_m$ bestimmen. Ein Schätzer $T_j$ für einen Parameter $\vt_j
 ist eine Zufallsvariable der Form $T_j := t_j (\zufallsvariablen)$ für eine
 Schätzfunktion $t_j$.
 \begin{definition}{Schätzwert}
-Verschiedene $T_{\text{ML}}$
-\begin{equation*}
-	\begin{array}{cc}
-		\textbf{bern} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
-		\textbf{bin} (k,\theta) & \frac{1}{k} \overline{X}_n = \frac{1}{nk} \sum_{i=1}^{n} X_i\\[5pt]
-		\mathcal{P} (\theta) & \frac{1}{n} \sum_{i=1}^{n} X_i\\[5pt]
-		\textbf{geom}(\theta) & n / \sum_{i=1}^{n} X_i \\[10pt]
-		\mathcal{U}([a,b]) & \max\{X_1, \ldots , X_n\}\\[5pt]
-		\textbf{exp}(\theta) & \frac{1}{\overline{X}_n} = n / \sum_{i=1}^{n} X_i \\[5pt]
-		\mathcal{N}(\mu, \sigma^2) & \hat{\mu} = \overline{X}_n \quad \hat{\sigma}^2 = S^2
-	\end{array}
-\end{equation*}
+  Verschiedene $T_{\text{ML}}$
+  \begin{equation*}
+    \begin{array}{cc}
+      \textbf{bern} (\theta)     & \frac{1}{n} \sum_{i=1}^{n} X_i = \overline{X}                                \\[5pt]
+      \textbf{bin} (k,\theta)    & \frac{1}{nk} \sum_{i=1}^{n} X_i = \frac{1}{k} \overline{X}                   \\[5pt]
+      \mathcal{P} (\theta)       & \frac{1}{n} \sum_{i=1}^{n} X_i = \overline{X}                                \\[5pt]
+      \textbf{geom}(\theta)      & \frac{n}{\sum_{i=1}^{n} X_i} = \frac{1}{\overline{X}}                        \\[10pt]
+      \mathcal{U}([a,b])         & \hat{a} = \min\{X_1, \ldots , X_n\} \quad \hat{b}= \max\{X_1, \ldots , X_n\} \\[5pt]
+      \textbf{exp}(\theta)       & = \frac{n}{\sum_{i=1}^{n} X_i} \frac{1}{\overline{X}}                        \\[5pt]
+      \mathcal{N}(\mu, \sigma^2) & \hat{\mu} = \overline{X}_n \quad \hat{\sigma}^2 = S^2
+    \end{array}
+  \end{equation*}
 \end{definition}
 
 Ein Schätzwert ist das Ergebnis einer konkreten Berechnung, eine Zahl. Sie
@@ -34,7 +34,7 @@ Sei $T$ ein Schätzer.
   \item $T$ ist erwartungstreu, falls $E_\vt[T] = \vt$ gilt. $T$ schätzt
         im Mittel also richtig.
   \item Bias $:= E_\vt[T] - \vt$. Ein erwartungstreuer Schätzer hat also keinen Bias.
-  \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ {(T - \vt)}^2]$.
+  \item Mittlere Quadratische Schätzfehler $MSE_\vt[T] := E_\vt[ {(T - \vt)}^2] = E_\vt[{(T - \vt)}]^2 + Var[T]$.
   \item Eine Folge $T^{ (n)}$ von Schätzern heisst konsistent für $\vt$, falls $T^{
               (n)}$ für $n \ra \infty$ in $P_\vt$-Wahrscheinlichkeit gegen $\vt$ konvergiert,
         d.h. für jedes $\vt \in \varTheta$ gilt:
@@ -44,17 +44,17 @@ Sei $T$ ein Schätzer.
 \end{itemize}
 \BoxStart{}
 \subsection{Beispiel: Erwartungstreuer Schätzer}
-Seien $X_1, \ldots, X_n$ unabhängige, identisch verteilte Zufallsvariablen mit $X_i \sim \mathcal{U}([\theta - 1, \theta]) unter \mathbb{P}_\theta$ 
-wobei $\theta \in \mathbb{R}$. Wir betrachten den Schätzer 
+Seien $X_1, \ldots, X_n$ unabhängige, identisch verteilte Zufallsvariablen mit $X_i \sim \mathcal{U}([\theta - 1, \theta]) unter \mathbb{P}_\theta$
+wobei $\theta \in \mathbb{R}$. Wir betrachten den Schätzer
 \[T_1^{(n)} := \frac{1}{n} \cdot \sum_{i = 1}^n X_i + \frac{1}{2}\]
 Sind Schätzer erwartungstreu?
 
 Sei $\theta \in \mathbb{R}$ fixiert. Aus der Gleichverteilung folgt, dass
 
 \begin{align*}
-  \mathbb{E}_{\theta}[{T(n)}_1] &= \left(\frac{1}{n} \sum_{i=1}^{n} \mathbb{E}_{\theta}[X_i]\right) + \frac{1}{2} \\
-                                &= \mathbb{E}_{\theta}[X_1] + \frac{1}{2} = \theta - \frac{1}{2} + \frac{1}{2} \\
-                                &= \theta
+  \mathbb{E}_{\theta}[{T(n)}_1] & = \left(\frac{1}{n} \sum_{i=1}^{n} \mathbb{E}_{\theta}[X_i]\right) + \frac{1}{2} \\
+                                & = \mathbb{E}_{\theta}[X_1] + \frac{1}{2} = \theta - \frac{1}{2} + \frac{1}{2}    \\
+                                & = \theta
 \end{align*}
 Somit folgt, dass der Schätzer ${T(n)}_1$ erwartungstreu ist.
 
@@ -79,8 +79,8 @@ letzteres kann bei Produkt zu Summe umwandlung hilfreich sein.
 \subsection{Beispiel: Maximum Likelyhood-Funktion}
 Sei $\Theta = [0, 1]$. Wir betrachten die Modellfamilie $ {P_\theta}_{\theta \in \Theta}$, wobei $X_1, \ldots, X_n$ unter $\mathbb{P}_\theta$ unabhängig und identisch verteilt sind mit $X_1 \sim \text{Geom} (\theta)$. Was ist die Likelihood-Funktion $L (x_1, \ldots, x_n; \theta)$ für $x_1, \ldots, x_n \in \{1, 2, \ldots\}$?
 \begin{align*}
-  L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]            \\
-                               & =\prod_{i = 1}^n \mathbb{P}_\theta[X_i = x_i]           \\
+  L (x_1, \ldots, x_n; \theta) & =  (P_\theta) [X_1 = x_1,\ldots , X_n = x_n]              \\
+                               & =\prod_{i = 1}^n \mathbb{P}_\theta[X_i = x_i]             \\
                                & = \theta^n \cdot  {(1 - \theta)}^{x_1 + \ldots + x_n - n}
 \end{align*}
 \\
@@ -101,26 +101,20 @@ $0$ und erhalten:
 \end{align*}
 
 \BoxEnd{}
-\subsection{Empirisches Moment}
-Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment oder
-Stichprobenmoment $\hat{m}_k$ der Realisierung $ (x_1, \dots, x_n)$:
-\begin{align*}
-  \hat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \Sn x_i^k
-\end{align*}
 
 \begin{definition}{Normalverteile Stichprobe}
-Sei $\zufallsvariablen$ i.i.d. $\Normalverteilt$-verteilt mit unbekannten
-Parametern $\vt = (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$ max
-likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
-\begin{align*}
-  T_1 & = \frac{1}{n} \Sn X_i = \overline{X}_n     \\
-  T_2 & = \frac{1}{n} \Sn {X_1 - \overline{X}_n}^2
-\end{align*}
-möchten wir aber noch, dass der Schätzer erwartungstreu wird,
-so wählen wir für $T_2 = S^2$:
-\begin{align*}
-  S^2 = \frac{1}{n-1} \Sn  {(X_i - \overline{X}_n)}^2
-\end{align*}
+  Sei $\zufallsvariablen$ i.i.d. $\Normalverteilt$-verteilt mit unbekannten
+  Parametern $\vt = (\mu, \sigma^2)$. Damit berechnen wir mit der $\log$ max
+  likelihood funktion Ableitungen setzen diese zu $0$ und bekommen:
+  \begin{align*}
+    T_1 & = \frac{1}{n} \Sn X_i = \overline{X}_n     \\
+    T_2 & = \frac{1}{n} \Sn {X_1 - \overline{X}_n}^2
+  \end{align*}
+  möchten wir aber noch, dass der Schätzer erwartungstreu wird,
+  so wählen wir für $T_2 = S^2$:
+  \begin{align*}
+    S^2 = \frac{1}{n-1} \Sn  {(X_i - \overline{X}_n)}^2
+  \end{align*}
 \end{definition}
 \subsection{Normalverteile Stichproben}
 Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
@@ -131,3 +125,32 @@ Seien $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$. Dann gilt:
   \item $\overline{X}_n$ und $S^2$ sind unabhängig
   \item $\frac{\overline{X}_n - \mu}{S / \sqrt{n}} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{S / \sigma} = \frac{ \frac{\overline{X}_n - \mu}{\sigma / \sqrt{n}} }{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}} \sim t_{n-1}$
 \end{itemize}
+
+\subsection{Momentenmethode /-schätzer:}
+\begin{enumerate}
+  \item Sei $X_1, ..., X_n$ iid. eine Stichprobe.
+  \item Sei $\Theta$ ein $m$-dimensionaler Parameterraum.
+  \item Stelle für $\theta = (\theta_1,\dots \theta_m)$ ein Gleichungssystem auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird: $\hat m_k(x_1,\dots x_n) = g_k(\theta_1,\dots \theta_m), k \in \{1,\dots m\}.$
+  \item Der Vektor $\hat \theta(X_1,\dots X_m)$ heisst Momentenschätzer des Parameters $\theta.$
+\end{enumerate}
+
+\subsection{Empirisches Moment}
+Für $k \in \{1, \dots, m\}$ sei das $k$-te Moment empirische Moment
+oder Stichprobenmoment $\hat{m}_k$ der Realisierung $(x_1, \dots, x_n)$:
+\begin{equation*}
+  \hat{m}_k(x_1, \dots, x_n)  \frac{1}{n} \sum_{i=1}^{n}  x_i^k
+\end{equation*}
+
+Seien \(X_1, X_2\) diskrete unabhängige Zufallsvariablen mit Werten in \(\mathbb{N}_0\).
+\[
+  \forall k \in \mathbb{N}_0: \quad P[X_1 + X_2 = k] = \sum_{j=0}^{k} P[X_1 = j]P[X_2 = k - j].
+\]
+
+Die Momentenerzeugende Funktion einer diskreten Zufallsvariable \(X\) mit Werten in \(\mathbb{N}_0\) ist definiert als
+\[
+  \forall s \in \mathbb{R}: \quad M_X(s) = \sum_{k=0}^{\infty} e^{sk}P[X = k].
+\]
+
+\[
+  \forall s \in \mathbb{R}: \quad M_{X_1+X_2}(s) = M_{X_1}(s)M_{X_2}(s).
+\]

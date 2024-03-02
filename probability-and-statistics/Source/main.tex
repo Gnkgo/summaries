@@ -60,7 +60,8 @@
         colframe=boxColor,
         coltext=black % Ensure the text is black for visibility
     ]%
-}\def\BoxEnd{\end{tcolorbox}}
+    \begin{tiny}
+}\def\BoxEnd{\end{tiny}\end{tcolorbox}}
 
 \newtcolorbox{definition}[2][]{
 	colback = white,
@@ -149,16 +150,16 @@
 
 
 
-\input{basics.tex}
-\input{zufallsvariable.tex}
-\input{diskrete-verteilung.tex}
-\input{verteilung.tex}
-\input{ungleichungen.tex}
-\input{schätzer.tex}
-\input{tests.tex}
-\input{multiple-choice.tex}
-\input{verteilungen-tabelle.tex}
-\input{sonstiges.tex}
+  \input{basics.tex}
+  \input{zufallsvariable.tex}
+  \input{diskrete-verteilung.tex}
+  \input{verteilung.tex}
+  \input{ungleichungen.tex}
+  \input{schätzer.tex}
+  \input{tests.tex}
+  \input{multiple-choice.tex}
+  \input{verteilungen-tabelle.tex}
+  \input{sonstiges.tex}
 
 \end{multicols*}
 \end{document}

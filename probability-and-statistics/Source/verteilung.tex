@@ -22,22 +22,22 @@ und hat die Eigenschaften:
 \end{itemize}
 \BoxStart{}
 \subsection{Beispiel: Verteilungsfunktion}
-Um zu verhindern, dass ein Gerät infolge eines defekten Halbleiters längere Zeit ausfällt, 
+Um zu verhindern, dass ein Gerät infolge eines defekten Halbleiters längere Zeit ausfällt,
 werden zwei identische, parallel geschaltete Halbleiter zu einem Bauteil zusammengefasst.
-Eine Kontrolllampe leuchtet auf, wenn einer der beiden Halbleiter ausgefallen ist. 
+Eine Kontrolllampe leuchtet auf, wenn einer der beiden Halbleiter ausgefallen ist.
 Wir nehmen an, dass die Lebensdauern der Halbleiter unabhängige, exponentialverteilte Zufallsvariablen mit Erwartungswert 60 Tage sind.
 Wie ist die Zeit, nach der die Kontrolllampe ufleuchtet, verteilt? \\
 
-Seien \(H_1\) und \(H_2\) die Lebensdauern der entsprechenden Halbleiter. Nach Voraussetzung sind \(H_1\) und \(H_2\) i.i.d. und 
-Exp(\(\lambda\))-verteilt mit \(\lambda = \frac{1}{60}\). Sei \(T\) die Zeit, nach der die Kontrolllampe aufleuchtet; 
+Seien \(H_1\) und \(H_2\) die Lebensdauern der entsprechenden Halbleiter. Nach Voraussetzung sind \(H_1\) und \(H_2\) i.i.d. und
+Exp(\(\lambda\))-verteilt mit \(\lambda = \frac{1}{60}\). Sei \(T\) die Zeit, nach der die Kontrolllampe aufleuchtet;
 also ist \(T = \min\{H_1, H_2\}\).
 Die Verteilungsfunktion von \(T\) ist gegeben durch
 
 \begin{align*}
-  F_T(t)  &= P [T \leq t] = P [\min\{H_1, H_2\} \leq t]\\
-          &= 1 - P [\min\{H_1, H_2\} > t] = 1 - P [H_1 > t, H_2 > t]\\
-          &= 1 - P [H_1 > t]P [H_2 > t]\\
-          &= (1 - \exp(-2\lambda t)) \mathbf{1}_{[0, \infty)}(t)]
+  F_T(t) & = P [T \leq t] = P [\min\{H_1, H_2\} \leq t]              \\
+         & = 1 - P [\min\{H_1, H_2\} > t] = 1 - P [H_1 > t, H_2 > t] \\
+         & = 1 - P [H_1 > t]P [H_2 > t]                              \\
+         & = (1 - \exp(-2\lambda t)) \mathbf{1}_{[0, \infty)}(t)]
 \end{align*}
 
 d.h. \(T\) ist wieder exponentialverteilt mit Parameter \(2\lambda = \frac{1}{30}\).
@@ -59,62 +59,66 @@ und hat die Eigenschaften:
 \section{Wichtige stetige Verteilungen}
 \begin{definition}{Gleichverteilung}
   Die Gleichverteilung auf dem Intervall $[a, b]$ ist ein Modell für die
-Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige Zufallsvariable $X$
-hat den Wertebereich $\W (X) = [a, b]$, sowie
-\begin{align*}
-  f_X (t) & =
-  \begin{cases}
-    \frac{1}{b-a} & \text{für } a \leq t \leq b \\
-    0             & \text{sonst.}
-  \end{cases} \\
-  F_X (t) & =
-  \begin{cases}
-    0               & \text{für } t < a           \\
-    \frac{t-a}{b-a} & \text{für } a \leq t \leq b \\
-    1               & \text{für } t > b.
-  \end{cases}
-\end{align*}
-wir schreiben kurz $X \sim U (a, b)$.
-\begin{align*}
-  E[X] = \frac{a + b}{2} &  & Var[X] = \frac{{(b - a)}^2}{12}
-\end{align*}
+  Zufällige Wahl eines Punktes in $[a, b]$. Die zugehörige Zufallsvariable $X$
+  hat den Wertebereich $\W (X) = [a, b]$, sowie
+  \begin{align*}
+    f_X (t) & =
+    \begin{cases}
+      \frac{1}{b-a} & \text{für } a \leq t \leq b \\
+      0             & \text{sonst.}
+    \end{cases} \\
+    F_X (t) & =
+    \begin{cases}
+      0               & \text{für } t < a           \\
+      \frac{t-a}{b-a} & \text{für } a \leq t \leq b \\
+      1               & \text{für } t > b.
+    \end{cases}
+  \end{align*}
+  wir schreiben kurz $X \sim U (a, b)$.
+  \begin{align*}
+    E[X] = \frac{a + b}{2} &  & Var[X] = \frac{{(b - a)}^2}{12}
+  \end{align*}
 \end{definition}
 \begin{definition}{Exponential Verteilung}
   Die Exponentialverteilung mit Parameter $\lambda > 0$ ist das stetige Analogon
-der Geometrischen Verteilung. Die zugehörige Zufallsvariable $X$ hat $\W (X) =
-  [0, \infty)$, Dichte und Verteilungsfunktion:
-\begin{align*}
-  f_X (t) & =
-  \begin{cases}
-    \lambda \cdot e^{-\lambda t} & \text{für } t \geq 0 \\
-    0                            & \text{für }t < 0
-  \end{cases} \\
-  F_X (t) & =
-  \int_{-\infty}^t f_X (s) \; ds =
-  \begin{cases}
-    1 - e^{-\lambda t} & \text{für } t \geq 0 \\
-    0                  & \text{für }t < 0
-  \end{cases}
-\end{align*}
-wir schreiben kurz $X \sim Exp (\lambda)$. Weiter ist
-die Funktion Gedächtsnislos, dh. $\cond{X > t + s}{X > s} = P[X > t]$.
-\begin{align*}
-  E[X] = \frac{1}{\lambda} &  & Var[X] = \frac{1}{\lambda^2}
-\end{align*}
+  der Geometrischen Verteilung. Die zugehörige Zufallsvariable $X$ hat $\W (X) =
+    [0, \infty)$, Dichte und Verteilungsfunktion:
+  \begin{align*}
+    f_X (t) & =
+    \begin{cases}
+      \lambda \cdot e^{-\lambda t} & \text{für } t \geq 0 \\
+      0                            & \text{für }t < 0
+    \end{cases} \\
+    F_X (t) & =
+    \int_{-\infty}^t f_X (s) \; ds =
+    \begin{cases}
+      1 - e^{-\lambda t} & \text{für } t \geq 0 \\
+      0                  & \text{für }t < 0
+    \end{cases}
+  \end{align*}
+  wir schreiben kurz $X \sim Exp (\lambda)$. Weiter ist
+  die Funktion Gedächtsnislos, dh. $\cond{X > t + s}{X > s} = P[X > t]$.
+  \begin{align*}
+    E[X] = \frac{1}{\lambda} &  & Var[X] = \frac{1}{\lambda^2}
+  \end{align*}
 \end{definition}
 \begin{definition}{Normal Verteilung}
   Die Normalverteilung hat zwei Parameter: $\mu \in \R$ und $\sigma^2 > 0$. Die
-zugehörige Zufallsvariable $X$ hat den Wertebereich $\W (X) = \R$ und die
-Dichtefunktion:
-\begin{align*}
-  f_X (t) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{{(t - \mu)}^2}{2 \sigma^2}}
-   &  & \text{für } t \in \R
-\end{align*}
-welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
-\begin{align*}
-  E[X] = \mu &  & Var[X] = \sigma^{2}
-\end{align*}
-Wenn $ X \sim \Normalverteilt$ dann $X^2 \sim \N(1, 2)$
+  zugehörige Zufallsvariable $X$ hat den Wertebereich $\W (X) = \R$ und die
+  Dichtefunktion:
+  \begin{align*}
+    f_X (t) = \frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{{(t - \mu)}^2}{2 \sigma^2}}
+     &  & \text{für } t \in \R
+  \end{align*}
+  welche symmetrisch um $\mu$ ist. Wir schreiben kurz: $X \sim \Normalverteilt$.
+  \[
+    E[X] = \mu \quad Var[X] = \sigma^{2}
+  \]
+  If \( X_1, X_2 \) are independent normal distributed random variables, i.e. \( X_i \sim \mathcal{N}(m_i, \sigma_i^2) \) for \( i = 1,2 \) then we have
+
+  \[
+    X_1 + X_2 \sim \mathcal{N}(m_1 + m_2, \sigma_1^2 + \sigma_2^2)
+  \]
 \end{definition}
 
 \subsection{Standard Normalverteilung}
@@ -128,9 +132,9 @@ geschlossene Ausdrücke, aber das Integral
 ist tabelliert. Ist $X \sim \Normalverteilt$, so ist
 \begin{definition}{Normalverteilung}
   $\frac{X - \mu}{\sigma} \sim \Standardnormalverteilt$, also:
-\begin{align*}
-  F_X (t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left  ( \frac{t - \mu}{\sigma} \right)
-\end{align*}
+  \begin{align*}
+    F_X (t) = P[X \leq t] = P \left[ \frac{X-\mu}{\sigma} \leq \frac{t - \mu}{\sigma} \right] = \Phi \left  ( \frac{t - \mu}{\sigma} \right)
+  \end{align*}
 \end{definition}
 deshalb genügt es $\Phi$ zu tabellieren.
 \begin{align*}
@@ -142,19 +146,19 @@ Wenn $S_n \sim Bin (n, p)$ dann
   S_n \sim_{approx} N (np, np (1-p))
 \end{align*}
 \begin{definition}{Erwartungswert}
-Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
-\begin{align*}
-  E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
-\end{align*}
-sofern das Integral absolut konvergiert. Ist das Integral nicht
-absolut konvergent, so existiert der Erwartungswert nicht.
+  Ist $X$ stetig mit Dichte $f_X (x)$, so ist der Erwartungswert:
+  \begin{align*}
+    E[X] = \int_{-\infty}^\infty x \cdot f_X (x) \; dx
+  \end{align*}
+  sofern das Integral absolut konvergiert. Ist das Integral nicht
+  absolut konvergent, so existiert der Erwartungswert nicht.
 \end{definition}
 \begin{definition}{Erwartungswert einer Funktion}
-Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
-$X$ stetig mit Dichte $f_X$, so ist
-\begin{align*}
-  E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
-\end{align*}
+  Sei $X$ eine Zufallsvariable und $Y = g (X)$ eine weitere Zufallsvariable. Ist
+  $X$ stetig mit Dichte $f_X$, so ist
+  \begin{align*}
+    E[Y] = E[g (X)] = \int_{-\infty}^\infty g (x) \cdot f_X (x) \; dx
+  \end{align*}
 \end{definition}
 
 \subsection{Gemeinsame Verteilung/Dichte}
@@ -187,7 +191,80 @@ der Randverteilung von $X$ gegeben durch:
   x \mapsto p_X (x) := \sum_{y_i \in \W (X)} P[X = x, Y = y_i]
 \end{align*}
 \BoxStart{}
+\subsection{Beispiel: Randverteilung, gemeinsame Dichte}
 \begin{tiny}
+  Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
+  \[
+    f_{U, V} (u, v) =
+    \begin{cases}
+      c & \text{falls } (u, v) \in D \\
+      0 & \text{sonst}               \\
+    \end{cases}
+  \]
+  \begin{center}
+    \includegraphics[width=0.45\textwidth]{dichte_aufgabe.png}
+  \end{center}
+  \begin{enumerate}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item bestimme Konstnte $c$
+    \item bestimme Randverteiungsfunktion von U und Randdichtefunktion $f_U(u)$.
+    \item Sind $U$ und $V$ unabhängig?
+  \end{enumerate}
+  \begin{enumerate}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+    \item
+          \begin{align*}
+            D =  & \{(a, b) \in \mathbb{R}^2 : -1 \leq a \leq 1 \text{ and } -2 \leq b \leq 2\} \\
+            \cup & \{(a, b) \in \mathbb{R}^2 : 1 \leq a \leq 2 \text{ and } -1 \leq b \leq 1\}  \\
+                 & f_{U,V}(u, v) =
+            \begin{cases}
+              1/10 & \text{if } (u, v) \in D \\
+              0    & \text{otherwise}
+            \end{cases}
+          \end{align*}
+    \item For $u < -1$, $F_U(u) = P(U \leq u) = 0$.
+          For $-1 \leq u \leq 1$, $F_U(u) = P(U \leq u) = $
+          \[
+            \int_u^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds = \frac{4(u + 1)}{10}
+          \]
+
+          For $1 \leq u \leq 2$, $F_U(u) = P(U \leq u) =$
+          \[
+            \int_1^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds + \int_u^1 \int_{-1}^{1} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds
+          \]
+          \[
+            = \frac{8}{10} + \frac{2(u - 1)}{10}
+          \]
+
+          and $F_U(u) = 1$ for $u > 2$.
+
+          \[
+            f_U(u) = \begin{cases}
+              \frac{4}{10} & \text{if } -1 \leq u \leq 1 \\
+              \frac{2}{10} & \text{if } 1 \leq u \leq 2  \\
+              0            & \text{otherwise}
+            \end{cases}
+          \]
+
+          \[
+            f_V(v) = \int_{-\infty}^{\infty} f_{U,V}(u,v) \, du =
+          \]
+          \[
+            \frac{1}{2}\left(2[v \in [-2,2]] + [v \in [-1,1]]\right)
+          \]
+
+    \item If U and V are independent, then for all u and v:
+
+          \[
+            f_U(u) \cdot f_V(v) = f_{U,V}(u,v)
+          \]
+
+          However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5}
+          \cdot \frac{1}{5} \neq 0\).
+
+          Therefore, U and V are not independent.
+  \end{enumerate}
+\end{tiny}
+\BoxEnd{}
+\BoxStart{}
 
 \subsection{Beispiel: Dichtefunktion berechnen}
 Seien $X$ und $Y$ zwei unabhängige Zufallsvariablen, beide exponentialverteilt mit
@@ -197,91 +274,16 @@ Parameter $\lambda > 0$. Definiere
 \]
 Seien $f_U$ und $f_V$ die zu $U$ und $V$ gehörigen Dichtefunktionen. Berechne
 die Dichtefunktion $f_U$ und Verteilungsfunktion $F_U$
-\begin{align*} 
-  P[U \leq u] &= f_U(u) = \int_\infty^\infty f(u, v) dy \\
-  &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx\\ 
-  &= \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx\\ 
-  &= \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx\\ 
-  &= \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx\\ 
-  &= \lambda \int_0^\infty e^{-\lambda u^-1 x}dx\\ 
-  &= u 
-\end{align*}
-\end{tiny}
-
-\BoxEnd{}
-\BoxStart{}
-\subsection{Beispiel: Randverteilung, gemeinsame Dichte}
-\begin{tiny}
-Man wählt zufällig einen Punkt $P = (U, V)$ in dem Gebiet $D$. Die gemeinsame Dichte von $(U, V)$
-\[
-  f_{U, V} (u, v) =
-  \begin{cases}
-    c & \text{falls } (u, v) \in D \\
-    0 & \text{sonst}               \\
-  \end{cases}
-\]
-\begin{center}
-  \includegraphics[width=0.45\textwidth]{dichte_aufgabe.png}
-\end{center}
-\begin{enumerate}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]  
-  \item bestimme Konstnte $c$
-  \item bestimme Randverteiungsfunktion von U und Randdichtefunktion $f_U(u)$.
-  \item Sind $U$ und $V$ unabhängig?
-\end{enumerate}
-\begin{enumerate}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]  
-  \item 
 \begin{align*}
-  D =  & \{(a, b) \in \mathbb{R}^2 : -1 \leq a \leq 1 \text{ and } -2 \leq b \leq 2\} \\
-  \cup & \{(a, b) \in \mathbb{R}^2 : 1 \leq a \leq 2 \text{ and } -1 \leq b \leq 1\}  \\
-       & f_{U,V}(u, v) =
-  \begin{cases}
-    1/10 & \text{if } (u, v) \in D \\
-    0    & \text{otherwise}
-  \end{cases}
+  P[U \leq u] & = f_U(u) = \int_\infty^\infty f(u, v) dy                                                                        \\
+              & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{\frac{x}{x + y}\leq u}e^{-\lambda y}dy\right)dx \\
+              & = \lambda^2 \int_0^\infty e^{-\lambda x} \left(\int_0^\infty 1_{x(u^{-1} - 1)\leq y}e^{-\lambda y}dy\right)dx   \\
+              & = \lambda \int_0^\infty e^{-\lambda x} \left(\int_{x(u^{-1} -1)}^\infty \lambda e^{-\lambda y}dy\right)dx       \\
+              & = \lambda \int_0^\infty e^{-\lambda x} e^{-\lambda x (u^{-1} -1)}dx                                             \\
+              & = \lambda \int_0^\infty e^{-\lambda u^-1 x}dx                                                                   \\
+              & = u
 \end{align*}
-\item For $u < -1$, $F_U(u) = P(U \leq u) = 0$.
-For $-1 \leq u \leq 1$, $F_U(u) = P(U \leq u) = $
-\[
-  \int_u^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds = \frac{4(u + 1)}{10}
-\]
 
-For $1 \leq u \leq 2$, $F_U(u) = P(U \leq u) =$
-\[
-  \int_1^{-1} \int_{-2}^{2} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds + \int_u^1 \int_{-1}^{1} \frac{1}{10} \mathbf{1}_D(u, v) \, dv \, ds
-\]
-\[
-  = \frac{8}{10} + \frac{2(u - 1)}{10}
-\]
-
-and $F_U(u) = 1$ for $u > 2$.
-
-\[
-  f_U(u) = \begin{cases}
-    \frac{4}{10} & \text{if } -1 \leq u \leq 1 \\
-    \frac{2}{10} & \text{if } 1 \leq u \leq 2  \\
-    0            & \text{otherwise}
-  \end{cases}
-\]
-
-\[
-  f_V(v) = \int_{-\infty}^{\infty} f_{U,V}(u,v) \, du =
-\]
-\[
-  \frac{1}{2}\left(2[v \in [-2,2]] + [v \in [-1,1]]\right)
-\]
-
-\item If U and V are independent, then for all u and v:
-
-\[
-  f_U(u) \cdot f_V(v) = f_{U,V}(u,v)
-\]
-
-However, we have \(f_{U,V}(2,2) = 0\) and \(f_U(2) \cdot f_V(2) = \frac{1}{5}
-\cdot \frac{1}{5} \neq 0\).
-
-Therefore, U and V are not independent.
-\end{enumerate}
-\end{tiny}
 \BoxEnd{}
 \subsection{Unabhängigkeit}
 Die Zufallsvariablen $\zufallsvariablen$ heissen unabhängig, falls gilt
@@ -328,6 +330,13 @@ Mit der Substitution
   X       & = \phi^{-1}(y)                                   \\
   f_Y(y)  & = f_X(\phi^{-1}(y))|\text{det }J_{\phi^{-1}}(y)| \\
 \end{align*}
+Mit linearer Transformationssatz\\
+Sei $Z$ ein $n$-dimensionaler Zufallsvektor und $g: (\R^n, \mathcal{B}^n) \to (\R^m, \mathcal{B}^m)$ eine messbare Abbildung. Dann ist
+$$H(\omega) = g(Z(\omega))$$
+ein $m$-dimensionaler Zufallsvariable und ferner gilt
+$$P(H \in A) = P(Z \in g^{-1}(A)).$$
+Wenn $g$ linear und umkehrbar (i.e. $g(x) = m + Bx$ mit det$(B) \neq 0$) und unter Vorraussetzung, dass die Verteilung von $Z$ absolut stetig ist, dann ist $H$ auch absolut stetig und es gilt:
+$$f_H(x)=\frac{1}{|\text{det}(B)|}f_Z(B^{-1}(x-m)).$$
 \BoxStart{}
 \subsection{Beispiel: Transformation}
 Sei $X$ eine Zufallsvariable mit Dichte $f_X(x), x \in \R$ und sei $Y = e^X$. Was ist die Dichte $f_Y(y), y > 0$ der Zufallsvariable $Y$?

@@ -21,109 +21,111 @@ Es sei $A_i := \{\text{Erfolg beim $i$-ten Experiment}\}$ und:
         \]
 \end{itemize}
 \begin{definition}{Bernoulli-Verteilung}
-Ein einziges 0-1-Experiment mit $\W (X) = \{0, 1\}$. Die Gewichtsfunktion ist
-gegeben durch $p_X (1) = p$, sowie $p_X (0) = 1-p$. Man schreibt kurz $X \sim
-  Be (p)$. Es gilt:
-\begin{align*}
-  E[X]   & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
-  Var[X] & = E[X^2] - {E[X]}^2 = p \cdot  (1-p)\\
-  E[X^2] & = p
-\end{align*}
+  Ein einziges 0-1-Experiment mit $\W (X) = \{0, 1\}$. Die Gewichtsfunktion ist
+  gegeben durch $p_X (1) = p$, sowie $p_X (0) = 1-p$. Man schreibt kurz $X \sim
+    Be (p)$. Es gilt:
+  \begin{align*}
+    E[X]   & = 1 \cdot P[X = 1] + 0 \cdot P[X = 0] = p \\
+    Var[X] & = E[X^2] - {E[X]}^2 = p \cdot  (1-p)      \\
+    E[X^2] & = p
+  \end{align*}
 \end{definition}
 \begin{definition}{Binomial Verteilung}
 
-Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1-Experimenten mit
-Erfolgsparameter $p$. Also ist die Zufallsvariable respektive Gewichtsfunktion:
-\begin{align*}
-  X       & = \Sn I_{A_i} = \Sn Y_i                                \\
-  p_X (k) & = P[X = k] = \binom{n}{k} \cdot p^k \cdot  (1-p)^{n-k}
-\end{align*}
-und man schreibt kurz $X \sim Bin (n, p)$. Es gilt weiter:
-\begin{align*}
-  E[X]   & = \Sn E[Y_i] = n \cdot p                \\
-  Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot  (1-p)\\
-\end{align*}
+  Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$. Also ist die Zufallsvariable respektive Gewichtsfunktion:
+  \begin{align*}
+    X       & = \Sn I_{A_i} = \Sn Y_i                                \\
+    p_X (k) & = P[X = k] = \binom{n}{k} \cdot p^k \cdot  (1-p)^{n-k}
+  \end{align*}
+  und man schreibt kurz $X \sim Bin (n, p)$. Es gilt weiter:
+  \begin{align*}
+    E[X]   & = \Sn E[Y_i] = n \cdot p                \\
+    Var[X] & = \Sn Var[Y_i] = n \cdot p \cdot  (1-p) \\
+  \end{align*}
 \end{definition}
 \begin{definition}{Geometrische Verteilung}
-Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
-Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
-\begin{align*}
-  X       & = \inf \{ i \in \N : A_i \text{ tritt ein} \} \\
-  p_X (k) & = P[X = k] = p \cdot  (1-p)^{k-1}\\
-  P[X \geq k] &= (1 - p)^{k - 1}
-\end{align*}
-wir schreiben $X \sim Geom (p)$ und es gilt:
-\begin{align*}
-  E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^{k-1} \cdot p
-  = \frac{1}{1- (1-p)} = \frac{1}{p}                 \\
-  E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}          \\
-  Var[X]            & = \frac{1-p}{p^2}
-\end{align*}
+  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$ sein $X$ die Wartezeit zum ersten Erfolg:
+  \begin{align*}
+    X           & = \inf \{ i \in \N : A_i \text{ tritt ein} \} \\
+    p_X (k)     & = P[X = k] = p \cdot  (1-p)^{k-1}             \\
+    P[X \geq k] & = (1 - p)^{k - 1}
+  \end{align*}
+  wir schreiben $X \sim Geom (p)$ und es gilt:
+  \begin{align*}
+    E[X]              & = \sum_{k = 0}^\infty  k \cdot (1-p)^{k-1} \cdot p
+    = \frac{1}{1- (1-p)} = \frac{1}{p}                                     \\
+    E[X \cdot  (X-1)] & = \frac{2 (1-p)}{p^2}                              \\
+    Var[X]            & = \frac{1-p}{p^2}
+  \end{align*}
 \end{definition}
 \BoxStart{}
 \subsection{Beispiel: Gedächtsnislosigkeit Geometrische Verteilung}
 \begin{align*}
-  &\exists q \in (0, 1) : Z \sim \text{Geom}(q) \Leftrightarrow \\
-  &P[Z > n] = P[Z > n + k | Z > k], \quad n, k \geq 1.
+   & \exists q \in (0, 1) : Z \sim \text{Geom}(q) \Leftrightarrow \\
+   & P[Z > n] = P[Z > n + k | Z > k], \quad n, k \geq 1.
 \end{align*}
 
 ``$\Rightarrow$'': Let $Z \sim \text{Geom}(q)$, where $q \in [0, 1]$. Then, we have $P[Z > k] = (1 - q)^k$ for $k \in \mathbb{N}$, and thus for all $k, n \in \mathbb{N}$,
 \begin{align*}
-P[Z > n + k | Z > k] &= P[Z > n + k, Z > k] \\
-&= P[Z > k] = P[Z > n + k] \\
-&= (1 - q)^{n+k} \cdot (1 - q)^k \\
-&= (1 - q)^n = P[Z > n]
+  P[Z > n + k | Z > k] & = P[Z > n + k, Z > k]           \\
+                       & = P[Z > k] = P[Z > n + k]       \\
+                       & = (1 - q)^{n+k} \cdot (1 - q)^k \\
+                       & = (1 - q)^n = P[Z > n]
 \end{align*}
 ``$\Leftarrow$'': Now, assume $P[Z > n + k | Z > k] = P[Z > n]$ for $n, k \in \mathbb{N}$. Then,
 \begin{align*}
-P[Z > n] &= P[Z > n + k | Z > k] = P[Z > n + k, Z > k] \\
-&= P[Z > k] = P[Z > n + k] \\
-&= (1 - q)^{n+k} \cdot (1 - q)^k = (1 - q)^n = P[Z > n].
+  P[Z > n] & = P[Z > n + k | Z > k] = P[Z > n + k, Z > k]            \\
+           & = P[Z > k] = P[Z > n + k]                               \\
+           & = (1 - q)^{n+k} \cdot (1 - q)^k = (1 - q)^n = P[Z > n].
 \end{align*}
 Define $f(n) = P[Z > n]$. It follows that $f(n)f(k) = f(n + k)$ for all $n, k \in \mathbb{N}$. Due to $f(n + 1) = f(n)f(1)$, by iteration, we immediately get $f(n) = a^n$ with $a = f(1)$, and thus
 \begin{align*}
-  P[Z = n] &= P[Z > n - 1] - P[Z > n]\\
-  &= f(n - 1) - f(n) = (1 - a)a^{n-1}
+  P[Z = n] & = P[Z > n - 1] - P[Z > n]          \\
+           & = f(n - 1) - f(n) = (1 - a)a^{n-1}
 \end{align*}
 
 Finally, $a = f(1) = P[Z > 1] \in [0, 1]$, which implies $q = 1 - a \in [0, 1]$, and consequently $Z \sim \text{Geom}(q)$.
 \BoxEnd{}
 \begin{definition}{Negativbnomiale Verteilung}
-Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
-Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg ($r \in \N$):
-\begin{align*}
-  X       & = \inf \{ k \in \N : \sum_{i = 1}^k I_{A_i} = r \}         \\
-  p_X (k) & = P[X = k] = \binom{k-1}{r-1} \cdot p^r \cdot  (1-p)^{k-r}
-\end{align*}
-wir schreiben $X \sim NB (r, p)$ und es gilt:
-\begin{align*}
-  E[X]   & = \sum_{i = 1}^r E[X_i] = \frac{r}{p}                  \\
-  Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot  (1-p)}{p^2}
-\end{align*}
+  Bei einer unendlichen Folge von unabhängigen 0-1-Experimenten mit
+  Erfolgsparameter $p$ sein $X$ die Wartezeit zum $r$-ten Erfolg ($r \in \N$):
+  \begin{align*}
+    X       & = \inf \{ k \in \N : \sum_{i = 1}^k I_{A_i} = r \}         \\
+    p_X (k) & = P[X = k] = \binom{k-1}{r-1} \cdot p^r \cdot  (1-p)^{k-r}
+  \end{align*}
+  wir schreiben $X \sim NB (r, p)$ und es gilt:
+  \begin{align*}
+    E[X]   & = \sum_{i = 1}^r E[X_i] = \frac{r}{p}                  \\
+    Var[X] & = \sum_{i = 1}^r Var[X_i] = \frac{r \cdot  (1-p)}{p^2}
+  \end{align*}
 \end{definition}
 \begin{definition}{Hypergeometrische Verteilung}
-In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ $1$ und $n-r$ vom Typ
-$2$. Man zieht ohne zurücklegen $m$ der Gegenstände. Die Zufallsvariable $X$
-beschreibt die Anzahl der Gegenstände vom Typ $1$ in der Stichprobe. Der
-Wertebereich von $X$ ist $\W (X) = \{0, 1, \dots, \min (m, r)\}$ und:
-\begin{align*}
-  p_X (k) & = \frac{\binom{r}{k} \cdot \binom{n-r}{m-k}}{\binom{n}{m}}
-          &                                                                                 & \text{für } k \in \W (X)                             \\
-  E[X]    & = \Sn i \cdot p_X (i) = m \cdot \frac{r}{n}                                     &                          & \text{ (Nicht im Skript)} \\
-  Var[X]  & = m \cdot \frac{r}{n} \left(1 - \frac{r}{n} \right) \cdot \frac{n - m}{n - 1} &                          & \text{ (Nicht im Skript)}
-\end{align*}
+  In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ $1$ und $n-r$ vom Typ
+  $2$. Man zieht ohne zurücklegen $m$ der Gegenstände. Die Zufallsvariable $X$
+  beschreibt die Anzahl der Gegenstände vom Typ $1$ in der Stichprobe. Der
+  Wertebereich von $X$ ist $\W (X) = \{0, 1, \dots, \min (m, r)\}$ und:
+  \begin{align*}
+    p_X (k) & = \frac{\binom{r}{k} \cdot \binom{n-r}{m-k}}{\binom{n}{m}}
+            &                                                                               & \text{für } k \in \W (X)                             \\
+    E[X]    & = \Sn i \cdot p_X (i) = m \cdot \frac{r}{n}                                   &                          & \text{ (Nicht im Skript)} \\
+    Var[X]  & = m \cdot \frac{r}{n} \left(1 - \frac{r}{n} \right) \cdot \frac{n - m}{n - 1} &                          & \text{ (Nicht im Skript)}
+  \end{align*}
 \end{definition}
 \begin{definition}{Poisson Verteilung}
   Die Poisson Verteilung mit Parameter $\lambda \in (0, \infty)$ ist eine
-Verteilung auf der Menge $\N_0 = \{0, 1, 2, \dots\}$ mit Gewichtsfunktion:
-\begin{align*}
-  p_X (k) & = e^{-\lambda} \cdot \frac{\lambda^k}{k!}
-          &                                                                                            & \text{für } k = 0, 1, 2, \dots \\
-  E[X]    & = \Sn i \cdot \frac{\lambda^i}{i!} e^{-\lambda} = \lambda e^{-\lambda} e^\lambda = \lambda                                  \\
-  E[X^2]  & = \lambda^2 + \lambda                                                                                                       \\
-  Var[X]  & = \lambda \\
-  Bin(n, p) & \sim \mathcal{P}(\lambda) \text{ with } \lambda = n * p
-\end{align*}
-Ist eine Zufallsvariable $X$ Poisson verteilt mit Parameter $\lambda$
-schreiben wir $X \sim P (\lambda)$.
+  Verteilung auf der Menge $\N_0 = \{0, 1, 2, \dots\}$ mit Gewichtsfunktion:
+  \begin{align*}
+    p_X (k)   & = e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+              &                                                                                            & \text{für } k = 0, 1, 2, \dots \\
+    E[X]      & = \Sn i \cdot \frac{\lambda^i}{i!} e^{-\lambda} = \lambda e^{-\lambda} e^\lambda = \lambda                                  \\
+    E[X^2]    & = \lambda^2 + \lambda                                                                                                       \\
+    Var[X]    & = \lambda                                                                                                                   \\
+    Bin(n, p) & \sim \mathcal{P}(\lambda) \text{ with } \lambda = n * p
+  \end{align*}
+  Ist eine Zufallsvariable $X$ Poisson verteilt mit Parameter $\lambda$
+  schreiben wir $X \sim P (\lambda)$.
+  Let \( X_1 \) and \( X_2 \) be two independent Poisson random variables with parameters \( \lambda_1 \) and \( \lambda_2 \), i.e., \( X_1 \sim \text{Poisson}(\lambda_1) \) and \( X_2 \sim \text{Poisson}(\lambda_2) \), then we have
+  \[ X := X_1 + X_2 \quad \text{and} \quad X \sim \text{Poisson}(\lambda_1 + \lambda_2) \]
 \end{definition}

@@ -1,16 +1,16 @@
 \subsection{Diskrete Zufallsvariable}
-  Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
+Eine reelwertige diskrete Zufallsvariable auf $\Omega$ ist eine Funktion $X :
   \Omega \mapsto \R$. Mit $\Omega$ ist natürlich auch $\W (X) = \{x_1, x_2,
   \dots\}$ endlich oder abzählbar.
 \begin{itemize}
   \item Die Verteilungsfunktion von $X$ ist die Abbildung $F_X : \R \mapsto [0, 1]$,
         definiert durch:
         \begin{definition}{Verteilungsfunktion von X}
-        \begin{align*}
-          t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
-        \end{align*}
-      \end{definition}
-      \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W
+          \begin{align*}
+            t \mapsto F_X (t) := P[X \leq t] := P[\{\omega : X (\omega) \leq t\}]
+          \end{align*}
+        \end{definition}
+  \item Die Gewichtsfunktion oder diskrete Dichte von $X$ ist die Funktion $p_X : \W
           (X) \mapsto [0, 1]$, definiert durch:
         \begin{align*}
           p_X (X_k) := P[X = x_k] = P[\{\omega : X (\omega) = x_k\}]
@@ -55,15 +55,15 @@ und hat folgende Eigenschaften:
 Seien \(X\) und \(Y\) zwei stetige Zufallsvariablen mit gemeinsamer Dichte \(f(x, y)\):
 
 \[ f(x, y) = \begin{cases}
-             \frac{1}{2}, & \text{für } 0 \leq x \leq y \leq 2, \\
-             0, & \text{sonst}.
-            \end{cases} \]
+    \frac{1}{2}, & \text{für } 0 \leq x \leq y \leq 2, \\
+    0,           & \text{sonst}.
+  \end{cases} \]
 
 Berechne \(E[XY]\)\\[-20pt]
 
 \begin{align*}
-  E[XY] &= \int_{0}^{2} \int_{y}^{0} \frac{1}{2}xy \, dx \, dy \\
-        &= \frac{1}{4} x^2y \Big|_{0}^{y} = \frac{1}{4}y^3 \Big|_{0}^{2} = \frac{1}{16} \cdot 2^4 - \frac{1}{16} \cdot 0^4 = 1
+  E[XY] & = \int_{0}^{2} \int_{y}^{0} \frac{1}{2}xy \, dx \, dy                                                                 \\
+        & = \frac{1}{4} x^2y \Big|_{0}^{y} = \frac{1}{4}y^3 \Big|_{0}^{2} = \frac{1}{16} \cdot 2^4 - \frac{1}{16} \cdot 0^4 = 1
 \end{align*}
 
 
@@ -76,19 +76,19 @@ Sei $X$ eine Diskrete Zufallsvariable mit Gewichtsfunktion $p_X (x)$ und $Y = g
   E[Y] = E[g (X)] = \sum_{x_k \in \W (X)} g (x_k) \cdot p_X (x_k)
 \end{align*}
 \begin{definition}{Varianz}
-Sei $X$ eine diskrete Zufallsvariable. Ist $E[X^2] < \infty$, so heisst:
-\begin{align*}
-  Var[X] & := E[ {X - E[X]}^2]                                     \\
-         & = \sum_{x_k \in \W (X)}  {x_k - E[X]}^2 \cdot p_X (x_k)
-\end{align*}
-die Varianz von $X$. Es gilt weiter:
-\begin{itemize}
-  \item $E[Z]^2 \leq E[Z^2]$
-  \item $Var[X] = E[X^2] - {E[X]}^2$
-  \item $Var[a \cdot X + b] = a^2 \cdot Var[X]$
-  \item $Var[X - Y] = Var[X] +  {-1}^2 \cdot Var[Y]$
-  \item $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
-\end{itemize}
+  Sei $X$ eine diskrete Zufallsvariable. Ist $E[X^2] < \infty$, so heisst:
+  \begin{align*}
+    Var[X] & := E[ {X - E[X]}^2]                                     \\
+           & = \sum_{x_k \in \W (X)}  {x_k - E[X]}^2 \cdot p_X (x_k)
+  \end{align*}
+  die Varianz von $X$. Es gilt weiter:
+  \begin{itemize}
+    \item $E[Z]^2 \leq E[Z^2]$
+    \item $Var[X] = E[X^2] - {E[X]}^2$
+    \item $Var[a \cdot X + b] = a^2 \cdot Var[X]$
+    \item $Var[X - Y] = Var[X] +  {-1}^2 \cdot Var[Y]$
+    \item $Var(X+Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
+  \end{itemize}
 \end{definition}
 \subsection{Standardabweichung}
 \[
@@ -181,7 +181,4 @@ gilt:
 \begin{align*}
   p_{X\,|\,Y} (x \; | \; y) = p_X (x) &  & \forall x \in \W (X)
 \end{align*}
-\subsection{$n$ tief $k$}
-\begin{align*}
-  \binom{n}{k} = \frac{n!}{k! \cdot  (n - k)!}
-\end{align*}
+
