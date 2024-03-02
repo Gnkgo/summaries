@@ -71,6 +71,7 @@ Kleineres Signifikanzniveau ($\alpha$)
 \BoxEnd{}
 
 \BoxStart{}
+\begin{tiny}
 \subsection{Beispiel: Hypothesen-Test}
 Wir haben eine Münze mit einer Seite rot und der anderen Seite
 blau gefärbt, und wir vermuten, dass die Münze gezinkt ist und eher auf der
@@ -96,6 +97,7 @@ blauen Seite landet.
     
 
 \end{enumerate}
+\end{tiny}
 \BoxEnd{}
 \subsection{Hypothesis testing}
 \begin{enumerate}
@@ -131,6 +133,24 @@ so extremes Testergebnis zu erhalten, wenn die Nullhypothese gelten würde:
   p (x) & = \cond{X \leq x}{H_0} \text{   oder   } \cond{X \geq x}{H_0}   \\
   p (x) & = 2 \cdot \min \{ \cond{X \leq x}{H_0}, \cond{X \geq x}{H_0} \}
 \end{align*}
+\begin{definition}{$t$-Test}
+  \color{red} Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. \color{black} Hier sind
+  $\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
+  $\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
+  Die Teststatistik ist:
+  \begin{align*}
+    T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
+        &                                                             & \text{unter } P_{\vt_0} \\
+    S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
+  \end{align*}
+  Und die Verwerfungsbereiche:
+  \begin{align*}
+    c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                     &  & \mu < \mu_0    \\
+    c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                      &  & \mu > \mu_0    \\
+    c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
+  \end{align*}
+  Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
+  \end{definition}
 \begin{definition}{Binomialtest}
   \color{red}Test für den Erfolgswahrscheinlichkeit bei bekannter Anzahl Versuche. \color{black} Hier sind
   $\zufallsvariablen$ i.i.d. $\sim \text{Ber}(p)$ und wir möchten die
@@ -215,24 +235,7 @@ nehmen an, dass $T = \frac{\overline{X}_n - \mu_A}{\sigma / \sqrt{n}} \sim \Stan
    & \text{Weil } \sim \Standardnormalverteilt
 \end{align*}
 \BoxEnd{}
-\begin{definition}{$t$-Test}
-\color{red} Normalverteilung, Test für Erwartungswert bei unbekannter Varianz. \color{black} Hier sind
-$\zufallsvariablen$ i.i.d. $\sim \Normalverteilt$ unter $P_{\vec{\vt}}$, wobei
-$\vec{\vt} = (\mu, \sigma^2)$. Wir wollen die Hypothese $\mu = \mu_0$ testen.
-Die Teststatistik ist:
-\begin{align*}
-  T   & := \frac{\overline{X}_n - \mu_0}{S / \sqrt{n}} \sim t_{n-1}
-      &                                                             & \text{unter } P_{\vt_0} \\
-  S^2 & = \frac{1}{n-1} \Sn  (X_i - \overline{X}_n)^2
-\end{align*}
-Und die Verwerfungsbereiche:
-\begin{align*}
-  c_<      & = t_{n-1, \alpha}               &  & (-\infty, c_<)                     &  & \mu < \mu_0    \\
-  c_>      & = t_{n-1, 1 - \alpha}           &  & (c_>, \infty)                      &  & \mu > \mu_0    \\
-  c_{\neq} & = t_{n-1, 1 - \frac{\alpha}{2}} &  & (-\infty, c_<) \cup  (c_>, \infty) &  & \mu \neq \mu_0
-\end{align*}
-Wobei gilt $t_{m, \alpha} = -t_{m, 1 - \alpha}$.
-\end{definition}
+
 \subsection{Gepaarter Zweiproben-Test}
 Hier sind $\zufallsvariablen$ i.i.d. $\sim \mathcal{N} (\mu_X, \sigma^2)$ und
 $Y_1, \dots, Y_n$ i.i.d. $\sim \mathcal{N} (\mu_Y, \sigma^2)$ unter $P_\vt$.
