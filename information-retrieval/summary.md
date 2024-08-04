@@ -259,3 +259,18 @@ Then check after the star. If you have pl\*t, then you need to check for the wor
 #### Term/TermID mapping 
 - saves space
 - ![alt text](image-39.png)
+
+#### Merging
+
+## Index compression
+#### Statistics
+![alt text](image-35.png)
+In practice, $b \approx \frac{1}{2}$, $30 \leq K \leq 100$
+
+![alt text](image-36.png)
+
+![alt text](image-37.png)
+
+![alt text](image-41.png)
+
+![alt text](image-42.png)
