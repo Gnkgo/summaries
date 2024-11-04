@@ -407,5 +407,75 @@ and increase coverage
 ![alt text](image-18.png)
 - fixed point iff $f(x) = x$
 - post-fixedpoint iff $f(x) \sqsubseteq x$
+- ![alt text
+- ](image-19.png)
+- if $f'$ approximates $f$ then $f \sqsubseteq f'$
+- ![alt text](image-20.png)
+- C => Concrete, A, Abstract/Approximation.
+- Abstraction gooooes to Approximation (alpha)
+- Concretization gooooes to Concrete (gamma)
+$$\forall z \in A : \alpha(F(\gamma(z))) \sqsubseteq_A F'(z)$$
+![alt text](image-23.png)
+says is that if we have some function in the abstract that we
+think should approximate the concrete function, then to
+check that this is indeed true, we need to prove that for any
+abstract element, concretizing it, applying the concrete
+function and abstracting back again is less than applying the
+function in the abstract directly
+
+![alt text](image-21.png)
+
+![alt text](image-22.png)
+if not monotone:
+$$\forall z \in A : F(\gamma(z)) \sqsubseteq_C \gamma(F'(z))$$
+![alt text](image-24.png)
+![alt text](image-25.png)
+
+## Analysis Intervals
+![alt text](image-26.png)
+![alt text](image-27.png)
+![alt text](image-28.png)
+![alt text](image-29.png)
+![alt text](image-30.png)
+![alt text](image-31.png)
+
+$$
+[a, b] \nabla_i [c, d] = [e, f]
+$$
+
+where:
+$$\begin{align*}
+&\text{if } c < a, \text{ then } e = -\infty, \text{ else } e = a \\
+&\text{if } d > b, \text{ then } f = \infty, \text{ else } f = b
+\end{align*}
+$$
+
+## Analyis Pointer
+![alt text](image-32.png)
+
+Flow sensitive: respects the program control flow
+- a separate set of points‐to pairs for every program point
+- the set at a program point represents possible may‐aliases
+on some path from entry to the program point
+
+Flow insensitive: assume all execution orders are possible,
+abstracts away order between statements
+- good for concurrency (if not too imprecise)
+
+![alt text](image-33.png)
+## Determinism
+Sources of Unsoundness
+- Unbounded Heap
+  - Compute finite set of abstract locations
+  - Using flow-insensitive points-to analysis
+- Unbounded range of array indices
+  - Compute symbolic index constraints
+  - Using numerical abstractions
+- Unbounded number of threads
+
+### Check (Abstract) Data-Race-Freedom
+1. Compute all reachable abstract states
+2. Check if abstract states are data-race free (i.e. no read-write conflicts)
+
 # Questions
 - when are properties in a code stable
